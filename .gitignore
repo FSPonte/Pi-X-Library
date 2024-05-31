@@ -1,5 +1,8 @@
-scripts/
+# Directories
+.vscode/
 build/
+scripts/
 tester/
 
+# Files
 CMakeLists.txt
