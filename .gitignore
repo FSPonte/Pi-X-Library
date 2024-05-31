@@ -1,2 +1,5 @@
 scripts/
 build/
+tester/
+
+CMakeLists.txt
