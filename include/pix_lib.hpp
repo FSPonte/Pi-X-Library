@@ -9,6 +9,12 @@
 #include <smart_pointer.hpp>
 
 /**
+ * Pi-X Mathematial Functions
+ * pix::math
+*/
+#include <math.hpp>
+
+/**
  * Pi-X Abstract Data Types
  * pix::adt
 */

@@ -11,6 +11,8 @@ include_directories(
     "lib/type_info"
     "lib/smart_pointer"
 
+    "lib/math"
+
     "lib/string"
     "lib/array"
     "lib/stack"
