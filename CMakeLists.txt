@@ -17,6 +17,7 @@ include_directories(
     "lib/queue"
     "lib/deque"
     "lib/hash_table"
+    "lib/complex"
     "lib/vector"
     "lib/matrix"
 )

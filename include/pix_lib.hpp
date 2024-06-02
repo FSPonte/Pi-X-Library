@@ -18,6 +18,7 @@
 #include <queue.hpp>
 #include <deque.hpp>
 #include <hash_table.hpp>
+#include <complex.hpp>
 #include <vector.hpp>
 #include <matrix.hpp>
 
