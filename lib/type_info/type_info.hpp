@@ -11,6 +11,8 @@
 
 /**
  * @brief Static assertion for is_same
+ * @param type_1 Data type 1
+ * @param type_2 Data type 2
 */
 #define is_same_static_assert(type_1, type_2)   \
 static_assert                                   \
@@ -28,6 +30,7 @@ static_assert                                   \
 
 /**
  * @brief Static assertion for is_number
+ * @param type Data type
 */
 #define is_number_static_assert(type)     \
 static_assert                             \
@@ -35,6 +38,13 @@ static_assert                             \
     is_number(type),                      \
     "Non primitive numerical data type"   \
 );
+
+/**
+ * @brief Checks type for primitive floating point numerical data type
+ * @param type Data type
+ * @return True if is a primitive floating point numerical data type
+*/
+#define is_floating_point(type) is_floating_point<type>::value
 
 namespace pix
 {
