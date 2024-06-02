@@ -21,7 +21,7 @@ namespace pix::types
      * @param key C styled string
      * @return Hash value
     */
-    typedef size_t (*hash_func_ptr_t) (c_str_t);
+    typedef unsigned long (*hash_func_ptr_t) (const char*);
 }
 
 #endif // _TYPES_HPP_
