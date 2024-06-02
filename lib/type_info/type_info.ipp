@@ -1,9 +1,6 @@
 #ifndef _TYPE_INFO_IPP_
 #define _TYPE_INFO_IPP_
 
-// Dependencies
-#include <types.hpp>
-
 using namespace pix;
 
 #ifndef _IS_SAME_
