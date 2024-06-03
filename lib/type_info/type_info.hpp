@@ -69,15 +69,15 @@ namespace pix
         */
         type_info(type_t);
 
-        bool operator == (const type_info<type_t>&);
+        const bool operator == (const type_info<type_t>&) const;
 
         template <typename _type_t>
-        bool operator == (const type_info<_type_t>&);
+        const bool operator == (const type_info<_type_t>&) const;
 
-        bool operator != (const type_info<type_t>&);
+        const bool operator != (const type_info<type_t>&) const;
         
         template <typename _type_t>
-        bool operator != (const type_info<_type_t>&);
+        const bool operator != (const type_info<_type_t>&) const;
     };
 }
 
