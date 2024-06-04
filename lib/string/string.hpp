@@ -3,9 +3,6 @@
 
 // Dependencies
 #include <sys_vars.hpp>
-#include <types.hpp>
-
-using namespace pix::types;
 
 namespace pix::adt
 {
@@ -13,13 +10,13 @@ namespace pix::adt
      * @brief String
      * @tparam BUFFER_SIZE Maximum number of characters
     */
-    template <size_t BUFFER_SIZE = D_BUFFER_SIZE>
+    template <unsigned long BUFFER_SIZE = D_BUFFER_SIZE>
     class string
     {
     private:
 
         char arr[BUFFER_SIZE + 1];
-        size_t len;
+        unsigned long len;
 
     public:
 
@@ -39,14 +36,14 @@ namespace pix::adt
          * @param c_str C styled string
          * @param len Number of characters to copy
         */
-        string(const char*, size_t);
+        string(const char*, unsigned long);
 
         /**
          * @brief Copy constructor
          * @tparam _BUFFER_SIZE Maximum number of characters
          * @param str String
         */
-        template <size_t _BUFFER_SIZE>
+        template <unsigned long _BUFFER_SIZE>
         string(const string<_BUFFER_SIZE>&);
 
         /**
@@ -55,21 +52,27 @@ namespace pix::adt
          * @return Character
          * @note Index parameter is congruent to the buffer
         */
-        char operator [] (size_t) const;
+        char operator [] (unsigned long) const;
+
+        /**
+         * @brief Get buffer
+         * @return Pointer to C styled string
+        */
+        const char* buffer(void) const;
 
         /**
          * @brief Length of string
          * @return Number of characters
          * @note Doesn't include the end byte
         */
-        const size_t length(void) const;
+        const unsigned long length(void) const;
 
         /**
          * @brief Buffer of string
          * @return Number of characters
          * @note Doesn't include the end byte
         */
-        constexpr const size_t buffer(void) const;
+        constexpr const unsigned long buffer_size(void) const;
 
         /**
          * @brief Copy operator
@@ -82,7 +85,7 @@ namespace pix::adt
          * @tparam _BUFFER_SIZE Maximum number of characters
          * @param str String
         */
-        template <size_t _BUFFER_SIZE>
+        template <unsigned long _BUFFER_SIZE>
         void operator = (const string<_BUFFER_SIZE>&);
 
         /**
@@ -98,7 +101,7 @@ namespace pix::adt
          * @param str String
          * @return true if strings are equal
         */
-        template <size_t _BUFFER_SIZE>
+        template <unsigned long _BUFFER_SIZE>
         const bool operator == (const string<_BUFFER_SIZE>&) const;
 
         /**
@@ -114,7 +117,7 @@ namespace pix::adt
          * @param str String
          * @return true if strings are different
         */
-        template <size_t _BUFFER_SIZE>
+        template <unsigned long _BUFFER_SIZE>
         const bool operator != (const string<_BUFFER_SIZE>&) const;
 
         /**
@@ -122,7 +125,7 @@ namespace pix::adt
          * @tparam _BUFFER_SIZE Maximum number of characters
          * @param c_str C styled string
         */
-        template <size_t _BUFFER_SIZE>
+        template <unsigned long _BUFFER_SIZE>
         void operator += (const char*);
 
         /**
@@ -130,7 +133,7 @@ namespace pix::adt
          * @tparam _BUFFER_SIZE Maximum number of characters
          * @param str String
         */
-        template <size_t _BUFFER_SIZE>
+        template <unsigned long _BUFFER_SIZE>
         void operator += (const string<_BUFFER_SIZE>&);
 
         /**

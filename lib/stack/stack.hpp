@@ -1,11 +1,6 @@
 #ifndef _STACK_HPP_
 #define _STACK_HPP_
 
-// Dependencies
-#include <types.hpp>
-
-using namespace pix::types;
-
 namespace pix::adt
 {
     /**
@@ -13,13 +8,13 @@ namespace pix::adt
      * @tparam type_t Data type
      * @tparam MAX_SIZE Maximum number of elements
     */
-    template <typename type_t, size_t MAX_SIZE>
+    template <typename type_t, unsigned long MAX_SIZE>
     class stack
     {
     private:
 
         type_t arr[MAX_SIZE];
-        size_t ind;
+        unsigned long ind;
 
     public:
 
@@ -51,13 +46,13 @@ namespace pix::adt
          * @brief Size of stack
          * @return Number of elements
         */
-        const size_t size(void) const;
+        const unsigned long size(void) const;
 
         /**
          * @brief Maximum size
          * @return Maximum number of elements
         */
-        const size_t max_size(void) const;
+        const unsigned long max_size(void) const;
 
         /**
          * @brief Is empty

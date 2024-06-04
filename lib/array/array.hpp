@@ -1,11 +1,6 @@
 #ifndef _ARRAY_HPP_
 #define _ARRAY_HPP_
 
-// Dependencies
-#include <types.hpp>
-
-using namespace pix::types;
-
 namespace pix::adt
 {
     /**
@@ -13,7 +8,7 @@ namespace pix::adt
      * @tparam type_t Data type
      * @tparam DIM Number of elements
     */
-    template <typename type_t, size_t DIM>
+    template <typename type_t, unsigned long DIM>
     class array
     {
     private:
@@ -37,7 +32,7 @@ namespace pix::adt
          * @brief Copy constructor
          * @param arr Array
         */
-        template <typename _type_t, size_t _DIM>
+        template <typename _type_t, unsigned long _DIM>
         array(const array<_type_t, _DIM>&);
 
         /**
@@ -46,13 +41,13 @@ namespace pix::adt
          * @return Reference to element
          * @note Index is congruent to DIM
         */
-        type_t& operator [] (size_t);
+        type_t& operator [] (unsigned long);
 
         /**
          * @brief Get dimension
          * @return Number of elements
         */
-        constexpr const size_t dim() const;
+        constexpr const unsigned long dim() const;
     };
 }
 

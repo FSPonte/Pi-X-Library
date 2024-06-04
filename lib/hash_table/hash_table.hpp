@@ -4,8 +4,6 @@
 // Dependencies
 #include <types.hpp>
 
-using namespace pix::types;
-
 namespace pix
 {
     // Hashing functions
@@ -19,11 +17,11 @@ namespace pix
          * @tparam type_t Data type
          * @tparam BUFFER_SIZE Number of characters in the keys
         */
-        template <typename type_t, size_t BUFFER_SIZE = D_BUFFER_SIZE>
+        template <typename type_t, unsigned long BUFFER_SIZE = D_BUFFER_SIZE>
         struct hash_item
         {
             string<BUFFER_SIZE> key;
-            size_t hash;
+            unsigned long hash;
             type_t val;
         };
 
@@ -33,14 +31,14 @@ namespace pix
          * @tparam MAX_SIZE Maximum number of elements
          * @tparam BUFFER_SIZE Maximum number of characters for the keys
         */
-        template <typename type_t, size_t MAX_SIZE, size_t BUFFER_SIZE = D_BUFFER_SIZE>
+        template <typename type_t, unsigned long MAX_SIZE, unsigned long BUFFER_SIZE = D_BUFFER_SIZE>
         class hash_table
         {
         private:
 
             hash_item<type_t, BUFFER_SIZE> arr[MAX_SIZE];
-            hash_func_ptr_t f_ptr;
-            size_t dim;
+            types::hash_func_ptr_t f_ptr;
+            unsigned long dim;
 
         public:
 
@@ -48,7 +46,7 @@ namespace pix
              * @brief Constructor
              * @param f_ptr Hashing function pointer
             */
-            hash_table(const hash_func_ptr_t);
+            hash_table(const types::hash_func_ptr_t);
 
             /**
              * @brief Insert a element
@@ -63,7 +61,7 @@ namespace pix
              * @param ind Index
              * @return Removed element
             */
-            type_t remove(size_t);
+            type_t remove(unsigned long);
 
             /**
              * @brief Remove a element
@@ -78,7 +76,7 @@ namespace pix
              * @return Reference to value
              * @note Index is congruent to the maximum size
             */
-            type_t& operator [] (size_t);
+            type_t& operator [] (unsigned long);
 
             /**
              * @brief Get value
@@ -91,13 +89,13 @@ namespace pix
              * @brief Size of queue
              * @return Number of elements
             */
-            const size_t size(void) const;
+            const unsigned long size(void) const;
 
             /**
              * @brief Maximum size
              * @return Maximum number of elements
             */
-            const size_t max_size(void) const;
+            const unsigned long max_size(void) const;
 
             /**
              * @brief Is empty

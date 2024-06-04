@@ -1,11 +1,6 @@
 #ifndef _VECTOR_HPP_
 #define _VECTOR_HPP_
 
-// Dependencies
-#include <types.hpp>
-
-using namespace pix::types;
-
 namespace pix::adt
 {
     /**
@@ -13,7 +8,7 @@ namespace pix::adt
      * @tparam type_t Data type
      * @tparam DIM Number of components
     */
-    template <typename type_t, size_t DIM>
+    template <typename type_t, unsigned long DIM>
     class vector
     {
     private:
@@ -39,7 +34,7 @@ namespace pix::adt
          * @tparam _DIM Number of components
          * @param vec Vector
         */
-        template <typename _type_t, size_t _DIM>
+        template <typename _type_t, unsigned long _DIM>
         vector(vector<_type_t, _DIM>&);
 
         /**
@@ -48,13 +43,13 @@ namespace pix::adt
          * @return Reference to component
          * @note Index is congruent to DIM
         */
-        type_t& operator [] (size_t);
+        type_t& operator [] (unsigned long);
 
         /**
          * @brief Get size
          * @return Number of components
         */
-        constexpr const size_t dim(void) const;
+        constexpr const unsigned long dim(void) const;
 
         /**
          * @brief Assignment operator
@@ -62,7 +57,7 @@ namespace pix::adt
          * @tparam _DIM Number of components
          * @param vec Vector
         */
-        template <typename _type_t, size_t _DIM>
+        template <typename _type_t, unsigned long _DIM>
         void operator = (vector<_type_t, _DIM>&);
 
         /**
@@ -72,7 +67,7 @@ namespace pix::adt
          * @param vec Vector
          * @return true if vectors are equal
         */
-        template <typename _type_t, size_t _DIM>
+        template <typename _type_t, unsigned long _DIM>
         const bool operator == (vector<_type_t, _DIM>&);
 
         /**
@@ -89,7 +84,7 @@ namespace pix::adt
          * @param vec Vector
          * @return true if vectors are different
         */
-        template <typename _type_t, size_t _DIM>
+        template <typename _type_t, unsigned long _DIM>
         const bool operator != (vector<_type_t, _DIM>&);
 
         /**
