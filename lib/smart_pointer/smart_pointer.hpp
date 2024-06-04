@@ -1,12 +1,7 @@
 #ifndef _SMART_POINTER_HPP_
 #define _SMART_POINTER_HPP_
 
-// Dependencies
-#include <types.hpp>
-
-using namespace pix::types;
-
-namespace
+namespace pix::smart_pointer
 {
     template <typename type_t>
     class smart_pointer
@@ -18,8 +13,6 @@ namespace
     public:
 
         virtual type_t& operator * (void) = 0;
-        virtual type_t* operator -> (void) = 0;
-        virtual type_t& operator [] (size_t) = 0;
     };
 }
 
@@ -28,13 +21,12 @@ namespace
 #ifndef _AUTO_POINTER_HPP_
 #define _AUTO_POINTER_HPP_
 
-namespace pix::adt
+namespace pix::smart_pointer
 {
     template <typename type_t>
     class auto_pointer : public smart_pointer<type_t>
     {
     public:
-
         /**
          * @brief Default constructor
         */
@@ -56,19 +48,6 @@ namespace pix::adt
          * @return Reference to member pointer
         */
         type_t& operator * (void) override;
-
-        /**
-         * @brief Arrow operator
-         * @return Member pointer
-        */
-        type_t* operator -> (void) override;
-
-        /**
-         * @brief Get operator
-         * @param ind Index
-         * @return Reference to element
-        */
-        type_t& operator [] (size_t) override;
     };
 }
 
@@ -80,7 +59,7 @@ namespace pix::adt
 #ifndef _UNIQUE_POINTER_HPP_
 #define _UNIQUE_POINTER_HPP_
 
-namespace pix::adt
+namespace pix::smart_pointer
 {
     template <typename type_t>
     class unique_pointer : public smart_pointer<type_t>
@@ -108,19 +87,6 @@ namespace pix::adt
          * @return Reference to member pointer
         */
         type_t& operator * (void) override;
-
-        /**
-         * @brief Arrow operator
-         * @return Member pointer
-        */
-        type_t* operator -> (void) override;
-
-        /**
-         * @brief Get operator
-         * @param ind Index
-         * @return Reference to element
-        */
-        type_t& operator [] (size_t) override;
 
         /**
          * @brief Left shift operator
