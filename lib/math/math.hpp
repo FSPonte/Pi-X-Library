@@ -8,7 +8,7 @@ namespace pix::math
      * @param num Number
      * @return Factorial value
     */
-    unsigned int fat(unsigned int);
+    unsigned long fat(unsigned long);
 }
 
 // Implementation file
