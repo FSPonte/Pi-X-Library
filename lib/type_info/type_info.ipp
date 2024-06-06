@@ -4,13 +4,13 @@
 #ifndef _IS_SAME_
 #define _IS_SAME_
 
-template <typename type_t>
-struct is_same<type_t, type_t>
-{ static constexpr bool value = true; };
-
 template <typename type_t_1, typename type_t_2>
 struct is_same
 { static constexpr bool value = false; };
+
+template <typename type_t>
+struct is_same<type_t, type_t>
+{ static constexpr bool value = true; };
 
 #endif // _IS_SAME_
 
