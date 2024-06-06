@@ -4,13 +4,13 @@
 #ifndef _IS_SAME_
 #define _IS_SAME_
 
-template <typename type_t_1, typename type_t_2>
-struct is_same
-{ static constexpr bool value = false; };
-
 template <typename type_t>
 struct is_same<type_t, type_t>
 { static constexpr bool value = true; };
+
+template <typename type_t_1, typename type_t_2>
+struct is_same
+{ static constexpr bool value = false; };
 
 #endif // _IS_SAME_
 
@@ -97,22 +97,22 @@ namespace pix
     type_info<type_t>::type_info(const type_t val) {}
 
     template <typename type_t>
-    template <typename _type_t>
-    constexpr const bool type_info<type_t>::operator == (const type_info<_type_t>& t_inf) const
-    { return false; }
-
-    template <typename type_t>
     constexpr const bool type_info<type_t>::operator == (const type_info<type_t>& t_inf) const
     { return true; }
 
     template <typename type_t>
     template <typename _type_t>
-    constexpr const bool type_info<type_t>::operator != (const type_info<_type_t>& t_inf) const
-    { return true; }
+    constexpr const bool type_info<type_t>::operator == (const type_info<_type_t>& t_inf) const
+    { return false; }
 
     template <typename type_t>
     constexpr const bool type_info<type_t>::operator != (const type_info<type_t>& t_inf) const
     { return false; }
+
+    template <typename type_t>
+    template <typename _type_t>
+    constexpr const bool type_info<type_t>::operator != (const type_info<_type_t>& t_inf) const
+    { return true; }
 }
 
 #endif // _TYPE_INFO_IPP_
