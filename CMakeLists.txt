@@ -25,6 +25,5 @@ include_directories(
 )
 
 add_executable(pix_tester
-    tester/main.cpp
-    tester/tests.cpp
+    src/main.cpp
 )
