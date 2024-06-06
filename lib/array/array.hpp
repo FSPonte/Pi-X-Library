@@ -42,13 +42,19 @@ namespace pix::adt
          * @param arr Array
         */
         template <typename _type_t>
-        array(array<_type_t, DIM>&);
+        array(const array<_type_t, DIM>&);
 
         /**
          * @brief Copy constructor
          * @param arr Array
         */
-        array(array<type_t, DIM>&);
+        array(const array<type_t, DIM>&);
+
+        /**
+         * @brief Get buffer
+         * @return Pointer to buffer
+        */
+        const type_t* buffer(void) const;
 
         /**
          * @brief Get operator
@@ -62,55 +68,106 @@ namespace pix::adt
          * @brief Get dimension
          * @return Number of elements
         */
-        constexpr const unsigned long dim() const;
+        constexpr const unsigned long dim(void) const;
 
         /**
-         * @brief Assignment operator
+         * @brief Copy operator
+         * @tparam _type_t Data type
+         * @param arr Array
+         * @note Assumes same dimensions as object
+        */
+        template <typename _type_t>
+        void operator = (const _type_t*);
+
+        /**
+         * @brief Copy operator
+         * @param arr Array
+         * @note Assumes same dimensions as object
+        */
+        void operator = (const type_t*);
+
+        /**
+         * @brief Copy operator
+         * @tparam _type_t Data type
          * @param arr Array
         */
-        void operator = (array<type_t, DIM>&);
+        template <typename _type_t>
+        void operator = (const array<_type_t, DIM>&);
 
         /**
-         * @brief Assignment operator
+         * @brief Copy operator
+         * @param arr Array
+        */
+        void operator = (const array<type_t, DIM>&);
+
+        /**
+         * @brief Equivalence operator
+         * @tparam _type_t Data type
+         * @param arr C styled array
+         * @return True if arrays are equal
+         * @note Assumes same dimensions as object
+        */
+        template <typename _type_t>
+        constexpr const bool operator == (const _type_t*) const;
+
+        /**
+         * @brief Equivalence operator
+         * @param arr C styled array
+         * @return True if arrays are equal
+         * @note Assumes same dimensions as object
+        */
+        const bool operator == (const type_t*) const;
+
+        /**
+         * @brief Equivalence operator
          * @tparam _type_t Data type
          * @tparam _DIM Number of elements
          * @param arr Array
-        */
-        template <typename _type_t, unsigned long _DIM>
-        void operator = (array<_type_t, _DIM>&);
-
-        /**
-         * @brief Comparisson operator
-         * @param arr Array
-         * @return True if arrays are equal
-        */
-        const bool operator == (array<type_t, DIM>&) const;
-
-        /**
-         * @brief Comparisson operator
-         * @tparam _type_t Data type
-         * @tparam _DIM Number of elements
-         * @param arr Array
          * @return True if arrays are equal
         */
         template <typename _type_t, unsigned long _DIM>
-        constexpr const bool operator == (array<_type_t, _DIM>&) const;
+        constexpr const bool operator == (const array<_type_t, _DIM>&) const;
 
         /**
-         * @brief Comparisson operator
+         * @brief Equivalence operator
          * @param arr Array
-         * @return True if arrays are different
+         * @return True if arrays are equal
         */
-        const bool operator != (array<type_t, DIM>&) const;
+        const bool operator == (const array<type_t, DIM>&) const;
 
         /**
-         * @brief Comparisson operator
+         * @brief Difference operator
+         * @tparam _type_t Data type
+         * @param arr C styled array
+         * @return True if arrays are different
+         * @note Assumes same dimensions as object
+        */
+        template <typename _type_t>
+        constexpr const bool operator != (const _type_t*) const;
+
+        /**
+         * @brief Difference operator
+         * @param arr C styled array
+         * @return True if arrays are different
+         * @note Assumes same dimensions as object
+        */
+        const bool operator != (const type_t*) const;
+
+        /**
+         * @brief Difference operator
          * @tparam _type_t Data type
          * @param arr Array
          * @return True if arrays are different
         */
         template <typename _type_t, unsigned long _DIM>
-        constexpr const bool operator != (array<_type_t, _DIM>&) const;
+        constexpr const bool operator != (const array<_type_t, _DIM>&) const;
+
+        /**
+         * @brief Difference operator
+         * @param arr Array
+         * @return True if arrays are different
+        */
+        const bool operator != (const array<type_t, DIM>&) const;
     };
 }
 
