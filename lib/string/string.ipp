@@ -56,6 +56,9 @@ namespace pix::adt
     template <unsigned long BUFFER_SIZE>
     void string<BUFFER_SIZE>::operator = (const char* c_str)
     {
+        if (c_str == nullptr)
+            return;
+
         for (this->len = 0; this->len < BUFFER_SIZE - 1; ++this->len)
         {
             this->arr[this->len] = c_str[this->len];
@@ -107,6 +110,9 @@ namespace pix::adt
     template <unsigned long BUFFER_SIZE>
     void string<BUFFER_SIZE>::operator += (const char* c_str)
     {
+        if (c_str == nullptr)
+            return;
+
         for (unsigned long i = 0; this->len < BUFFER_SIZE - 1; ++i)
         {
             this->arr[this->len++] = c_str[i];
