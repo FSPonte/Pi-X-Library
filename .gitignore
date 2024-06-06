@@ -3,6 +3,7 @@
 build/
 files/
 scripts/
+src/
 
 # Files
 CMakeLists.txt
