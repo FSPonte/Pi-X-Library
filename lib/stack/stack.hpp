@@ -26,7 +26,7 @@ namespace pix::adt
         /**
          * @brief Add a element
          * @param ele Element
-         * @return true - Success | false - Failure
+         * @return True if the element is added
         */
         const bool add(const type_t&);
 
@@ -52,17 +52,17 @@ namespace pix::adt
          * @brief Maximum size
          * @return Maximum number of elements
         */
-        const unsigned long max_size(void) const;
+        constexpr const unsigned long max_size(void) const;
 
         /**
          * @brief Is empty
-         * @return true if stack is empty
+         * @return True if stack is empty
         */
         const bool is_empty(void) const;
 
         /**
          * @brief Is Full
-         * @return true if stack is full
+         * @return True if stack is full
         */
         const bool is_full(void) const;
     };

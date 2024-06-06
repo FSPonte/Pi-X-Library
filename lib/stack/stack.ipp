@@ -17,12 +17,12 @@ namespace pix::adt
     }
 
     template <typename type_t, unsigned long MAX_SIZE>
-    const bool stack<type_t, MAX_SIZE>::add(const type_t& ele)
+    const bool stack<type_t, MAX_SIZE>::add(const type_t& element)
     {
         if (this->ind == MAX_SIZE)
             return false;
 
-        this->arr[this->ind++] = ele;
+        this->arr[this->ind++] = element;
 
         return true;
     }
@@ -50,7 +50,7 @@ namespace pix::adt
     { return this->ind; }
 
     template <typename type_t, unsigned long MAX_SIZE>
-    const unsigned long stack<type_t, MAX_SIZE>::max_size(void) const
+    constexpr const unsigned long stack<type_t, MAX_SIZE>::max_size(void) const
     { return MAX_SIZE; }
 
     template <typename type_t, unsigned long MAX_SIZE>
