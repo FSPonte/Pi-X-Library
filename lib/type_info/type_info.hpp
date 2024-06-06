@@ -71,26 +71,19 @@ namespace pix
 
         /**
          * @brief Equivalence operator
-         * @param t_inf Object
-         * @return True if types are equal
-        */
-        constexpr const bool operator == (const type_info<type_t>&) const;
-
-        /**
-         * @brief Equivalence operator
          * @tparam _type_t Data type
          * @param t_inf Object
          * @return True if types are equal
         */
         template <typename _type_t>
         constexpr const bool operator == (const type_info<_type_t>&) const;
-        
+
         /**
-         * @brief Difference operator
+         * @brief Equivalence operator
          * @param t_inf Object
-         * @return True if types are different
+         * @return True if types are equal
         */
-        constexpr const bool operator != (const type_info<type_t>&) const;
+        constexpr const bool operator == (const type_info<type_t>&) const;
 
         /**
          * @brief Difference operator
@@ -100,6 +93,13 @@ namespace pix
         */
         template <typename _type_t>
         constexpr const bool operator != (const type_info<_type_t>&) const;
+
+        /**
+         * @brief Difference operator
+         * @param t_inf Object
+         * @return True if types are different
+        */
+        constexpr const bool operator != (const type_info<type_t>&) const;
     };
 }
 
