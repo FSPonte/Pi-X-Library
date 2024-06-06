@@ -6,4 +6,5 @@ scripts/
 src/
 
 # Files
+.gitignore
 CMakeLists.txt
