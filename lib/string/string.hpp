@@ -15,7 +15,7 @@ namespace pix::adt
     {
     private:
 
-        char arr[BUFFER_SIZE + 1];
+        char arr[BUFFER_SIZE];
         unsigned long len;
 
     public:
@@ -49,28 +49,26 @@ namespace pix::adt
         /**
          * @brief Get operator
          * @param ind Index
-         * @return Character
+         * @return Reference to character
          * @note Index parameter is congruent to the buffer
         */
-        char operator [] (unsigned long) const;
+        char& operator [] (unsigned long);
 
         /**
          * @brief Get buffer
-         * @return Pointer to C styled string
+         * @return C styled string
         */
         const char* buffer(void) const;
 
         /**
          * @brief Length of string
          * @return Number of characters
-         * @note Doesn't include the end byte
         */
         const unsigned long length(void) const;
 
         /**
          * @brief Buffer of string
          * @return Number of characters
-         * @note Doesn't include the end byte
         */
         constexpr const unsigned long buffer_size(void) const;
 
@@ -86,50 +84,48 @@ namespace pix::adt
          * @param str String
         */
         template <unsigned long _BUFFER_SIZE>
-        void operator = (const string<_BUFFER_SIZE>&);
+        void operator = (string<_BUFFER_SIZE>&);
 
         /**
-         * @brief Comparison operator
+         * @brief Equivalence operator
          * @param c_str C styled string
-         * @return true if strings are equal
+         * @return True if strings are equal
         */
         const bool operator == (const char*) const;
 
         /**
-         * @brief Comparison operator
+         * @brief Equivalence operator
          * @tparam _BUFFER_SIZE Maximum number of characters
          * @param str String
-         * @return true if strings are equal
+         * @return True if strings are equal
         */
         template <unsigned long _BUFFER_SIZE>
         const bool operator == (const string<_BUFFER_SIZE>&) const;
 
         /**
-         * @brief Comparison operator
+         * @brief Difference operator
          * @param c_str C styled string
-         * @return true if strings are different
+         * @return True if strings are different
         */
         const bool operator != (const char*) const;
 
         /**
-         * @brief Comparison operator
+         * @brief Difference operator
          * @tparam _BUFFER_SIZE Maximum number of characters
          * @param str String
-         * @return true if strings are different
+         * @return True if strings are different
         */
         template <unsigned long _BUFFER_SIZE>
         const bool operator != (const string<_BUFFER_SIZE>&) const;
 
         /**
-         * @brief Addition assignment operator
-         * @tparam _BUFFER_SIZE Maximum number of characters
+         * @brief Append operator
          * @param c_str C styled string
-        */
-        template <unsigned long _BUFFER_SIZE>
+       */
         void operator += (const char*);
 
         /**
-         * @brief Copy operator
+         * @brief Append operator
          * @tparam _BUFFER_SIZE Maximum number of characters
          * @param str String
         */
@@ -138,9 +134,9 @@ namespace pix::adt
 
         /**
          * @brief Type casting
-         * @return C styled string
+         * @return Array of characters
         */
-        operator char*();
+        operator char*() const;
 
         /**
          * @brief Type casting
