@@ -43,7 +43,7 @@ namespace pix::adt
     }
 
     template <typename type_t, unsigned long MAX_SIZE>
-    const type_t& queue<type_t, MAX_SIZE>::back(void) const
+    const type_t& queue<type_t, MAX_SIZE>::last(void) const
     {
         if (this->ind == 0)
             return type_t();
@@ -52,7 +52,7 @@ namespace pix::adt
     }
 
     template <typename type_t, unsigned long MAX_SIZE>
-    const type_t& queue<type_t, MAX_SIZE>::front(void) const
+    const type_t& queue<type_t, MAX_SIZE>::first(void) const
     {
         if (this->ind == 0)
             return type_t();
@@ -65,7 +65,7 @@ namespace pix::adt
     { return this->ind; }
 
     template <typename type_t, unsigned long MAX_SIZE>
-    const unsigned long queue<type_t, MAX_SIZE>::max_size(void) const
+    constexpr const unsigned long queue<type_t, MAX_SIZE>::max_size(void) const
     { return MAX_SIZE; }
 
     template <typename type_t, unsigned long MAX_SIZE>

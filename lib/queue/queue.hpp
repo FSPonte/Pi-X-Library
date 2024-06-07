@@ -26,7 +26,7 @@ namespace pix::adt
         /**
          * @brief Queue up a element
          * @param ele Element
-         * @return true - Success | false - Failure
+         * @return True if the element was added
         */
         const bool queue_up(const type_t&);
 
@@ -37,16 +37,16 @@ namespace pix::adt
         const type_t& unqueue(void);
 
         /**
-         * @brief Back element
-         * @return See the back element
+         * @brief Last element
+         * @return See the last element
         */
-        const type_t& back(void) const;
+        const type_t& last(void) const;
 
         /**
-         * @brief Front element
-         * @return See the front element
+         * @brief First element
+         * @return See the first element
         */
-        const type_t& front(void) const;
+        const type_t& first(void) const;
 
         /**
          * @brief Size of queue
@@ -58,17 +58,17 @@ namespace pix::adt
          * @brief Maximum size
          * @return Maximum number of elements
         */
-        const unsigned long max_size(void) const;
+        constexpr const unsigned long max_size(void) const;
 
         /**
          * @brief Is empty
-         * @return true if queue is empty
+         * @return True if queue is empty
         */
         const bool is_empty(void) const;
 
         /**
          * @brief Is Full
-         * @return true if queue is full
+         * @return True if queue is full
         */
         const bool is_full(void) const;
     };
