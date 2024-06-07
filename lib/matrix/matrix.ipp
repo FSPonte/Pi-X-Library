@@ -13,9 +13,6 @@ namespace pix::adt
             N_LIN != 0 && N_COL != 0,
             "Array object cannot have zero lines or columns"
         );
-
-        for (unsigned long i = 0; i < N_LIN; ++i)
-            this->arr[i] = vector<type_t, N_COL>();
     }
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
@@ -29,23 +26,35 @@ namespace pix::adt
     }
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
-    matrix<type_t, N_LIN, N_COL>::matrix(vector<type_t, N_COL> arr[]) : matrix<type_t, N_LIN, N_COL>()
+    matrix<type_t, N_LIN, N_COL>::matrix(const vector<type_t, N_COL> arr[]) : matrix<type_t, N_LIN, N_COL>()
     {
         if (arr == nullptr)
             return;
 
         for (unsigned long i = 0; i < N_LIN; ++i)
-            this->arr[i] = arr[i];
+        {
+            for (unsigned long j = 0; j < N_COL; ++j)
+                this->arr[i][j] = arr[i][j];
+        }
     }
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
-    template <typename _type_t, unsigned long _N_LIN, unsigned long _N_COL>
-    matrix<type_t, N_LIN, N_COL>::matrix(matrix<_type_t, _N_LIN, _N_COL>& mtx)
-    { *this = mtx; }
+    matrix<type_t, N_LIN, N_COL>::matrix(const matrix<type_t, N_LIN, N_COL>& mtx) : matrix<type_t, N_LIN, N_COL>()
+    {
+        for (unsigned long i = 0; i < N_LIN; ++i)
+        {
+            for(unsigned long j = 0; j < N_COL; ++j)
+                this->arr[i][j] = mtx[i][j];
+        }
+    }
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
-    vector<type_t, N_COL>& matrix<type_t, N_LIN, N_COL>::operator [] (const unsigned long ind)
-    { return this->arr[ind % N_LIN]; }
+    const type_t* matrix<type_t, N_LIN, N_COL>::buffer(void) const
+    { return this->arr; }
+
+    template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
+    vector<type_t, N_COL>& matrix<type_t, N_LIN, N_COL>::operator [] (const unsigned long index)
+    { return this->arr[index % N_LIN]; }
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
     constexpr const unsigned long matrix<type_t, N_LIN, N_COL>::n_lin(void) const
@@ -56,20 +65,14 @@ namespace pix::adt
     { return N_COL; }
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
-    template <typename _type_t, unsigned long _N_LIN, unsigned long _N_COL>
-    void matrix<type_t, N_LIN, N_COL>::operator = (matrix<_type_t, _N_LIN, _N_COL>& mtx)
+    void matrix<type_t, N_LIN, N_COL>::operator = (const matrix<type_t, N_LIN, N_COL>& mtx)
     {
-        for (unsigned long i = 0; i < N_LIN && i < _N_LIN; ++i)
+        for (unsigned long i = 0; i < N_LIN; ++i)
             this->arr[i] = mtx[i];
     }
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
-    template <typename _type_t, unsigned long _N_LIN, unsigned long _N_COL>
-    const bool matrix<type_t, N_LIN, N_COL>::operator == (matrix<_type_t, _N_LIN, _N_COL>& mtx) const
-    { return false; }
-
-    template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
-    const bool matrix<type_t, N_LIN, N_COL>::operator == (matrix<type_t, N_LIN, N_COL>& mtx) const
+    const bool matrix<type_t, N_LIN, N_COL>::operator == (const matrix<type_t, N_LIN, N_COL>& mtx) const
     {
         for (unsigned long i = 0; i < N_LIN; ++i)
         {
@@ -82,16 +85,20 @@ namespace pix::adt
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
     template <typename _type_t, unsigned long _N_LIN, unsigned long _N_COL>
-    const bool matrix<type_t, N_LIN, N_COL>::operator != (matrix<_type_t, _N_LIN, _N_COL>& mtx) const
-    { return true; }
+    constexpr const bool matrix<type_t, N_LIN, N_COL>::operator == (const matrix<_type_t, _N_LIN, _N_COL>& mtx) const
+    { return false; }
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
-    const bool matrix<type_t, N_LIN, N_COL>::operator != (matrix<type_t, N_LIN, N_COL>& mtx) const
+    const bool matrix<type_t, N_LIN, N_COL>::operator != (const matrix<type_t, N_LIN, N_COL>& mtx) const
     { return !(*this == mtx); }
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
-    template <typename _type_t>
-    matrix<type_t, N_LIN, N_COL> matrix<type_t, N_LIN, N_COL>::operator + (matrix<_type_t, N_LIN, N_COL>& mtx) const
+    template <typename _type_t, unsigned long _N_LIN, unsigned long _N_COL>
+    constexpr const bool matrix<type_t, N_LIN, N_COL>::operator != (const matrix<_type_t, _N_LIN, _N_COL>& mtx) const
+    { return true; }
+
+    template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
+    matrix<type_t, N_LIN, N_COL> matrix<type_t, N_LIN, N_COL>::operator + (const matrix<type_t, N_LIN, N_COL>& mtx) const
     {
         vector<type_t, N_COL> arr[N_LIN];
 
@@ -102,8 +109,7 @@ namespace pix::adt
     }
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
-    template <typename _type_t>
-    matrix<type_t, N_LIN, N_COL> matrix<type_t, N_LIN, N_COL>::operator - (matrix<_type_t, N_LIN, N_COL>& mtx) const
+    matrix<type_t, N_LIN, N_COL> matrix<type_t, N_LIN, N_COL>::operator - (const matrix<type_t, N_LIN, N_COL>& mtx) const
     {
         vector<type_t, N_COL> arr[N_LIN];
 
@@ -114,32 +120,30 @@ namespace pix::adt
     }
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
-    template <typename _type_t>
-    matrix<type_t, N_LIN, N_COL> matrix<type_t, N_LIN, N_COL>::operator * (const _type_t scalar) const
+    matrix<type_t, N_LIN, N_COL> matrix<type_t, N_LIN, N_COL>::operator * (const type_t scalar) const
     {
         vector<type_t, N_COL> arr[N_LIN];
 
         for (unsigned long i = 0; i < N_LIN; ++i)
-            arr[i] = this->arr[i] * static_cast<type_t>(scalar);
+            arr[i] = this->arr[i] * scalar;
 
         return matrix<type_t, N_LIN, N_COL>(arr);
     }
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
-    template <typename _type_t>
-    matrix<type_t, N_LIN, N_COL> matrix<type_t, N_LIN, N_COL>::operator / (const _type_t scalar) const
+    matrix<type_t, N_LIN, N_COL> matrix<type_t, N_LIN, N_COL>::operator / (const type_t scalar) const
     {
         vector<type_t, N_COL> arr[N_LIN];
 
         for (unsigned long i = 0; i < N_LIN; ++i)
-            arr[i] = this->arr[i] / static_cast<type_t>(scalar);
+            arr[i] = this->arr[i] / scalar;
 
         return matrix<type_t, N_LIN, N_COL>(arr);
     }
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
-    template <typename _type_t, unsigned long _N_COL>
-    matrix<type_t, N_LIN, _N_COL> matrix<type_t, N_LIN, N_COL>::operator * (matrix<_type_t, N_COL, _N_COL>& mtx) const
+    template <unsigned long _N_COL>
+    matrix<type_t, N_LIN, _N_COL> matrix<type_t, N_LIN, N_COL>::operator * (const matrix<type_t, N_COL, _N_COL>& mtx) const
     {
         vector<type_t, _N_COL> arr[N_LIN];
 

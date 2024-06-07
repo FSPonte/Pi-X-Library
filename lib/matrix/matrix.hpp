@@ -36,17 +36,19 @@ namespace pix::adt
          * @brief Parameterized constructor
          * @param arr Array of vectors
         */
-        matrix(vector<type_t, N_COL>[]);
+        matrix(const vector<type_t, N_COL>[]);
 
         /**
          * @brief Copy constructor
-         * @tparam _type_t Data type
-         * @tparam _N_LIN Number of lines
-         * @tparam _N_COL Number of columns
          * @param mtx Matrix
         */
-        template <typename _type_t, unsigned long _N_LIN, unsigned long _N_COL>
-        matrix(matrix<_type_t, _N_LIN, _N_COL>&);
+        matrix(const matrix<type_t, N_LIN, N_COL>&);
+
+        /**
+         * @brief Get buffer
+         * @return Pointer to data
+        */
+        const type_t* buffer(void) const;
 
         /**
          * @brief Get line
@@ -69,14 +71,17 @@ namespace pix::adt
         constexpr const unsigned long n_col(void) const;
 
         /**
-         * @brief Assignment operator
-         * @tparam _type_t Data type
-         * @tparam _N_LIN Number of lines
-         * @tparam _N_COL Number of columns
+         * @brief Copy operator
          * @param mtx Matrix
         */
-        template <typename _type_t, unsigned long _N_LIN, unsigned long _N_COL>
-        void operator = (matrix<_type_t, _N_LIN, _N_COL>&);
+        void operator = (const matrix<type_t, N_LIN, N_COL>&);
+
+        /**
+         * @brief Equality operator
+         * @param mtx Matrix
+         * @return True if matrices are equal
+        */
+        const bool operator == (const matrix<type_t, N_LIN, N_COL>&) const;
 
         /**
          * @brief Equality operator
@@ -84,17 +89,17 @@ namespace pix::adt
          * @tparam _N_LIN Number of lines
          * @tparam _N_COL Number of columns
          * @param mtx Matrix
-         * @return true if matrices are equal
+         * @return False
         */
         template <typename _type_t, unsigned long _N_LIN, unsigned long _N_COL>
-        const bool operator == (matrix<_type_t, _N_LIN, _N_COL>&) const;
+        constexpr const bool operator == (const matrix<_type_t, _N_LIN, _N_COL>&) const;
 
         /**
-         * @brief Equality operator
+         * @brief Inequality operator
          * @param mtx Matrix
-         * @return true if matrices are equal
+         * @return True if matrices are different
         */
-        const bool operator == (matrix<type_t, N_LIN, N_COL>&) const;
+        const bool operator != (const matrix<type_t, N_LIN, N_COL>&) const;
 
         /**
          * @brief Inequality operator
@@ -102,63 +107,47 @@ namespace pix::adt
          * @tparam _N_LIN Number of lines
          * @tparam _N_COL Number of columns
          * @param mtx Matrix
-         * @return true if matrices are different
+         * @return True
         */
         template <typename _type_t, unsigned long _N_LIN, unsigned long _N_COL>
-        const bool operator != (matrix<_type_t, _N_LIN, _N_COL>&) const;
-
-        /**
-         * @brief Inequality operator
-         * @param mtx Matrix
-         * @return true if matrices are different
-        */
-        const bool operator != (matrix<type_t, N_LIN, N_COL>&) const;
+        constexpr const bool operator != (const matrix<_type_t, _N_LIN, _N_COL>&) const;
 
         /**
          * @brief Addition operator
-         * @tparam _type_t Data type
          * @param mtx Matrix
          * @return Addition
         */
-        template <typename _type_t>
-        matrix<type_t, N_LIN, N_COL> operator + (matrix<_type_t, N_LIN, N_COL>&) const;
+        matrix<type_t, N_LIN, N_COL> operator + (const matrix<type_t, N_LIN, N_COL>&) const;
 
         /**
          * @brief Subtraction operator
-         * @tparam _type_t Data type
          * @param mtx Matrix
          * @return Subtraction
         */
-        template <typename _type_t>
-        matrix<type_t, N_LIN, N_COL> operator - (matrix<_type_t, N_LIN, N_COL>&) const;
+        matrix<type_t, N_LIN, N_COL> operator - (const matrix<type_t, N_LIN, N_COL>&) const;
 
         /**
          * @brief Scalar multiplication
-         * @tparam _type_t Data type
          * @param scl Scalar
          * @return Scaled matrix
         */
-        template <typename _type_t>
-        matrix<type_t, N_LIN, N_COL> operator * (_type_t) const;
+        matrix<type_t, N_LIN, N_COL> operator * (type_t) const;
 
         /**
          * @brief Scalar division
-         * @tparam _type_t Data type
          * @param scl Scalar
          * @return Scaled matrix
         */
-        template <typename _type_t>
-        matrix<type_t, N_LIN, N_COL> operator / (_type_t) const;
+        matrix<type_t, N_LIN, N_COL> operator / (type_t) const;
 
         /**
          * @brief Matrix multiplication operator
-         * @tparam _type_t Data type
          * @tparam _N_COL Number of columns
          * @param mtx Matrix
          * @return Multiplication
         */
-        template <typename _type_t, unsigned long _N_COL>
-        matrix<type_t, N_LIN, _N_COL> operator * (matrix<_type_t, N_COL, _N_COL>&) const;
+        template <unsigned long _N_COL>
+        matrix<type_t, N_LIN, _N_COL> operator * (const matrix<type_t, N_COL, _N_COL>&) const;
     };
 }
 
