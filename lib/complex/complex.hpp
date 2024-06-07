@@ -55,22 +55,48 @@ namespace pix::adt
         type_t get_im(void) const;
 
         /**
-         * @brief Assignment operator
+         * @brief Copy operator
+         * @tparam _type_t Data type
+         * @param cpx Complex
+        */
+        template <typename _type_t>
+        void operator = (const complex<_type_t>&);
+
+        /**
+         * @brief Copy operator
          * @param cpx Complex
         */
         void operator = (const complex<type_t>&);
 
         /**
-         * @brief Comparisson operator
+         * @brief Equivalence operator
+         * @tparam _type_t Data type
          * @param cpx Complex
-         * @return true if complex numbers are equal
+         * @return True if complex numbers are equal
+        */
+        template <typename _type_t>
+        constexpr const bool operator == (const complex<_type_t>&) const;
+
+        /**
+         * @brief Equivalence operator
+         * @param cpx Complex
+         * @return True if complex numbers are equal
         */
         const bool operator == (const complex<type_t>&) const;
 
         /**
-         * @brief Comparisson operator
+         * @brief Difference operator
+         * @tparam _type_t Data type
          * @param cpx Complex
-         * @return true if complex numbers are different
+         * @return True if complex numbers are different
+        */
+        template <typename _type_t>
+        constexpr const bool operator != (const complex<_type_t>&) const;
+
+        /**
+         * @brief Difference operator
+         * @param cpx Complex
+         * @return True if complex numbers are different
         */
         const bool operator != (const complex<type_t>&) const;
 

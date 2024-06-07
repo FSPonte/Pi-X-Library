@@ -31,11 +31,24 @@ namespace pix::adt
     { return this->im; }
 
     template <typename type_t>
+    template <typename _type_t>
+    void complex<type_t>::operator = (const complex<_type_t>& cpx)
+    {
+        this->re = static_cast<type_t>(cpx.get_re());
+        this->im = static_cast<type_t>(cpx.get_im());
+    }
+
+    template <typename type_t>
     void complex<type_t>::operator = (const complex<type_t>& cpx)
     {
         this->re = cpx.re;
         this->im = cpx.im;
     }
+
+    template <typename type_t>
+    template <typename _type_t>
+    constexpr const bool complex<type_t>::operator == (const complex<_type_t>& cpx) const
+    { return false; }
 
     template <typename type_t>
     const bool complex<type_t>::operator == (const complex<type_t>& cpx) const
@@ -45,6 +58,11 @@ namespace pix::adt
 
         return false;
     }
+
+    template <typename type_t>
+    template <typename _type_t>
+    constexpr const bool complex<type_t>::operator != (const complex<_type_t>& cpx) const
+    { return true; }
 
     template <typename type_t>
     const bool complex<type_t>::operator != (const complex<type_t>& cpx) const
