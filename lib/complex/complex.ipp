@@ -31,14 +31,6 @@ namespace pix::adt
     { return this->im; }
 
     template <typename type_t>
-    template <typename _type_t>
-    void complex<type_t>::operator = (const complex<_type_t>& cpx)
-    {
-        this->re = static_cast<type_t>(cpx.get_re());
-        this->im = static_cast<type_t>(cpx.get_im());
-    }
-
-    template <typename type_t>
     void complex<type_t>::operator = (const complex<type_t>& cpx)
     {
         this->re = cpx.re;

@@ -56,14 +56,6 @@ namespace pix::adt
 
         /**
          * @brief Copy operator
-         * @tparam _type_t Data type
-         * @param cpx Complex
-        */
-        template <typename _type_t>
-        void operator = (const complex<_type_t>&);
-
-        /**
-         * @brief Copy operator
          * @param cpx Complex
         */
         void operator = (const complex<type_t>&);
