@@ -26,22 +26,22 @@ namespace pix::adt
         /**
          * @brief Queue up a element in the back
          * @param ele Element
-         * @return true if push was successfull
+         * @return True if the element was added
         */
         const bool push_back(const type_t&);
-
-        /**
-         * @brief Queue up a element in the front
-         * @param ele Element
-         * @return true if push was successfull
-        */
-        const bool push_front(const type_t&);
 
         /**
          * @brief Unqueue the back element
          * @return Eliminated element
         */
         const type_t& pop_back(void);
+
+        /**
+         * @brief Queue up a element in the front
+         * @param ele Element
+         * @return True if the element was added
+        */
+        const bool push_front(const type_t&);
 
         /**
          * @brief Unqueue the front element
@@ -71,7 +71,7 @@ namespace pix::adt
          * @brief Maximum size
          * @return Maximum number of elements
         */
-        const unsigned long max_size(void) const;
+        constexpr const unsigned long max_size(void) const;
 
         /**
          * @brief Is empty

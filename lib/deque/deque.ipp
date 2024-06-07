@@ -28,6 +28,15 @@ namespace pix::adt
     }
 
     template <typename type_t, unsigned long MAX_SIZE>
+    const type_t& deque<type_t, MAX_SIZE>::pop_back(void)
+    {
+        if (this->ind == 0)
+            return type_t();
+
+        return this->arr[--this->ind];
+    }
+
+    template <typename type_t, unsigned long MAX_SIZE>
     const bool deque<type_t, MAX_SIZE>::push_front(const type_t& ele)
     {
         if (this->ind == MAX_SIZE)
@@ -40,15 +49,6 @@ namespace pix::adt
         this->arr[0] = ele;
 
         return true;
-    }
-
-    template <typename type_t, unsigned long MAX_SIZE>
-    const type_t& deque<type_t, MAX_SIZE>::pop_back(void)
-    {
-        if (this->ind == 0)
-            return type_t();
-
-        return this->arr[--this->ind];
     }
 
     template <typename type_t, unsigned long MAX_SIZE>
@@ -89,7 +89,7 @@ namespace pix::adt
     { return this->ind; }
 
     template <typename type_t, unsigned long MAX_SIZE>
-    const unsigned long deque<type_t, MAX_SIZE>::max_size(void) const
+    constexpr const unsigned long deque<type_t, MAX_SIZE>::max_size(void) const
     { return MAX_SIZE; }
 
     template <typename type_t, unsigned long MAX_SIZE>
