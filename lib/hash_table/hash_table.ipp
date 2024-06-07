@@ -115,7 +115,7 @@ namespace pix::adt
     { return this->siz; }
 
     template <typename type_t, unsigned long MAX_SIZE, unsigned long BUFFER_SIZE>
-    const unsigned long hash_table<type_t, MAX_SIZE, BUFFER_SIZE>::max_size(void) const
+    constexpr const unsigned long hash_table<type_t, MAX_SIZE, BUFFER_SIZE>::max_size(void) const
     { return MAX_SIZE; }
 
     template <typename type_t, unsigned long MAX_SIZE, unsigned long BUFFER_SIZE>
