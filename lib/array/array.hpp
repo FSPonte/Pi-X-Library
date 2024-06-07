@@ -101,7 +101,7 @@ namespace pix::adt
         void operator = (const array<type_t, DIM>&);
 
         /**
-         * @brief Equivalence operator
+         * @brief Equality operator
          * @tparam _type_t Data type
          * @param arr C styled array
          * @return True if arrays are equal
@@ -111,7 +111,7 @@ namespace pix::adt
         constexpr const bool operator == (const _type_t*) const;
 
         /**
-         * @brief Equivalence operator
+         * @brief Equality operator
          * @param arr C styled array
          * @return True if arrays are equal
          * @note Assumes same dimensions as object
@@ -119,7 +119,7 @@ namespace pix::adt
         const bool operator == (const type_t*) const;
 
         /**
-         * @brief Equivalence operator
+         * @brief Equality operator
          * @tparam _type_t Data type
          * @tparam _DIM Number of elements
          * @param arr Array
@@ -129,14 +129,14 @@ namespace pix::adt
         constexpr const bool operator == (const array<_type_t, _DIM>&) const;
 
         /**
-         * @brief Equivalence operator
+         * @brief Equality operator
          * @param arr Array
          * @return True if arrays are equal
         */
         const bool operator == (const array<type_t, DIM>&) const;
 
         /**
-         * @brief Difference operator
+         * @brief Inequality operator
          * @tparam _type_t Data type
          * @param arr C styled array
          * @return True if arrays are different
@@ -146,7 +146,7 @@ namespace pix::adt
         constexpr const bool operator != (const _type_t*) const;
 
         /**
-         * @brief Difference operator
+         * @brief Inequality operator
          * @param arr C styled array
          * @return True if arrays are different
          * @note Assumes same dimensions as object
@@ -154,7 +154,7 @@ namespace pix::adt
         const bool operator != (const type_t*) const;
 
         /**
-         * @brief Difference operator
+         * @brief Inequality operator
          * @tparam _type_t Data type
          * @param arr Array
          * @return True if arrays are different
@@ -163,7 +163,7 @@ namespace pix::adt
         constexpr const bool operator != (const array<_type_t, _DIM>&) const;
 
         /**
-         * @brief Difference operator
+         * @brief Inequality operator
          * @param arr Array
          * @return True if arrays are different
         */

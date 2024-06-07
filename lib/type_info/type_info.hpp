@@ -70,7 +70,7 @@ namespace pix
         type_info(type_t);
 
         /**
-         * @brief Equivalence operator
+         * @brief Equality operator
          * @tparam _type_t Data type
          * @param t_inf Object
          * @return True if types are equal
@@ -79,14 +79,14 @@ namespace pix
         constexpr const bool operator == (const type_info<_type_t>&) const;
 
         /**
-         * @brief Equivalence operator
+         * @brief Equality operator
          * @param t_inf Object
          * @return True if types are equal
         */
         constexpr const bool operator == (const type_info<type_t>&) const;
 
         /**
-         * @brief Difference operator
+         * @brief Inequality operator
          * @tparam _type_t Data type
          * @param t_inf Object
          * @return True if types are different
@@ -95,7 +95,7 @@ namespace pix
         constexpr const bool operator != (const type_info<_type_t>&) const;
 
         /**
-         * @brief Difference operator
+         * @brief Inequality operator
          * @param t_inf Object
          * @return True if types are different
         */

@@ -87,14 +87,14 @@ namespace pix::adt
         void operator = (string<_BUFFER_SIZE>&);
 
         /**
-         * @brief Equivalence operator
+         * @brief Equality operator
          * @param c_str C styled string
          * @return True if strings are equal
         */
         const bool operator == (const char*) const;
 
         /**
-         * @brief Equivalence operator
+         * @brief Equality operator
          * @tparam _BUFFER_SIZE Maximum number of characters
          * @param str String
          * @return True if strings are equal
@@ -103,14 +103,14 @@ namespace pix::adt
         const bool operator == (const string<_BUFFER_SIZE>&) const;
 
         /**
-         * @brief Difference operator
+         * @brief Inequality operator
          * @param c_str C styled string
          * @return True if strings are different
         */
         const bool operator != (const char*) const;
 
         /**
-         * @brief Difference operator
+         * @brief Inequality operator
          * @tparam _BUFFER_SIZE Maximum number of characters
          * @param str String
          * @return True if strings are different

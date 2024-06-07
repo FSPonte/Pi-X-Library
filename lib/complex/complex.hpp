@@ -69,7 +69,7 @@ namespace pix::adt
         void operator = (const complex<type_t>&);
 
         /**
-         * @brief Equivalence operator
+         * @brief Equality operator
          * @tparam _type_t Data type
          * @param cpx Complex
          * @return True if complex numbers are equal
@@ -78,14 +78,14 @@ namespace pix::adt
         constexpr const bool operator == (const complex<_type_t>&) const;
 
         /**
-         * @brief Equivalence operator
+         * @brief Equality operator
          * @param cpx Complex
          * @return True if complex numbers are equal
         */
         const bool operator == (const complex<type_t>&) const;
 
         /**
-         * @brief Difference operator
+         * @brief Inequality operator
          * @tparam _type_t Data type
          * @param cpx Complex
          * @return True if complex numbers are different
@@ -94,7 +94,7 @@ namespace pix::adt
         constexpr const bool operator != (const complex<_type_t>&) const;
 
         /**
-         * @brief Difference operator
+         * @brief Inequality operator
          * @param cpx Complex
          * @return True if complex numbers are different
         */
