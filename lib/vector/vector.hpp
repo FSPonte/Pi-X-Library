@@ -30,12 +30,15 @@ namespace pix::adt
 
         /**
          * @brief Copy constructor
-         * @tparam _type_t Data type
-         * @tparam _DIM Number of components
          * @param vec Vector
         */
-        template <typename _type_t, unsigned long _DIM>
-        vector(vector<_type_t, _DIM>&);
+        vector(const vector<type_t, DIM>&);
+
+        /**
+         * @brief Get buffer
+         * @return Array of components
+        */
+        const type_t* buffer(void) const;
 
         /**
          * @brief Get component
@@ -52,101 +55,93 @@ namespace pix::adt
         constexpr const unsigned long dim(void) const;
 
         /**
-         * @brief Assignment operator
-         * @tparam _type_t Data type
-         * @tparam _DIM Number of components
+         * @brief Copy operator
+         * @param arr Array
+        */
+        void operator = (const type_t[]);
+
+        /**
+         * @brief Copy operator
          * @param vec Vector
         */
-        template <typename _type_t, unsigned long _DIM>
-        void operator = (vector<_type_t, _DIM>&);
+        void operator = (const vector<type_t, DIM>&);
 
         /**
          * @brief Equality operator
          * @tparam _type_t Data type
          * @tparam _DIM Number of components
          * @param vec Vector
-         * @return true if vectors are equal
+         * @return False
         */
         template <typename _type_t, unsigned long _DIM>
-        const bool operator == (vector<_type_t, _DIM>&);
+        constexpr const bool operator == (const vector<_type_t, _DIM>&);
 
         /**
          * @brief Equality operator
          * @param vec Vector
-         * @return true if vectors are equal
+         * @return True if vectors are equal
         */
-        const bool operator == (vector<type_t, DIM>&);
+        const bool operator == (const vector<type_t, DIM>&);
 
         /**
          * @brief Inequality operator
          * @tparam _type_t Data type
          * @tparam _DIM Number of components
          * @param vec Vector
-         * @return true if vectors are different
+         * @return True
         */
         template <typename _type_t, unsigned long _DIM>
-        const bool operator != (vector<_type_t, _DIM>&);
+        constexpr const bool operator != (const vector<_type_t, _DIM>&);
 
         /**
          * @brief Inequality operator
          * @param vec Vector
-         * @return true if vectors are different
+         * @return True if vectors are different
         */
-        const bool operator != (vector<type_t, DIM>&);
+        const bool operator != (const vector<type_t, DIM>&);
 
         /**
          * @brief Addition operator
-         * @tparam _type_t Data type
          * @param vec Vector
          * @return Addition
         */
-        template <typename _type_t>
-        vector<type_t, DIM> operator + (vector<_type_t, DIM>&) const;
+        vector<type_t, DIM> operator + (const vector<type_t, DIM>&) const;
 
         /**
          * @brief Subtraction operator
-         * @tparam _type_t Data type
          * @param vec Vector
          * @return Subtraction
         */
-        template <typename _type_t>
-        vector<type_t, DIM> operator - (vector<_type_t, DIM>&) const;
+        vector<type_t, DIM> operator - (const vector<type_t, DIM>&) const;
 
         /**
          * @brief Scalar multiplication
-         * @tparam _type_t Data type
          * @param scl Scalar
          * @return Scaled vector
         */
-        template <typename _type_t>
-        vector<type_t, DIM> operator * (_type_t) const;
+        vector<type_t, DIM> operator * (type_t) const;
 
         /**
          * @brief Scalar division
-         * @tparam _type_t Data type
          * @param scl Scalar
          * @return Scaled vector
         */
-        template <typename _type_t>
-        vector<type_t, DIM> operator / (_type_t) const;
+        vector<type_t, DIM> operator / (type_t) const;
 
         /**
          * @brief Scalar product operator
-         * @tparam _type_t Data type
          * @param vec Vector
          * @return Dot product
         */
-        template <typename _type_t>
-        type_t operator ^ (vector<_type_t, DIM>&) const;
+        type_t operator ^ (const vector<type_t, DIM>&) const;
 
         /**
          * @brief Vector product operator
-         * @tparam _type_t Data type
          * @param vec Vector
          * @return Cross product
+         * @note Only valid for three dimensional vectors
         */
-        template <typename _type_t>
-        vector<type_t, DIM> operator * (vector<_type_t, DIM>&) const;
+        vector<type_t, DIM> operator * (const vector<type_t, DIM>&) const;
 
         /**
          * @brief Get norm
