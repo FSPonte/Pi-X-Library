@@ -38,11 +38,6 @@ namespace pix::adt
     }
 
     template <typename type_t>
-    template <typename _type_t>
-    constexpr const bool complex<type_t>::operator == (const complex<_type_t>& cpx) const
-    { return false; }
-
-    template <typename type_t>
     const bool complex<type_t>::operator == (const complex<type_t>& cpx) const
     {
         if (this->re == cpx.re && this->im == cpx.im)
@@ -53,12 +48,17 @@ namespace pix::adt
 
     template <typename type_t>
     template <typename _type_t>
-    constexpr const bool complex<type_t>::operator != (const complex<_type_t>& cpx) const
-    { return true; }
+    constexpr const bool complex<type_t>::operator == (const complex<_type_t>& cpx) const
+    { return false; }
 
     template <typename type_t>
     const bool complex<type_t>::operator != (const complex<type_t>& cpx) const
     { return !(*this == cpx); }
+
+    template <typename type_t>
+    template <typename _type_t>
+    constexpr const bool complex<type_t>::operator != (const complex<_type_t>& cpx) const
+    { return true; }
 
     template <typename type_t>
     complex<type_t> complex<type_t>::operator * (const type_t scalar) const

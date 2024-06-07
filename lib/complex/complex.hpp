@@ -62,28 +62,19 @@ namespace pix::adt
 
         /**
          * @brief Equality operator
-         * @tparam _type_t Data type
-         * @param cpx Complex
-         * @return True if complex numbers are equal
-        */
-        template <typename _type_t>
-        constexpr const bool operator == (const complex<_type_t>&) const;
-
-        /**
-         * @brief Equality operator
          * @param cpx Complex
          * @return True if complex numbers are equal
         */
         const bool operator == (const complex<type_t>&) const;
 
         /**
-         * @brief Inequality operator
+         * @brief Equality operator
          * @tparam _type_t Data type
          * @param cpx Complex
-         * @return True if complex numbers are different
+         * @return False
         */
         template <typename _type_t>
-        constexpr const bool operator != (const complex<_type_t>&) const;
+        constexpr const bool operator == (const complex<_type_t>&) const;
 
         /**
          * @brief Inequality operator
@@ -91,6 +82,15 @@ namespace pix::adt
          * @return True if complex numbers are different
         */
         const bool operator != (const complex<type_t>&) const;
+
+        /**
+         * @brief Inequality operator
+         * @tparam _type_t Data type
+         * @param cpx Complex
+         * @return True
+        */
+        template <typename _type_t>
+        constexpr const bool operator != (const complex<_type_t>&) const;
 
         /**
          * @brief Scalar multiplication
