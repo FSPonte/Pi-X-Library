@@ -26,7 +26,7 @@ namespace pix::adt
         /**
          * @brief Add a element
          * @param ele Element
-         * @return True if the element is added
+         * @return True if the element was added
         */
         const bool add(const type_t&);
 
