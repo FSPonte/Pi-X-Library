@@ -81,7 +81,7 @@ namespace pix
             /**
              * @brief Get value
              * @param key Key
-             * @return Reference to value
+             * @return Value
             */
             type_t operator [] (const char*) const;
 
@@ -95,17 +95,17 @@ namespace pix
              * @brief Maximum size
              * @return Maximum number of elements
             */
-            const unsigned long max_size(void) const;
+            constexpr const unsigned long max_size(void) const;
 
             /**
              * @brief Is empty
-             * @return true if hash table is empty
+             * @return True if hash table is empty
             */
             const bool is_empty(void) const;
 
             /**
              * @brief Is Full
-             * @return true if hash table is full
+             * @return True if hash table is full
             */
             const bool is_full(void) const;
         };
