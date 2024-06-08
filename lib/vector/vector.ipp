@@ -141,15 +141,19 @@ namespace pix::adt
     {
         static_assert
         (
-            DIM != 3,
+            DIM == 3,
             "Vector product is only valid for three dimensional vectors"
         );
 
+        const type_t
+            *vec_ptr_1 = this->arr,
+            *vec_ptr_2 = vec.arr;
+
         type_t arr[DIM];
 
-        arr[0] = this->arr[1] * vec[2] - this->arr[2] * vec[1];
-        arr[1] = this->arr[2] * vec[0] - this->arr[0] * vec[2];
-        arr[2] = this->arr[0] * vec[1] - this->arr[1] * vec[0];
+        arr[0] = vec_ptr_1[1] * vec_ptr_2[2] - vec_ptr_1[2] * vec_ptr_2[1];
+        arr[1] = vec_ptr_1[2] * vec_ptr_2[0] - vec_ptr_1[0] * vec_ptr_2[2];
+        arr[2] = vec_ptr_1[0] * vec_ptr_2[1] - vec_ptr_1[1] * vec_ptr_2[0];
 
         return vector<type_t, DIM>(arr);
     }
