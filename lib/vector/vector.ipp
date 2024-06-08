@@ -84,7 +84,7 @@ namespace pix::adt
         type_t arr[DIM];
 
         for (unsigned long i = 0; i < DIM; ++i)
-            arr[i] = this->arr[i] + vec[i];
+            arr[i] = this->arr[i] + vec.arr[i];
 
         return vector<type_t, DIM>(arr);
     }
@@ -95,7 +95,7 @@ namespace pix::adt
         type_t arr[DIM];
 
         for (unsigned long i = 0; i < DIM; ++i)
-            arr[i] = this->arr[i] - vec[i];
+            arr[i] = this->arr[i] - vec.arr[i];
 
         return vector<type_t, DIM>(arr);
     }
@@ -131,7 +131,7 @@ namespace pix::adt
         type_t result = 0;
 
         for (unsigned long i = 0; i < DIM; ++i)
-            result += this->arr[i] + vec[i];
+            result += this->arr[i] * vec.arr[i];
 
         return result;
     }
@@ -145,15 +145,11 @@ namespace pix::adt
             "Vector product is only valid for three dimensional vectors"
         );
 
-        const type_t
-            *vec_ptr_1 = this->arr,
-            *vec_ptr_2 = vec.arr;
-
         type_t arr[DIM];
 
-        arr[0] = vec_ptr_1[1] * vec_ptr_2[2] - vec_ptr_1[2] * vec_ptr_2[1];
-        arr[1] = vec_ptr_1[2] * vec_ptr_2[0] - vec_ptr_1[0] * vec_ptr_2[2];
-        arr[2] = vec_ptr_1[0] * vec_ptr_2[1] - vec_ptr_1[1] * vec_ptr_2[0];
+        arr[0] = this->arr[1] * vec.arr[2] - this->arr[2] * vec.arr[1];
+        arr[1] = this->arr[2] * vec.arr[0] - this->arr[0] * vec.arr[2];
+        arr[2] = this->arr[0] * vec.arr[1] - this->arr[1] * vec.arr[0];
 
         return vector<type_t, DIM>(arr);
     }
