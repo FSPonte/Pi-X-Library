@@ -65,6 +65,36 @@ namespace pix::adt
     { return N_COL; }
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
+    const bool matrix<type_t, N_LIN, N_COL>::is_upper(void) const
+    {
+        for (unsigned long i = 0; i < N_LIN; ++i)
+        {
+            for (unsigned long j = 0; j < i; ++j)
+            {
+                if (this->arr[i][j] != 0)
+                    return false;
+            }
+        }
+
+        return true;
+    }
+
+    template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
+    const bool matrix<type_t, N_LIN, N_COL>::is_lower(void) const
+    {
+        for (unsigned long i = 0; i < N_LIN; ++i)
+        {
+            for (unsigned long j = i; j < N_COL; ++j)
+            {
+                if (this->arr[i][j] != 0)
+                    return false;
+            }
+        }
+
+        return true;
+    }
+
+    template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
     void matrix<type_t, N_LIN, N_COL>::operator = (const matrix<type_t, N_LIN, N_COL>& mtx)
     {
         for (unsigned long i = 0; i < N_LIN; ++i)

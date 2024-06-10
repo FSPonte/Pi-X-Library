@@ -71,6 +71,18 @@ namespace pix::adt
         constexpr const unsigned long n_col(void) const;
 
         /**
+         * @brief Check upper
+         * @return True if matrix is upper triangular
+        */
+        const bool is_upper(void) const;
+
+        /**
+         * @brief Check lower
+         * @return True if matrix is lower triangular
+        */
+        const bool is_lower(void) const;
+
+        /**
          * @brief Copy operator
          * @param mtx Matrix
         */
