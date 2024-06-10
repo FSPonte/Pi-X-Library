@@ -84,7 +84,7 @@ namespace pix::adt
     {
         for (unsigned long i = 0; i < N_LIN; ++i)
         {
-            for (unsigned long j = i; j < N_COL; ++j)
+            for (unsigned long j = i + 1; j < N_COL; ++j)
             {
                 if (this->arr[i][j] != 0)
                     return false;
