@@ -83,6 +83,18 @@ namespace pix::adt
         const bool is_lower(void) const;
 
         /**
+         * @brief Get upper
+         * @return Upper matrix
+        */
+        matrix<type_t, N_LIN, N_COL> get_upper(void) const;
+
+        /**
+         * @brief Get lower
+         * @return Lower matrix
+        */
+        matrix<type_t, N_LIN, N_COL> get_lower(void) const;
+
+        /**
          * @brief Copy operator
          * @param mtx Matrix
         */

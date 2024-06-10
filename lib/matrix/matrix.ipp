@@ -71,7 +71,7 @@ namespace pix::adt
         {
             for (unsigned long j = 0; j < i; ++j)
             {
-                if (this->arr[i][j] != 0)
+                if (this->arr[i].buffer()[j] != 0)
                     return false;
             }
         }
@@ -86,12 +86,59 @@ namespace pix::adt
         {
             for (unsigned long j = i + 1; j < N_COL; ++j)
             {
-                if (this->arr[i][j] != 0)
+                if (this->arr[i].buffer()[j] != 0)
                     return false;
             }
         }
 
         return true;
+    }
+
+    
+    template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
+    matrix<type_t, N_LIN, N_COL> matrix<type_t, N_LIN, N_COL>::get_upper(void) const
+    {
+        type_t arr[N_LIN][N_COL];
+
+        for (unsigned long i = 0; i < N_LIN; ++i)
+        {
+            for (unsigned long j = 0; j < N_COL; ++j)
+            {
+                if (i > j)
+                {
+                    arr[i][j] = 0;
+
+                    continue;
+                }
+
+                arr[i][j] = this->arr[i].buffer()[j];
+            }
+        }
+
+        return matrix<type_t, N_LIN, N_COL>(&arr[0][0]);
+    }
+
+    template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
+    matrix<type_t, N_LIN, N_COL> matrix<type_t, N_LIN, N_COL>::get_lower(void) const
+    {
+        type_t arr[N_LIN][N_COL];
+
+        for (unsigned long i = 0; i < N_LIN; ++i)
+        {
+            for (unsigned long j = 0; j < N_COL; ++j)
+            {
+                if (i < j)
+                {
+                    arr[i][j] = 0;
+
+                    continue;
+                }
+
+                arr[i][j] = this->arr[i].buffer()[j];
+            }
+        }
+
+        return matrix<type_t, N_LIN, N_COL>(&arr[0][0]);
     }
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
