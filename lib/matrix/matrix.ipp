@@ -34,7 +34,7 @@ namespace pix::adt
         for (unsigned long i = 0; i < N_LIN; ++i)
         {
             for (unsigned long j = 0; j < N_COL; ++j)
-                this->arr[i][j] = arr[i][j];
+                this->arr[i][j] = arr[i].buffer()[j];
         }
     }
 
@@ -68,7 +68,7 @@ namespace pix::adt
     void matrix<type_t, N_LIN, N_COL>::operator = (const matrix<type_t, N_LIN, N_COL>& mtx)
     {
         for (unsigned long i = 0; i < N_LIN; ++i)
-            this->arr[i] = mtx[i];
+            this->arr[i] = mtx.arr[i];
     }
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
@@ -103,7 +103,7 @@ namespace pix::adt
         vector<type_t, N_COL> arr[N_LIN];
 
         for (unsigned long i = 0; i < N_LIN; ++i)
-            arr[i] = this->arr[i] + mtx[i];
+            arr[i] = this->arr[i] + mtx.arr[i];
 
         return matrix<type_t, N_LIN, N_COL>(arr);
     }
@@ -114,7 +114,7 @@ namespace pix::adt
         vector<type_t, N_COL> arr[N_LIN];
 
         for (unsigned long i = 0; i < N_LIN; ++i)
-            arr[i] = this->arr[i] - static_cast<type_t>(mtx[i]);
+            arr[i] = this->arr[i] - mtx.arr[i];
 
         return matrix<type_t, N_LIN, N_COL>(arr);
     }
@@ -154,7 +154,7 @@ namespace pix::adt
                 arr[i][j] = 0;
 
                 for (unsigned long k = 0; k < N_COL; ++k)
-                    arr[i][j] += this->arr[i][k] * mtx[k][j];
+                    arr[i][j] += this->arr[i].buffer()[j] * mtx.arr[k].buffer()[j];
             }
         }
 
