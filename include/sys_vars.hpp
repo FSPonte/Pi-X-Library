@@ -1,7 +1,7 @@
 #ifndef _SYS_VARS_HPP_
 #define _SYS_VARS_HPP_
 
-// Successful exit code
+// Successfull exit code
 #ifndef EXIT_SUCCESS
 #define EXIT_SUCCESS 0
 #endif
