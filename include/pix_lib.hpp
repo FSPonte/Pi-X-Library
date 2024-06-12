@@ -6,6 +6,11 @@
  * pix
 */
 #include <type_info.hpp>
+
+/**
+ * Pi-X Smart Pointers
+ * pix::smart_pointer
+*/
 #include <smart_pointer.hpp>
 
 /**
