@@ -33,4 +33,11 @@
 #include <vector.hpp>
 #include <matrix.hpp>
 
+/**
+ * Pi-X Graphics
+ * pix::graphics
+*/
+#include <rgb.hpp>
+#include <image.hpp>
+
 #endif // _PIX_LIB_HPP_
