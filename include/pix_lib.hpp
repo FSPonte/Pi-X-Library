@@ -3,6 +3,15 @@
 
 /**
  * Pi-X Namespace
+ * pix::types
+ * pix::constants
+*/
+#include <sys_vars.hpp>
+#include <types.hpp>
+#include <constants.hpp>
+
+/**
+ * Pi-X Namespace
  * pix
 */
 #include <type_info.hpp>
@@ -32,6 +41,12 @@
 #include <complex.hpp>
 #include <vector.hpp>
 #include <matrix.hpp>
+
+/**
+ * Pi-X Random number generators
+ * pix::rand
+*/
+#include <rand.hpp>
 
 /**
  * Pi-X Graphics
