@@ -49,7 +49,7 @@ namespace pix::adt
     }
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
-    const type_t* matrix<type_t, N_LIN, N_COL>::buffer(void) const
+    const vector<type_t, N_COL>* matrix<type_t, N_LIN, N_COL>::buffer(void) const
     { return this->arr; }
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>

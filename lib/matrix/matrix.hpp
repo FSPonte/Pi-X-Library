@@ -48,7 +48,7 @@ namespace pix::adt
          * @brief Get buffer
          * @return Pointer to data
         */
-        const type_t* buffer(void) const;
+        const vector<type_t, N_COL>* buffer(void) const;
 
         /**
          * @brief Get line
