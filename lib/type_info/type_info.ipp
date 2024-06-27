@@ -67,6 +67,39 @@ struct is_number<long double>
 
 #endif // _IS_NUMBER_
 
+#ifndef _IS_INTEGER_
+#define _IS_INTEGER_
+
+template <typename type_t>
+struct is_integer
+{ static constexpr const bool value = false; };
+
+template <>
+struct is_integer<short>
+{ static constexpr const bool value = true; };
+
+template <>
+struct is_integer<unsigned short>
+{ static constexpr const bool value = true; };
+
+template <>
+struct is_integer<int>
+{ static constexpr const bool value = true; };
+
+template <>
+struct is_integer<unsigned int>
+{ static constexpr const bool value = true; };
+
+template <>
+struct is_integer<long>
+{ static constexpr const bool value = true; };
+
+template <>
+struct is_integer<unsigned long>
+{ static constexpr const bool value = true; };
+
+#endif // _IS_INTEGER_
+
 #ifndef _IS_FLOATING_POINT_
 #define _IS_FLOATING_POINT_
 

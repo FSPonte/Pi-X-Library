@@ -40,6 +40,13 @@ static_assert                             \
 );
 
 /**
+ * @brief Checks type for primitive integer numerical data type
+ * @param type Data type
+ * @return True if is a primitive integer numerical data type
+*/
+#define is_integer(type) is_integer<type>::value
+
+/**
  * @brief Checks type for primitive floating point numerical data type
  * @param type Data type
  * @return True if is a primitive floating point numerical data type
