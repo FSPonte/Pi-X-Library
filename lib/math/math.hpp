@@ -3,6 +3,9 @@
 
 namespace pix::math
 {
+    const unsigned long max_n_iter = 1E10; // Maximum number of iterations
+    const double pr_threshold = 1E-9; // Precision threshold
+
     /**
      * @brief Absolute value
      * @tparam type_t Data type
