@@ -20,7 +20,7 @@ namespace pix::math
      * @tparam type_t Data type
      * @param num Number
      * @return Factorial value
-     * @throw Invalid case: arg < 0
+     * @throw arg < 0
     */
     template <typename type_t>
     long double fat(type_t) noexcept(false);
@@ -29,7 +29,7 @@ namespace pix::math
      * @brief Natural logaritm function
      * @param arg Argument
      * @return Natural logaritm of argument
-     * @throw Invalid argument: arg <= 0
+     * @throw arg <= 0
     */
     long double log(long double) noexcept(false);
 
@@ -38,7 +38,7 @@ namespace pix::math
      * @param arg Argument
      * @param b Base
      * @return Logaritm of base of argument
-     * @throw Invalid argument: arg <= 0
+     * @throw arg <= 0
     */
     long double log(long double, long double) noexcept(false);
 
@@ -56,7 +56,7 @@ namespace pix::math
      * @param b Base
      * @param e Exponent
      * @return Base to the power of exponent
-     * @throw Indeterminate case: 0^0
+     * @throw 0^0
     */
     template <typename b_type_t, typename e_type_t>
     b_type_t pow(b_type_t, e_type_t) noexcept(false);
@@ -66,7 +66,8 @@ namespace pix::math
      * @param arg Argument
      * @param ind Index
      * @return Root index of argument
-     * @throw Indeterminate case: ind = 0
+     * @throw arg < 0
+     * @throw ind = 0
     */
     long double root(long double, long double) noexcept(false);
 }

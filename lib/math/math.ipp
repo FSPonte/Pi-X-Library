@@ -111,7 +111,7 @@ namespace pix::math
         bool is_e_neg = exponent < 0; // Is exponent negative
         exponent = math::abs(exponent);
 
-        b_type_t result = 1;
+        auto result = b_type_t(1);
 
         if (is_integer(e_type_t))
         {
@@ -136,6 +136,12 @@ namespace pix::math
     {
         if (arg < 0)
             throw "root: Indeterminate case | arg < 0";
+
+        if (arg == 0)
+            throw "root: Indeterminate case | ind = 0";
+        
+        if (ind == 1)
+            return arg;
 
         return math::pow(arg, 1 / ind);
     }
