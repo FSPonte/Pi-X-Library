@@ -14,14 +14,22 @@ namespace pix::math
         return number;
     }
 
-    unsigned long fat(const unsigned long number)
+    template <typename type_t>
+    type_t fat(const type_t arg)
     {
-        if (number == 0 || number == 1)
+        is_integer_static_assert(type_t);
+
+        if (arg < 0)
+            return 0;
+
+        if (arg == 0 || arg == 1)
             return 1;
+
+        auto number = static_cast<unsigned long>(arg);
 
         unsigned long result = 2;
 
-        for (unsigned long i = 3; i <= number; ++i)
+        for (unsigned long i = 3; i < math::max_n_iter && i <= number; ++i)
             result *= i;
 
         return result;

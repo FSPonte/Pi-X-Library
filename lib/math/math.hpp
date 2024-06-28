@@ -17,10 +17,13 @@ namespace pix::math
 
     /**
      * @brief Factorial function
+     * @tparam type_t Data type
      * @param num Number
      * @return Factorial value
+     * @note Returns 0 if number is negative
     */
-    unsigned long fat(unsigned long);
+    template <typename type_t>
+    type_t fat(type_t);
 }
 
 // Implementation file
