@@ -20,10 +20,22 @@ namespace pix::math
      * @tparam type_t Data type
      * @param num Number
      * @return Factorial value
-     * @note Returns 0 if number is negative
+     * @throw Invalid case arg < 0
     */
     template <typename type_t>
-    type_t fat(type_t);
+    long double fat(type_t) noexcept(false);
+
+    /**
+     * @brief Power function
+     * @tparam b_type_t Data type of base
+     * @tparam e_type_t Data type of exponent
+     * @param b Base
+     * @param e Exponent
+     * @return Base to the power of exponent
+     * @throw Indeterminate case 0^0
+    */
+    template <typename b_type_t, typename e_type_t>
+    b_type_t pow(b_type_t, e_type_t) noexcept(false);
 }
 
 // Implementation file
