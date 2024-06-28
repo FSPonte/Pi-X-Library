@@ -33,6 +33,13 @@ namespace pix::math
     double ln(double);
 
     /**
+     * @brief Exponential function
+     * @param arg Argument
+     * @return Exponential of argument
+    */
+    double exp(double);
+
+    /**
      * @brief Power function
      * @tparam type_t Data type
      * @param b Base

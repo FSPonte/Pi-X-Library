@@ -59,6 +59,25 @@ namespace pix::math
         return 2 * result;
     }
 
+    double exp(const double arg)
+    {
+        double result = 1;
+        double term = 1;
+        unsigned int n = 1;
+
+        for (unsigned long i = 0; i < math::max_n_iter; ++i)
+        {
+            if (math::abs(term) <= pr_threshold)
+                break;
+            
+            term *= arg / n;
+            result += term;
+            ++n;
+        }
+
+        return result;
+    }
+
     template <typename type_t>
     type_t pow(const type_t base, const type_t exponent)
     {
