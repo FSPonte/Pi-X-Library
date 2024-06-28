@@ -63,7 +63,7 @@ namespace pix::math
     type_t pow(const type_t base, const type_t exponent)
     {
         if (base == 0 && exponent == 0)
-            return 0;
+            return 1;
 
         if (base == 0)
             return 0;

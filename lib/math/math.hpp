@@ -38,6 +38,7 @@ namespace pix::math
      * @param b Base
      * @param e Exponent
      * @return Base to the power of exponent
+     * @note The case of 0^0 is set to return 1
     */
     template <typename type_t>
     type_t pow(type_t, type_t);
