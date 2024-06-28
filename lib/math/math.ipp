@@ -27,7 +27,7 @@ namespace pix::math
 
         auto number = static_cast<unsigned long>(arg);
         long double result = 2;
-        const unsigned long MAX_ITER = math::max_n_iter + 3;
+        const unsigned long MAX_ITER = math::MAX_ITER + 3;
 
         for (unsigned long i = 3; i < MAX_ITER; ++i)
         {
@@ -50,11 +50,11 @@ namespace pix::math
             coef = (arg - 1) / (arg + 1),
             term = coef,
             term_sq = coef * coef;
-        const unsigned long MAX_ITER = math::max_n_iter + 1;
+        const unsigned long MAX_ITER = math::MAX_ITER + 1;
 
         for (unsigned long i = 1; i < MAX_ITER; i += 2)
         {
-            if (math::abs(term) < math::pr_threshold)
+            if (math::abs(term) < math::PR_THRESHOLD)
                 break;
             
             result += term / i;
@@ -75,13 +75,13 @@ namespace pix::math
         long double
             result = 1,
             term = 1;
-        const unsigned long MAX_ITER = math::max_n_iter + 1;
+        const unsigned long MAX_ITER = math::MAX_ITER + 1;
         
         for (unsigned long i = 1; i < MAX_ITER; ++i)
         {
             term *= arg / i;
 
-            if (math::abs(term) < math::pr_threshold)
+            if (math::abs(term) < math::PR_THRESHOLD)
                 break;
             
             result += term;
@@ -115,7 +115,7 @@ namespace pix::math
 
         if (is_integer(e_type_t))
         {
-            for (unsigned long i = 0; i < math::max_n_iter; ++i)
+            for (unsigned long i = 0; i < math::MAX_ITER; ++i)
             {
                 if (i < exponent)
                     break;

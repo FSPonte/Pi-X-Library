@@ -3,8 +3,8 @@
 
 namespace pix::math
 {
-    const unsigned long max_n_iter = 1E3; // Maximum number of iterations
-    const double pr_threshold = 1E-6; // Precision threshold
+    const unsigned long MAX_ITER = 1E6; // Maximum number of iterations
+    const long double PR_THRESHOLD = 1E-12; // Precision threshold
 
     /**
      * @brief Absolute value
