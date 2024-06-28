@@ -24,6 +24,16 @@ namespace pix::math
     */
     template <typename type_t>
     type_t fat(type_t);
+
+    /**
+     * @brief Power function
+     * @tparam type_t Data type
+     * @param b Base
+     * @param e Exponent
+     * @return Base to the power of exponent
+    */
+    template <typename type_t>
+    type_t pow(type_t, type_t);
 }
 
 // Implementation file

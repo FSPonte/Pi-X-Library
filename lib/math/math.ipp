@@ -34,6 +34,29 @@ namespace pix::math
 
         return result;
     }
+
+    template <typename type_t>
+    type_t pow(const type_t base, const type_t exponent)
+    {
+        if (base == 0 && exponent == 0)
+            return 0;
+
+        if (base == 0)
+            return 0;
+
+        if (exponent == 0)
+            return 1;
+
+        type_t result = 1;
+
+        if (is_integer(type_t))
+        {
+            for (unsigned long i = 0; i < math::max_n_iter && i < exponent; ++i)
+                result *= base;
+        }
+
+        return result;
+    }
 }
 
 #endif // _MATH_IPP_
