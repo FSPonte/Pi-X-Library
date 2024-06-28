@@ -60,6 +60,15 @@ namespace pix::math
     */
     template <typename b_type_t, typename e_type_t>
     b_type_t pow(b_type_t, e_type_t) noexcept(false);
+
+    /**
+     * @brief Root function
+     * @param arg Argument
+     * @param ind Index
+     * @return Root index of argument
+     * @throw Indeterminate case: ind = 0
+    */
+    long double root(long double, long double) noexcept(false);
 }
 
 // Implementation file

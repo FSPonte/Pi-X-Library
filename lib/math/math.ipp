@@ -131,6 +131,14 @@ namespace pix::math
         
         return result;
     }
+
+    long double root(const long double arg, const long double ind) noexcept(false)
+    {
+        if (arg < 0)
+            throw "root: Indeterminate case | arg < 0";
+
+        return math::pow(arg, 1 / ind);
+    }
 }
 
 #endif // _MATH_IPP_
