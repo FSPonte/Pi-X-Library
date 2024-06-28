@@ -47,6 +47,17 @@ static_assert                             \
 #define is_integer(type) is_integer<type>::value
 
 /**
+ * @brief Static assertion for is_integer
+ * @param type Data type
+*/
+#define is_integer_static_assert(type)   \
+static_assert                            \
+(                                        \
+    is_integer(type),                    \
+    "Non primitive integer data type"    \
+)
+
+/**
  * @brief Checks type for primitive floating point numerical data type
  * @param type Data type
  * @return True if is a primitive floating point numerical data type
