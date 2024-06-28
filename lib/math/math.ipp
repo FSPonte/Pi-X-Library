@@ -35,6 +35,30 @@ namespace pix::math
         return result;
     }
 
+    double ln(const double arg)
+    {
+        if (arg < 0)
+            return 0;
+
+        double result = 0;
+        const double coef = (arg - 1) / (arg + 1);
+        double term = coef;
+        double term_sq = coef * coef;
+        unsigned int n = 1;
+        
+        for (unsigned long i = 0; i < math::max_n_iter; ++i)
+        {
+            if(math::abs(term) <= pr_threshold)
+                break;
+
+            result += term / n;
+            term *= term_sq;
+            n += 2;
+        }
+        
+        return 2 * result;
+    }
+
     template <typename type_t>
     type_t pow(const type_t base, const type_t exponent)
     {

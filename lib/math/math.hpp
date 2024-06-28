@@ -3,7 +3,7 @@
 
 namespace pix::math
 {
-    const unsigned long max_n_iter = 1E10; // Maximum number of iterations
+    const unsigned long max_n_iter = 1E6; // Maximum number of iterations
     const double pr_threshold = 1E-9; // Precision threshold
 
     /**
@@ -24,6 +24,13 @@ namespace pix::math
     */
     template <typename type_t>
     type_t fat(type_t);
+
+    /**
+     * @brief Natural logaritm function
+     * @param arg Argument
+     * @return Natural logaritm of argument
+    */
+    double ln(double);
 
     /**
      * @brief Power function
