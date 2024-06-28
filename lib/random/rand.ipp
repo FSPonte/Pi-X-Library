@@ -4,7 +4,7 @@
 // Dependencies
 #include <sys_vars.hpp>
 
-static unsigned int
+static unsigned long
     _seed = 1607,          // Initial value
     _mult = 806,           // Multiplier
     _inc = 103,            // Increment
@@ -24,17 +24,17 @@ namespace pix::random
     void set_mod(unsigned int mod)
     { _mod = mod; }
 
-    int rand(void)
+    unsigned long rand(void)
     {
-        static int value = _seed;
+        static unsigned long value = _seed;
         
         value = (_mult * value + _inc) % _mod;
 
         return value;
     }
 
-    double drand(void)
-    { return static_cast<double>(rand()) / static_cast<double>(_mod);}
+    long double drand(void)
+    { return static_cast<long double>(rand()) / static_cast<long double>(_mod);}
 }
 
 #endif // _RAND_IPP_
