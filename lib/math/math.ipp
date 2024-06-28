@@ -20,7 +20,7 @@ namespace pix::math
         is_integer_static_assert(type_t);
 
         if (arg < 0)
-            throw "Indeterminate case: arg < 0";
+            throw "fat: Indeterminate case | arg < 0";
 
         if (arg == 0 || arg == 1)
             return 1;
@@ -43,7 +43,7 @@ namespace pix::math
     long double log(const long double arg) noexcept(false)
     {
         if (arg <= 0)
-            throw "Indeterminate case: arg <= 0";
+            throw "log: Indeterminate case | arg <= 0";
 
         long double
             result = 0,
@@ -100,7 +100,7 @@ namespace pix::math
         is_number_static_assert(e_type_t);
 
         if (base == 0 && exponent == 0)
-            throw "Indeterminate case: 0^0";
+            throw "pow: Indeterminate case | 0^0";
 
         if (base == 0)
             return b_type_t(0);
@@ -108,7 +108,7 @@ namespace pix::math
         if (exponent == 0)
             return b_type_t(1);
 
-        bool is_neg = exponent < 0;
+        bool is_e_neg = exponent < 0; // Is exponent negative
         exponent = math::abs(exponent);
 
         b_type_t result = 1;
@@ -126,7 +126,7 @@ namespace pix::math
         else
             result = math::exp(exponent * math::log(base));
 
-        if (is_neg)
+        if (is_e_neg)
             return 1 / result;
         
         return result;
