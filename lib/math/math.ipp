@@ -4,7 +4,7 @@
 namespace pix::math
 {
     template <typename type_t>
-    type_t abs(const type_t number)
+    type_t abs(const type_t number) noexcept(true)
     {
         is_number_static_assert(type_t);
 
@@ -63,6 +63,30 @@ namespace pix::math
         if (is_neg)
             return 1 / result;
         
+        return result;
+    }
+
+    long double exp(long double arg) noexcept(true)
+    {
+        bool is_neg = arg < 0;
+        arg = math::abs(arg);
+
+        long double result = 1 + arg;
+        long double term;
+
+        for (unsigned long i = 2; i < math::max_n_iter; ++i)
+        {
+            term = math::pow(arg, i) / math::fat(i);
+
+            if (term < math::pr_threshold)
+                break;
+
+            result += term;
+        }
+
+        if (is_neg)
+            return 1 / result;
+
         return result;
     }
 }

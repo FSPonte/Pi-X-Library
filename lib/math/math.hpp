@@ -13,7 +13,7 @@ namespace pix::math
      * @return Postive number
     */
     template <typename type_t>
-    type_t abs(type_t);
+    type_t abs(type_t) noexcept(true);
 
     /**
      * @brief Factorial function
@@ -36,6 +36,13 @@ namespace pix::math
     */
     template <typename b_type_t, typename e_type_t>
     b_type_t pow(b_type_t, e_type_t) noexcept(false);
+
+    /**
+     * @brief Exponential function
+     * @param arg Argument
+     * @return Exponential of argument
+    */
+    long double exp(long double) noexcept(true);
 }
 
 // Implementation file
