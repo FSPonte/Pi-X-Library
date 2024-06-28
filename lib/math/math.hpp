@@ -26,25 +26,6 @@ namespace pix::math
     long double fat(type_t) noexcept(false);
 
     /**
-     * @brief Power function
-     * @tparam b_type_t Data type of base
-     * @tparam e_type_t Data type of exponent
-     * @param b Base
-     * @param e Exponent
-     * @return Base to the power of exponent
-     * @throw Indeterminate case: 0^0
-    */
-    template <typename b_type_t, typename e_type_t>
-    b_type_t pow(b_type_t, e_type_t) noexcept(false);
-
-    /**
-     * @brief Exponential function
-     * @param arg Argument
-     * @return Exponential of argument
-    */
-    long double exp(long double) noexcept(true);
-
-    /**
      * @brief Natural logaritm function
      * @param arg Argument
      * @return Natural logaritm of argument
@@ -60,6 +41,25 @@ namespace pix::math
      * @throw Invalid argument: arg <= 0
     */
     long double log(long double, long double) noexcept(false);
+
+    /**
+     * @brief Exponential function
+     * @param arg Argument
+     * @return Exponential of argument
+    */
+    long double exp(long double) noexcept(true);
+
+    /**
+     * @brief Power function
+     * @tparam b_type_t Data type of base
+     * @tparam e_type_t Data type of exponent
+     * @param b Base
+     * @param e Exponent
+     * @return Base to the power of exponent
+     * @throw Indeterminate case: 0^0
+    */
+    template <typename b_type_t, typename e_type_t>
+    b_type_t pow(b_type_t, e_type_t) noexcept(false);
 }
 
 // Implementation file

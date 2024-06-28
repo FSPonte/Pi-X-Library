@@ -40,6 +40,59 @@ namespace pix::math
         return result;
     }
 
+    long double log(const long double arg) noexcept(false)
+    {
+        if (arg <= 0)
+            throw "Indeterminate case: arg <= 0";
+
+        long double
+            result = 0,
+            coef = (arg - 1) / (arg + 1),
+            term = coef,
+            term_sq = coef * coef;
+        const unsigned long MAX_ITER = math::max_n_iter + 1;
+
+        for (unsigned long i = 1; i < MAX_ITER; i += 2)
+        {
+            if (math::abs(term) < math::pr_threshold)
+                break;
+            
+            result += term / i;
+            term *= term_sq;
+        }
+
+        return 2 * result;
+    }
+
+    long double log(const long double arg, const long double base) noexcept(false)
+    { return math::log(arg) / math::log(base); }
+
+    long double exp(long double arg) noexcept(true)
+    {
+        bool is_neg = arg < 0;
+        arg = math::abs(arg);
+
+        long double
+            result = 1,
+            term = 1;
+        const unsigned long MAX_ITER = math::max_n_iter + 1;
+        
+        for (unsigned long i = 1; i < MAX_ITER; ++i)
+        {
+            term *= arg / i;
+
+            if (math::abs(term) < math::pr_threshold)
+                break;
+            
+            result += term;
+        }
+
+        if (is_neg)
+            return 1 / result;
+        
+        return result;
+    }
+
     template <typename b_type_t, typename e_type_t>
     b_type_t pow(const b_type_t base, e_type_t exponent) noexcept(false)
     {
@@ -70,65 +123,14 @@ namespace pix::math
                 result *= base;
             }
         }
+        else
+            result = math::exp(exponent * math::log(base));
 
         if (is_neg)
             return 1 / result;
         
         return result;
     }
-
-    long double exp(long double arg) noexcept(true)
-    {
-        bool is_neg = arg < 0;
-        arg = math::abs(arg);
-
-        long double
-            result = 1 + arg,
-            term;
-        const unsigned long MAX_ITER = math::max_n_iter + 2;
-
-        for (unsigned long i = 2; i < MAX_ITER; ++i)
-        {
-            term = math::pow(arg, i) / math::fat(i);
-
-            if (math::abs(term) < math::pr_threshold)
-                break;
-
-            result += term;
-        }
-
-        if (is_neg)
-            return 1 / result;
-
-        return result;
-    }
-
-    long double log(const long double arg) noexcept(false)
-    {
-        if (arg <= 0)
-            throw "Indeterminate case: arg <= 0";
-
-        long double
-            result = 0,
-            coef = (arg - 1) / (arg + 1),
-            term = coef,
-            term_sq = coef * coef;
-        const unsigned long MAX_ITER = math::max_n_iter + 1;
-
-        for (unsigned long i = 1; i < MAX_ITER; i += 2)
-        {
-            if (math::abs(term) < math::pr_threshold)
-                break;
-            
-            result += term / i;
-            term *= term_sq;
-        }
-
-        return 2 * result;
-    }
-
-    long double log(const long double arg, const long double base) noexcept(false)
-    { return math::log(arg) / math::log(base); }
 }
 
 #endif // _MATH_IPP_
