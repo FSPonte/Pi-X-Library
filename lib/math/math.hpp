@@ -67,9 +67,21 @@ namespace pix::math
      * @param ind Index
      * @return Root index of argument
      * @throw arg < 0
-     * @throw ind = 0
+     * @throw ind == 0
     */
     long double root(long double, long double) noexcept(false);
+
+    /**
+     * @brief Sum of array
+     * @tparam type_t Data type
+     * @param ptr Pointer to array
+     * @param dim Number of elements
+     * @return Sum of elements
+     * @throw ptr == nullptr
+     * @throw dim == 0
+    */
+    template <typename type_t>
+    type_t sum(const type_t[], unsigned long) noexcept(false);
 }
 
 // Implementation file

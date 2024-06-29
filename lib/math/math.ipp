@@ -20,7 +20,7 @@ namespace pix::math
         is_integer_static_assert(type_t);
 
         if (arg < 0)
-            throw "fat: Indeterminate case | arg < 0";
+            throw "fat: arg < 0";
 
         if (arg == 0 || arg == 1)
             return 1;
@@ -43,7 +43,7 @@ namespace pix::math
     long double log(const long double arg) noexcept(false)
     {
         if (arg <= 0)
-            throw "log: Indeterminate case | arg <= 0";
+            throw "log: arg <= 0";
 
         long double
             result = 0,
@@ -100,7 +100,7 @@ namespace pix::math
         is_number_static_assert(e_type_t);
 
         if (base == 0 && exponent == 0)
-            throw "pow: Indeterminate case | 0^0";
+            throw "pow: 0^0";
 
         if (base == 0)
             return b_type_t(0);
@@ -135,15 +135,34 @@ namespace pix::math
     long double root(const long double arg, const long double ind) noexcept(false)
     {
         if (arg < 0)
-            throw "root: Indeterminate case | arg < 0";
+            throw "root: arg < 0";
 
         if (arg == 0)
-            throw "root: Indeterminate case | ind = 0";
+            throw "root: ind == 0";
         
         if (ind == 1)
             return arg;
 
         return math::pow(arg, 1 / ind);
+    }
+
+    template <typename type_t>
+    type_t sum(const type_t arr[], const unsigned long dim) noexcept(false)
+    {
+        is_number_static_assert(type_t);
+
+        if (arr == nullptr)
+            throw "sum: arr == nullptr";
+
+        if (dim == 0)
+            throw "sum: dim == 0";
+
+        type_t result = 0;
+
+        for (unsigned long i = 0; i < dim; ++i)
+            result += arr[i];
+
+        return result;
     }
 }
 
