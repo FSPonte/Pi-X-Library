@@ -100,26 +100,26 @@ struct is_integer<unsigned long>
 
 #endif // _IS_INTEGER_
 
-#ifndef _IS_FLOATING_POINT_
-#define _IS_FLOATING_POINT_
+#ifndef _IS_FLOAT_
+#define _IS_FLOAT_
 
 template <typename type_t>
-struct is_floating_point
+struct is_float
 { static constexpr const bool value = false; };
 
 template <>
-struct is_floating_point<float>
+struct is_float<float>
 { static constexpr const bool value = true; };
 
 template <>
-struct is_floating_point<double>
+struct is_float<double>
 { static constexpr const bool value = true; };
 
 template <>
-struct is_floating_point<long double>
+struct is_float<long double>
 { static constexpr const bool value = true; };
 
-#endif // _IS_FLOATING_POINT_
+#endif // _IS_FLOAT_
 
 namespace pix
 {
