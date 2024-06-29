@@ -62,7 +62,7 @@ static_assert                            \
  * @param type Data type
  * @return True if is a primitive floating point numerical data type
 */
-#define is_float(type) is_float_point<type>::value
+#define is_float(type) is_float<type>::value
 
 /**
  * @brief Static assertion for is_float
