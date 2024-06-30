@@ -245,6 +245,24 @@ namespace pix::math
 
     long double cot(const long double arg) noexcept(true)
     { return math::cos(arg) / math::sin(arg); }
+
+    long double sinh(const long double arg) noexcept(true)
+    { return 0.5 * (math::exp(arg) - math::exp(-arg)); }
+
+    long double cosh(const long double arg) noexcept(true)
+    { return 0.5 * (math::exp(arg) + math::exp(-arg)); }
+
+    long double tanh(const long double arg) noexcept(true)
+    { return math::sinh(arg) / math::cosh(arg); }
+
+    long double sech(const long double arg) noexcept(true)
+    { return 1 / math::cosh(arg); }
+
+    long double csch(const long double arg) noexcept(true)
+    { return 1 / math::sech(arg); }
+
+    long double coth(const long double arg) noexcept(true)
+    { return math::cosh(arg) / math::sinh(arg); }
 }
 
 #endif // _MATH_IPP_
