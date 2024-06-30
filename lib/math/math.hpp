@@ -16,6 +16,18 @@ namespace pix::math
     type_t abs(type_t) noexcept(true);
 
     /**
+     * @brief Float modulus
+     * @tparam type_t Data type
+     * @param arg Argument
+     * @param mod Modulus
+     * @return Number congruent to arg
+     * @throw arg < 0
+     * @throw mod <= 0
+    */
+    template <typename type_t>
+    type_t f_mod(type_t, type_t) noexcept(false);
+
+    /**
      * @brief Factorial function
      * @tparam type_t Data type
      * @param num Number

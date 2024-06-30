@@ -15,6 +15,29 @@ namespace pix::math
     }
 
     template <typename type_t>
+    type_t f_mod(type_t arg, const type_t mod) noexcept(false)
+    {
+        is_float_static_assert(type_t);
+
+        if (arg < 0)
+            throw "f_mod: arg < 0";
+
+        if (mod <= 0)
+            throw "f_mod: mod <= 0";
+
+        if (arg < mod)
+            return arg;
+
+        if (arg == mod)
+            return type_t(0);
+
+        while (arg >= mod)
+            arg -= mod;
+
+        return arg;
+    }
+
+    template <typename type_t>
     long double fat(const type_t arg) noexcept(false)
     {
         is_integer_static_assert(type_t);
@@ -69,7 +92,7 @@ namespace pix::math
 
     long double exp(long double arg) noexcept(true)
     {
-        bool is_neg = arg < 0;
+        const bool is_neg = arg < 0;
         arg = math::abs(arg);
 
         long double
@@ -108,7 +131,7 @@ namespace pix::math
         if (exponent == 0)
             return b_type_t(1);
 
-        bool is_e_neg = exponent < 0; // Is exponent negative
+        const bool is_e_neg = exponent < 0; // Is exponent negative
         exponent = math::abs(exponent);
 
         auto result = b_type_t(1);
