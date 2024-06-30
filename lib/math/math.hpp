@@ -115,6 +115,27 @@ namespace pix::math
      * @return Tangent of argument
     */
     long double tan(long double) noexcept(true);
+
+    /**
+     * @brief Secant function
+     * @param arg Argument
+     * @return Secant of argument
+    */
+    long double sec(long double) noexcept(true);
+
+    /**
+     * @brief Cosecant function
+     * @param arg Argument
+     * @return Cosecant of argument
+    */
+    long double csc(long double) noexcept(true);
+
+    /**
+     * @brief Cotangent function
+     * @param arg Argument
+     * @return Cotangent of argument
+    */
+    long double cot(long double) noexcept(true);
 }
 
 // Implementation file
