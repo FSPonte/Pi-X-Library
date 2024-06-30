@@ -16,10 +16,8 @@ namespace pix::smart_pointer
     };
 }
 
-#endif // _SMART_POINTER_HPP_
-
-#ifndef _AUTO_POINTER_HPP_
-#define _AUTO_POINTER_HPP_
+#ifndef _AUTO_POINTER_
+#define _AUTO_POINTER_
 
 namespace pix::smart_pointer
 {
@@ -54,10 +52,10 @@ namespace pix::smart_pointer
 // Implementation file
 #include "auto_pointer.ipp"
 
-#endif // _AUTO_POINTER_HPP_
+#endif // _AUTO_POINTER_
 
-#ifndef _UNIQUE_POINTER_HPP_
-#define _UNIQUE_POINTER_HPP_
+#ifndef _UNIQUE_POINTER_
+#define _UNIQUE_POINTER_
 
 namespace pix::smart_pointer
 {
@@ -100,4 +98,6 @@ namespace pix::smart_pointer
 // Implementation file
 #include "unique_pointer.ipp"
 
-#endif // _UNIQUE_POINTER_HPP_
+#endif // _UNIQUE_POINTER_
+
+#endif // _SMART_POINTER_HPP_
