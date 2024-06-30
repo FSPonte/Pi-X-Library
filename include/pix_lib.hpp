@@ -25,8 +25,16 @@
 /**
  * Pi-X Mathematial Functions
  * pix::math
+ * pix::math::trig
+ * pix::math::hyper
 */
 #include <math.hpp>
+
+/**
+ * Pi-X Random number generators
+ * pix::rand
+*/
+#include <rand.hpp>
 
 /**
  * Pi-X Abstract Data Types
@@ -41,12 +49,6 @@
 #include <complex.hpp>
 #include <vector.hpp>
 #include <matrix.hpp>
-
-/**
- * Pi-X Random number generators
- * pix::rand
-*/
-#include <rand.hpp>
 
 /**
  * Pi-X Graphics
