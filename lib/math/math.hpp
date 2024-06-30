@@ -95,89 +95,97 @@ namespace pix::math
     template <typename type_t>
     type_t sum(const type_t[], unsigned long) noexcept(false);
 
-    /**
-     * @brief Sine function
-     * @param arg Argument
-     * @return Sine of argument
-    */
-    long double sin(long double) noexcept(true);
+    // Trigonometric functions
+    namespace trig
+    {
+        /**
+         * @brief Sine function
+         * @param arg Argument
+         * @return Sine of argument
+        */
+        long double sin(long double) noexcept(true);
 
-    /**
-     * @brief Cosine function
-     * @param arg Argument
-     * @return Cosine of argument
-    */
-    long double cos(long double) noexcept(true);
+        /**
+         * @brief Cosine function
+         * @param arg Argument
+         * @return Cosine of argument
+        */
+        long double cos(long double) noexcept(true);
 
-    /**
-     * @brief Tangent function
-     * @param arg Argument
-     * @return Tangent of argument
-    */
-    long double tan(long double) noexcept(true);
+        /**
+         * @brief Tangent function
+         * @param arg Argument
+         * @return Tangent of argument
+        */
+        long double tan(long double) noexcept(true);
 
-    /**
-     * @brief Secant function
-     * @param arg Argument
-     * @return Secant of argument
-    */
-    long double sec(long double) noexcept(true);
+        /**
+         * @brief Secant function
+         * @param arg Argument
+         * @return Secant of argument
+        */
+        long double sec(long double) noexcept(true);
 
-    /**
-     * @brief Cosecant function
-     * @param arg Argument
-     * @return Cosecant of argument
-    */
-    long double csc(long double) noexcept(true);
+        /**
+         * @brief Cosecant function
+         * @param arg Argument
+         * @return Cosecant of argument
+        */
+        long double csc(long double) noexcept(true);
 
-    /**
-     * @brief Cotangent function
-     * @param arg Argument
-     * @return Cotangent of argument
-    */
-    long double cot(long double) noexcept(true);
+        /**
+         * @brief Cotangent function
+         * @param arg Argument
+         * @return Cotangent of argument
+        */
+        long double cot(long double) noexcept(true);
+    }
 
-    /**
-     * @brief Hyperbolic sine function
-     * @param arg Argument
-     * @return Hyperbolic sine of argument
-    */
-    long double sinh(long double) noexcept(true);
+    // Hyperbolic functions
+    namespace hyper
+    {
+        /**
+         * @brief Hyperbolic sine function
+         * @param arg Argument
+         * @return Hyperbolic sine of argument
+        */
+        long double sinh(long double) noexcept(true);
 
-    /**
-     * @brief Hyperbolic cosine function
-     * @param arg Argument
-     * @return Hyperbolic cosine of argument
-    */
-    long double cosh(long double) noexcept(true);
+        /**
+         * @brief Hyperbolic cosine function
+         * @param arg Argument
+         * @return Hyperbolic cosine of argument
+        */
+        long double cosh(long double) noexcept(true);
 
-    /**
-     * @brief Hyperbolic tangent function
-     * @param arg Argument
-     * @return Hyperbolic tangent of argument
-    */
-    long double tanh(long double) noexcept(true);
+        /**
+         * @brief Hyperbolic tangent function
+         * @param arg Argument
+         * @return Hyperbolic tangent of argument
+        */
+        long double tanh(long double) noexcept(true);
 
-    /**
-     * @brief Hyperbolic secant function
-     * @param arg Argument
-     * @return Hyperbolic secant of argument
-    */
-    long double sech(long double) noexcept(true);
+        /**
+         * @brief Hyperbolic secant function
+         * @param arg Argument
+         * @return Hyperbolic secant of argument
+        */
+        long double sech(long double) noexcept(true);
 
-    /**
-     * @brief Hyperbolic cosecant function
-     * @param arg Argument
-     * @return Hyperbolic cosecant of argument
-    */
-    long double csch(long double) noexcept(true);
+        /**
+         * @brief Hyperbolic cosecant function
+         * @param arg Argument
+         * @return Hyperbolic cosecant of argument
+        */
+        long double csch(long double) noexcept(true);
 
-    /**
-     * @brief Hyperbolic cotangent function
-     * @param arg Argument
-     * @return Hyperbolic cotangent of argument
-    */
-    long double coth(long double) noexcept(true);
+        /**
+         * @brief Hyperbolic cotangent function
+         * @param arg Argument
+         * @return Hyperbolic cotangent of argument
+        */
+        long double coth(long double) noexcept(true);
+    }
 }
 
 // Implementation file

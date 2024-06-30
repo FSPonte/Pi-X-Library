@@ -188,81 +188,87 @@ namespace pix::math
         return result;
     }
 
-    long double sin(long double arg) noexcept(true)
+    namespace trig
     {
-        const bool is_neg = arg < 0;
-        arg = math::f_mod(math::abs(arg), 2 * constants::mathematics::pi);
-
-        long double
-            result = arg,
-            term = arg;
-
-        for (unsigned long i = 0; i < math::MAX_ITER; ++i)
+        long double sin(long double arg) noexcept(true)
         {
-            term *= -arg * arg / ((2 * i + 2) * (2 * i + 3));
+            const bool is_neg = arg < 0;
+            arg = math::f_mod(math::abs(arg), 2 * constants::mathematics::pi);
 
-            if (math::abs(term) < math::PR_THRESHOLD)
-                break;
-            
-            result += term;
+            long double
+                result = arg,
+                term = arg;
+
+            for (unsigned long i = 0; i < math::MAX_ITER; ++i)
+            {
+                term *= -arg * arg / ((2 * i + 2) * (2 * i + 3));
+
+                if (math::abs(term) < math::PR_THRESHOLD)
+                    break;
+                
+                result += term;
+            }
+
+            if (is_neg)
+                return -result;
+
+            return result;
         }
 
-        if (is_neg)
-            return -result;
-
-        return result;
-    }
-
-    long double cos(long double arg) noexcept(true)
-    {
-        arg = math::f_mod(math::abs(arg), 2 * constants::mathematics::pi);
-
-        long double
-            result = 1,
-            term = 1;
-
-        for (unsigned long i = 1; i <= math::MAX_ITER; ++i)
+        long double cos(long double arg) noexcept(true)
         {
-            term *= -arg * arg / ((2 * i - 1) * (2 * i));
+            arg = math::f_mod(math::abs(arg), 2 * constants::mathematics::pi);
 
-            if (math::abs(term) < math::PR_THRESHOLD)
-                break;
-            
-            result += term;
+            long double
+                result = 1,
+                term = 1;
+
+            for (unsigned long i = 1; i <= math::MAX_ITER; ++i)
+            {
+                term *= -arg * arg / ((2 * i - 1) * (2 * i));
+
+                if (math::abs(term) < math::PR_THRESHOLD)
+                    break;
+                
+                result += term;
+            }
+
+            return result;
         }
 
-        return result;
+        long double tan(const long double arg) noexcept(true)
+        { return trig::sin(arg) / trig::cos(arg); }
+
+        long double sec(const long double arg) noexcept(true)
+        { return 1 / trig::cos(arg); }
+
+        long double csc(const long double arg) noexcept(true)
+        { return 1 / trig::sin(arg); }
+
+        long double cot(const long double arg) noexcept(true)
+        { return trig::cos(arg) / trig::sin(arg); }
     }
 
-    long double tan(const long double arg) noexcept(true)
-    { return math::sin(arg) / math::cos(arg); }
+    namespace hyper
+    {
+        long double sinh(const long double arg) noexcept(true)
+        { return 0.5 * (math::exp(arg) - math::exp(-arg)); }
 
-    long double sec(const long double arg) noexcept(true)
-    { return 1 / math::cos(arg); }
+        long double cosh(const long double arg) noexcept(true)
+        { return 0.5 * (math::exp(arg) + math::exp(-arg)); }
 
-    long double csc(const long double arg) noexcept(true)
-    { return 1 / math::sin(arg); }
+        long double tanh(const long double arg) noexcept(true)
+        { return hyper::sinh(arg) / hyper::cosh(arg); }
 
-    long double cot(const long double arg) noexcept(true)
-    { return math::cos(arg) / math::sin(arg); }
+        long double sech(const long double arg) noexcept(true)
+        { return 1 / hyper::cosh(arg); }
 
-    long double sinh(const long double arg) noexcept(true)
-    { return 0.5 * (math::exp(arg) - math::exp(-arg)); }
+        long double csch(const long double arg) noexcept(true)
+        { return 1 / hyper::sech(arg); }
 
-    long double cosh(const long double arg) noexcept(true)
-    { return 0.5 * (math::exp(arg) + math::exp(-arg)); }
-
-    long double tanh(const long double arg) noexcept(true)
-    { return math::sinh(arg) / math::cosh(arg); }
-
-    long double sech(const long double arg) noexcept(true)
-    { return 1 / math::cosh(arg); }
-
-    long double csch(const long double arg) noexcept(true)
-    { return 1 / math::sech(arg); }
-
-    long double coth(const long double arg) noexcept(true)
-    { return math::cosh(arg) / math::sinh(arg); }
+        long double coth(const long double arg) noexcept(true)
+        { return hyper::cosh(arg) / hyper::sinh(arg); }
+    }
 }
 
 #endif // _MATH_IPP_
