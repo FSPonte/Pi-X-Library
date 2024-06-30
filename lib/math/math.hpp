@@ -4,7 +4,7 @@
 namespace pix::math
 {
     const unsigned long MAX_ITER = 1E6; // Maximum number of iterations
-    const long double PR_THRESHOLD = 1E-12; // Precision threshold
+    const long double PR_THRESHOLD = 1E-30; // Precision threshold
 
     /**
      * @brief Absolute value
@@ -94,6 +94,27 @@ namespace pix::math
     */
     template <typename type_t>
     type_t sum(const type_t[], unsigned long) noexcept(false);
+
+    /**
+     * @brief Sine function
+     * @param arg Argument
+     * @return Sine of argument
+    */
+    long double sin(long double) noexcept(true);
+
+    /**
+     * @brief Cosine function
+     * @param arg Argument
+     * @return Cosine of argument
+    */
+    long double cos(long double) noexcept(true);
+
+    /**
+     * @brief Tangent function
+     * @param arg Argument
+     * @return Tangent of argument
+    */
+    long double tan(long double) noexcept(true);
 }
 
 // Implementation file
