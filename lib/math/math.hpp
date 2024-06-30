@@ -1,6 +1,7 @@
 #ifndef _MATH_HPP_
 #define _MATH_HPP_
 
+// Mathematical functions
 namespace pix::math
 {
     const unsigned long MAX_ITER = 1E6; // Maximum number of iterations
@@ -98,8 +99,6 @@ namespace pix::math
 
 // Implementation file
 #include "math.ipp"
-
-#endif // _MATH_HPP_
 
 #ifndef _TRIG_
 #define _TRIG_
@@ -208,3 +207,5 @@ namespace pix::math::hyper
 #include "hyper.ipp"
 
 #endif // _HYPER_
+
+#endif // _MATH_HPP_
