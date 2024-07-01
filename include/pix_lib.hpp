@@ -23,6 +23,12 @@
 #include <smart_pointer.hpp>
 
 /**
+ * Pi-X Sorting Algoritms
+ * pix::sort
+*/
+#include <sort.hpp>
+
+/**
  * Pi-X Mathematial Functions
  * pix::math
  * pix::math::trig
