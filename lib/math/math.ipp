@@ -168,25 +168,6 @@ namespace pix::math
 
         return math::pow(arg, 1 / ind);
     }
-
-    template <typename type_t>
-    type_t sum(const type_t arr[], const unsigned long dim) noexcept(false)
-    {
-        is_number_static_assert(type_t);
-
-        if (arr == nullptr)
-            throw "sum: arr == nullptr";
-
-        if (dim == 0)
-            throw "sum: dim == 0";
-
-        type_t result = 0;
-
-        for (unsigned long i = 0; i < dim; ++i)
-            result += arr[i];
-
-        return result;
-    }
 }
 
 #endif // _MATH_IPP_
