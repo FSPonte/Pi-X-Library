@@ -4,7 +4,7 @@
 template <typename type_t>
 static unsigned long _partition_(type_t arr[], const unsigned long start, const unsigned long end) noexcept(true)
 {
-    unsigned long ind = start - 1; // Index of smaller element
+    unsigned long ind = start; // Index of smaller element
     type_t
         pivot = arr[end],
         aux;
