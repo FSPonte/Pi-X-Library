@@ -94,6 +94,33 @@ void _merge_sort_(type_t arr[], const unsigned long start_ind, const unsigned lo
 namespace pix::sort
 {
     template <typename type_t>
+    void invert(type_t arr[], const unsigned long dim) noexcept(false)
+    {
+        is_number_static_assert(type_t);
+
+        if (arr == nullptr)
+            throw "invert: arr == nullptr";
+
+        if (dim == 0)
+            throw "invert: dim == 0";
+
+        unsigned long
+            left_ind = 0,
+            right_ind = dim - 1;
+        type_t aux; // Auxiliar value
+
+        while (left_ind < right_ind)
+        {
+            aux = arr[left_ind];
+            arr[left_ind] = arr[right_ind];
+            arr[right_ind] = aux;
+
+            ++left_ind;
+            --right_ind;
+        }
+    }
+
+    template <typename type_t>
     void bubble_sort(type_t arr[], const unsigned long dim) noexcept(false)
     {
         is_number_static_assert(type_t);
