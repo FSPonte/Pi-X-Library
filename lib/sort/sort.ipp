@@ -40,6 +40,57 @@ static void _quick_sort_(type_t arr[], const unsigned long start_ind, const unsi
     _quick_sort_(arr, part_ind + 1, end_ind);
 }
 
+template <typename type_t>
+static void _merge_(type_t arr[], const unsigned long start_ind, const unsigned long mid_ind, const unsigned long end_ind) noexcept(true)
+{
+    const unsigned long
+        left_dim = mid_ind - start_ind + 1,
+        right_dim = end_ind - mid_ind;
+
+    type_t
+        left_arr[left_dim],
+        right_arr[right_dim];
+
+    for (unsigned long i = 0; i < left_dim; ++i)
+        left_arr[i] = arr[start_ind + i];
+
+    for (unsigned long i = 0; i < right_dim; ++i)
+        right_arr[i] = arr[mid_ind + i + 1];
+
+    unsigned long
+        left_ind = 0,
+        right_ind = 0,
+        arr_ind;
+
+    for (arr_ind = start_ind; left_ind < left_dim && right_ind < right_dim; ++arr_ind)
+    {
+        if (left_arr[left_ind] <= right_arr[right_ind])
+            arr[arr_ind] = left_arr[left_ind++];
+        else
+            arr[arr_ind] = right_arr[right_ind++];
+    }
+
+    while (left_ind < left_dim)
+        arr[arr_ind++] = left_arr[left_ind++];
+
+    while (right_ind < right_dim)
+        arr[arr_ind++] = right_arr[right_ind++];
+}
+
+template <typename type_t>
+void _merge_sort_(type_t arr[], const unsigned long start_ind, const unsigned long end_ind) noexcept(true)
+{
+    if (start_ind >= end_ind)
+        return;
+
+    const unsigned long mid_ind = start_ind + (end_ind - start_ind) / 2;
+
+    _merge_sort_(arr, start_ind, mid_ind);
+    _merge_sort_(arr, mid_ind + 1, end_ind);
+
+    _merge_(arr, start_ind, mid_ind, end_ind);
+}
+
 namespace pix::sort
 {
     template <typename type_t>
@@ -134,6 +185,20 @@ namespace pix::sort
             throw "quick_sort: dim == 0";
 
         _quick_sort_(arr, 0, dim - 1);
+    }
+
+    template <typename type_t>
+    void merge_sort(type_t arr[], const unsigned long dim) noexcept(false)
+    {
+        is_number_static_assert(type_t);
+
+        if (arr == nullptr)
+            throw "merge_sort: arr == nullptr";
+
+        if (dim == 0)
+            throw "merge_sort: dim == 0";
+
+        _merge_sort_(arr, 0, dim - 1);
     }
 }
 

@@ -46,6 +46,17 @@ namespace pix::sort
     */
     template <typename type_t>
     void quick_sort(type_t[], unsigned long) noexcept(false);
+
+    /**
+     * @brief Merge sort
+     * @tparam type_t Data type
+     * @param arr Array of elements
+     * @param dim Number of elements
+     * @throw arr == nullptr
+     * @throw dim == 0
+    */
+    template <typename type_t>
+    void merge_sort(type_t[], unsigned long) noexcept(false);
 }
 
 // Implementation file
