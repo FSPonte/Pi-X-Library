@@ -2,41 +2,42 @@
 #define _SORT_IPP_
 
 template <typename type_t>
-static unsigned long _partition_(type_t arr[], const unsigned long start, const unsigned long end) noexcept(true)
+static inline void _swap_(type_t arr[], const unsigned long ind_1, const unsigned long ind_2) noexcept(true)
 {
-    unsigned long ind = start; // Index of smaller element
-    type_t
-        pivot = arr[end],
-        aux;
-
-    for (unsigned long i = start; i < end; ++i)
-    {
-        if (arr[i] <= pivot)
-        {
-            ++ind;
-            aux = arr[ind];
-            arr[ind] = arr[i];
-            arr[i] = aux;
-        }
-    }
-    
-    aux = arr[ind + 1];
-    arr[ind + 1] = arr[end];
-    arr[end] = aux;
-    
-    return ind + 1;
+    type_t aux = arr[ind_1];
+    arr[ind_1] = arr[ind_2];
+    arr[ind_2] = aux;
 }
 
 template <typename type_t>
-static void _quick_sort_(type_t arr[], const unsigned long start, const unsigned long end) noexcept(true)
+static const unsigned long _partition_(type_t arr[], const unsigned long start_ind, const unsigned long end_ind) noexcept(true)
 {
-    if(start >= end)
+    type_t pivot = arr[end_ind]; // Pivot value
+    unsigned long min_ind = start_ind - 1; // Index of smaller element
+
+    for (unsigned long i = start_ind; i <= end_ind - 1; ++i)
+    {
+        if (arr[i] > pivot)
+            continue;
+        
+        _swap_(arr, ++min_ind, i);
+    }
+    
+    _swap_(arr, min_ind + 1, end_ind);
+    
+    return min_ind + 1;
+}
+
+template <typename type_t>
+static void _quick_sort_(type_t arr[], const unsigned long start_ind, const unsigned long end_ind) noexcept(true)
+{
+    if (start_ind >= end_ind)
         return;
 
-    const unsigned long ind = _partition_(arr, start, end);
+    const unsigned long part_ind = _partition_(arr, start_ind, end_ind); // Partition index
 
-    _quick_sort_(arr, start, ind - 1);
-    _quick_sort_(arr, ind + 1, end);
+    _quick_sort_(arr, start_ind, part_ind - 1);
+    _quick_sort_(arr, part_ind + 1, end_ind);
 }
 
 namespace pix::sort
@@ -58,13 +59,41 @@ namespace pix::sort
         {
             for (unsigned long j = 0; j < dim - 1; ++j)
             {
-                if (arr[j] < arr[j + 1])
+                if (arr[j] <= arr[j + 1])
                     continue;
 
-                aux = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = aux;
+                _swap_(arr, j, j + 1);
             }
+        }
+    }
+
+    template <typename type_t>
+    void selection_sort(type_t arr[], const unsigned long dim) noexcept(false)
+    {
+        is_number_static_assert(type_t);
+
+        if (arr == nullptr)
+            throw "selection_sort: arr == nullptr";
+
+        if (dim == 0)
+            throw "selection_sort: dim == 0";
+
+        unsigned long min_ind; // Index of minimum value
+        type_t aux; // Auxiliar value
+
+        for (unsigned long i = 0; i < dim; ++i)
+        {
+            min_ind = i;
+
+            for (unsigned long j = i + 1; j < dim; ++j)
+            {
+                if (arr[min_ind] <= arr[j])
+                    continue;
+
+                min_ind = j;
+            }
+
+            _swap_(arr, i, min_ind);
         }
     }
 
@@ -80,52 +109,16 @@ namespace pix::sort
             throw "insertion_sort: dim == 0";
 
         unsigned long j;
-        type_t aux; // Auxiliar value
+        type_t aux;
 
         for (unsigned long i = 1; i < dim; ++i)
         {
             aux = arr[i];
-            j = i - 1;
 
-            while (j >= 0 && arr[j] > aux)
-            {
+            for (j = i - 1; j >= 0 && arr[j] > aux; --j)
                 arr[j + 1] = arr[j];
-                --j;
-            }
 
             arr[j + 1] = aux;
-        }
-    }
-
-    template <typename type_t>
-    void selection_sort(type_t arr[], const unsigned long dim) noexcept(false)
-    {
-        is_number_static_assert(type_t);
-
-        if (arr == nullptr)
-            throw "selection_sort: arr == nullptr";
-
-        if (dim == 0)
-            throw "selection_sort: dim == 0";
-
-        unsigned long ind; // Index of minimum value
-        type_t aux; // Auxiliar value
-
-        for (unsigned long i = 0; i < dim; ++i)
-        {
-            ind = i;
-
-            for (unsigned long j = i + 1; j < dim; ++j)
-            {
-                if (arr[ind] < arr[j])
-                    continue;
-
-                ind = j;
-            }
-
-            aux = arr[i];
-            arr[i] = arr[ind];
-            arr[ind] = aux;
         }
     }
 
