@@ -1,31 +1,48 @@
 #ifndef _SORT_IPP_
 #define _SORT_IPP_
 
-template <typename type_t>
-static inline void _swap_(type_t arr[], const unsigned long ind_1, const unsigned long ind_2) noexcept(true)
-{
-    type_t aux = arr[ind_1];
-    arr[ind_1] = arr[ind_2];
-    arr[ind_2] = aux;
-}
+// Dependencies
+#include <c_array.hpp>
 
 template <typename type_t>
 static const unsigned long _partition_(type_t arr[], const unsigned long start_ind, const unsigned long end_ind) noexcept(true)
 {
-    type_t pivot = arr[end_ind]; // Pivot value
-    unsigned long min_ind = start_ind - 1; // Index of smaller element
+    unsigned long count = 0;
+    type_t pivot = arr[start_ind];
 
-    for (unsigned long i = start_ind; i <= end_ind - 1; ++i)
+    for (unsigned long i = start_ind + 1; i <= end_ind; ++i)
     {
         if (arr[i] > pivot)
             continue;
-        
-        _swap_(arr, ++min_ind, i);
+
+        ++count;
     }
-    
-    _swap_(arr, min_ind + 1, end_ind);
-    
-    return min_ind + 1;
+
+    unsigned long pi_ind = start_ind + count;
+    pix::c_array::swap(arr[pi_ind], arr[start_ind]);
+
+    // Sorting left and right parts of the pivot element
+    unsigned long
+        left_ind = start_ind,
+        right_ind = end_ind;
+
+    while (left_ind < pi_ind && right_ind > pi_ind)
+    {
+        while (arr[left_ind] <= pivot)
+            ++left_ind;
+
+        while (arr[right_ind] > pivot)
+            --right_ind;
+
+        if (left_ind < pi_ind && right_ind > pi_ind)
+        {
+            pix::c_array::swap(arr[left_ind], arr[right_ind]);
+            ++left_ind;
+            --right_ind;
+        }
+    }
+ 
+    return pi_ind;
 }
 
 template <typename type_t>
@@ -47,9 +64,9 @@ static void _merge_(type_t arr[], const unsigned long start_ind, const unsigned 
         left_dim = mid_ind - start_ind + 1,
         right_dim = end_ind - mid_ind;
 
-    type_t
-        left_arr[left_dim],
-        right_arr[right_dim];
+    auto
+        *left_arr = new type_t[left_dim],
+        *right_arr = new type_t[right_dim];
 
     for (unsigned long i = 0; i < left_dim; ++i)
         left_arr[i] = arr[start_ind + i];
@@ -65,16 +82,33 @@ static void _merge_(type_t arr[], const unsigned long start_ind, const unsigned 
     for (arr_ind = start_ind; left_ind < left_dim && right_ind < right_dim; ++arr_ind)
     {
         if (left_arr[left_ind] <= right_arr[right_ind])
-            arr[arr_ind] = left_arr[left_ind++];
+        {
+            arr[arr_ind] = left_arr[left_ind];
+            ++left_ind;
+        }
         else
-            arr[arr_ind] = right_arr[right_ind++];
+        {
+            arr[arr_ind] = right_arr[right_ind];
+            ++right_ind;
+        }
     }
 
     while (left_ind < left_dim)
-        arr[arr_ind++] = left_arr[left_ind++];
+    {
+        arr[arr_ind] = left_arr[left_ind];
+        ++arr_ind;
+        ++left_ind;
+    }
 
     while (right_ind < right_dim)
-        arr[arr_ind++] = right_arr[right_ind++];
+    {
+        arr[arr_ind] = right_arr[right_ind];
+        ++arr_ind;
+        ++right_ind;
+    }
+
+    delete[] left_arr;
+    delete[] right_arr;
 }
 
 template <typename type_t>
@@ -111,9 +145,7 @@ namespace pix::sort
 
         while (left_ind < right_ind)
         {
-            aux = arr[left_ind];
-            arr[left_ind] = arr[right_ind];
-            arr[right_ind] = aux;
+            pix::c_array::swap(arr, left_ind, right_ind);
 
             ++left_ind;
             --right_ind;
@@ -140,7 +172,7 @@ namespace pix::sort
                 if (arr[j] <= arr[j + 1])
                     continue;
 
-                _swap_(arr, j, j + 1);
+                pix::c_array::swap(arr, j, j + 1);
             }
         }
     }
@@ -171,7 +203,7 @@ namespace pix::sort
                 min_ind = j;
             }
 
-            _swap_(arr, i, min_ind);
+            pix::c_array::swap(arr, i,min_ind);
         }
     }
 
