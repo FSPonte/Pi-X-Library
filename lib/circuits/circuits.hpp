@@ -27,22 +27,22 @@
 #define NOR(A, B) NOT(OR(A, B))
 
 /**
- * @brief Exclusive or
+ * @brief Exclusive disjunction
 */
 #define XOR(A, B) OR(AND(A, NOT(B)), AND(NOT(A), B))
 
 /**
- * @brief Negated exclusive or
+ * @brief Negated exclusive disjunction
 */
 #define XNOR(A, B) NOT(XOR(A, B))
 
 /**
- * @brief Imply
+ * @brief Implication
 */
 #define IMPLY(A, B) OR(NOT(A), B)
 
 /**
- * @brief Negated imply
+ * @brief Negated implication
 */
 #define NIMPLY(A, B) NOT(IMPLY(A, B))
 
