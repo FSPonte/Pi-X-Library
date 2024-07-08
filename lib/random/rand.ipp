@@ -5,9 +5,9 @@
 #include <sys_vars.hpp>
 
 static unsigned long
-    _seed = 1607,          // Initial value
-    _mult = 806,           // Multiplier
-    _inc = 103,            // Increment
+    _seed = 1607, // Initial value
+    _mult = 806, // Multiplier
+    _inc = 103, // Increment
     _mod = INT32_MAX; // Modulus
 
 namespace pix::random
