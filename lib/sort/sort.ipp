@@ -133,10 +133,10 @@ namespace pix::sort
         is_number_static_assert(type_t);
 
         if (arr == nullptr)
-            throw "bubble_sort: arr == nullptr";
+            throw "pix::sort::bubble_sort: arr == nullptr";
 
         if (dim == 0)
-            throw "bubble_sort: dim == 0";
+            throw "pix::sort::bubble_sort: dim == 0";
 
         type_t aux; // Auxiliar value
 
@@ -158,10 +158,10 @@ namespace pix::sort
         is_number_static_assert(type_t);
 
         if (arr == nullptr)
-            throw "selection_sort: arr == nullptr";
+            throw "pix::sort::selection_sort: arr == nullptr";
 
         if (dim == 0)
-            throw "selection_sort: dim == 0";
+            throw "pix::sort::selection_sort: dim == 0";
 
         unsigned long min_ind; // Index of minimum value
         type_t aux; // Auxiliar value
@@ -188,10 +188,10 @@ namespace pix::sort
         is_number_static_assert(type_t);
 
         if (arr == nullptr)
-            throw "insertion_sort: arr == nullptr";
+            throw "pix::sort::insertion_sort: arr == nullptr";
 
         if (dim == 0)
-            throw "insertion_sort: dim == 0";
+            throw "pix::sort::insertion_sort: dim == 0";
 
         unsigned long j;
         type_t aux;
@@ -213,10 +213,10 @@ namespace pix::sort
         is_number_static_assert(type_t);
 
         if (arr == nullptr)
-            throw "quick_sort: arr == nullptr";
+            throw "pix::sort::quick_sort: arr == nullptr";
 
         if (dim == 0)
-            throw "quick_sort: dim == 0";
+            throw "pix::sort::quick_sort: dim == 0";
 
         _quick_sort_(arr, 0, dim - 1);
     }
@@ -227,10 +227,10 @@ namespace pix::sort
         is_number_static_assert(type_t);
 
         if (arr == nullptr)
-            throw "merge_sort: arr == nullptr";
+            throw "pix::sort::merge_sort: arr == nullptr";
 
         if (dim == 0)
-            throw "merge_sort: dim == 0";
+            throw "pix::sort::merge_sort: dim == 0";
 
         _merge_sort_(arr, 0, dim - 1);
     }
