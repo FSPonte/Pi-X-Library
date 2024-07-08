@@ -21,6 +21,20 @@ namespace pix::c_array
     */
     template <typename type_t>
     void invert(type_t[], unsigned long) noexcept(false);
+
+    /**
+     * @brief Copy array
+     * @tparam type_t Data type
+     * @param arr_o Origin array of elements
+     * @param arr_d Destination array of elements
+     * @param dim Number of elements
+     * @throw arr_o == nullptr
+     * @throw arr_d == nullptr
+     * @throw dim == 0
+     * @note Copies the elements from arr_o to arr_d
+    */
+    template <typename type_t>
+    void copy(type_t[], type_t[], unsigned long) noexcept(false);
 }
 
 // Implementation file

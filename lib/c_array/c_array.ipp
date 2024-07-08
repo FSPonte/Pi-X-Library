@@ -17,10 +17,10 @@ namespace pix::c_array
         is_number_static_assert(type_t);
 
         if (arr == nullptr)
-            throw "invert: arr == nullptr";
+            throw "pix::c_array::invert: arr == nullptr";
 
         if (dim == 0)
-            throw "invert: dim == 0";
+            throw "pix::c_array::invert: dim == 0";
 
         unsigned long
             left_ind = 0,
@@ -34,6 +34,22 @@ namespace pix::c_array
             ++left_ind;
             --right_ind;
         }
+    }
+
+    template <typename type_t>
+    void copy(type_t arr_o[], type_t arr_d[], const unsigned long dim) noexcept(false)
+    {
+        if (arr_o == nullptr)
+            throw "pix::c_array::copy: arr_o == nullptr";
+
+        if (arr_d == nullptr)
+            throw "pix::c_array::copy: arr_d == nullptr";
+
+        if (dim == 0)
+            throw "pix::c_array::copy: dim == 0";
+
+        for (unsigned long i = 0; i < dim; ++i)
+            arr_d[i] = arr_o[i];
     }
 }
 
