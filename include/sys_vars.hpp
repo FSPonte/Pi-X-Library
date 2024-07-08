@@ -11,14 +11,14 @@
 #define EXIT_FAILURE 1
 #endif
 
-// End of file code
-#ifndef EOF
-#define EOF -1
-#endif
-
 // Error code
 #ifndef ERROR
 #define ERROR -1
+#endif
+
+// End of file code
+#ifndef EOF
+#define EOF -1
 #endif
 
 // Maximum signed integer in 32-bit arquitecture
