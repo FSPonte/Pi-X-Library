@@ -38,7 +38,7 @@ namespace pix::math
     }
 
     template <typename type_t>
-    long double fat(const type_t arg) noexcept(false)
+    long double fact(const type_t arg) noexcept(false)
     {
         is_integer_static_assert(type_t);
 

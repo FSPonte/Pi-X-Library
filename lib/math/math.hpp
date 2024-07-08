@@ -36,7 +36,7 @@ namespace pix::math
      * @throw arg < 0
     */
     template <typename type_t>
-    long double fat(type_t) noexcept(false);
+    long double fact(type_t) noexcept(false);
 
     /**
      * @brief Natural logaritm function
