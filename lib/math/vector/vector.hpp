@@ -56,7 +56,7 @@ namespace pix::math
 
         /**
          * @brief Copy operator
-         * @param arr Array
+         * @param arr Array of components
         */
         void operator = (const type_t[]);
 
