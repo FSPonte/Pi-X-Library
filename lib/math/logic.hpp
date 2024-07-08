@@ -1,5 +1,5 @@
-#ifndef _CIRCUITS_HPP_
-#define _CIRCUITS_HPP_
+#ifndef _LOGIC_HPP_
+#define _LOGIC_HPP_
 
 /**
  * @brief Negation
@@ -56,4 +56,4 @@
 */
 #define NEQUI(A, B) (A != B)
 
-#endif // _CIRCUITS_HPP_
+#endif // _LOGIC_HPP_
