@@ -1,7 +1,7 @@
 #ifndef _COMPLEX_HPP_
 #define _COMPLEX_HPP_
 
-namespace pix::adt
+namespace pix::math
 {
     /**
      * @brief Complex number

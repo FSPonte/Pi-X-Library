@@ -4,7 +4,7 @@
 // Dependencies
 #include <vector.hpp>
 
-namespace pix::adt
+namespace pix::math
 {
     /**
      * @brief Matrix

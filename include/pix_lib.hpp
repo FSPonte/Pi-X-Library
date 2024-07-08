@@ -23,18 +23,16 @@
 #include <smart_pointer.hpp>
 
 /**
+ * Pi-X C Styled Arrays
+ * pix::c_array
+*/
+#include <c_array.hpp>
+
+/**
  * Pi-X Sorting Algoritms
  * pix::sort
 */
 #include <sort.hpp>
-
-/**
- * Pi-X Mathematial Functions
- * pix::math
- * pix::math::trig
- * pix::math::hyper
-*/
-#include <math.hpp>
 
 /**
  * Pi-X Random number generators
@@ -46,12 +44,20 @@
  * Pi-X Abstract Data Types
  * pix::adt
 */
-#include <string.hpp>
 #include <array.hpp>
+#include <string.hpp>
 #include <stack.hpp>
 #include <queue.hpp>
 #include <deque.hpp>
 #include <hash_table.hpp>
+
+/**
+ * Pi-X Mathematical Library
+ * pix::math
+ * pix::math::trig
+ * pix::math::hyper
+*/
+#include <math.hpp>
 #include <complex.hpp>
 #include <vector.hpp>
 #include <matrix.hpp>

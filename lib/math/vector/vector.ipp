@@ -4,7 +4,7 @@
 // Dependencies
 #include <type_info.hpp>
 
-namespace pix::adt
+namespace pix::math
 {
     template <typename type_t, unsigned long DIM>
     vector<type_t, DIM>::vector(void)

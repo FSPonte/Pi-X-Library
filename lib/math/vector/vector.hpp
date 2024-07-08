@@ -1,7 +1,7 @@
 #ifndef _VECTOR_HPP_
 #define _VECTOR_HPP_
 
-namespace pix::adt
+namespace pix::math
 {
     /**
      * @brief Vector

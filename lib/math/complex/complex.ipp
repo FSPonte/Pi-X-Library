@@ -1,7 +1,7 @@
 #ifndef _COMPLEX_IPP_
 #define _COMPLEX_IPP_
 
-namespace pix::adt
+namespace pix::math
 {
     template <typename type_t>
     complex<type_t>::complex(void)

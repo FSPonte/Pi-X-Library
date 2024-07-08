@@ -1,7 +1,7 @@
 #ifndef _MATRIX_IPP_
 #define _MATRIX_IPP_
 
-namespace pix::adt
+namespace pix::math
 {
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
     matrix<type_t, N_LIN, N_COL>::matrix(void)
