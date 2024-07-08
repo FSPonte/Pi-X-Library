@@ -1,7 +1,7 @@
 #ifndef _SMART_POINTER_HPP_
 #define _SMART_POINTER_HPP_
 
-namespace pix::smart_pointer
+namespace
 {
     template <typename type_t>
     class smart_pointer
