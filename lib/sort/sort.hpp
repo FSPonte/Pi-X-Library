@@ -4,16 +4,6 @@
 namespace pix::sort
 {
     /**
-     * @brief Invert order of elements
-     * @param arr Array of elements
-     * @param dim Number of elements
-     * @throw arr == nullptr
-     * @throw dim == 0
-    */
-    template <typename type_t>
-    void invert(type_t[], unsigned long) noexcept(false);
-
-    /**
      * @brief Bubble sort
      * @tparam type_t Data type
      * @param arr Array of elements

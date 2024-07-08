@@ -11,6 +11,16 @@ namespace pix::c_array
     */
     template <typename type_t>
     inline void swap(type_t&, type_t&) noexcept(true);
+
+    /**
+     * @brief Invert order of elements
+     * @param arr Array of elements
+     * @param dim Number of elements
+     * @throw arr == nullptr
+     * @throw dim == 0
+    */
+    template <typename type_t>
+    void invert(type_t[], unsigned long) noexcept(false);
 }
 
 // Implementation file
