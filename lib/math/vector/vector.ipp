@@ -31,18 +31,23 @@ namespace pix::math
     { return this->arr; }
 
     template <typename type_t, unsigned long DIM>
-    type_t& vector<type_t, DIM>::operator [] (const unsigned long index)
-    { return this->arr[index % DIM]; }
+    type_t& vector<type_t, DIM>::operator [] (const unsigned long index) noexcept(false)
+    {
+        if (index >= DIM)
+            throw "pix::math::vector.operator [] : Index is out of bounds";
+
+        return this->arr[index];
+    }
 
     template <typename type_t, unsigned long DIM>
     constexpr const unsigned long vector<type_t, DIM>::dim(void) const
     { return DIM; }
 
     template <typename type_t, unsigned long DIM>
-    void vector<type_t, DIM>::operator = (const type_t arr[])
+    void vector<type_t, DIM>::operator = (const type_t arr[]) noexcept(false)
     {
         if (arr == nullptr)
-            return;
+            throw "pix::math::vector.operator = : Pointer to array is null";
 
         for (unsigned long i = 0; i < DIM; ++i)
             this->arr[i] = arr[i];

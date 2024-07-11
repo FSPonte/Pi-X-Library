@@ -44,9 +44,9 @@ namespace pix::math
          * @brief Get component
          * @param ind Index
          * @return Reference to component
-         * @note Index is congruent to DIM
+         * @throw Index is out of bounds
         */
-        type_t& operator [] (unsigned long);
+        type_t& operator [] (unsigned long) noexcept(false);
 
         /**
          * @brief Get size
@@ -57,8 +57,9 @@ namespace pix::math
         /**
          * @brief Copy operator
          * @param arr Array of components
+         * @throw Pointer to array is null
         */
-        void operator = (const type_t[]);
+        void operator = (const type_t[]) noexcept(false);
 
         /**
          * @brief Copy operator
