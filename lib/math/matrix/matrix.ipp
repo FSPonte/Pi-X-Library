@@ -16,20 +16,20 @@ namespace pix::math
     }
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
-    matrix<type_t, N_LIN, N_COL>::matrix(const type_t arr[]) : matrix<type_t, N_LIN, N_COL>()
+    matrix<type_t, N_LIN, N_COL>::matrix(const type_t arr[]) noexcept(false) : matrix<type_t, N_LIN, N_COL>()
     {
         if (arr == nullptr)
-            return;
+            throw "pix::math::matrix.parameterized_constructor : Pointer to array is null";
 
         for (unsigned long i = 0; i < N_LIN; ++i)
             this->arr[i] = vector<type_t, N_COL>(arr + i * N_LIN);
     }
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
-    matrix<type_t, N_LIN, N_COL>::matrix(const vector<type_t, N_COL> arr[]) : matrix<type_t, N_LIN, N_COL>()
+    matrix<type_t, N_LIN, N_COL>::matrix(const vector<type_t, N_COL> arr[]) noexcept(false) : matrix<type_t, N_LIN, N_COL>()
     {
         if (arr == nullptr)
-            return;
+            throw "pix::math::matrix.parameterized_constructor : Pointer to array of lines is null";
 
         for (unsigned long i = 0; i < N_LIN; ++i)
         {
@@ -53,8 +53,13 @@ namespace pix::math
     { return this->arr; }
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
-    vector<type_t, N_COL>& matrix<type_t, N_LIN, N_COL>::operator [] (const unsigned long index)
-    { return this->arr[index % N_LIN]; }
+    vector<type_t, N_COL>& matrix<type_t, N_LIN, N_COL>::operator [] (const unsigned long index) noexcept(false)
+    {
+        if (index >= N_LIN)
+            throw "pix::math::matrix.operator [] : Index is out bounds";
+
+        return this->arr[index % N_LIN];
+    }
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
     constexpr const unsigned long matrix<type_t, N_LIN, N_COL>::n_lin(void) const

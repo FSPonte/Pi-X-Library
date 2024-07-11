@@ -29,14 +29,16 @@ namespace pix::math
         /**
          * @brief Parameterized constructor
          * @param arr Array of components
+         * @throw Pointer to array is null
         */
-        matrix(const type_t[]);
+        matrix(const type_t[]) noexcept(false);
 
         /**
          * @brief Parameterized constructor
          * @param arr Array of vectors
+         * @throw Pointer to array is null
         */
-        matrix(const vector<type_t, N_COL>[]);
+        matrix(const vector<type_t, N_COL>[]) noexcept(false);
 
         /**
          * @brief Copy constructor
@@ -54,9 +56,9 @@ namespace pix::math
          * @brief Get line
          * @param lin Line index
          * @return Reference to line vector
-         * @note Index is congruent to number of lines
+         * @throw Index is congruent to number of lines
         */
-        vector<type_t, N_COL>& operator [] (unsigned long);
+        vector<type_t, N_COL>& operator [] (unsigned long) noexcept(false);
 
         /**
          * @brief Get number of lines
