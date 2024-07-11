@@ -6,10 +6,10 @@ namespace pix::sort
     /**
      * @brief Bubble sort
      * @tparam type_t Data type
-     * @param arr Array of elements
+     * @param arr Pointer to array of elements
      * @param dim Number of elements
-     * @throw arr == nullptr
-     * @throw dim == 0
+     * @throw Pointer to array is null
+     * @throw Dimension is null
     */
     template <typename type_t>
     void bubble_sort(type_t[], unsigned long) noexcept(false);
@@ -17,10 +17,10 @@ namespace pix::sort
     /**
      * @brief Selection sort
      * @tparam type_t Data type
-     * @param arr Array of elements
+     * @param arr Pointer to array of elements
      * @param dim Number of elements
-     * @throw arr == nullptr
-     * @throw dim == 0
+     * @throw Pointer to array is null
+     * @throw Dimension is null
     */
     template <typename type_t>
     void selection_sort(type_t[], unsigned long) noexcept(false);
@@ -28,10 +28,10 @@ namespace pix::sort
     /**
      * @brief Insertion sort
      * @tparam type_t Data type
-     * @param arr Array of elements
+     * @param arr Pointer to array of elements
      * @param dim Number of elements
-     * @throw arr == nullptr
-     * @throw dim == 0
+     * @throw Pointer to array is null
+     * @throw Dimension is null
     */
     template <typename type_t>
     void insertion_sort(type_t[], unsigned long) noexcept(false);
@@ -39,10 +39,10 @@ namespace pix::sort
     /**
      * @brief Quick sort
      * @tparam type_t Data type
-     * @param arr Array of elements
+     * @param arr Pointer to array of elements
      * @param dim Number of elements
-     * @throw arr == nullptr
-     * @throw dim == 0
+     * @throw Pointer to array is null
+     * @throw Dimension is null
     */
     template <typename type_t>
     void quick_sort(type_t[], unsigned long) noexcept(false);
@@ -50,10 +50,10 @@ namespace pix::sort
     /**
      * @brief Merge sort
      * @tparam type_t Data type
-     * @param arr Array of elements
+     * @param arr Pointer to array of elements
      * @param dim Number of elements
-     * @throw arr == nullptr
-     * @throw dim == 0
+     * @throw Pointer to array is null
+     * @throw Dimension is null
     */
     template <typename type_t>
     void merge_sort(type_t[], unsigned long) noexcept(false);
