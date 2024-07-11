@@ -50,6 +50,8 @@
 #include <queue.hpp>
 #include <deque.hpp>
 #include <hash_table.hpp>
+#include <node.hpp>
+#include <list.hpp>
 
 /**
  * Pi-X Mathematical Library
