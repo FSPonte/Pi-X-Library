@@ -15,8 +15,8 @@ namespace pix::adt
     {
     private:
 
-        char arr[BUFFER_SIZE];
-        unsigned long len;
+        char _buffer[BUFFER_SIZE];
+        unsigned long _length;
 
     public:
 
@@ -28,15 +28,18 @@ namespace pix::adt
         /**
          * @brief Parameterized constructor
          * @param c_str C styled string
+         * @throw Pointer to array is null
         */
-        string(const char*);
+        string(const char[]);
 
         /**
          * @brief Parameterized constructor
          * @param c_str C styled string
          * @param len Number of characters to copy
+         * @throw Pointer to array is null
+         * @throw Length is null
         */
-        string(const char*, unsigned long);
+        string(const char[], unsigned long);
 
         /**
          * @brief Copy constructor
@@ -50,7 +53,7 @@ namespace pix::adt
          * @brief Get operator
          * @param ind Index
          * @return Reference to character
-         * @note Index parameter is congruent to the buffer
+         * @throw Index is out of bounds
         */
         char& operator [] (unsigned long);
 
@@ -75,8 +78,9 @@ namespace pix::adt
         /**
          * @brief Copy operator
          * @param c_str C styled string
+         * @throw Pointer to array is null
         */
-        void operator = (const char*);
+        void operator = (const char[]) noexcept(false);
 
         /**
          * @brief Copy operator
@@ -90,8 +94,9 @@ namespace pix::adt
          * @brief Equality operator
          * @param c_str C styled string
          * @return True if strings are equal
+         * @throw Pointer to array is null
         */
-        const bool operator == (const char*) const;
+        const bool operator == (const char[]) const;
 
         /**
          * @brief Equality operator
@@ -106,8 +111,9 @@ namespace pix::adt
          * @brief Inequality operator
          * @param c_str C styled string
          * @return True if strings are different
+         * @throw Pointer to array is null
         */
-        const bool operator != (const char*) const;
+        const bool operator != (const char[]) const;
 
         /**
          * @brief Inequality operator
@@ -121,8 +127,9 @@ namespace pix::adt
         /**
          * @brief Append operator
          * @param c_str C styled string
+         * @throw Pointer to array is null
        */
-        void operator += (const char*);
+        void operator += (const char[]);
 
         /**
          * @brief Append operator

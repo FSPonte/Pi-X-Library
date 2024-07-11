@@ -17,10 +17,10 @@ namespace pix::c_array
         is_number_static_assert(type_t);
 
         if (arr == nullptr)
-            throw "pix::c_array::invert: arr == nullptr";
+            throw "Pointer to array is null";
 
         if (dim == 0)
-            throw "pix::c_array::invert: dim == 0";
+            throw "Dimension is null";
 
         unsigned long
             left_ind = 0,
@@ -40,13 +40,13 @@ namespace pix::c_array
     void copy(type_t arr_o[], type_t arr_d[], const unsigned long dim) noexcept(false)
     {
         if (arr_o == nullptr)
-            throw "pix::c_array::copy: arr_o == nullptr";
+            throw "Pointer to origin array is null";
 
         if (arr_d == nullptr)
-            throw "pix::c_array::copy: arr_d == nullptr";
+            throw "Pointer to destination array is null";
 
         if (dim == 0)
-            throw "pix::c_array::copy: dim == 0";
+            throw "Dimension is null";
 
         for (unsigned long i = 0; i < dim; ++i)
             arr_d[i] = arr_o[i];

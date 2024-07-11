@@ -12,24 +12,32 @@ namespace pix::adt
             "String object cannot have a maximum of zero characters"
         );
 
-        this->arr[0] = '\0';
-        this->len = 0;
+        this->_buffer[0] = '\0';
+        this->_length = 0;
     }
 
     template <unsigned long BUFFER_SIZE>
-    string<BUFFER_SIZE>::string(const char* c_str) : string<BUFFER_SIZE>()
-    { *this = c_str; }
+    string<BUFFER_SIZE>::string(const char c_str[]) noexcept(false) : string<BUFFER_SIZE>()
+    {
+        if (c_str == nullptr)
+            throw "Pointer to array is null";
+
+        *this = c_str;
+    }
 
     template <unsigned long BUFFER_SIZE>
-    string<BUFFER_SIZE>::string(const char* c_str, const unsigned long len) : string<BUFFER_SIZE>()
+    string<BUFFER_SIZE>::string(const char c_str[], const unsigned long length) noexcept(false) : string<BUFFER_SIZE>()
     {
-        if (c_str == nullptr || len == 0)
-            return;
+        if (c_str == nullptr)
+            throw "Pointer to array is null";
+        
+        if (length == 0)
+            throw "Length is null";
 
-        for (this->len; this->len < BUFFER_SIZE - 1 && this->len < len && c_str[this->len] != '\0'; ++this->len)
-            this->arr[this->len] = c_str[this->len];
+        for (this->_length; this->_length < BUFFER_SIZE - 1 && this->_length < length && c_str[this->_length] != '\0'; ++this->_length)
+            this->_buffer[this->_length] = c_str[this->_length];
 
-        this->arr[this->len] = '\0';
+        this->_buffer[this->_length] = '\0';
     }
 
     template <unsigned long BUFFER_SIZE>
@@ -38,32 +46,37 @@ namespace pix::adt
     { *this = str; }
 
     template <unsigned long BUFFER_SIZE>
-    char& string<BUFFER_SIZE>::operator [] (const unsigned long ind)
-    { return this->arr[ind % BUFFER_SIZE]; }
+    char& string<BUFFER_SIZE>::operator [] (const unsigned long index) noexcept(false)
+    {
+        if (index >= BUFFER_SIZE)
+            throw "Index is out of bounds";
+
+        return this->_buffer[index];
+    }
 
     template <unsigned long BUFFER_SIZE>
     const char* string<BUFFER_SIZE>::buffer(void) const
-    { return this->arr; }
+    { return this->_buffer; }
 
     template <unsigned long BUFFER_SIZE>
     const unsigned long string<BUFFER_SIZE>::length(void) const
-    { return this->len; }
+    { return this->_length; }
 
     template <unsigned long BUFFER_SIZE>
     constexpr const unsigned long string<BUFFER_SIZE>::buffer_size(void) const
     { return BUFFER_SIZE; }
 
     template <unsigned long BUFFER_SIZE>
-    void string<BUFFER_SIZE>::operator = (const char* c_str)
+    void string<BUFFER_SIZE>::operator = (const char c_str[]) noexcept(false)
     {
         if (c_str == nullptr)
-            return;
+            throw "Pointer to array is null";
 
-        for (this->len = 0; this->len < BUFFER_SIZE - 1; ++this->len)
+        for (this->_length = 0; this->_length < BUFFER_SIZE - 1; ++this->_length)
         {
-            this->arr[this->len] = c_str[this->len];
+            this->_buffer[this->_length] = c_str[this->_length];
 
-            if (c_str[this->len] == '\0')
+            if (c_str[this->_length] == '\0')
                 break;
         }
     }
@@ -74,14 +87,14 @@ namespace pix::adt
     { *this = static_cast<const char*>(str); }
 
     template <unsigned long BUFFER_SIZE>
-    const bool string<BUFFER_SIZE>::operator == (const char* c_str) const
+    const bool string<BUFFER_SIZE>::operator == (const char c_str[]) const noexcept(false)
     {
         if (c_str == nullptr)
-            return false;
+            throw "Pointer to array is null";
 
-        for (unsigned long i = 0; i < this->len; ++i)
+        for (unsigned long i = 0; i < this->_length; ++i)
         {
-            if (this->arr[i] != c_str[i])
+            if (this->_buffer[i] != c_str[i])
                 return false;
         }
 
@@ -92,14 +105,14 @@ namespace pix::adt
     template <unsigned long _BUFFER_SIZE>
     const bool string<BUFFER_SIZE>::operator == (const string<_BUFFER_SIZE>& str) const
     {
-        if (this->len != str.length())
+        if (this->_length != str.length())
             return false;
         
         return *this == static_cast<const char*>(str);
     }
 
     template <unsigned long BUFFER_SIZE>
-    const bool string<BUFFER_SIZE>::operator != (const char* c_str) const
+    const bool string<BUFFER_SIZE>::operator != (const char c_str[]) const noexcept(false)
     { return !(*this == c_str); }
 
     template <unsigned long BUFFER_SIZE>
@@ -108,14 +121,14 @@ namespace pix::adt
     { return !(*this == static_cast<const char*>(str)); }
 
     template <unsigned long BUFFER_SIZE>
-    void string<BUFFER_SIZE>::operator += (const char* c_str)
+    void string<BUFFER_SIZE>::operator += (const char c_str[]) noexcept(false)
     {
         if (c_str == nullptr)
-            return;
+            throw "Pointer to array is null";
 
-        for (unsigned long i = 0; this->len < BUFFER_SIZE - 1; ++i)
+        for (unsigned long i = 0; this->_length < BUFFER_SIZE - 1; ++i)
         {
-            this->arr[this->len++] = c_str[i];
+            this->_buffer[this->_length++] = c_str[i];
 
             if (c_str[i] == '\0')
                 break;
@@ -129,11 +142,11 @@ namespace pix::adt
 
     template <unsigned long BUFFER_SIZE>
     string<BUFFER_SIZE>::operator char*() const
-    { return this->arr; }
+    { return this->_buffer; }
 
     template <unsigned long BUFFER_SIZE>
     string<BUFFER_SIZE>::operator const char*() const
-    { return this->arr; }
+    { return this->_buffer; }
 }
 
 #endif // _STRING_IPP_

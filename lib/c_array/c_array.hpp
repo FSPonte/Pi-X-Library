@@ -16,8 +16,8 @@ namespace pix::c_array
      * @brief Invert order of elements
      * @param arr Array of elements
      * @param dim Number of elements
-     * @throw arr == nullptr
-     * @throw dim == 0
+     * @throw Pointer to array is null
+     * @throw Dimension is null
     */
     template <typename type_t>
     void invert(type_t[], unsigned long) noexcept(false);
@@ -28,9 +28,9 @@ namespace pix::c_array
      * @param arr_o Origin array of elements
      * @param arr_d Destination array of elements
      * @param dim Number of elements
-     * @throw arr_o == nullptr
-     * @throw arr_d == nullptr
-     * @throw dim == 0
+     * @throw Pointer to origin array is null
+     * @throw Pointer to destination array is null
+     * @throw Dimension is null
      * @note Copies the elements from arr_o to arr_d
     */
     template <typename type_t>
