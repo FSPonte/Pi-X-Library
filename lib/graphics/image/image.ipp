@@ -26,8 +26,16 @@ namespace pix::graphics
     { return this->_data; }
 
     template <unsigned long W_DIM, unsigned long H_DIM>
-    rgb& image<W_DIM, H_DIM>::get(const unsigned long y, const unsigned long x)
-    { return this->_data[y % H_DIM][x % W_DIM]; }
+    rgb& image<W_DIM, H_DIM>::get(const unsigned long y, const unsigned long x) noexcept(false)
+    {
+        if (y >= H_DIM)
+            throw "pix::graphics::rgb.get : Y coordinate is out of bounds";
+
+        if (x >= W_DIM)
+            throw "pix::graphics::rgb.get : X coordinate is out of bounds";
+
+        return this->_data[y][x];
+    }
 
     template <unsigned long W_DIM, unsigned long H_DIM>
     constexpr const unsigned long image<W_DIM, H_DIM>::width(void) const
