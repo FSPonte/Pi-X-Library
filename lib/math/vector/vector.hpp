@@ -25,8 +25,9 @@ namespace pix::math
         /**
          * @brief Parameterized constructor
          * @param arr Array of components
+         * @throw Pointer to array is null
         */
-        vector(const type_t[]);
+        vector(const type_t[]) noexcept(false);
 
         /**
          * @brief Copy constructor

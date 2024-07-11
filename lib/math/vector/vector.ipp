@@ -19,8 +19,13 @@ namespace pix::math
     }
 
     template <typename type_t, unsigned long DIM>
-    vector<type_t, DIM>::vector(const type_t arr[]) : vector<type_t, DIM>()
-    { *this = arr; }
+    vector<type_t, DIM>::vector(const type_t arr[]) noexcept(false) : vector<type_t, DIM>()
+    {
+        if (arr == nullptr)
+            throw "pix::math::vector.parameterized_constructor : Pointer to array is null";
+
+        *this = arr;
+    }
 
     template <typename type_t, unsigned long DIM>
     vector<type_t, DIM>::vector(const vector<type_t, DIM>& vec) : vector<type_t, DIM>()
