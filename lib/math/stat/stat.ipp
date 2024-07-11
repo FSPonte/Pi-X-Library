@@ -9,10 +9,10 @@ namespace pix::math::stat
         is_number_static_assert(type_t);
 
         if (arr == nullptr)
-            throw "sum: arr == nullptr";
+            throw "pix::math::stat::sum : Pointer to array is null";
 
         if (dim == 0)
-            throw "sum: dim == 0";
+            throw "pix::math::stat::sum : Dimension is null";
 
         type_t result = 0;
 
@@ -28,10 +28,10 @@ namespace pix::math::stat
         is_number_static_assert(type_t);
 
         if (arr == nullptr)
-            throw "mean: arr == nullptr";
+            throw "pix::math::stat::mean : Pointer to array is null";
 
         if (dim == 0)
-            throw "mean: dim == 0";
+            throw "pix::math::stat::mean : Dimension is null";
 
         return stat::sum(arr, dim) / dim;
     }
@@ -42,10 +42,10 @@ namespace pix::math::stat
         is_number_static_assert(type_t);
 
         if (arr == nullptr)
-            throw "std_dev: arr == nullptr";
+            throw "pix::math::stat::median : Pointer to array is null";
 
         if (dim == 0)
-            throw "std_dev: dim == 0";
+            throw "pix::math::stat::median : Dimension is null";
 
         if (dim % 2 == 0)
             return (arr[dim / 2] + arr[(dim / 2) - 1]) / 2;
@@ -59,10 +59,10 @@ namespace pix::math::stat
         is_number_static_assert(type_t);
 
         if (arr == nullptr)
-            throw "std_dev: arr == nullptr";
+            throw "pix::math::stat::std_dev : Pointer to array is null";
 
         if (dim == 0)
-            throw "std_dev: dim == 0";
+            throw "pix::math::stat::std_dev : Dimension is null";
 
         const type_t average = stat::mean(arr, dim);
         type_t result = 0;

@@ -9,8 +9,8 @@ namespace pix::math::stat
      * @param arr Array of elements
      * @param dim Number of elements
      * @return Sum of elements
-     * @throw arr == nullptr
-     * @throw dim == 0
+     * @throw Pointer to array is null
+     * @throw Dimension is null
     */
     template <typename type_t>
     type_t sum(const type_t[], unsigned long) noexcept(false);
@@ -21,8 +21,8 @@ namespace pix::math::stat
      * @param arr Array of elements
      * @param dim Number of elements
      * @return Mean of the elements
-     * @throw arr == nullptr
-     * @throw dim == 0
+     * @throw Pointer to array is null
+     * @throw Dimension is null
     */
     template <typename type_t>
     type_t mean(const type_t[], unsigned long) noexcept(false);
@@ -33,8 +33,8 @@ namespace pix::math::stat
      * @param arr Array of elements
      * @param dim Number of elements
      * @return Median of the elements
-     * @throw arr == nullptr
-     * @throw dim == 0
+     * @throw Pointer to array is null
+     * @throw Dimension is null
     */
     template <typename type_t>
     type_t median(const type_t[], unsigned long) noexcept(false);
@@ -45,8 +45,8 @@ namespace pix::math::stat
      * @param arr Array of elements
      * @param dim Number of elements
      * @return Standard deviation of the elements
-     * @throw arr == nullptr
-     * @throw dim == 0
+     * @throw Pointer to array is null
+     * @throw Dimension is null
     */
     template <typename type_t>
     type_t std_dev(const type_t[], unsigned long) noexcept(false);
