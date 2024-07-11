@@ -34,10 +34,16 @@ namespace pix::random
     unsigned long rand(void);
 
     /**
-     * @brief Line congruential generator
+     * @brief Linear congruential generator
      * @return Random number between 0 and 1
     */
     long double drand(void);
+
+    /**
+     * @brief Linear congruential generator
+     * @return Random character in ASCII
+    */
+    char crand(void);
 }
 
 // Implementation file

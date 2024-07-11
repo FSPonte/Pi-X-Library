@@ -35,6 +35,9 @@ namespace pix::random
 
     long double drand(void)
     { return static_cast<long double>(rand()) / static_cast<long double>(_mod);}
+
+    char crand(void)
+    { return static_cast<char>(rand() % 26 + 97); }
 }
 
 #endif // _RAND_IPP_
