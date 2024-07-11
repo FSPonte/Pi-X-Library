@@ -133,10 +133,10 @@ namespace pix::sort
         is_number_static_assert(type_t);
 
         if (arr == nullptr)
-            throw "pix::sort::bubble_sort: Pointer to array is null";
+            throw "pix::sort::bubble_sort : Pointer to array is null";
 
         if (dim == 0)
-            throw "pix::sort::bubble_sort: Dimension is null";
+            throw "pix::sort::bubble_sort : Dimension is null";
 
         type_t aux; // Auxiliar value
 
@@ -158,10 +158,10 @@ namespace pix::sort
         is_number_static_assert(type_t);
 
         if (arr == nullptr)
-            throw "pix::sort::selection_sort: Pointer to array is null";
+            throw "pix::sort::selection_sort : Pointer to array is null";
 
         if (dim == 0)
-            throw "pix::sort::selection_sort: Dimension is null";
+            throw "pix::sort::selection_sort : Dimension is null";
 
         unsigned long min_ind; // Index of minimum value
         type_t aux; // Auxiliar value
@@ -188,10 +188,10 @@ namespace pix::sort
         is_number_static_assert(type_t);
 
         if (arr == nullptr)
-            throw "pix::sort::insertion_sort: Pointer to array is null";
+            throw "pix::sort::insertion_sort : Pointer to array is null";
 
         if (dim == 0)
-            throw "pix::sort::insertion_sort: Dimension is null";
+            throw "pix::sort::insertion_sort : Dimension is null";
 
         unsigned long j;
         type_t aux;
@@ -213,10 +213,10 @@ namespace pix::sort
         is_number_static_assert(type_t);
 
         if (arr == nullptr)
-            throw "pix::sort::quick_sort: Pointer to array is null";
+            throw "pix::sort::quick_sort : Pointer to array is null";
 
         if (dim == 0)
-            throw "pix::sort::quick_sort: Dimension is null";
+            throw "pix::sort::quick_sort : Dimension is null";
 
         _quick_sort_(arr, 0, dim - 1);
     }
@@ -227,10 +227,10 @@ namespace pix::sort
         is_number_static_assert(type_t);
 
         if (arr == nullptr)
-            throw "pix::sort::merge_sort: Pointer to array is null";
+            throw "pix::sort::merge_sort : Pointer to array is null";
 
         if (dim == 0)
-            throw "pix::sort::merge_sort: Dimension is null";
+            throw "pix::sort::merge_sort : Dimension is null";
 
         _merge_sort_(arr, 0, dim - 1);
     }
