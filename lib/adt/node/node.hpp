@@ -8,10 +8,15 @@ namespace pix::adt
      * @tparam type_t Data type
     */
     template <typename type_t>
-    struct node
+    class node
     {
+    private:
+
         type_t* value;
-        node<type_t>* edge;
+        node<type_t>** edges;
+        unsigned long dim;
+
+    public:
 
         /**
          * @brief Default constructor
@@ -20,14 +25,67 @@ namespace pix::adt
 
         /**
          * @brief Parameterized constructor
-         * @param ele Element
+         * @param val Pointer to value
         */
-        node(type_t);
+        node(type_t*);
 
         /**
          * @brief Destructor
         */
         ~node(void);
+
+        /**
+         * @brief Set value
+         * @param val Pointer to value
+        */
+        void set_value(type_t*);
+
+        /**
+         * @brief Get value
+         * @return Pointer to value
+        */
+        type_t* get_value(void) const;
+
+        /**
+         * @brief Add a edge
+         * @param edg Edge
+        */
+        void append(node<type_t>*);
+
+        /**
+         * @brief Eliminate a edge
+         * @param ind Index
+         * @throw Index is out of bounds
+        */
+        void pop(unsigned long) noexcept(false);
+
+        /**
+         * @brief Get edge
+         * @param ind Index
+         * @return Pointer to edge
+         * @throw Index is out of bounds
+        */
+        node<type_t>* operator [] (unsigned long) const noexcept(false);
+
+        /**
+         * @brief Set edge
+         * @param edg Pointer to edge
+         * @note Deals with the first element
+        */
+        void set_edge(node<type_t>*);
+
+        /**
+         * @brief Get edge
+         * @return Pointer to edge
+         * @note Deals with the first element
+        */
+        node<type_t>* get_edge(void) const;
+
+        /**
+         * @brief Get size
+         * @return Number of edges
+        */
+        const unsigned long size(void) const;
     };
 }
 

@@ -18,15 +18,15 @@ namespace pix::adt
     void list<type_t>::append(type_t element)
     {
         if (this->head == nullptr)
-            this->head = new node<type_t>(element);
+            this->head = new node<type_t>(new type_t(element));
         else
         {
             node<type_t>* iter_ptr = this->head; // Iterator pointer
 
-            while (iter_ptr->edge != nullptr)
-                iter_ptr = iter_ptr->edge;
+            while (iter_ptr->get_edge() != nullptr)
+                iter_ptr = iter_ptr->get_edge();
 
-            iter_ptr->edge = new node<type_t>(element);
+            iter_ptr->set_edge(new node<type_t>(new type_t(element)));
         }
 
         ++this->dim;
@@ -42,9 +42,9 @@ namespace pix::adt
 
         if (index == 0)
         {
-            ret_val = *(this->head->value);
-            node<type_t>* _head = this->head->edge; // New head
-            this->head->edge = nullptr;
+            ret_val = *(this->head->get_value());
+            node<type_t>* _head = this->head->get_edge(); // New head
+            this->head->set_edge(nullptr);
             delete this->head;
             this->head = _head;
         }
@@ -54,13 +54,13 @@ namespace pix::adt
             --index;
 
             for (unsigned long i = 0; i < index; ++i)
-                iter_ptr = iter_ptr->edge;
+                iter_ptr = iter_ptr->get_edge();
 
             node<type_t>* nd_prev = iter_ptr; // Previous node
-            iter_ptr = iter_ptr->edge;
-            ret_val = *(iter_ptr->value);
-            nd_prev->edge = iter_ptr->edge;
-            iter_ptr->edge = nullptr;
+            iter_ptr = iter_ptr->get_edge();
+            ret_val = *(iter_ptr->get_value());
+            nd_prev->set_edge(iter_ptr->get_edge());
+            iter_ptr->set_edge(nullptr);
             delete iter_ptr;
         }
 
@@ -78,9 +78,9 @@ namespace pix::adt
         node<type_t>* iter_ptr = this->head; // Iterator pointer
 
         for (unsigned long i = 0; i < index; ++i)
-            iter_ptr = iter_ptr->edge;
+            iter_ptr = iter_ptr->get_edge();
 
-        return *(iter_ptr->value);
+        return *(iter_ptr->get_value());
     }
 
     template <typename type_t>
