@@ -21,9 +21,9 @@ namespace pix::math
      * @tparam type_t Data type
      * @param arg Argument
      * @param mod Modulus
-     * @return Number congruent to arg
-     * @throw arg < 0
-     * @throw mod <= 0
+     * @return Number congruent to argument
+     * @throw Argument is a negative number
+     * @throw Modulus is a non positive number
     */
     template <typename type_t>
     type_t f_mod(type_t, type_t) noexcept(false);
@@ -33,7 +33,7 @@ namespace pix::math
      * @tparam type_t Data type
      * @param num Number
      * @return Factorial value
-     * @throw arg < 0
+     * @throw Argument is a negative number
     */
     template <typename type_t>
     long double fact(type_t) noexcept(false);
@@ -42,7 +42,7 @@ namespace pix::math
      * @brief Natural logaritm function
      * @param arg Argument
      * @return Natural logaritm of argument
-     * @throw arg <= 0
+     * @throw Argument is a negative number
     */
     long double log(long double) noexcept(false);
 
@@ -51,7 +51,7 @@ namespace pix::math
      * @param arg Argument
      * @param b Base
      * @return Logaritm of base of argument
-     * @throw arg <= 0
+     * @throw Argument is a non positive number
     */
     long double log(long double, long double) noexcept(false);
 
@@ -69,7 +69,7 @@ namespace pix::math
      * @param b Base
      * @param e Exponent
      * @return Base to the power of exponent
-     * @throw 0^0
+     * @throw Inderteminate case of 0^0
     */
     template <typename b_type_t, typename e_type_t>
     b_type_t pow(b_type_t, e_type_t) noexcept(false);
@@ -79,8 +79,8 @@ namespace pix::math
      * @param arg Argument
      * @param ind Index
      * @return Root index of argument
-     * @throw arg < 0
-     * @throw ind == 0
+     * @throw Argument is a negative number
+     * @throw Index is equal to zero
     */
     long double root(long double, long double) noexcept(false);
 }

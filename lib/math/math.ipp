@@ -20,10 +20,10 @@ namespace pix::math
         is_float_static_assert(type_t);
 
         if (arg < 0)
-            throw "f_mod: arg < 0";
+            throw "pix::math::f_mod : Argument is a negative number";
 
         if (mod <= 0)
-            throw "f_mod: mod <= 0";
+            throw "pix::math::f_mod : Modulus is a non positive number";
 
         if (arg < mod)
             return arg;
@@ -43,7 +43,7 @@ namespace pix::math
         is_integer_static_assert(type_t);
 
         if (arg < 0)
-            throw "fat: arg < 0";
+            throw "pix::math::fact : Argument is a negative number";
 
         if (arg == 0 || arg == 1)
             return 1;
@@ -66,7 +66,7 @@ namespace pix::math
     long double log(const long double arg) noexcept(false)
     {
         if (arg <= 0)
-            throw "log: arg <= 0";
+            throw "pix::math::log : Argument is a non positive number";
 
         long double
             result = 0,
@@ -123,7 +123,7 @@ namespace pix::math
         is_number_static_assert(e_type_t);
 
         if (base == 0 && exponent == 0)
-            throw "pow: 0^0";
+            throw "pix::math::pow : Inderteminate case of 0^0";
 
         if (base == 0)
             return b_type_t(0);
@@ -158,10 +158,10 @@ namespace pix::math
     long double root(const long double arg, const long double ind) noexcept(false)
     {
         if (arg < 0)
-            throw "root: arg < 0";
+            throw "pix::math::root : Argument is a negative number";
 
         if (arg == 0)
-            throw "root: ind == 0";
+            throw "pix::math::root : Index is equal to zero";
         
         if (ind == 1)
             return arg;
