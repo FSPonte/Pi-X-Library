@@ -15,13 +15,6 @@ namespace pix::types
     typedef long long int64_t;
     typedef unsigned long long uint64_t;
     typedef long double double_t;
-
-    /**
-     * @brief Function pointer to hashing function
-     * @param key C styled string
-     * @return Hash value
-    */
-    typedef unsigned long (*hash_func_ptr_t) (const char*);
 }
 
 #endif // _TYPES_HPP_

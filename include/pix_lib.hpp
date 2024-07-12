@@ -45,11 +45,9 @@
  * pix::adt
 */
 #include <array.hpp>
-#include <string.hpp>
 #include <stack.hpp>
 #include <queue.hpp>
 #include <deque.hpp>
-#include <hash_table.hpp>
 #include <node.hpp>
 #include <list.hpp>
 
