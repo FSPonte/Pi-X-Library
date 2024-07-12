@@ -13,8 +13,8 @@ namespace pix::math
     private:
 
         type_t
-            re, // Real part
-            im; // Imaginary part
+            _re, // Real part
+            _im; // Imaginary part
 
     public:
 

@@ -17,7 +17,7 @@ namespace pix::math
     {
     private:
 
-        vector<type_t, N_COL> arr[N_LIN];
+        vector<type_t, N_COL> _arr[N_LIN];
 
     public:
 

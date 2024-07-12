@@ -15,8 +15,8 @@ namespace pix::adt
     {
     private:
 
-        node<type_t>* head;
-        unsigned long dim;
+        node<type_t>* _head;
+        unsigned long _size;
 
     public:
 

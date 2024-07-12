@@ -19,22 +19,22 @@ namespace pix::math
     matrix<type_t, N_LIN, N_COL>::matrix(const type_t arr[]) noexcept(false) : matrix<type_t, N_LIN, N_COL>()
     {
         if (arr == nullptr)
-            throw "pix::math::matrix.parameterized_constructor : Pointer to array is null";
+            throw "Pointer to array is null";
 
         for (unsigned long i = 0; i < N_LIN; ++i)
-            this->arr[i] = vector<type_t, N_COL>(arr + i * N_LIN);
+            this->_arr[i] = vector<type_t, N_COL>(arr + i * N_LIN);
     }
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
     matrix<type_t, N_LIN, N_COL>::matrix(const vector<type_t, N_COL> arr[]) noexcept(false) : matrix<type_t, N_LIN, N_COL>()
     {
         if (arr == nullptr)
-            throw "pix::math::matrix.parameterized_constructor : Pointer to array of lines is null";
+            throw "Pointer to array is null";
 
         for (unsigned long i = 0; i < N_LIN; ++i)
         {
             for (unsigned long j = 0; j < N_COL; ++j)
-                this->arr[i][j] = arr[i].buffer()[j];
+                this->_arr[i][j] = arr[i].buffer()[j];
         }
     }
 
@@ -44,21 +44,21 @@ namespace pix::math
         for (unsigned long i = 0; i < N_LIN; ++i)
         {
             for(unsigned long j = 0; j < N_COL; ++j)
-                this->arr[i][j] = mtx[i][j];
+                this->_arr[i][j] = mtx[i][j];
         }
     }
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
     const vector<type_t, N_COL>* matrix<type_t, N_LIN, N_COL>::buffer(void) const
-    { return this->arr; }
+    { return this->_arr; }
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
     vector<type_t, N_COL>& matrix<type_t, N_LIN, N_COL>::operator [] (const unsigned long index) noexcept(false)
     {
         if (index >= N_LIN)
-            throw "pix::math::matrix.operator [] : Index is out bounds";
+            throw "Index is out bounds";
 
-        return this->arr[index % N_LIN];
+        return this->_arr[index % N_LIN];
     }
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
@@ -76,7 +76,7 @@ namespace pix::math
         {
             for (unsigned long j = 0; j < i; ++j)
             {
-                if (this->arr[i].buffer()[j] != 0)
+                if (this->_arr[i].buffer()[j] != 0)
                     return false;
             }
         }
@@ -91,7 +91,7 @@ namespace pix::math
         {
             for (unsigned long j = i + 1; j < N_COL; ++j)
             {
-                if (this->arr[i].buffer()[j] != 0)
+                if (this->_arr[i].buffer()[j] != 0)
                     return false;
             }
         }
@@ -116,7 +116,7 @@ namespace pix::math
                     continue;
                 }
 
-                arr[i][j] = this->arr[i].buffer()[j];
+                arr[i][j] = this->_arr[i].buffer()[j];
             }
         }
 
@@ -139,7 +139,7 @@ namespace pix::math
                     continue;
                 }
 
-                arr[i][j] = this->arr[i].buffer()[j];
+                arr[i][j] = this->_arr[i].buffer()[j];
             }
         }
 
@@ -150,7 +150,7 @@ namespace pix::math
     void matrix<type_t, N_LIN, N_COL>::operator = (const matrix<type_t, N_LIN, N_COL>& mtx)
     {
         for (unsigned long i = 0; i < N_LIN; ++i)
-            this->arr[i] = mtx.arr[i];
+            this->_arr[i] = mtx._arr[i];
     }
 
     template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
@@ -158,7 +158,7 @@ namespace pix::math
     {
         for (unsigned long i = 0; i < N_LIN; ++i)
         {
-            if (this->arr[i] != mtx[i])
+            if (this->_arr[i] != mtx[i])
                 return false;
         }
 
@@ -185,7 +185,7 @@ namespace pix::math
         vector<type_t, N_COL> arr[N_LIN];
 
         for (unsigned long i = 0; i < N_LIN; ++i)
-            arr[i] = this->arr[i] + mtx.arr[i];
+            arr[i] = this->_arr[i] + mtx._arr[i];
 
         return matrix<type_t, N_LIN, N_COL>(arr);
     }
@@ -196,7 +196,7 @@ namespace pix::math
         vector<type_t, N_COL> arr[N_LIN];
 
         for (unsigned long i = 0; i < N_LIN; ++i)
-            arr[i] = this->arr[i] - mtx.arr[i];
+            arr[i] = this->_arr[i] - mtx._arr[i];
 
         return matrix<type_t, N_LIN, N_COL>(arr);
     }
@@ -207,7 +207,7 @@ namespace pix::math
         vector<type_t, N_COL> arr[N_LIN];
 
         for (unsigned long i = 0; i < N_LIN; ++i)
-            arr[i] = this->arr[i] * scalar;
+            arr[i] = this->_arr[i] * scalar;
 
         return matrix<type_t, N_LIN, N_COL>(arr);
     }
@@ -218,7 +218,7 @@ namespace pix::math
         vector<type_t, N_COL> arr[N_LIN];
 
         for (unsigned long i = 0; i < N_LIN; ++i)
-            arr[i] = this->arr[i] / scalar;
+            arr[i] = this->_arr[i] / scalar;
 
         return matrix<type_t, N_LIN, N_COL>(arr);
     }
@@ -236,7 +236,7 @@ namespace pix::math
                 arr[i][j] = 0;
 
                 for (unsigned long k = 0; k < N_COL; ++k)
-                    arr[i][j] += this->arr[i].buffer()[j] * mtx.arr[k].buffer()[j];
+                    arr[i][j] += this->_arr[i].buffer()[j] * mtx._arr[k].buffer()[j];
             }
         }
 

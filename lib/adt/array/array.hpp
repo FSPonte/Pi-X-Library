@@ -13,7 +13,7 @@ namespace pix::adt
     {
     private:
 
-        type_t data[DIM];
+        type_t _data[DIM];
 
     public:
 
@@ -44,9 +44,9 @@ namespace pix::adt
          * @brief Get operator
          * @param ind Index
          * @return Reference to element
-         * @note Index is congruent to DIM
+         * @throw Index is out of bounds
         */
-        type_t& operator [] (unsigned long);
+        type_t& operator [] (unsigned long) noexcept(false);
 
         /**
          * @brief Get dimension
@@ -57,9 +57,10 @@ namespace pix::adt
         /**
          * @brief Copy operator
          * @param arr Array
+         * @throw Pointer to array is null
          * @note Assumes same dimensions as object
         */
-        void operator = (const type_t[]);
+        void operator = (const type_t[]) noexcept(false);
 
         /**
          * @brief Copy operator

@@ -14,9 +14,9 @@ namespace pix::graphics
     public:
 
         unsigned int
-            red,
-            green,
-            blue;
+            _red,
+            _green,
+            _blue;
 
         void operator = (const rgb&);
         const bool operator == (const rgb&) const;

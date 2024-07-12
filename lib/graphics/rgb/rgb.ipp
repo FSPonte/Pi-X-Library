@@ -5,29 +5,29 @@ namespace pix::graphics
 {
     void rgb::operator = (const rgb& color)
     {
-        this->red = color.red;
-        this->green = color.green;
-        this->blue = color.blue;
+        this->_red = color._red;
+        this->_green = color._green;
+        this->_blue = color._blue;
     }
 
     const bool rgb::operator == (const rgb& color) const
     {
         return
-            this->red == color.red
+            this->_red == color._red
             &&
-            this->green == color.green
+            this->_green == color._green
             &&
-            this->blue == color.blue;
+            this->_blue == color._blue;
     }
 
     const bool rgb::operator != (const rgb& color) const
     {
         return
-            this->red != color.red
+            this->_red != color._red
             ||
-            this->green != color.green
+            this->_green != color._green
             ||
-            this->blue != color.blue;
+            this->_blue != color._blue;
     }
 }
 

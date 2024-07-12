@@ -22,7 +22,7 @@ namespace pix::math
     vector<type_t, DIM>::vector(const type_t arr[]) noexcept(false) : vector<type_t, DIM>()
     {
         if (arr == nullptr)
-            throw "pix::math::vector.parameterized_constructor : Pointer to array is null";
+            throw "Pointer to array is null";
 
         *this = arr;
     }
@@ -33,15 +33,15 @@ namespace pix::math
 
     template <typename type_t, unsigned long DIM>
     const type_t* vector<type_t, DIM>::buffer(void) const
-    { return this->arr; }
+    { return this->_arr; }
 
     template <typename type_t, unsigned long DIM>
     type_t& vector<type_t, DIM>::operator [] (const unsigned long index) noexcept(false)
     {
         if (index >= DIM)
-            throw "pix::math::vector.operator [] : Index is out of bounds";
+            throw "Index is out of bounds";
 
-        return this->arr[index];
+        return this->_arr[index];
     }
 
     template <typename type_t, unsigned long DIM>
@@ -52,10 +52,10 @@ namespace pix::math
     void vector<type_t, DIM>::operator = (const type_t arr[]) noexcept(false)
     {
         if (arr == nullptr)
-            throw "pix::math::vector.operator = : Pointer to array is null";
+            throw "Pointer to array is null";
 
         for (unsigned long i = 0; i < DIM; ++i)
-            this->arr[i] = arr[i];
+            this->_arr[i] = arr[i];
     }
 
     template <typename type_t, unsigned long DIM>
@@ -72,7 +72,7 @@ namespace pix::math
     {
         for (unsigned long i = 0; i < DIM; ++i)
         {
-            if (this->arr[i] != vec.arr[i])
+            if (this->_arr[i] != vec._arr[i])
                 return false;
         }
 
@@ -94,7 +94,7 @@ namespace pix::math
         type_t arr[DIM];
 
         for (unsigned long i = 0; i < DIM; ++i)
-            arr[i] = this->arr[i] + vec.arr[i];
+            arr[i] = this->_arr[i] + vec._arr[i];
 
         return vector<type_t, DIM>(arr);
     }
@@ -105,7 +105,7 @@ namespace pix::math
         type_t arr[DIM];
 
         for (unsigned long i = 0; i < DIM; ++i)
-            arr[i] = this->arr[i] - vec.arr[i];
+            arr[i] = this->_arr[i] - vec._arr[i];
 
         return vector<type_t, DIM>(arr);
     }
@@ -116,7 +116,7 @@ namespace pix::math
         type_t arr[DIM];
 
         for (unsigned long i = 0; i < DIM; ++i)
-            arr[i] = this->arr[i] * scalar;
+            arr[i] = this->_arr[i] * scalar;
 
         return vector<type_t, DIM>(arr);
     }
@@ -130,7 +130,7 @@ namespace pix::math
         type_t arr[DIM];
 
         for (unsigned long i = 0; i < DIM; ++i)
-            arr[i] = this->arr[i] / scalar;
+            arr[i] = this->_arr[i] / scalar;
 
         return vector<type_t, DIM>(arr);
     }
@@ -141,7 +141,7 @@ namespace pix::math
         type_t result = 0;
 
         for (unsigned long i = 0; i < DIM; ++i)
-            result += this->arr[i] * vec.arr[i];
+            result += this->_arr[i] * vec._arr[i];
 
         return result;
     }
@@ -157,9 +157,9 @@ namespace pix::math
 
         type_t arr[DIM];
 
-        arr[0] = this->arr[1] * vec.arr[2] - this->arr[2] * vec.arr[1];
-        arr[1] = this->arr[2] * vec.arr[0] - this->arr[0] * vec.arr[2];
-        arr[2] = this->arr[0] * vec.arr[1] - this->arr[1] * vec.arr[0];
+        arr[0] = this->_arr[1] * vec._arr[2] - this->_arr[2] * vec._arr[1];
+        arr[1] = this->_arr[2] * vec._arr[0] - this->_arr[0] * vec._arr[2];
+        arr[2] = this->_arr[0] * vec._arr[1] - this->_arr[1] * vec._arr[0];
 
         return vector<type_t, DIM>(arr);
     }
@@ -170,7 +170,7 @@ namespace pix::math
         type_t norm = 0;
 
         for (unsigned long i = 0; i < DIM; ++i)
-            norm += this->arr[i] * this->arr[i];
+            norm += this->_arr[i] * this->_arr[i];
 
         return norm;
     }

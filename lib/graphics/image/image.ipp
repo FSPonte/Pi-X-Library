@@ -29,10 +29,10 @@ namespace pix::graphics
     rgb& image<W_DIM, H_DIM>::get(const unsigned long y, const unsigned long x) noexcept(false)
     {
         if (y >= H_DIM)
-            throw "pix::graphics::rgb.get : Y coordinate is out of bounds";
+            throw "Y coordinate is out of bounds";
 
         if (x >= W_DIM)
-            throw "pix::graphics::rgb.get : X coordinate is out of bounds";
+            throw "X coordinate is out of bounds";
 
         return this->_data[y][x];
     }

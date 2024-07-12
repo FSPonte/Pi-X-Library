@@ -10,37 +10,37 @@ namespace pix::math
     template <typename type_t>
     complex<type_t>::complex(const type_t re, const type_t im) : complex<type_t>()
     {
-        this->re = re;
-        this->im = im;
+        this->_re = re;
+        this->_im = im;
     }
 
     template <typename type_t>
     void complex<type_t>::set_re(const type_t re)
-    { this->re = re; }
+    { this->_re = re; }
 
     template <typename type_t>
     type_t complex<type_t>::get_re(void) const
-    { return this->re; }
+    { return this->_re; }
 
     template <typename type_t>
     void complex<type_t>::set_im(const type_t im)
-    { this->im = im; }
+    { this->_im = im; }
 
     template <typename type_t>
     type_t complex<type_t>::get_im(void) const
-    { return this->im; }
+    { return this->_im; }
 
     template <typename type_t>
     void complex<type_t>::operator = (const complex<type_t>& cpx)
     {
-        this->re = cpx.re;
-        this->im = cpx.im;
+        this->_re = cpx._re;
+        this->_im = cpx._im;
     }
 
     template <typename type_t>
     const bool complex<type_t>::operator == (const complex<type_t>& cpx) const
     {
-        if (this->re == cpx.re && this->im == cpx.im)
+        if (this->_re == cpx._re && this->_im == cpx._im)
             return true;
 
         return false;
@@ -62,23 +62,23 @@ namespace pix::math
 
     template <typename type_t>
     complex<type_t> complex<type_t>::operator * (const type_t scalar) const
-    { return complex<type_t>(this->re * scalar, this->im * scalar); }
+    { return complex<type_t>(this->_re * scalar, this->_im * scalar); }
 
     template <typename type_t>
     complex<type_t> complex<type_t>::operator + (const complex<type_t>& cpx) const
-    { return complex<type_t>(this->re + cpx.re, this->im + cpx.im); }
+    { return complex<type_t>(this->_re + cpx._re, this->_im + cpx._im); }
 
     template <typename type_t>
     complex<type_t> complex<type_t>::operator - (const complex<type_t>& cpx) const
-    { return complex<type_t>(this->re - cpx.re, this->im - cpx.im); }
+    { return complex<type_t>(this->_re - cpx._re, this->_im - cpx._im); }
 
     template <typename type_t>
     complex<type_t> complex<type_t>::operator * (const complex<type_t>& cpx) const
     {
         return complex<type_t>
         (
-            this->re * cpx.re - this->im * cpx.im,
-            this->re * cpx.im + this->im * cpx.re
+            this->_re * cpx._re - this->_im * cpx._im,
+            this->_re * cpx._im + this->_im * cpx._re
         );
     }
 }

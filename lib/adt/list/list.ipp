@@ -6,22 +6,22 @@ namespace pix::adt
     template <typename type_t>
     list<type_t>::list(void)
     {
-        this->head = nullptr;
-        this->dim = 0;
+        this->_head = nullptr;
+        this->_size = 0;
     }
 
     template <typename type_t>
     list<type_t>::~list(void)
-    { delete this->head; }
+    { delete this->_head; }
 
     template <typename type_t>
     void list<type_t>::append(type_t element)
     {
-        if (this->head == nullptr)
-            this->head = new node<type_t>(new type_t(element));
+        if (this->_head == nullptr)
+            this->_head = new node<type_t>(new type_t(element));
         else
         {
-            node<type_t>* iter_ptr = this->head; // Iterator pointer
+            node<type_t>* iter_ptr = this->_head; // Iterator pointer
 
             while (iter_ptr->get_edge() != nullptr)
                 iter_ptr = iter_ptr->get_edge();
@@ -29,28 +29,28 @@ namespace pix::adt
             iter_ptr->set_edge(new node<type_t>(new type_t(element)));
         }
 
-        ++this->dim;
+        ++this->_size;
     }
 
     template <typename type_t>
     type_t list<type_t>::pop(unsigned long index) noexcept(false)
     {
-        if (index >= this->dim)
-            throw "pix::adt::list.pop : Index is out of bounds";
+        if (index >= this->_size)
+            throw "Index is out of bounds";
 
         type_t ret_val; // Return value
 
         if (index == 0)
         {
-            ret_val = *(this->head->get_value());
-            node<type_t>* _head = this->head->get_edge(); // New head
-            this->head->set_edge(nullptr);
-            delete this->head;
-            this->head = _head;
+            ret_val = *(this->_head->get_value());
+            node<type_t>* _head = this->_head->get_edge(); // New head
+            this->_head->set_edge(nullptr);
+            delete this->_head;
+            this->_head = _head;
         }
         else
         {
-            node<type_t>* iter_ptr = this->head; // Iterator pointer
+            node<type_t>* iter_ptr = this->_head; // Iterator pointer
             --index;
 
             for (unsigned long i = 0; i < index; ++i)
@@ -64,7 +64,7 @@ namespace pix::adt
             delete iter_ptr;
         }
 
-        --this->dim;
+        --this->_size;
 
         return ret_val;
     }
@@ -72,10 +72,10 @@ namespace pix::adt
     template <typename type_t>
     type_t& list<type_t>::operator [] (const unsigned long index) noexcept(false)
     {
-        if (index >= this->dim)
-            throw "pix::adt::list.operator [] : Index is out of bounds";
+        if (index >= this->_size)
+            throw "Index is out of bounds";
 
-        node<type_t>* iter_ptr = this->head; // Iterator pointer
+        node<type_t>* iter_ptr = this->_head; // Iterator pointer
 
         for (unsigned long i = 0; i < index; ++i)
             iter_ptr = iter_ptr->get_edge();
@@ -85,7 +85,7 @@ namespace pix::adt
 
     template <typename type_t>
     const unsigned long list<type_t>::size(void) const
-    { return this->dim; }
+    { return this->_size; }
 }
 
 #endif // _LIST_IPP_

@@ -23,24 +23,29 @@ namespace pix::adt
 
     template <typename type_t, unsigned long DIM>
     const type_t* array<type_t, DIM>::buffer(void) const
-    { return this->data; }
+    { return this->_data; }
 
     template <typename type_t, unsigned long DIM>
-    type_t& array<type_t, DIM>::operator [] (unsigned long index)
-    { return this->data[index % DIM]; }
+    type_t& array<type_t, DIM>::operator [] (unsigned long index) noexcept(false)
+    {
+        if (index >= DIM)
+            throw "Index is out of bounds";
+
+        return this->_data[index];
+    }
 
     template <typename type_t, unsigned long DIM>
     constexpr const unsigned long array<type_t, DIM>::dim(void) const
     { return DIM; }
 
     template <typename type_t, unsigned long DIM>
-    void array<type_t, DIM>::operator = (const type_t arr[])
+    void array<type_t, DIM>::operator = (const type_t arr[]) noexcept(false)
     {
         if (arr == nullptr)
-            return;
+            throw "Pointer to array is null";
 
         for (unsigned long i = 0; i < DIM; ++i)
-            this->data[i] = arr[i];
+            this->_data[i] = arr[i];
     }
 
     template <typename type_t, unsigned long DIM>
@@ -55,7 +60,7 @@ namespace pix::adt
 
         for (unsigned long i = 0; i < DIM; ++i)
         {
-            if (this->data[i] != arr[i])
+            if (this->_data[i] != arr[i])
                 return false;
         }
 

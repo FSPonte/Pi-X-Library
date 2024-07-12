@@ -13,8 +13,8 @@ namespace pix::adt
     {
     private:
 
-        type_t arr[MAX_SIZE];
-        unsigned long ind;
+        type_t _arr[MAX_SIZE];
+        unsigned long _ind;
 
     public:
 

@@ -12,9 +12,9 @@ namespace pix::adt
     {
     private:
 
-        type_t* value;
-        node<type_t>** edges;
-        unsigned long dim;
+        type_t* _value;
+        node<type_t>** _edges;
+        unsigned long _size;
 
     public:
 
