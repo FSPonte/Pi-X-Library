@@ -35,6 +35,26 @@ namespace pix::c_array
     */
     template <typename type_t>
     void copy(type_t[], type_t[], unsigned long) noexcept(false);
+
+    /**
+     * @brief Shift all elements to the left
+     * @param arr Pointer to array
+     * @param dim Number of elements
+     * @throw Pointer to array is null
+     * @throw Dimension is null
+    */
+    template <typename type_t>
+    void left_shift(type_t[], unsigned long) noexcept(false);
+
+    /**
+     * @brief Shift all elements to the right
+     * @param arr Pointer to array
+     * @param dim Number of elements
+     * @throw Pointer to array is null
+     * @throw Dimension is null
+    */
+    template <typename type_t>
+    void right_shift(type_t[], unsigned long) noexcept(false);
 }
 
 // Implementation file

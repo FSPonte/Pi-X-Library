@@ -51,6 +51,34 @@ namespace pix::c_array
         for (unsigned long i = 0; i < dim; ++i)
             arr_d[i] = arr_o[i];
     }
+
+    template <typename type_t>
+    void left_shift(type_t arr[], unsigned long dim) noexcept(false)
+    {
+        if (arr == nullptr)
+            throw "Pointer to array is null";
+
+        if (dim == 0)
+            throw "Dimension is null";
+
+        --dim;
+
+        for (unsigned long i = 0; i < dim; ++i)
+            arr[i] = arr[i + 1];
+    }
+
+    template <typename type_t>
+    void right_shift(type_t arr[], const unsigned long dim) noexcept(false)
+    {
+        if (arr == nullptr)
+            throw "Pointer to array is null";
+
+        if (dim == 0)
+            throw "Dimension is null";
+
+        for (unsigned long i = 1; i < dim; ++i)
+            arr[i] = arr[i - 1];
+    }
 }
 
 #endif // _C_ARRAY_IPP_
