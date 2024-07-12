@@ -45,6 +45,7 @@
  * pix::adt
 */
 #include <array.hpp>
+#include <dyn_array.hpp>
 #include <stack.hpp>
 #include <queue.hpp>
 #include <deque.hpp>
