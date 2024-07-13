@@ -12,6 +12,22 @@ namespace pix::c_array
     }
 
     template <typename type_t>
+    void swap(type_t arr_1[], type_t arr_2[], const unsigned long dim) noexcept(false)
+    {
+        if (arr_1 == nullptr)
+            throw "Pointer to first array is null";
+
+        if (arr_2 == nullptr)
+            throw "Pointer to second array is null";
+
+        if (dim == 0)
+            throw "Dimension is null";
+
+        for (unsigned long i = 0; i < dim; ++i)
+            swap(arr_1[i], arr_2[i]);
+    }
+
+    template <typename type_t>
     void invert(type_t arr[], const unsigned long dim) noexcept(false)
     {
         is_number_static_assert(type_t);
