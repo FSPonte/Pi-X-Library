@@ -39,6 +39,20 @@ namespace pix::c_array
     void copy(type_t[], type_t[], unsigned long) noexcept(false);
 
     /**
+     * @brief Move array
+     * @tparam type_t Data type
+     * @param arr_o Origin array of elements
+     * @param arr_d Destination array of elements
+     * @param dim Number of elements
+     * @throw Pointer to origin array is null
+     * @throw Pointer to destination array is null
+     * @throw Dimension is null
+     * @note Moves the elements from arr_o to arr_d
+    */
+    template <typename type_t>
+    void move(type_t[], type_t[], unsigned long) noexcept(false);
+
+    /**
      * @brief Shift all elements to the left
      * @tparam type_t Data type
      * @param arr Pointer to array

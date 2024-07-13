@@ -53,6 +53,25 @@ namespace pix::c_array
     }
 
     template <typename type_t>
+    void move(type_t arr_o[], type_t arr_d[], const unsigned long dim) noexcept(false)
+    {
+        if (arr_o == nullptr)
+            throw "Pointer to origin array is null";
+
+        if (arr_d == nullptr)
+            throw "Pointer to destination array is null";
+
+        if (dim == 0)
+            throw "Dimension is null";
+
+        for (unsigned long i = 0; i < dim; ++i)
+        {
+            arr_d[i] = arr_o[i];
+            arr_o[i] = type_t();
+        }
+    }
+
+    template <typename type_t>
     void left_shift(type_t arr[], unsigned long dim) noexcept(false)
     {
         if (arr == nullptr)
