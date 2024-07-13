@@ -14,10 +14,12 @@ namespace pix::c_array
 
     /**
      * @brief Invert order of elements
+     * @tparam type_t Data type
      * @param arr Array of elements
      * @param dim Number of elements
      * @throw Pointer to array is null
      * @throw Dimension is null
+     * @note Requires an array of a numerical data type
     */
     template <typename type_t>
     void invert(type_t[], unsigned long) noexcept(false);
@@ -38,6 +40,7 @@ namespace pix::c_array
 
     /**
      * @brief Shift all elements to the left
+     * @tparam type_t Data type
      * @param arr Pointer to array
      * @param dim Number of elements
      * @throw Pointer to array is null
@@ -48,6 +51,7 @@ namespace pix::c_array
 
     /**
      * @brief Shift all elements to the right
+     * @tparam type_t Data type
      * @param arr Pointer to array
      * @param dim Number of elements
      * @throw Pointer to array is null
