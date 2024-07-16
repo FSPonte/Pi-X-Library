@@ -160,7 +160,7 @@ namespace pix::math
         if (arg < 0)
             throw "Argument is a negative number";
 
-        if (arg == 0)
+        if (ind == 0)
             throw "Index is equal to zero";
         
         if (ind == 1)
