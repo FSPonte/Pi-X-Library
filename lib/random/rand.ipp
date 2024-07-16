@@ -4,27 +4,13 @@
 // Dependencies
 #include <sys_vars.hpp>
 
-static unsigned long
-    _seed = 1607, // Initial value
-    _mult = 806, // Multiplier
-    _inc = 103, // Increment
-    _mod = INT32_MAX; // Modulus
-
 namespace pix::random
 {
-    void set_params(const unsigned long seed, const unsigned long mult, const unsigned long inc, const unsigned long mod) noexcept(true)
-    {
-        _seed = seed;
-        _mult = mult;
-        _inc = inc;
-        _mod = mod;
-    }
-
     unsigned long rand(void) noexcept(true)
     {
-        static unsigned long value = _seed;
+        static unsigned long value = SEED;
         
-        value = (_mult * value + _inc) % _mod;
+        value = (MULT * value + INC) % MOD;
 
         return value;
     }
@@ -38,7 +24,7 @@ namespace pix::random
     }
 
     long double drand(void) noexcept(true)
-    { return static_cast<long double>(rand()) / static_cast<long double>(_mod); }
+    { return static_cast<long double>(rand()) / static_cast<long double>(MOD); }
 
     long double drand(const long double min, const long double max) noexcept(false)
     {

@@ -3,15 +3,11 @@
 
 namespace pix::random
 {
-    /**
-     * @brief Set parameters
-     * @param seed Initial value
-     * @param mult Multiplier
-     * @param inc Increment
-     * @param mod Modulus
-     * @note X_{n + 1} = (mult * seed + inc) % mod
-    */
-    void set_params(unsigned long, unsigned long, unsigned long, unsigned long) noexcept(true);
+    const unsigned long
+        SEED = 1607, // Initial value
+        MULT = 806, // Multiplier
+        INC = 103, // Increment
+        MOD = INT32_MAX; // Modulus
 
     /**
      * @brief Linear congruential generator
