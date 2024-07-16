@@ -12,19 +12,19 @@ static unsigned long
 
 namespace pix::random
 {
-    void set_seed(unsigned int seed)
+    void set_seed(const unsigned int seed) noexcept(true)
     { _seed = seed; }
 
-    void set_mult(unsigned int mult)
+    void set_mult(const unsigned int mult) noexcept(true)
     { _mult = mult; }
 
-    void set_inc(unsigned int inc)
+    void set_inc(const unsigned int inc) noexcept(true)
     { _inc = inc; }
 
-    void set_mod(unsigned int mod)
+    void set_mod(const unsigned int mod) noexcept(true)
     { _mod = mod; }
 
-    unsigned long rand(void)
+    unsigned long rand(void) noexcept(true)
     {
         static unsigned long value = _seed;
         
@@ -33,10 +33,26 @@ namespace pix::random
         return value;
     }
 
-    long double drand(void)
-    { return static_cast<long double>(rand()) / static_cast<long double>(_mod);}
+    long rand(const long min, const long max) noexcept(false)
+    {
+        if (min >= max)
+            throw "Invalid minimum and maximum values (min >= max)";
 
-    char crand(void)
+        return (max - min) * rand() + min;
+    }
+
+    long double drand(void) noexcept(true)
+    { return static_cast<long double>(rand()) / static_cast<long double>(_mod); }
+
+    long double drand(const long double min, const long double max) noexcept(false)
+    {
+        if (min >= max)
+            throw "Invalid minimum and maximum values (min >= max)";
+
+        return (max - min) * drand() + min;
+    }
+
+    char crand(void) noexcept(true)
     { return static_cast<char>(rand() % 26 + 97); }
 }
 
