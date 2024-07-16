@@ -59,6 +59,9 @@
  * pix::math::hyper
 */
 #include <math.hpp>
+#include <trig.hpp>
+#include <hyper.hpp>
+#include <stat.hpp>
 #include <complex.hpp>
 #include <vector.hpp>
 #include <matrix.hpp>
