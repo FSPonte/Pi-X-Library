@@ -6,7 +6,7 @@ namespace pix::math::trig
     long double sin(long double arg) noexcept(true)
     {
         const bool is_neg = arg < 0;
-        arg = math::f_mod(math::abs(arg), 2 * constants::mathematics::pi);
+        arg = math::f_mod(math::abs(arg), 2 * constants::mathematics::PI);
 
         long double
             result = arg,
@@ -30,7 +30,7 @@ namespace pix::math::trig
 
     long double cos(long double arg) noexcept(true)
     {
-        arg = math::f_mod(math::abs(arg), 2 * constants::mathematics::pi);
+        arg = math::f_mod(math::abs(arg), 2 * constants::mathematics::PI);
 
         long double
             result = 1,
