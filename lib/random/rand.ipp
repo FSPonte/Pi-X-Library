@@ -12,17 +12,13 @@ static unsigned long
 
 namespace pix::random
 {
-    void set_seed(const unsigned int seed) noexcept(true)
-    { _seed = seed; }
-
-    void set_mult(const unsigned int mult) noexcept(true)
-    { _mult = mult; }
-
-    void set_inc(const unsigned int inc) noexcept(true)
-    { _inc = inc; }
-
-    void set_mod(const unsigned int mod) noexcept(true)
-    { _mod = mod; }
+    void set_params(const unsigned long seed, const unsigned long mult, const unsigned long inc, const unsigned long mod) noexcept(true)
+    {
+        _seed = seed;
+        _mult = mult;
+        _inc = inc;
+        _mod = mod;
+    }
 
     unsigned long rand(void) noexcept(true)
     {

@@ -4,28 +4,14 @@
 namespace pix::random
 {
     /**
-     * @brief Set seed
+     * @brief Set parameters
      * @param seed Initial value
-    */
-    void set_seed(unsigned long) noexcept(true);
-
-    /**
-     * @brief Set multiplier
      * @param mult Multiplier
-    */
-    void set_mult(unsigned long) noexcept(true);
-
-    /**
-     * @brief Set increment
      * @param inc Increment
-    */
-    void set_inc(unsigned long) noexcept(true);
-
-    /**
-     * @brief Set modulus
      * @param mod Modulus
+     * @note X_{n + 1} = (mult * seed + inc) % mod
     */
-    void set_mod(unsigned long) noexcept(true);
+    void set_params(unsigned long, unsigned long, unsigned long, unsigned long) noexcept(true);
 
     /**
      * @brief Linear congruential generator
