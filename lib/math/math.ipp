@@ -1,8 +1,13 @@
 #ifndef _MATH_IPP_
 #define _MATH_IPP_
 
+static const unsigned long STD_NaN = 0x7ff8000000000000; // Standard representation for NaN
+
 namespace pix::math
 {
+    constexpr const double NaN(void) noexcept(true)
+    { return *reinterpret_cast<const double*>(&STD_NaN); }
+
     template <typename type_t>
     type_t abs(const type_t number) noexcept(true)
     {
@@ -35,6 +40,12 @@ namespace pix::math
             arg -= mod;
 
         return arg;
+    }
+
+    template <typename type_t>
+    type_t floor(const type_t arg) noexcept(true)
+    {
+        return static_cast<type_t>(static_cast<int>(arg));
     }
 
     template <typename type_t>
@@ -116,42 +127,47 @@ namespace pix::math
         return result;
     }
 
-    template <typename b_type_t, typename e_type_t>
-    b_type_t pow(const b_type_t base, e_type_t exponent) noexcept(false)
+    long double pow(long double base, long double exponent) noexcept(false)
     {
-        is_number_static_assert(b_type_t);
-        is_number_static_assert(e_type_t);
-
         if (base == 0 && exponent == 0)
-            throw "Inderteminate case of 0^0";
+            throw "Indeterminate case of 0^0";
 
         if (base == 0)
-            return b_type_t(0);
+            return 0;
 
         if (exponent == 0)
-            return b_type_t(1);
+            return 1;
+
+        if (exponent == 1)
+            return base;
 
         const bool is_e_neg = exponent < 0; // Is exponent negative
-        exponent = math::abs(exponent);
+        exponent = abs(exponent);
 
-        auto result = b_type_t(1);
-
-        if (is_integer(e_type_t))
+        // Handle the case of (-1)^exponent separately for integer exponents
+        if (base == -1 && floor(exponent) == exponent)
         {
-            for (unsigned long i = 0; i < math::MAX_ITER; ++i)
-            {
-                if (i < exponent)
-                    break;
-
-                result *= base;
-            }
+            if (static_cast<long long>(exponent) % 2 == 0)
+                return 1;
+            else
+                return -1;
         }
-        else
-            result = math::exp(exponent * math::log(base));
+
+        // For non-integer exponents or other cases, proceed with the calculation
+        long double result = exp(exponent * log(abs(base)));
 
         if (is_e_neg)
-            return 1 / result;
-        
+            result = 1 / result;
+
+        // Restore the sign for negative bases
+        if (base < 0 && floor(exponent) == exponent)
+        {
+            if (static_cast<long long>(exponent) % 2 != 0)
+                result = -result;
+        }
+        else if (base < 0)
+            return NaN();
+
         return result;
     }
 

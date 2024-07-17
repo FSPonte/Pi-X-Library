@@ -8,6 +8,12 @@ namespace pix::math
     const long double PR_THRESHOLD = 1E-30; // Precision threshold
 
     /**
+     * @brief Not a Number
+     * @return Get the nan value
+    */
+    constexpr const double NaN(void) noexcept(true);
+
+    /**
      * @brief Absolute value
      * @tparam type_t Data type
      * @param num Number
@@ -27,6 +33,15 @@ namespace pix::math
     */
     template <typename type_t>
     type_t f_mod(type_t, type_t) noexcept(false);
+
+    /**
+     * @brief Round down a number
+     * @tparam type_t Data type
+     * @param arg Argument
+     * @return Largest integer less than or equal to arg
+    */
+    template <typename type_t>
+    type_t floor(type_t) noexcept(true);
 
     /**
      * @brief Factorial function
@@ -64,15 +79,13 @@ namespace pix::math
 
     /**
      * @brief Power function
-     * @tparam b_type_t Data type of base
-     * @tparam e_type_t Data type of exponent
      * @param b Base
      * @param e Exponent
      * @return Base to the power of exponent
      * @throw Inderteminate case of 0^0
+     * @throw Division by zero
     */
-    template <typename b_type_t, typename e_type_t>
-    b_type_t pow(b_type_t, e_type_t) noexcept(false);
+    long double pow(long double, long double) noexcept(false);
 
     /**
      * @brief Root function
