@@ -54,6 +54,13 @@ namespace pix::math
     long double fact(type_t) noexcept(false);
 
     /**
+     * @brief Fibonacci sequence
+     * @param ind Index
+     * @return Ind-th fibonacci number
+    */
+    unsigned long fib(unsigned long) noexcept(true);
+
+    /**
      * @brief Natural logaritm function
      * @param arg Argument
      * @return Natural logaritm of argument

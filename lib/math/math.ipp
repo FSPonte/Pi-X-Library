@@ -74,6 +74,19 @@ namespace pix::math
         return result;
     }
 
+    unsigned long fib(unsigned long arg) noexcept(true)
+    {
+        unsigned long arr[arg + 2];
+
+        arr[0] = 0;
+        arr[1] = 1;
+
+        for (unsigned long i = 2; i <= arg; ++i)
+            arr[i] = arr[i - 1] + arr[i - 2];
+
+        return arr[arg];
+    }
+
     long double log(const long double arg) noexcept(false)
     {
         if (arg <= 0)
