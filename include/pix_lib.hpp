@@ -17,6 +17,12 @@
 #include <type_info.hpp>
 
 /**
+ * Pi-X Memory
+ * pix::memory
+*/
+#include <memory.hpp>
+
+/**
  * Pi-X Smart Pointers
  * pix::smart_pointer
 */
