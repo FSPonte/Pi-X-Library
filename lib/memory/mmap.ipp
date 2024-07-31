@@ -8,12 +8,7 @@ namespace pix::memory
 {
     template <unsigned long MAX_SIZE>
     mmap<MAX_SIZE>::mmap(void)
-    {
-        for (unsigned long i = 0; i < MAX_SIZE; ++i)
-            this->_part[i] = mpart{nullptr, 0};
-
-        this->_size = 0;
-    }
+    { this->_size = 0; }
 
     template <unsigned long MAX_SIZE>
     void mmap<MAX_SIZE>::add(mpart&& part) noexcept(false)
