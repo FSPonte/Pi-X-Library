@@ -3,12 +3,19 @@
 
 namespace pix::memory
 {
+    /**
+     * @brief Memory partition
+    */
     struct mpart
     {
         void* addr; // Memory address
         unsigned long size; // Number of bytes
     };
 
+    /**
+     * @brief Memory map
+     * @tparam MAX_SIZE Maximum number of partitions
+    */
     template <unsigned long MAX_SIZE>
     class mmap
     {
