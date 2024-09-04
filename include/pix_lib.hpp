@@ -68,7 +68,6 @@
 #include <trig.hpp>
 #include <hyper.hpp>
 #include <stat.hpp>
-#include <geo.hpp>
 #include <complex.hpp>
 #include <vector.hpp>
 #include <matrix.hpp>
