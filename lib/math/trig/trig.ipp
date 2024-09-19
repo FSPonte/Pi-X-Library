@@ -5,16 +5,16 @@ namespace pix::math::trig
 {
     long double sin(long double arg) noexcept(true)
     {
-        const bool is_neg = arg < 0;
+        const bool is_arg_neg = arg < 0;
         arg = math::f_mod(math::abs(arg), 2 * constants::mathematics::PI);
 
         long double
-            result = arg,
-            term = arg;
+            term = arg,
+            result = arg;
 
         for (unsigned long i = 0; i < math::MAX_ITER; ++i)
         {
-            term *= -arg * arg / ((2 * i + 2) * (2 * i + 3));
+            term *= - math::pow(arg, 2) / ((2 * i + 3) * (2 * i + 2));
 
             if (math::abs(term) < math::PR_THRESHOLD)
                 break;
@@ -22,7 +22,7 @@ namespace pix::math::trig
             result += term;
         }
 
-        if (is_neg)
+        if (is_arg_neg)
             return -result;
 
         return result;
@@ -33,12 +33,12 @@ namespace pix::math::trig
         arg = math::f_mod(math::abs(arg), 2 * constants::mathematics::PI);
 
         long double
-            result = 1,
-            term = 1;
+            term = 1,
+            result = 1;
 
         for (unsigned long i = 1; i <= math::MAX_ITER; ++i)
         {
-            term *= -arg * arg / ((2 * i - 1) * (2 * i));
+            term *= - math::pow(arg, 2) / ((2 * i) * (2 * i - 1));
 
             if (math::abs(term) < math::PR_THRESHOLD)
                 break;

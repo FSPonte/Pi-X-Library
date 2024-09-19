@@ -45,6 +45,29 @@ namespace pix::math::trig
      * @return Cotangent of argument
     */
     long double cot(long double) noexcept(true);
+
+    /**
+     * @brief Arcsine function
+     * @param arg Argument
+     * @return Arcsine of argument
+     * @throw Argument is out of bounds
+    */
+    long double arcsin(long double) noexcept(false);
+
+    /**
+     * @brief Arccosine function
+     * @param arg Argument
+     * @return Arccosine of argument
+     * @throw Argument is out of bounds
+    */
+    long double arccos(long double) noexcept(false);
+
+    /**
+     * @brief Arctangent function
+     * @param arg Argument
+     * @return Arctangent of argument
+    */
+    long double arctan(long double) noexcept(true);
 }
 
 // Implementation file
