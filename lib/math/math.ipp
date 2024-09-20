@@ -154,6 +154,9 @@ namespace pix::math
         if (exponent == 1)
             return base;
 
+        if (exponent == 2)
+            return base * base;
+
         const bool is_e_neg = exponent < 0; // Is exponent negative
         exponent = abs(exponent);
 
