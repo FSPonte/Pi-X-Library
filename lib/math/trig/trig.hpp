@@ -51,6 +51,8 @@ namespace pix::math::trig
      * @param arg Argument
      * @return Arcsine of argument
      * @throw Argument is out of bounds
+     * @note Domain = [-1, 1]
+     * @note Codomain = [-pi/2, pi/2]
     */
     long double arcsin(long double) noexcept(false);
 
@@ -59,6 +61,8 @@ namespace pix::math::trig
      * @param arg Argument
      * @return Arccosine of argument
      * @throw Argument is out of bounds
+     * @note Domain = [-1, 1]
+     * @note Codomain = [0, pi]
     */
     long double arccos(long double) noexcept(false);
 
@@ -66,6 +70,7 @@ namespace pix::math::trig
      * @brief Arctangent function
      * @param arg Argument
      * @return Arctangent of argument
+     * @note Codomain = ]-pi/2, pi/2[
     */
     long double arctan(long double) noexcept(true);
 }
