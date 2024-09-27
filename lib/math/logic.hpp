@@ -76,4 +76,49 @@
 */
 #define GREATER_EQUI(A, B) (A >= B)
 
+/**
+ * @brief Bitwise negation
+*/
+#define BIT_NOT(A) ~A
+
+/**
+ * @brief Bitwise conjuction
+*/
+#define BIT_AND(A, B) (A & B)
+
+/**
+ * @brief Bitwise disjunction
+*/
+#define BIT_OR(A, B) (A | B)
+
+/**
+ * @brief Bitwise negated conjuction
+*/
+#define BIT_NAND(A, B) BIT_NOT(BIT_AND(A, B))
+
+/**
+ * @brief Bitwise negated disjunction
+*/
+#define BIT_NOR(A, B) BIT_NOT(BIT_OR(A, B))
+
+/**
+ * @brief Bitwise exclusive disjunction
+*/
+#define BIT_XOR(A, B) (A ^ B)
+
+/**
+ * @brief Bitwise negated exclusive disjunction
+*/
+#define BIT_XNOR(A, B) BIT_NOT(BIT_XOR(A, B))
+
+/**
+ * @brief Left shift
+*/
+#define LEFT_SHIFT(A, B) (A << B)
+
+/**
+ * @brief Right shift
+*/
+#define RIGHT_SHIFT(A, B) (A >> B)
+
 #endif // _LOGIC_HPP_
