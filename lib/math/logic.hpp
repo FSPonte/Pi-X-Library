@@ -56,4 +56,24 @@
 */
 #define NEQUI(A, B) (A != B)
 
+/**
+ * @brief Less than
+*/
+#define LESSER(A, B) (A < B)
+
+/**
+ * @brief Greater than
+*/
+#define GREATER(A, B) (A > B)
+
+/**
+ * @brief Less than or equal to
+*/
+#define LESS_EQUI(A, B) (A <= B)
+
+/**
+ * @brief Greater than or equal to
+*/
+#define GREATER_EQUI(A, B) (A >= B)
+
 #endif // _LOGIC_HPP_
