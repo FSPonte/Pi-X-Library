@@ -14,7 +14,7 @@ namespace pix::math
         is_number_static_assert(type_t);
 
         if (number < 0)
-            return -number;
+            return - number;
 
         return number;
     }
@@ -34,7 +34,7 @@ namespace pix::math
             return arg;
 
         if (arg == mod)
-            return type_t(0);
+            return static_cast<type_t>(0);
 
         while (arg >= mod)
             arg -= mod;
@@ -44,9 +44,7 @@ namespace pix::math
 
     template <typename type_t>
     type_t floor(const type_t arg) noexcept(true)
-    {
-        return static_cast<type_t>(static_cast<int>(arg));
-    }
+    { return static_cast<type_t>(static_cast<int>(arg)); }
 
     template <typename type_t>
     long double fact(const type_t arg) noexcept(false)
