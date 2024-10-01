@@ -148,12 +148,20 @@ namespace pix::math
     struct combination;
     
     /**
-     * @brief Kronecker delta
+     * @brief Kronecker delta function
      * @param ind_1 Index 1
      * @param ind_2 Index 2
      * @return 1 if indeces are equal
     */
     unsigned long kron_delta(unsigned long, unsigned long) noexcept(true);
+
+    /**
+     * @brief Kronecker delta
+     * @tparam ind_1 Index 1
+     * @tparam ind_2 Index 2
+    */
+    template <unsigned long ind_1, unsigned long ind_2>
+    struct kronecker_delta;
 }
 
 // Implementation file

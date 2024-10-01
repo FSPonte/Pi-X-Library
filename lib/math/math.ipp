@@ -233,6 +233,14 @@ namespace pix::math
 
     unsigned long kron_delta(const unsigned long i, const unsigned long j) noexcept(true)
     { return i == j; }
+
+    template <unsigned long i, unsigned long j>
+    struct kronecker_delta
+    { static constexpr const unsigned long value = 0; };
+
+    template <unsigned long index>
+    struct kronecker_delta<index, index>
+    { static constexpr const unsigned long value = 1; };
 }
 
 #endif // _MATH_IPP_
