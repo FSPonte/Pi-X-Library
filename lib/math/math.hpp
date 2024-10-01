@@ -103,6 +103,15 @@ namespace pix::math
      * @throw Index is equal to zero
     */
     long double root(long double, long double) noexcept(false);
+
+    /**
+     * @brief Combination
+     * @param n Total number of objects in the set
+     * @param k Number of choosing objects from the set
+     * @return Number of combinations
+     * @throw Negative arguments given
+    */
+    unsigned long comb(unsigned long, unsigned long) noexcept(false);
 }
 
 // Implementation file
