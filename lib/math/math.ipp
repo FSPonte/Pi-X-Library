@@ -120,11 +120,10 @@ namespace pix::math
         long double
             result = 1,
             term = 1;
-        const unsigned long MAX_ITER = math::MAX_ITER + 1;
         
-        for (unsigned long i = 1; i < MAX_ITER; ++i)
+        for (unsigned long i = 0; i < math::MAX_ITER; ++i)
         {
-            term *= arg / i;
+            term *= arg / (i + 1);
 
             if (math::abs(term) < math::PR_THRESHOLD)
                 break;
