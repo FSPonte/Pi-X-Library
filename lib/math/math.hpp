@@ -45,13 +45,10 @@ namespace pix::math
 
     /**
      * @brief Factorial function
-     * @tparam type_t Data type
      * @param num Number
      * @return Factorial value
-     * @throw Argument is a negative number
     */
-    template <typename type_t>
-    long double fact(type_t) noexcept(false);
+    unsigned long fact(unsigned long) noexcept(true);
 
     /**
      * @brief Fibonacci sequence

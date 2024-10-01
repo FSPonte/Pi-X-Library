@@ -46,30 +46,15 @@ namespace pix::math
     type_t floor(const type_t arg) noexcept(true)
     { return static_cast<type_t>(static_cast<int>(arg)); }
 
-    template <typename type_t>
-    long double fact(const type_t arg) noexcept(false)
+    unsigned long fact(unsigned long arg) noexcept(true)
     {
-        is_integer_static_assert(type_t);
-
-        if (arg < 0)
-            throw "Argument is a negative number";
-
         if (arg == 0 || arg == 1)
             return 1;
 
-        auto number = static_cast<unsigned long>(arg);
-        long double result = 2;
-        const unsigned long MAX_ITER = math::MAX_ITER + 3;
+        for (unsigned long i = arg - 1; i > 0; --i)
+            arg *= i;
 
-        for (unsigned long i = 3; i < MAX_ITER; ++i)
-        {
-            if (i <= number)
-                break;
-
-            result *= i;
-        }
-
-        return result;
+        return arg;
     }
 
     unsigned long fib(unsigned long arg) noexcept(true)
