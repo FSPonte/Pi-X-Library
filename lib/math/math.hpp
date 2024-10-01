@@ -45,17 +45,33 @@ namespace pix::math
 
     /**
      * @brief Factorial function
-     * @param num Number
+     * @param arg Argument
      * @return Factorial value
     */
     unsigned long fact(unsigned long) noexcept(true);
 
     /**
+     * @brief Factorial
+     * @tparam arg Argument
+     * @return Factorial value
+    */
+    template <unsigned long arg>
+    struct factorial;
+
+    /**
      * @brief Fibonacci sequence
-     * @param ind Index
+     * @param arg Argument
      * @return Ind-th fibonacci number
     */
     unsigned long fib(unsigned long) noexcept(true);
+
+    /**
+     * @brief Fibonacci number
+     * @param arg Argument
+     * @return Ind-th fibonacci number
+    */
+    template <unsigned long arg>
+    struct fibonacci;
 
     /**
      * @brief Natural logaritm function

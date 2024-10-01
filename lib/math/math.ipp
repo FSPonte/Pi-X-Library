@@ -57,6 +57,14 @@ namespace pix::math
         return arg;
     }
 
+    template <unsigned long arg>
+    struct factorial
+    { static constexpr const unsigned long value = arg * math::factorial<arg - 1>::value; };
+
+    template <>
+    struct factorial<0>
+    { static constexpr const unsigned long value = 1; };
+
     unsigned long fib(unsigned long arg) noexcept(true)
     {
         unsigned long arr[arg + 2];
@@ -69,6 +77,18 @@ namespace pix::math
 
         return arr[arg];
     }
+
+    template <unsigned long arg>
+    struct fibonacci
+    { static constexpr const int value = math::fibonacci<arg - 1>::value + math::fibonacci<arg - 2>::value; };
+
+    template <>
+    struct fibonacci<0>
+    { static constexpr const unsigned long value = 0; };
+
+    template <>
+    struct fibonacci<1>
+    { static constexpr const unsigned long value = 1; };
 
     long double log(const long double arg) noexcept(false)
     {
