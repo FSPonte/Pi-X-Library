@@ -203,13 +203,21 @@ namespace pix::math
         return math::pow(arg, 1 / ind);
     }
 
-    unsigned long permut(const unsigned long total_num, const unsigned long choosing_num) noexcept(false)
+    unsigned long permut(const unsigned long n, const unsigned long k) noexcept(false)
     {
-        if (choosing_num > total_num)
+        if (k > n)
             return 0;
 
-        return math::fact(total_num) / (math::fact(total_num - choosing_num));
+        return math::fact(n) / math::fact(n - k);
     }
+
+    template <unsigned long n, unsigned long k>
+    struct permutation
+    { static constexpr const unsigned long value = math::factorial<n>::value / math::factorial<n - k>::value; };
+
+    template <unsigned long n>
+    struct permutation<n, 0>
+    { static constexpr const unsigned long value = 1; };
 
     unsigned long comb(const unsigned long total_num, const unsigned long choosing_num) noexcept(false)
     {

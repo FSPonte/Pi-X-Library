@@ -53,7 +53,6 @@ namespace pix::math
     /**
      * @brief Factorial
      * @tparam arg Argument
-     * @return Factorial value
     */
     template <unsigned long arg>
     struct factorial;
@@ -68,7 +67,6 @@ namespace pix::math
     /**
      * @brief Fibonacci number
      * @param arg Argument
-     * @return Ind-th fibonacci number
     */
     template <unsigned long arg>
     struct fibonacci;
@@ -124,6 +122,14 @@ namespace pix::math
      * @return k permutation of n
     */
     unsigned long permut(unsigned long, unsigned long) noexcept(false);
+
+    /**
+     * @brief Permutation
+     * @tparam n Total number of objects in the set
+     * @tparam k Number of choosing objects from the set
+    */
+    template <unsigned long n, unsigned long k>
+    struct permutation;
 
     /**
      * @brief Combination
