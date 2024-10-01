@@ -116,7 +116,7 @@ namespace pix::math
     long double root(long double, long double) noexcept(false);
 
     /**
-     * @brief Permutation
+     * @brief Permutation function
      * @param n Total number of objects in the set
      * @param k Number of choosing objects from the set
      * @return k permutation of n
@@ -132,12 +132,20 @@ namespace pix::math
     struct permutation;
 
     /**
-     * @brief Combination
+     * @brief Combination function
      * @param n Total number of objects in the set
      * @param k Number of choosing objects from the set
      * @return Number of combinations
     */
     unsigned long comb(unsigned long, unsigned long) noexcept(false);
+
+    /**
+     * @brief Combination
+     * @tparam n Total number of objects in the set
+     * @tparam k Number of choosing objects from the set
+    */
+    template <unsigned long n, unsigned long k>
+    struct combination;
     
     /**
      * @brief Kronecker delta

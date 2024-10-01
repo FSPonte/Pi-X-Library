@@ -227,6 +227,10 @@ namespace pix::math
         return math::fact(total_num) / (math::fact(choosing_num) * math::fact(total_num - choosing_num));
     }
 
+    template <unsigned long n, unsigned long k>
+    struct combination
+    { static constexpr const unsigned long value = math::factorial<n>::value / (math::factorial<k>::value * math::factorial<n - k>::value); };
+
     unsigned long kron_delta(const unsigned long i, const unsigned long j) noexcept(true)
     { return i == j; }
 }
