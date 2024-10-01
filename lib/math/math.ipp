@@ -198,6 +198,17 @@ namespace pix::math
         return math::pow(arg, 1 / ind);
     }
 
+    unsigned long permut(const unsigned long total_num, const unsigned long choosing_num) noexcept(false)
+    {
+        if (total_num <= 0 || choosing_num <= 0)
+            throw "Negative arguments given";
+
+        if (choosing_num > total_num)
+            return 0;
+
+        return math::fact(total_num) / (math::fact(total_num - choosing_num));
+    }
+
     unsigned long comb(const unsigned long total_num, const unsigned long choosing_num) noexcept(false)
     {
         if (total_num <= 0 || choosing_num <= 0)

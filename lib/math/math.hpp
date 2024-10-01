@@ -105,6 +105,15 @@ namespace pix::math
     long double root(long double, long double) noexcept(false);
 
     /**
+     * @brief Permutation
+     * @param n Total number of objects in the set
+     * @param k Number of choosing objects from the set
+     * @return k permutation of n
+     * @throw Negative arguments given
+    */
+    unsigned long permut(unsigned long, unsigned long) noexcept(false);
+
+    /**
      * @brief Combination
      * @param n Total number of objects in the set
      * @param k Number of choosing objects from the set
