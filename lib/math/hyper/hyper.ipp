@@ -3,11 +3,47 @@
 
 namespace pix::math::hyper
 {
-    long double sinh(const long double arg) noexcept(true)
-    { return 0.5 * (math::exp(arg) - math::exp(-arg)); }
+    long double sinh(long double arg) noexcept(true)
+    {
+        long double
+            term = arg,
+            result = arg;
 
-    long double cosh(const long double arg) noexcept(true)
-    { return 0.5 * (math::exp(arg) + math::exp(-arg)); }
+        arg *= arg;
+
+        for (unsigned long i = 0; i < math::MAX_ITER; ++i)
+        {
+            term *= arg / ((2 * i + 3) * (2 * i + 2));
+
+            if (math::abs(term) < math::PR_THRESHOLD)
+                break;
+            
+            result += term;
+        }
+
+        return result;
+    }
+
+    long double cosh(long double arg) noexcept(true)
+    {
+        long double
+            term = 1,
+            result = 1;
+
+        arg *= arg;
+
+        for (unsigned long i = 0; i < math::MAX_ITER; ++i)
+        {
+            term *= arg / ((2 * i + 2) * (2 * i + 1));
+
+            if (math::abs(term) < math::PR_THRESHOLD)
+                break;
+            
+            result += term;
+        }
+
+        return result;
+    }
 
     long double tanh(const long double arg) noexcept(true)
     { return hyper::sinh(arg) / hyper::cosh(arg); }
