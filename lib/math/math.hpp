@@ -119,6 +119,14 @@ namespace pix::math
      * @return Number of combinations
     */
     unsigned long comb(unsigned long, unsigned long) noexcept(false);
+    
+    /**
+     * @brief Kronecker delta
+     * @param ind_1 Index 1
+     * @param ind_2 Index 2
+     * @return 1 if indeces are equal
+    */
+    unsigned long kron_delta(unsigned long, unsigned long) noexcept(true);
 }
 
 // Implementation file

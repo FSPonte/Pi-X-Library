@@ -213,6 +213,9 @@ namespace pix::math
 
         return math::fact(total_num) / (math::fact(choosing_num) * math::fact(total_num - choosing_num));
     }
+
+    unsigned long kron_delta(const unsigned long i, const unsigned long j) noexcept(true)
+    { return i == j; }
 }
 
 #endif // _MATH_IPP_
