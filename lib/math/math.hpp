@@ -109,7 +109,6 @@ namespace pix::math
      * @param n Total number of objects in the set
      * @param k Number of choosing objects from the set
      * @return k permutation of n
-     * @throw Negative arguments given
     */
     unsigned long permut(unsigned long, unsigned long) noexcept(false);
 
@@ -118,7 +117,6 @@ namespace pix::math
      * @param n Total number of objects in the set
      * @param k Number of choosing objects from the set
      * @return Number of combinations
-     * @throw Negative arguments given
     */
     unsigned long comb(unsigned long, unsigned long) noexcept(false);
 }

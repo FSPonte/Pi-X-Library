@@ -200,9 +200,6 @@ namespace pix::math
 
     unsigned long permut(const unsigned long total_num, const unsigned long choosing_num) noexcept(false)
     {
-        if (total_num <= 0 || choosing_num <= 0)
-            throw "Negative arguments given";
-
         if (choosing_num > total_num)
             return 0;
 
@@ -211,9 +208,6 @@ namespace pix::math
 
     unsigned long comb(const unsigned long total_num, const unsigned long choosing_num) noexcept(false)
     {
-        if (total_num <= 0 || choosing_num <= 0)
-            throw "Negative arguments given";
-
         if (choosing_num > total_num)
             return 0;
 
