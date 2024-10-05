@@ -57,6 +57,10 @@ namespace pix::math
         return arg;
     }
 
+    template <typename type_t>
+    type_t mod_diff(const type_t arg_1, const type_t arg_2) noexcept(true)
+    { return math::abs(arg_1 - arg_2); }
+
     template <unsigned long arg>
     struct factorial
     { static constexpr const unsigned long value = arg * math::factorial<arg - 1>::value; };

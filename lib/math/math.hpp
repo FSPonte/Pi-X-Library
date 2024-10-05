@@ -44,6 +44,15 @@ namespace pix::math
     type_t floor(type_t) noexcept(true);
 
     /**
+     * @brief Modular difference
+     * @param arg_1 Argument 1
+     * @param arg_2 Argument 2
+     * @return Absolute difference
+    */
+    template <typename type_t>
+    type_t mod_diff(type_t, type_t) noexcept(true);
+
+    /**
      * @brief Factorial function
      * @param arg Argument
      * @return Factorial value
