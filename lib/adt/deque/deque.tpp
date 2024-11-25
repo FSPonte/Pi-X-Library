@@ -1,5 +1,5 @@
-#ifndef _DEQUE_IPP_
-#define _DEQUE_IPP_
+#ifndef _DEQUE_TPP_
+#define _DEQUE_TPP_
 
 namespace pix::adt
 {
@@ -101,4 +101,4 @@ namespace pix::adt
     { return this->ind == MAX_SIZE; }
 }
 
-#endif // _DEQUE_IPP_
+#endif // _DEQUE_TPP_
