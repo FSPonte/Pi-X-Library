@@ -139,7 +139,7 @@ namespace pix::adt
     };
 }
 
-// Implementation file
-#include "array.ipp"
+// Template file
+#include "array.tpp"
 
 #endif // _ARRAY_HPP_

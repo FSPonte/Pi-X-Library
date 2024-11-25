@@ -1,5 +1,5 @@
-#ifndef _ARRAY_IPP_
-#define _ARRAY_IPP_
+#ifndef _ARRAY_TPP_
+#define _ARRAY_TPP_
 
 namespace pix::adt
 {
@@ -100,4 +100,4 @@ namespace pix::adt
     { return true; }
 }
 
-#endif // _ARRAY_IPP_
+#endif // _ARRAY_TPP_
