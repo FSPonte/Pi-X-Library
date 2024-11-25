@@ -1,5 +1,5 @@
-#ifndef _LIST_IPP_
-#define _LIST_IPP_
+#ifndef _LIST_TPP_
+#define _LIST_TPP_
 
 namespace pix::adt
 {
@@ -88,4 +88,4 @@ namespace pix::adt
     { return this->_size; }
 }
 
-#endif // _LIST_IPP_
+#endif // _LIST_TPP_

@@ -1,5 +1,5 @@
-#ifndef _STACK_IPP_
-#define _STACK_IPP_
+#ifndef _STACK_TPP_
+#define _STACK_TPP_
 
 namespace pix::adt
 {
@@ -62,4 +62,4 @@ namespace pix::adt
     { return this->_ind == MAX_SIZE; }
 }
 
-#endif // _STACK_IPP_
+#endif // _STACK_TPP_

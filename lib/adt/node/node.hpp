@@ -89,7 +89,7 @@ namespace pix::adt
     };
 }
 
-// Implementation file
-#include "node.ipp"
+// Template file
+#include "node.tpp"
 
 #endif // _NODE_HPP_

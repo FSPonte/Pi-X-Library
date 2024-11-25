@@ -1,5 +1,5 @@
-#ifndef _NODE_IPP_
-#define _NODE_IPP_
+#ifndef _NODE_TPP_
+#define _NODE_TPP_
 
 namespace pix::adt
 {
@@ -114,4 +114,4 @@ namespace pix::adt
     { return this->_size; }
 }
 
-#endif // _NODE_IPP_
+#endif // _NODE_TPP_

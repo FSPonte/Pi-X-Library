@@ -68,7 +68,7 @@ namespace pix::adt
     };
 }
 
-// Implementation file
-#include "stack.ipp"
+// Template file
+#include "stack.tpp"
 
 #endif // _STACK_HPP_

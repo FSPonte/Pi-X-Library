@@ -74,7 +74,7 @@ namespace pix::adt
     };
 }
 
-// Implementation file
-#include "queue.ipp"
+// Template file
+#include "queue.tpp"
 
 #endif // _QUEUE_HPP_

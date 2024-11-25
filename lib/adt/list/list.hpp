@@ -60,7 +60,7 @@ namespace pix::adt
     };
 }
 
-// Implementation file
-#include "list.ipp"
+// Template file
+#include "list.tpp"
 
 #endif // _LIST_HPP_

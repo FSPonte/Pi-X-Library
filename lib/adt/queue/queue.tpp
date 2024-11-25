@@ -1,5 +1,5 @@
-#ifndef _QUEUE_IPP_
-#define _QUEUE_IPP_
+#ifndef _QUEUE_TPP_
+#define _QUEUE_TPP_
 
 namespace pix::adt
 {
@@ -77,4 +77,4 @@ namespace pix::adt
     { return this->_ind == MAX_SIZE; }
 }
 
-#endif // _QUEUE_IPP_
+#endif // _QUEUE_TPP_
