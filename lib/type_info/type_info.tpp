@@ -1,5 +1,5 @@
-#ifndef _TYPE_INFO_IPP_
-#define _TYPE_INFO_IPP_
+#ifndef _TYPE_INFO_TPP_
+#define _TYPE_INFO_TPP_
 
 #ifndef _IS_SAME_
 #define _IS_SAME_
@@ -148,4 +148,4 @@ namespace pix
     { return false; }
 }
 
-#endif // _TYPE_INFO_IPP_
+#endif // _TYPE_INFO_TPP_

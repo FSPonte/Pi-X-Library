@@ -1,5 +1,5 @@
-#ifndef _VECTOR_IPP_
-#define _VECTOR_IPP_
+#ifndef _VECTOR_TPP_
+#define _VECTOR_TPP_
 
 // Dependencies
 #include <type_info.hpp>
@@ -171,4 +171,4 @@ namespace pix::math
     }
 }
 
-#endif // _VECTOR_IPP_
+#endif // _VECTOR_TPP_

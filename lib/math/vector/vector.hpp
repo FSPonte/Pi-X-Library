@@ -152,7 +152,7 @@ namespace pix::math
     };
 }
 
-// Implementation file
-#include "vector.ipp"
+// Template file
+#include "vector.tpp"
 
 #endif // _VECTOR_HPP_

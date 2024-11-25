@@ -173,7 +173,7 @@ namespace pix::math
     struct kronecker_delta;
 }
 
-// Implementation file
-#include "math.ipp"
+// Template file
+#include "math.tpp"
 
 #endif // _MATH_HPP_

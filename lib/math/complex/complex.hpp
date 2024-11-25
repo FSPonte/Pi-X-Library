@@ -122,7 +122,7 @@ namespace pix::math
     };
 }
 
-// Implementation file
-#include "complex.ipp"
+// Template file
+#include "complex.tpp"
 
 #endif // _COMPLEX_HPP_

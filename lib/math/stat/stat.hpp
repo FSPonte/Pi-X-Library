@@ -52,7 +52,7 @@ namespace pix::math::stat
     type_t std_dev(const type_t[], unsigned long) noexcept(false);
 }
 
-// Implementation file
-#include "stat.ipp"
+// Template file
+#include "stat.tpp"
 
 #endif // _STAT_HPP_

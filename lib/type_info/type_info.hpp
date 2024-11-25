@@ -132,7 +132,7 @@ namespace pix
     };
 }
 
-// Implementation file
-#include "type_info.ipp"
+// Template file
+#include "type_info.tpp"
 
 #endif // _TYPE_INFO_HPP_

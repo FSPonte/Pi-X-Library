@@ -49,8 +49,8 @@ namespace pix::smart_pointer
     };
 }
 
-// Implementation file
-#include "auto_pointer.ipp"
+// Template file
+#include "auto_pointer.tpp"
 
 #endif // _AUTO_POINTER_
 
@@ -95,8 +95,8 @@ namespace pix::smart_pointer
     };
 }
 
-// Implementation file
-#include "unique_pointer.ipp"
+// Template file
+#include "unique_pointer.tpp"
 
 #endif // _UNIQUE_POINTER_
 

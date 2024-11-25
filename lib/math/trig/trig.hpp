@@ -75,7 +75,7 @@ namespace pix::math::trig
     long double arctan(long double) noexcept(true);
 }
 
-// Implementation file
-#include "trig.ipp"
+// Template file
+#include "trig.tpp"
 
 #endif // _TRIG_HPP_

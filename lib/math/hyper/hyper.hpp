@@ -47,7 +47,7 @@ namespace pix::math::hyper
     long double coth(long double) noexcept(true);
 }
 
-// Implementation file
-#include "hyper.ipp"
+// Template file
+#include "hyper.tpp"
 
 #endif // _HYPER_HPP_

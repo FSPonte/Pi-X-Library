@@ -88,7 +88,7 @@ namespace pix::c_array
     void right_shift(type_t[], unsigned long) noexcept(false);
 }
 
-// Implementation file
-#include "c_array.ipp"
+// Template file
+#include "c_array.tpp"
 
 #endif // _C_ARRAY_HPP_

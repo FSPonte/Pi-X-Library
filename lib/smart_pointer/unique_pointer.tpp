@@ -1,5 +1,5 @@
-#ifndef _UNIQUE_POINTER_IPP_
-#define _UNIQUE_POINTER_IPP_
+#ifndef _UNIQUE_POINTER_TPP_
+#define _UNIQUE_POINTER_TPP_
 
 namespace pix::smart_pointer
 {
@@ -29,4 +29,4 @@ namespace pix::smart_pointer
     }
 }
 
-#endif // _UNIQUE_POINTER_IPP_
+#endif // _UNIQUE_POINTER_TPP_

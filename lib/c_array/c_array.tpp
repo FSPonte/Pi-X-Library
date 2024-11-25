@@ -1,5 +1,5 @@
-#ifndef _C_ARRAY_IPP_
-#define _C_ARRAY_IPP_
+#ifndef _C_ARRAY_TPP_
+#define _C_ARRAY_TPP_
 
 namespace pix::c_array
 {
@@ -116,4 +116,4 @@ namespace pix::c_array
     }
 }
 
-#endif // _C_ARRAY_IPP_
+#endif // _C_ARRAY_TPP_

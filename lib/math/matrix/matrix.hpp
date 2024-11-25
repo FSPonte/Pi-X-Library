@@ -177,7 +177,7 @@ namespace pix::math
     };
 }
 
-// Implementation file
-#include "matrix.ipp"
+// Template file
+#include "matrix.tpp"
 
 #endif // _MATRX_HPP_

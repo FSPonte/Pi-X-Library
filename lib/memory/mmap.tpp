@@ -1,5 +1,5 @@
-#ifndef _MEMORY_MAP_IPP_
-#define _MEMORY_MAP_IPP_
+#ifndef _MMAP_TPP_
+#define _MMAP_TPP_
 
 // Dependencies
 #include <c_array.hpp>
@@ -44,4 +44,4 @@ namespace pix::memory
     { return this->_size; }
 }
 
-#endif // _MEMORY_MAP_IPP_
+#endif // _MMAP_TPP_

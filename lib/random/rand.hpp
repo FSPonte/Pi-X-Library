@@ -47,7 +47,7 @@ namespace pix::random
     char crand(void) noexcept(true);
 }
 
-// Implementation file
-#include "rand.ipp"
+// Template file
+#include "rand.tpp"
 
 #endif // _RAND_HPP_

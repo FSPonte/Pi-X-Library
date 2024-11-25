@@ -1,5 +1,5 @@
-#ifndef _STAT_IPP_
-#define _STAT_IPP_
+#ifndef _STAT_TPP_
+#define _STAT_TPP_
 
 namespace pix::math::stat
 {
@@ -74,4 +74,4 @@ namespace pix::math::stat
     }
 }
 
-#endif // _STAT_IPP_
+#endif // _STAT_TPP_

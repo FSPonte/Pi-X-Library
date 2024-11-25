@@ -2,7 +2,7 @@
 #define _IMAGE_HPP_
 
 // Dependencies
-#include "rgb.hpp"
+#include <rgb.hpp>
 
 namespace pix::graphics
 {
@@ -78,7 +78,7 @@ namespace pix::graphics
     };
 }
 
-// Implementation file
-#include "image.ipp"
+// Template file
+#include "image.tpp"
 
 #endif // _IMAGE_HPP_

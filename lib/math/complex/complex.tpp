@@ -1,5 +1,5 @@
-#ifndef _COMPLEX_IPP_
-#define _COMPLEX_IPP_
+#ifndef _COMPLEX_TPP_
+#define _COMPLEX_TPP_
 
 namespace pix::math
 {
@@ -83,4 +83,4 @@ namespace pix::math
     }
 }
 
-#endif // _COMPLEX_IPP_
+#endif // _COMPLEX_TPP_

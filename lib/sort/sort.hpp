@@ -59,7 +59,7 @@ namespace pix::sort
     void merge_sort(type_t[], unsigned long) noexcept(false);
 }
 
-// Implementation file
-#include "sort.ipp"
+// Template file
+#include "sort.tpp"
 
 #endif // _SORT_HPP_

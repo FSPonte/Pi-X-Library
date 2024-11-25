@@ -1,5 +1,5 @@
-#ifndef _RGB_IPP_
-#define _RGB_IPP_
+#ifndef _RGB_TPP_
+#define _RGB_TPP_
 
 namespace pix::graphics
 {
@@ -31,4 +31,4 @@ namespace pix::graphics
     }
 }
 
-#endif // _RGB_IPP_
+#endif // _RGB_TPP_

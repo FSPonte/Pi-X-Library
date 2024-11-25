@@ -1,5 +1,5 @@
-#ifndef _SORT_IPP_
-#define _SORT_IPP_
+#ifndef _SORT_TPP_
+#define _SORT_TPP_
 
 // Dependencies
 #include <c_array.hpp>
@@ -236,4 +236,4 @@ namespace pix::sort
     }
 }
 
-#endif // _SORT_IPP_
+#endif // _SORT_TPP_

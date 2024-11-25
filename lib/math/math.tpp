@@ -1,5 +1,5 @@
-#ifndef _MATH_IPP_
-#define _MATH_IPP_
+#ifndef _MATH_TPP_
+#define _MATH_TPP_
 
 static const unsigned long STD_NaN = 0x7ff8000000000000; // Standard representation for NaN
 
@@ -247,4 +247,4 @@ namespace pix::math
     { static constexpr const unsigned long value = 1; };
 }
 
-#endif // _MATH_IPP_
+#endif // _MATH_TPP_

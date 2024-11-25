@@ -1,5 +1,5 @@
-#ifndef _AUTO_POINTER_IPP_
-#define _AUTO_POINTER_IPP_
+#ifndef _AUTO_POINTER_TPP_
+#define _AUTO_POINTER_TPP_
 
 namespace pix::smart_pointer
 {
@@ -20,4 +20,4 @@ namespace pix::smart_pointer
     { return *this->ptr; }
 }
 
-#endif // _AUTO_POINTER_IPP_
+#endif // _AUTO_POINTER_TPP_

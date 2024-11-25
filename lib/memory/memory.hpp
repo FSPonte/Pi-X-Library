@@ -61,7 +61,7 @@ namespace pix::memory
     };
 }
 
-// Implementation file
-#include "mmap.ipp"
+// Template file
+#include "mmap.tpp"
 
 #endif // _MEMORY_HPP_

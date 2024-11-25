@@ -1,5 +1,5 @@
-#ifndef _HYPER_IPP_
-#define _HYPER_IPP_
+#ifndef _HYPER_TPP_
+#define _HYPER_TPP_
 
 namespace pix::math::hyper
 {
@@ -58,4 +58,4 @@ namespace pix::math::hyper
     { return hyper::cosh(arg) / hyper::sinh(arg); }
 }
 
-#endif // _HYPER_IPP_
+#endif // _HYPER_TPP_

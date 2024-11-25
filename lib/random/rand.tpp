@@ -1,5 +1,5 @@
-#ifndef _RAND_IPP_
-#define _RAND_IPP_
+#ifndef _RAND_TPP_
+#define _RAND_TPP_
 
 // Dependencies
 #include <sys_vars.hpp>
@@ -38,4 +38,4 @@ namespace pix::random
     { return static_cast<char>(rand() % 26 + 97); }
 }
 
-#endif // _RAND_IPP_
+#endif // _RAND_TPP_
