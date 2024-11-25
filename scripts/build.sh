@@ -1,8 +1,8 @@
 rm build/pix_tester
 clear
 cmake --build build/
-hexdump -C -v build/pix_tester > files/hexdump.txt
-objdump -D build/pix_tester > files/objdump.txt
-size -A build/pix_tester > files/size.txt
-tree -I build/ > files/tree.txt
-sudo apt list > files/packages.txt
+hexdump -C -v build/pix_tester > logs/hexdump.txt
+objdump -D build/pix_tester > logs/objdump.txt
+size -A build/pix_tester > logs/size.txt
+tree -I build/ > logs/tree.txt
+sudo apt list > logs/packages.txt

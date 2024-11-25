@@ -1,3 +1,3 @@
 sh scripts/build.sh
 echo
-build/pix_tester | tee files/terminal_log.txt
+build/pix_tester | tee logs/terminal_log.txt

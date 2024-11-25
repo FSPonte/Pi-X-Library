@@ -1,0 +1,107 @@
+.
+├── CMakeLists.txt
+├── README.md
+├── files
+│   ├── data.png
+│   └── data.txt
+├── include
+│   ├── constants.hpp
+│   ├── pix_lib.hpp
+│   ├── sys_vars.hpp
+│   └── types.hpp
+├── lib
+│   ├── adt
+│   │   ├── array
+│   │   │   ├── array.hpp
+│   │   │   └── array.tpp
+│   │   ├── deque
+│   │   │   ├── deque.hpp
+│   │   │   └── deque.tpp
+│   │   ├── dyn_array
+│   │   │   ├── dyn_array.hpp
+│   │   │   └── dyn_array.tpp
+│   │   ├── list
+│   │   │   ├── list.hpp
+│   │   │   └── list.tpp
+│   │   ├── node
+│   │   │   ├── node.hpp
+│   │   │   └── node.tpp
+│   │   ├── queue
+│   │   │   ├── queue.hpp
+│   │   │   └── queue.tpp
+│   │   └── stack
+│   │       ├── stack.hpp
+│   │       └── stack.tpp
+│   ├── c_array
+│   │   ├── c_array.hpp
+│   │   └── c_array.tpp
+│   ├── graphics
+│   │   ├── image
+│   │   │   ├── image.hpp
+│   │   │   └── image.tpp
+│   │   └── rgb
+│   │       ├── rgb.hpp
+│   │       └── rgb.tpp
+│   ├── math
+│   │   ├── complex
+│   │   │   ├── complex.hpp
+│   │   │   └── complex.tpp
+│   │   ├── hyper
+│   │   │   ├── hyper.hpp
+│   │   │   └── hyper.tpp
+│   │   ├── logic.hpp
+│   │   ├── math.hpp
+│   │   ├── math.tpp
+│   │   ├── matrix
+│   │   │   ├── matrix.hpp
+│   │   │   └── matrix.tpp
+│   │   ├── stat
+│   │   │   ├── stat.hpp
+│   │   │   └── stat.tpp
+│   │   ├── trig
+│   │   │   ├── trig.hpp
+│   │   │   └── trig.tpp
+│   │   └── vector
+│   │       ├── vector.hpp
+│   │       └── vector.tpp
+│   ├── memory
+│   │   ├── memory.hpp
+│   │   └── mmap.tpp
+│   ├── physics
+│   ├── random
+│   │   ├── rand.hpp
+│   │   └── rand.tpp
+│   ├── smart_pointer
+│   │   ├── auto_pointer.tpp
+│   │   ├── smart_pointer.hpp
+│   │   └── unique_pointer.tpp
+│   ├── sort
+│   │   ├── sort.hpp
+│   │   └── sort.tpp
+│   └── type_info
+│       ├── type_info.hpp
+│       └── type_info.tpp
+├── logs
+│   ├── hexdump.txt
+│   ├── objdump.txt
+│   ├── packages.txt
+│   ├── size.txt
+│   └── tree.txt
+├── scripts
+│   ├── build.sh
+│   ├── plot.gp
+│   ├── run.sh
+│   └── update_sys.sh
+├── src
+│   └── main.cpp
+└── temp
+    ├── app
+    ├── client
+    ├── client.cpp
+    ├── output.csv
+    ├── output.txt
+    ├── server
+    ├── server.cpp
+    └── swe.cpp
+
+32 directories, 72 files
