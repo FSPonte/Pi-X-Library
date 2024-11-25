@@ -50,7 +50,7 @@ namespace pix::adt
     };
 }
 
-// Implementation file
-#include "dyn_array.ipp"
+// Template file
+#include "dyn_array.tpp"
 
 #endif // _DYN_ARRAY_HPP_

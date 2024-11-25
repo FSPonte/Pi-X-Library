@@ -1,5 +1,5 @@
-#ifndef _DYN_ARRAY_IPP_
-#define _DYN_ARRAY_IPP_
+#ifndef _DYN_ARRAY_TPP_
+#define _DYN_ARRAY_TPP_
 
 namespace pix::adt
 {
@@ -53,4 +53,4 @@ namespace pix::adt
     }
 }
 
-#endif // _DYN_ARRAY_IPP_
+#endif // _DYN_ARRAY_TPP_
