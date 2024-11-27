@@ -14,7 +14,7 @@ template <typename type_t>
 static void _merge_(type_t[], unsigned long, unsigned long, unsigned long) noexcept(true);
 
 template <typename type_t>
-void _merge_sort_(type_t[], unsigned long, unsigned long) noexcept(true);
+static void _merge_sort_(type_t[], unsigned long, unsigned long) noexcept(true);
 
 namespace pix::sort
 {
@@ -235,7 +235,7 @@ static void _merge_(type_t arr[], const unsigned long start_ind, const unsigned 
 }
 
 template <typename type_t>
-void _merge_sort_(type_t arr[], const unsigned long start_ind, const unsigned long end_ind) noexcept(true)
+static void _merge_sort_(type_t arr[], const unsigned long start_ind, const unsigned long end_ind) noexcept(true)
 {
 	if (start_ind >= end_ind)
 		return;
