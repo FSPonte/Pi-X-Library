@@ -14,18 +14,7 @@ template <typename type_t>
 static void _merge_(type_t[], unsigned long, unsigned long, unsigned long) noexcept(true);
 
 template <typename type_t>
-void _merge_sort_(type_t arr[], const unsigned long start_ind, const unsigned long end_ind) noexcept(true)
-{
-	if (start_ind >= end_ind)
-		return;
-
-	const unsigned long mid_ind = start_ind + (end_ind - start_ind) / 2;
-
-	_merge_sort_(arr, start_ind, mid_ind);
-	_merge_sort_(arr, mid_ind + 1, end_ind);
-
-	_merge_(arr, start_ind, mid_ind, end_ind);
-}
+void _merge_sort_(type_t[], unsigned long, unsigned long) noexcept(true);
 
 namespace pix::sort
 {
@@ -243,6 +232,20 @@ static void _merge_(type_t arr[], const unsigned long start_ind, const unsigned 
 
 	delete[] left_arr;
 	delete[] right_arr;
+}
+
+template <typename type_t>
+void _merge_sort_(type_t arr[], const unsigned long start_ind, const unsigned long end_ind) noexcept(true)
+{
+	if (start_ind >= end_ind)
+		return;
+
+	const unsigned long mid_ind = start_ind + (end_ind - start_ind) / 2;
+
+	_merge_sort_(arr, start_ind, mid_ind);
+	_merge_sort_(arr, mid_ind + 1, end_ind);
+
+	_merge_(arr, start_ind, mid_ind, end_ind);
 }
 
 #endif // _SORT_TPP_
