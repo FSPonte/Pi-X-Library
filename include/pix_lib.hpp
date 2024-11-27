@@ -9,6 +9,7 @@
 #include <sys_vars.hpp>
 #include <types.hpp>
 #include <constants.hpp>
+#include <macros.hpp>
 
 /**
  * Pi-X Namespace

@@ -41,9 +41,4 @@
 #define U_INT64_MAX 18446744073709551615
 #endif
 
-// Default buffer size
-#ifndef D_BUFFER_SIZE
-#define D_BUFFER_SIZE 20
-#endif
-
 #endif // _SYS_VARS_HPP_
