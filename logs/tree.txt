@@ -86,6 +86,7 @@
 │   ├── objdump.txt
 │   ├── packages.txt
 │   ├── size.txt
+│   ├── terminal_log.txt
 │   └── tree.txt
 ├── scripts
 │   ├── build.sh
@@ -104,4 +105,4 @@
     ├── server.cpp
     └── swe.cpp
 
-32 directories, 72 files
+32 directories, 73 files
