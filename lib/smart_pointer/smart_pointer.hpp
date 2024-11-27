@@ -3,17 +3,17 @@
 
 namespace
 {
-    template <typename type_t>
-    class smart_pointer
-    {
-    protected:
+	template <typename type_t>
+	class smart_pointer
+	{
+	protected:
 
-        type_t* ptr;
+		type_t* ptr;
 
-    public:
+	public:
 
-        virtual type_t& operator * (void) = 0;
-    };
+		virtual type_t& operator * (void) = 0;
+	};
 }
 
 #ifndef _AUTO_POINTER_
@@ -21,32 +21,32 @@ namespace
 
 namespace pix::smart_pointer
 {
-    template <typename type_t>
-    class auto_pointer : public smart_pointer<type_t>
-    {
-    public:
-        /**
-         * @brief Default constructor
-        */
-        auto_pointer(void);
+	template <typename type_t>
+	class auto_pointer : public smart_pointer<type_t>
+	{
+	public:
+		/**
+		 * @brief Default constructor
+		*/
+		auto_pointer(void);
 
-        /**
-         * @brief Parameterized constructor
-         * @param val Value
-        */
-        auto_pointer(type_t);
+		/**
+		 * @brief Parameterized constructor
+		 * @param val Value
+		*/
+		auto_pointer(type_t);
 
-        /**
-         * @brief Destructor
-        */
-        ~auto_pointer(void);
+		/**
+		 * @brief Destructor
+		*/
+		~auto_pointer(void);
 
-        /**
-         * @brief Dereference operator
-         * @return Reference to member pointer
-        */
-        type_t& operator * (void) override;
-    };
+		/**
+		 * @brief Dereference operator
+		 * @return Reference to member pointer
+		*/
+		type_t& operator * (void) override;
+	};
 }
 
 // Template file
@@ -59,40 +59,40 @@ namespace pix::smart_pointer
 
 namespace pix::smart_pointer
 {
-    template <typename type_t>
-    class unique_pointer : public smart_pointer<type_t>
-    {
-    public:
+	template <typename type_t>
+	class unique_pointer : public smart_pointer<type_t>
+	{
+	public:
 
-        /**
-         * @brief Default constructor
-        */
-        unique_pointer(void);
+		/**
+		 * @brief Default constructor
+		*/
+		unique_pointer(void);
 
-        /**
-         * @brief Parameterized constructor
-         * @param val Value
-        */
-        unique_pointer(type_t);
+		/**
+		 * @brief Parameterized constructor
+		 * @param val Value
+		*/
+		unique_pointer(type_t);
 
-        /**
-         * @brief Destructor
-        */
-        ~unique_pointer(void);
+		/**
+		 * @brief Destructor
+		*/
+		~unique_pointer(void);
 
-        /**
-         * @brief Dereference operator
-         * @return Reference to member pointer
-        */
-        type_t& operator * (void) override;
+		/**
+		 * @brief Dereference operator
+		 * @return Reference to member pointer
+		*/
+		type_t& operator * (void) override;
 
-        /**
-         * @brief Left shift operator
-         * @param u_ptr Unique pointer
-         * @note Moves pointer between objects
-        */
-        void operator << (unique_pointer<type_t>&);
-    };
+		/**
+		 * @brief Left shift operator
+		 * @param u_ptr Unique pointer
+		 * @note Moves pointer between objects
+		*/
+		void operator << (unique_pointer<type_t>&);
+	};
 }
 
 // Template file

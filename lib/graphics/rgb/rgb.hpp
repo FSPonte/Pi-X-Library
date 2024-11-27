@@ -3,25 +3,25 @@
 
 namespace pix::graphics
 {
-    // Maximum value for color
-    const unsigned int max_val = 255;
+	// Maximum value for color
+	const unsigned int max_val = 255;
 
-    /**
-     * @brief RGB color
-    */
-    class rgb
-    {
-    public:
+	/**
+	 * @brief RGB color
+	*/
+	class rgb
+	{
+	public:
 
-        unsigned int
-            _red,
-            _green,
-            _blue;
+		unsigned int
+			_red,
+			_green,
+			_blue;
 
-        void operator = (const rgb&);
-        const bool operator == (const rgb&) const;
-        const bool operator != (const rgb&) const;
-    };
+		void operator = (const rgb&);
+		const bool operator == (const rgb&) const;
+		const bool operator != (const rgb&) const;
+	};
 }
 
 // Template file
