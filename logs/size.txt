@@ -30,12 +30,12 @@ section               size    addr
 .bss                   576   20544
 .comment                43       0
 .debug_aranges         112       0
-.debug_info          14058       0
-.debug_abbrev         2028       0
-.debug_line           2252       0
-.debug_str            6248       0
-.debug_line_str       1185       0
+.debug_info          13977       0
+.debug_abbrev         2030       0
+.debug_line           2256       0
+.debug_str            6214       0
+.debug_line_str       1157       0
 .debug_rnglists         65       0
-Total                37283
+Total                37146
 
 

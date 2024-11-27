@@ -6,6 +6,7 @@
 │   └── data.txt
 ├── include
 │   ├── constants.hpp
+│   ├── macros.hpp
 │   ├── pix_lib.hpp
 │   ├── sys_vars.hpp
 │   └── types.hpp
@@ -96,13 +97,5 @@
 ├── src
 │   └── main.cpp
 └── temp
-	├── app
-	├── client
-	├── client.cpp
-	├── output.csv
-	├── output.txt
-	├── server
-	├── server.cpp
-	└── swe.cpp
 
-32 directories, 73 files
+32 directories, 66 files
