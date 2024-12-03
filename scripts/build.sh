@@ -5,4 +5,4 @@ hexdump -C -v build/pix_tester > logs/hexdump.txt
 objdump -D build/pix_tester > logs/objdump.txt
 size -A build/pix_tester > logs/size.txt
 tree -I build/ > logs/tree.txt
-sudo apt list > logs/packages.txt
+apt list > logs/packages.txt
