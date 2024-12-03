@@ -38,7 +38,7 @@ namespace pix::sort
 				if (arr[j] <= arr[j + 1])
 					continue;
 
-				pix::c_array::swap(arr, j, j + 1);
+				pix::c_array::swap(arr[j], arr[j + 1]);
 			}
 		}
 	}
@@ -69,7 +69,7 @@ namespace pix::sort
 				min_ind = j;
 			}
 
-			pix::c_array::swap(arr, i,min_ind);
+			pix::c_array::swap(arr[i], arr[min_ind]);
 		}
 	}
 
@@ -128,7 +128,7 @@ namespace pix::sort
 }
 
 template <typename type_t>
-static const unsigned long _partition_(type_t arr[], const unsigned long start_ind, const unsigned long end_ind) noexcept(true)
+static const unsigned long _partition_(type_t arr[], unsigned long start_ind, unsigned long end_ind) noexcept(true)
 {
 	unsigned long count = 0;
 	type_t pivot = arr[start_ind];
@@ -144,24 +144,19 @@ static const unsigned long _partition_(type_t arr[], const unsigned long start_i
 	unsigned long pi_ind = start_ind + count;
 	pix::c_array::swap(arr[pi_ind], arr[start_ind]);
 
-	// Sorting left and right parts of the pivot element
-	unsigned long
-		left_ind = start_ind,
-		right_ind = end_ind;
-
-	while (left_ind < pi_ind && right_ind > pi_ind)
+	while (start_ind < pi_ind && end_ind > pi_ind)
 	{
-		while (arr[left_ind] <= pivot)
-			++left_ind;
+		while (arr[start_ind] <= pivot)
+			++start_ind;
 
-		while (arr[right_ind] > pivot)
-			--right_ind;
+		while (arr[end_ind] > pivot)
+			--end_ind;
 
-		if (left_ind < pi_ind && right_ind > pi_ind)
+		if (start_ind < pi_ind && end_ind > pi_ind)
 		{
-			pix::c_array::swap(arr[left_ind], arr[right_ind]);
-			++left_ind;
-			--right_ind;
+			pix::c_array::swap(arr[start_ind], arr[end_ind]);
+			++start_ind;
+			--end_ind;
 		}
 	}
  
@@ -176,7 +171,7 @@ static void _quick_sort_(type_t arr[], const unsigned long start_ind, const unsi
 
 	const unsigned long part_ind = _partition_(arr, start_ind, end_ind); // Partition index
 
-	_quick_sort_(arr, start_ind, part_ind - 1);
+	_quick_sort_(arr, start_ind, part_ind);
 	_quick_sort_(arr, part_ind + 1, end_ind);
 }
 
