@@ -1,12 +1,13 @@
+project(Pi-X-Library)
+
 cmake_minimum_required(VERSION 3.22)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-project(Pi-X-Library)
-
 include_directories(
 	"include"
+	"utils"
 
 	"lib/type_info"
 	"lib/smart_pointer"
@@ -38,4 +39,5 @@ include_directories(
 
 add_executable(pix_tester
 	src/main.cpp
+	utils/utils.cpp
 )

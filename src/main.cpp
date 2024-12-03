@@ -6,34 +6,24 @@
 // Pi-X library
 #include <pix_lib.hpp>
 
-/**
- * @brief Pause the process
- * @param msg Message
- * @note Adds the "..." string at the end
-*/
-void pause(const char[] = nullptr);
+// Utilities
+#include <utils.hpp>
 
 int main(int argc, char* argv[])
 {
-	// Print arguments
+	utils::clear();
+	utils::parse(argc, argv);
+	utils::pause();
+	utils::clear();
+
+	for (unsigned long i = 1; i < argc; ++i)
 	{
-		std::cout << "Arguments:" << '\n';
+		std::cout << "File: " << argv[i] << "\n\n";
 
-		for (pix::types::size_t i = 0; i < argc; ++i)
-			std::cout << '\t' << argv[i] << '\n';
-
-		std::cout << '\n';
+		utils::print_file(argv[i]);
+		utils::pause();
+		utils::clear();
 	}
 
 	return EXIT_SUCCESS;
-}
-
-void pause(const char msg[])
-{
-	if (msg == nullptr)
-		std::cout << "Press RETURN to continue...";
-	else
-		std::cout << msg << "...";
-	
-	std::cin.get();
 }
