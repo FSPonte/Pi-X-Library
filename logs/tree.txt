@@ -68,7 +68,6 @@
 │   ├── memory
 │   │   ├── memory.hpp
 │   │   └── mmap.tpp
-│   ├── physics
 │   ├── random
 │   │   ├── rand.hpp
 │   │   └── rand.tpp
@@ -96,10 +95,9 @@
 │   └── update_sys.sh
 ├── src
 │   └── main.cpp
-├── temp
 └── utils
     ├── utils.cpp
     ├── utils.hpp
     └── utils.tpp
 
-33 directories, 69 files
+31 directories, 69 files
