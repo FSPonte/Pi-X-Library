@@ -8,8 +8,8 @@ namespace pix::memory
 	*/
 	struct mpart
 	{
-		void* addr; // Memory address
-		unsigned long size; // Number of bytes
+		void* _addr; // Memory address
+		unsigned long _size; // Number of bytes
 	};
 
 	/**
