@@ -4,7 +4,7 @@
 namespace pix::graphics
 {
 	// Maximum value for color
-	const unsigned int max_val = 255;
+	const unsigned int MAX_VALUE = 255;
 
 	/**
 	 * @brief RGB color
