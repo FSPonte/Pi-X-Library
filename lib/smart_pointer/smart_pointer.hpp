@@ -8,7 +8,7 @@ namespace
 	{
 	protected:
 
-		type_t* ptr;
+		type_t* _ptr;
 
 	public:
 

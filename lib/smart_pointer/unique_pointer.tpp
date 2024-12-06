@@ -5,27 +5,27 @@ namespace pix::smart_pointer
 {
 	template <typename type_t>
 	unique_pointer<type_t>::unique_pointer(void)
-	{ this->ptr = new type_t(); }
+	{ this->_ptr = new type_t(); }
 
 	template <typename type_t>
-	unique_pointer<type_t>::unique_pointer(const type_t val) : unique_pointer<type_t>()
-	{ *this->ptr = val; }
+	unique_pointer<type_t>::unique_pointer(const type_t value) : unique_pointer<type_t>()
+	{ *this->_ptr = value; }
 
 	template <typename type_t>
 	unique_pointer<type_t>::~unique_pointer(void)
-	{ delete this->ptr; }
+	{ delete this->_ptr; }
 
 	template <typename type_t>
 	type_t& unique_pointer<type_t>::operator * (void)
-	{ return *this->ptr; }
+	{ return *this->_ptr; }
 
 	template <typename type_t>
 	void unique_pointer<type_t>::operator << (unique_pointer<type_t>& u_ptr)
 	{
-		delete this->ptr;
-		this->ptr = u_ptr.ptr;
+		delete this->_ptr;
+		this->_ptr = u_ptr._ptr;
 
-		u_ptr.ptr = new type_t();
+		u_ptr._ptr = new type_t();
 	}
 }
 
