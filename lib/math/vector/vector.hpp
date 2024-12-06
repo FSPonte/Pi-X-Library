@@ -13,7 +13,7 @@ namespace pix::math
 	{
 	private:
 
-		type_t _arr[DIM];
+		type_t _data[DIM];
 
 	public:
 

@@ -13,8 +13,8 @@ namespace pix::adt
 	{
 	private:
 
-		type_t _arr[MAX_SIZE];
-		unsigned long _ind;
+		type_t _data[MAX_SIZE];
+		unsigned long _index;
 
 	public:
 
@@ -88,6 +88,6 @@ namespace pix::adt
 }
 
 // Template file
-#include "queue.tpp"
+#include "deque.tpp"
 
 #endif // _DEQUE_HPP_

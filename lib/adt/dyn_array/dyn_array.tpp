@@ -32,15 +32,15 @@ namespace pix::adt
 	}
 
 	template <typename type_t, unsigned long BLOCK_ALLOC_SIZE>
-	type_t& dyn_array<type_t, BLOCK_ALLOC_SIZE>::operator [] (const unsigned long _index) noexcept(false)
+	type_t& dyn_array<type_t, BLOCK_ALLOC_SIZE>::operator [] (const unsigned long index) noexcept(false)
 	{
-		if (_index < this->_index)
-			return this->_data[_index];
+		if (index < this->_index)
+			return this->_data[index];
 
 		if (this->_index != BLOCK_ALLOC_SIZE)
 			throw "Index is out of bounds";
 		
-		return (*this->_next)[_index - BLOCK_ALLOC_SIZE];
+		return (*this->_next)[index - BLOCK_ALLOC_SIZE];
 	}
 
 	template <typename type_t, unsigned long BLOCK_ALLOC_SIZE>

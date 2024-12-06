@@ -193,18 +193,18 @@ namespace pix::math
 		return result;
 	}
 
-	long double root(const long double arg, const long double ind) noexcept(false)
+	long double root(const long double arg, const long double index) noexcept(false)
 	{
 		if (arg < 0)
 			throw "Argument is a negative number";
 
-		if (ind == 0)
+		if (index == 0)
 			throw "Index is equal to zero";
 		
-		if (ind == 1)
+		if (index == 1)
 			return arg;
 
-		return math::pow(arg, 1 / ind);
+		return math::pow(arg, 1 / index);
 	}
 
 	unsigned long permut(const unsigned long n, const unsigned long k) noexcept(false)

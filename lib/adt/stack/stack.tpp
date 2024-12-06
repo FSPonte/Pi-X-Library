@@ -12,17 +12,17 @@ namespace pix::adt
 			"Stack object cannot have a maximum of zero elements"
 		);
 
-		this->_arr[0] = type_t();
-		this->_ind = 0;
+		this->_data[0] = type_t();
+		this->_index = 0;
 	}
 
 	template <typename type_t, unsigned long MAX_SIZE>
 	const bool stack<type_t, MAX_SIZE>::add(const type_t& element)
 	{
-		if (this->_ind == MAX_SIZE)
+		if (this->_index == MAX_SIZE)
 			return false;
 
-		this->_arr[this->_ind++] = element;
+		this->_data[this->_index++] = element;
 
 		return true;
 	}
@@ -30,24 +30,24 @@ namespace pix::adt
 	template <typename type_t, unsigned long MAX_SIZE>
 	const type_t& stack<type_t, MAX_SIZE>::pop(void)
 	{
-		if (this->_ind == 0)
+		if (this->_index == 0)
 			return type_t();
 
-		return this->_arr[--this->_ind];
+		return this->_data[--this->_index];
 	}
 
 	template <typename type_t, unsigned long MAX_SIZE>
 	const type_t& stack<type_t, MAX_SIZE>::top(void) const
 	{
-		if (this->_ind == 0)
+		if (this->_index == 0)
 			return type_t();
 
-		return this->_arr[this->_ind - 1];
+		return this->_data[this->_index - 1];
 	}
 
 	template <typename type_t, unsigned long MAX_SIZE>
 	const unsigned long stack<type_t, MAX_SIZE>::size(void) const
-	{ return this->_ind; }
+	{ return this->_index; }
 
 	template <typename type_t, unsigned long MAX_SIZE>
 	constexpr const unsigned long stack<type_t, MAX_SIZE>::max_size(void) const
@@ -55,11 +55,11 @@ namespace pix::adt
 
 	template <typename type_t, unsigned long MAX_SIZE>
 	const bool stack<type_t, MAX_SIZE>::is_empty(void) const
-	{ return this->_ind == 0; }
+	{ return this->_index == 0; }
 
 	template <typename type_t, unsigned long MAX_SIZE>
 	const bool stack<type_t, MAX_SIZE>::is_full(void) const
-	{ return this->_ind == MAX_SIZE; }
+	{ return this->_index == MAX_SIZE; }
 }
 
 #endif // _STACK_TPP_
