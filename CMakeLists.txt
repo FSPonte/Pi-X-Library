@@ -18,6 +18,7 @@ include_directories(
 	"lib/memory"
 
 	"lib/adt/array"
+	"lib/adt/tuple"
 	"lib/adt/dyn_array"
 	"lib/adt/stack"
 	"lib/adt/queue"

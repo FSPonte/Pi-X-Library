@@ -52,6 +52,7 @@
  * pix::adt
 */
 #include <array.hpp>
+#include <tuple.hpp>
 #include <dyn_array.hpp>
 #include <stack.hpp>
 #include <queue.hpp>
