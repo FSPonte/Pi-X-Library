@@ -1,0 +1,41 @@
+build/pix_tester  :
+section               size    addr
+.interp                 28     792
+.note.gnu.property      48     824
+.note.gnu.build-id      36     872
+.note.ABI-tag           32     908
+.gnu.hash               52     944
+.dynsym                696    1000
+.dynstr                829    1696
+.gnu.version            58    2526
+.gnu.version_r         112    2584
+.rela.dyn              360    2696
+.rela.plt              432    3056
+.init                   27    4096
+.plt                   304    4128
+.plt.got                16    4432
+.plt.sec               288    4448
+.text                 6660    4736
+.fini                   13   11396
+.rodata                679   12288
+.eh_frame_hdr          476   12968
+.eh_frame             1944   13448
+.gcc_except_table       24   15392
+.init_array             24   19688
+.fini_array              8   19712
+.data.rel.ro            32   19720
+.dynamic               512   19752
+.got                   216   20264
+.data                   32   20480
+.bss                   576   20544
+.comment                43       0
+.debug_aranges         288       0
+.debug_info          24925       0
+.debug_abbrev         3962       0
+.debug_line           3115       0
+.debug_str            7632       0
+.debug_line_str       1275       0
+.debug_rnglists        169       0
+Total                55923
+
+
