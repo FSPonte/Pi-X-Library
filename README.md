@@ -1,6 +1,10 @@
 # Pi-X-Library
 Library for embedded systems
 
+Notes:
+- No need for additional compilation (Template files instead of source files for the libraries)
+- No outside dependencies (e.g. iostream)
+
 Includes:
 - System variables
 - Data types
