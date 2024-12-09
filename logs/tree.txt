@@ -1,5 +1,6 @@
 .
 ├── CMakeLists.txt
+├── LICENSE
 ├── README.md
 ├── files
 │   ├── data.png
@@ -71,6 +72,9 @@
 │   ├── memory
 │   │   ├── memory.hpp
 │   │   └── mmap.tpp
+│   ├── number
+│   │   ├── number.hpp
+│   │   └── number.tpp
 │   ├── random
 │   │   ├── rand.hpp
 │   │   └── rand.tpp
@@ -87,7 +91,9 @@
 ├── logs
 │   ├── hexdump.txt
 │   ├── objdump.txt
+│   ├── packages.txt
 │   ├── size.txt
+│   ├── terminal_log.txt
 │   └── tree.txt
 ├── scripts
 │   ├── build.sh
@@ -101,4 +107,4 @@
     ├── utils.hpp
     └── utils.tpp
 
-32 directories, 69 files
+33 directories, 74 files

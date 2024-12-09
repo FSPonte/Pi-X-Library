@@ -15,27 +15,27 @@ section               size    addr
 .plt                   304    4128
 .plt.got                16    4432
 .plt.sec               288    4448
-.text                 6660    4736
-.fini                   13   11396
-.rodata                679   12288
-.eh_frame_hdr          476   12968
-.eh_frame             1944   13448
-.gcc_except_table       24   15392
-.init_array             24   19688
-.fini_array              8   19712
-.data.rel.ro            32   19720
-.dynamic               512   19752
-.got                   216   20264
-.data                   32   20480
-.bss                   576   20544
+.text                 7074    4736
+.fini                   13   11812
+.rodata                743   12288
+.eh_frame_hdr          500   13032
+.eh_frame             2048   13536
+.gcc_except_table       24   15584
+.init_array             24   23784
+.fini_array              8   23808
+.data.rel.ro            32   23816
+.dynamic               512   23848
+.got                   216   24360
+.data                   32   24576
+.bss                   576   24640
 .comment                43       0
-.debug_aranges         288       0
-.debug_info          24925       0
-.debug_abbrev         3962       0
-.debug_line           3115       0
-.debug_str            7632       0
-.debug_line_str       1275       0
-.debug_rnglists        169       0
-Total                55923
+.debug_aranges         336       0
+.debug_info          25912       0
+.debug_abbrev         4158       0
+.debug_line           3304       0
+.debug_str            8129       0
+.debug_line_str       1335       0
+.debug_rnglists        199       0
+Total                58536
 
 

@@ -1,4 +1,4 @@
-# Pi-X-Library
+# Pi-X Library
 Library for embedded systems
 
 Notes:
@@ -26,7 +26,7 @@ Includes:
   - Merge sort
 - Random number generator (Linear congruency)
 - Abstract data types
-  - Memory safe C styled arrays
+  - Array
   - Tuple
   - Dynamic array
   - Stack
