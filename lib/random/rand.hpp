@@ -3,12 +3,6 @@
 
 namespace pix::random
 {
-	const unsigned long
-		SEED = 1607, // Initial value
-		MULT = 806, // Multiplier
-		INC = 103, // Increment
-		MOD = INT32_MAX; // Modulus
-
 	/**
 	 * @brief Linear congruential generator
 	 * @return Random integer number between 0 and INT32_MAX
