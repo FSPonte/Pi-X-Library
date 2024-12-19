@@ -1,6 +1,5 @@
 // C/C++ standard libraries
 #include <iostream>
-#include <iomanip>
 #include <fstream>
 
 // Pi-X library
