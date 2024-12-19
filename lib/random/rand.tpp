@@ -5,14 +5,14 @@
 #include <sys_vars.hpp>
 
 constexpr static const char
-	seed_byte = '\0',
-	mult_byte = '\0',
-	inc_byte = '\0';
+	SEED_BYTE = '\0',
+	MULT_BYTE = '\0',
+	INC_BYTE = '\0';
 
 static const unsigned long
-	SEED = reinterpret_cast<unsigned long>(&seed_byte), // Initial value
-	MULT = reinterpret_cast<unsigned long>(&mult_byte), // Multiplier
-	INC = reinterpret_cast<unsigned long>(&inc_byte); // Increment
+	SEED = reinterpret_cast<unsigned long>(&SEED_BYTE), // Initial value
+	MULT = reinterpret_cast<unsigned long>(&MULT_BYTE), // Multiplier
+	INC = reinterpret_cast<unsigned long>(&INC_BYTE); // Increment
 
 namespace pix::random
 {
