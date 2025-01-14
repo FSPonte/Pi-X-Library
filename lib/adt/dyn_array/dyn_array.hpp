@@ -29,7 +29,7 @@ namespace pix::adt
 		~dyn_array(void);
 
 		/**
-		 * @brief Add element
+		 * @brief Add a element
 		 * @param ele Element
 		*/
 		void push_back(type_t);
