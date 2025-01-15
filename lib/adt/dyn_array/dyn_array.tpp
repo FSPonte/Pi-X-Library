@@ -15,7 +15,7 @@ namespace pix::adt
 	{ delete this->_next; }
 
 	template <typename type_t, unsigned long BLOCK_ALLOC_SIZE>
-	void dyn_array<type_t, BLOCK_ALLOC_SIZE>::push_back(type_t element)
+	void dyn_array<type_t, BLOCK_ALLOC_SIZE>::push_back(const type_t element)
 	{
 		if (this->_index < BLOCK_ALLOC_SIZE)
 		{
