@@ -35,6 +35,14 @@ namespace pix::adt
 		void push_back(type_t);
 
 		/**
+		 * @brief Eliminate a element
+		 * @param ind Index
+		 * @return Eliminated element
+		 * @throw Index is out of bounds
+		*/
+		type_t pop(unsigned long) noexcept(false);
+
+		/**
 		 * @brief Get a element
 		 * @param ind Index
 		 * @return Reference to element
