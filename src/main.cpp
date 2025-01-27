@@ -24,6 +24,8 @@ int main(int argc, char* argv[])
 		utils::pause();
 		utils::clear();
 
+		std::cout << "File: " << argv[i] << "\n\n";
+
 		utils::print_file_hex(argv[i]);
 		utils::pause();
 		utils::clear();
