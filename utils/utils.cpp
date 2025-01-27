@@ -58,6 +58,31 @@ namespace utils
 			return;
 		}
 
+		while (file.peek() != EOF)
+			std::cout << static_cast<char>(file.get());
+
+		file.close();
+		std::cout << '\n';
+	}
+
+	void print_file_hex(char file_name[]) noexcept(true)
+	{
+		std::ifstream file(file_name, std::ios::binary);
+
+		if (file.is_open() == false)
+		{
+			std::cout << "File " << file_name << " is not open\n";
+			
+			return;
+		}
+
+		if (file.good() == false)
+		{
+			std::cout << "File " << file_name << " is not good\n";
+
+			return;
+		}
+
 		std::cout << std::hex;
 
 		for (unsigned long i = 0; file.eof() == false; ++i)
@@ -71,8 +96,7 @@ namespace utils
 				std::cout << '\n';
 		}
 
-		std::cout << std::dec << '\n';
-
 		file.close();
+		std::cout << std::dec << "\n\n";
 	}
 }

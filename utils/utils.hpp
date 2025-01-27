@@ -27,6 +27,12 @@ namespace utils
 	 * @param f_nam File name
 	*/
 	void print_file(char[]) noexcept(true);
+
+	/**
+	 * @brief Print file content in hexadecimal
+	 * @param f_nam File name
+	*/
+	void print_file_hex(char[]) noexcept(true);
 }
 
 // Template file
