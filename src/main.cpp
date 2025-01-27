@@ -1,12 +1,13 @@
 // C/C++ standard libraries
 #include <iostream>
+#include <iomanip>
 #include <fstream>
-
-// Pi-X library
-#include <pix_lib.hpp>
 
 // Utilities
 #include <utils.hpp>
+
+// Pi-X library
+#include <pix_lib.hpp>
 
 int main(int argc, char* argv[])
 {
@@ -20,6 +21,10 @@ int main(int argc, char* argv[])
 		std::cout << "File: " << argv[i] << "\n\n";
 
 		utils::print_file(argv[i]);
+		utils::pause();
+		utils::clear();
+
+		utils::print_file_hex(argv[i]);
 		utils::pause();
 		utils::clear();
 	}
