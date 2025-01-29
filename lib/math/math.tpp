@@ -33,9 +33,6 @@ namespace pix::math
 		if (arg < mod)
 			return arg;
 
-		if (arg == mod)
-			return static_cast<type_t>(0);
-
 		while (arg >= mod)
 			arg -= mod;
 
