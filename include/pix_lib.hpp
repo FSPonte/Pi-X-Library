@@ -19,6 +19,7 @@
 #include <deque.hpp>
 #include <node.hpp>
 #include <list.hpp>
+#include <logic.hpp>
 #include <math.hpp>
 #include <trig.hpp>
 #include <hyper.hpp>
