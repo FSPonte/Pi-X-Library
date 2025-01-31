@@ -47,4 +47,4 @@ Includes:
   - RGB values
   - Image object
 
-Author: FSPonte @ 2024
+Author: FSPonte @ 2025
