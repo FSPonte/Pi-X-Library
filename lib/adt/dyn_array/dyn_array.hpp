@@ -7,7 +7,7 @@ namespace pix::adt
 	 * @brief Dynamic array
 	 * @tparam type_t Data type
 	*/
-	template <typename type_t, unsigned long BLOCK_ALLOC_SIZE = 1000>
+	template <typename type_t, unsigned long BLOCK_ALLOC_SIZE = D_BLOCK_ALLOC_SIZE>
 	class dyn_array
 	{
 	private:
