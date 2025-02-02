@@ -12,8 +12,8 @@
 #endif
 
 // Error code
-#ifndef ERROR
-#define ERROR -1
+#ifndef ERROR_CODE
+#define ERROR_CODE -1
 #endif
 
 // End of file code
