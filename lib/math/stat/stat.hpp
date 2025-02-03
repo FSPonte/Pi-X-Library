@@ -50,6 +50,20 @@ namespace pix::math::stat
 	*/
 	template <typename type_t>
 	type_t std_dev(const type_t[], unsigned long) noexcept(false);
+
+	/**
+	 * @brief Coefficient of determination
+	 * @tparam type_t Data type
+	 * @param arr Array of elements
+	 * @param model Array of predicted values
+	 * @param dim Number of elements
+	 * @return Coefficient of determination of the model
+	 * @throw Pointer to array is null
+	 * @throw Pointer to model is null
+	 * @throw Dimension is null
+	*/
+	template <typename type_t>
+	type_t coeff_det(const type_t[], const type_t[], unsigned long) noexcept(false);
 }
 
 // Template file

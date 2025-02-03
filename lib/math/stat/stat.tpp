@@ -64,13 +64,42 @@ namespace pix::math::stat
 		if (dim == 0)
 			throw "Dimension is null";
 
-		const type_t average = stat::mean(arr, dim);
+		const type_t mean = stat::mean(arr, dim);
 		type_t result = 0;
 
 		for (unsigned long i = 0; i < dim; ++i)
-			result += (arr[i] - average) * (arr[i] - average);
+			result += (arr[i] - mean) * (arr[i] - mean);
 
 		return math::root(result / dim, 2);
+	}
+
+	template <typename type_t>
+	type_t coeff_det(const type_t arr[], const type_t model[], const unsigned long dim) noexcept(false)
+	{
+		is_number_static_assert(type_t);
+
+		if (arr == nullptr)
+			throw "Pointer to array is null";
+
+		if (model == nullptr)
+			throw "Pointer to model is null";
+
+		if (dim == 0)
+			throw "Dimension is null";
+
+		const type_t mean = stat::mean(arr, dim);
+
+		type_t
+			sum_squared_errors = 0,
+			total_sum_squares = 0;
+
+		for (unsigned long i = 0; i < dim; ++i)
+		{
+			sum_squared_errors += (arr[i] - model[i]) * (arr[i] - model[i]);
+			total_sum_squares += (arr[i] - mean) * (arr[i] - mean);
+		}
+
+		return 1 - sum_squared_errors / total_sum_squares;
 	}
 }
 
