@@ -110,7 +110,7 @@ int main(int argc, char* argv[])
 			std::ofstream file("files/aprox.txt");
 
 			for (unsigned long i = 0; i < SIZE; ++i)
-				file << input[i] << ' ' << m * pix::math::log(input[i]) + b << '\n';
+				file << input[i] << ' ' << model[i] << '\n';
 
 			file.close();
 		}
