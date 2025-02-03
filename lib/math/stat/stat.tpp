@@ -78,6 +78,31 @@ namespace pix::math::stat
 	{ return math::root(stat::var(arr, dim), 2); }
 
 	template <typename type_t>
+	type_t cov(const type_t input[], const type_t output[], const unsigned long dim) noexcept(false)
+	{
+		is_number_static_assert(type_t);
+
+		if (input == nullptr)
+			throw "Pointer to input array is null";
+
+		if (output == nullptr)
+			throw "Pointer to output array is null";
+
+		if (dim == 0)
+			throw "Dimension is null";
+
+		const type_t
+			mean_input = stat::mean(input, dim),
+			mean_output = stat::mean(output, dim);
+		type_t result = 0;
+
+		for (unsigned long i = 0; i < dim; ++i)
+			result += (input[i] - mean_input) * (output[i] - mean_output);
+
+		return result / dim;
+	}
+
+	template <typename type_t>
 	type_t coeff_det(const type_t arr[], const type_t model[], const unsigned long dim) noexcept(false)
 	{
 		is_number_static_assert(type_t);

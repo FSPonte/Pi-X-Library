@@ -64,6 +64,19 @@ namespace pix::math::stat
 	type_t std_dev(const type_t[], unsigned long) noexcept(false);
 
 	/**
+	 * @brief Covariance
+	 * @tparam type_t Data type
+	 * @param in Array of input elements
+	 * @param out Array of output elements
+	 * @param dim Number of elements
+	 * @return Covariance of the elements
+	 * @throw Pointer to array is null
+	 * @throw Dimension is null
+	*/
+	template <typename type_t>
+	type_t cov(const type_t[], const type_t[], unsigned long) noexcept(false);
+
+	/**
 	 * @brief Coefficient of determination
 	 * @tparam type_t Data type
 	 * @param arr Array of elements
