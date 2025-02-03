@@ -40,6 +40,18 @@ namespace pix::math::stat
 	type_t median(const type_t[], unsigned long) noexcept(false);
 
 	/**
+	 * @brief Variance
+	 * @tparam type_t Data type
+	 * @param arr Array of elements
+	 * @param dim Number of elements
+	 * @return Variance of the elements
+	 * @throw Pointer to array is null
+	 * @throw Dimension is null
+	*/
+	template <typename type_t>
+	type_t var(const type_t[], unsigned long) noexcept(false);
+
+	/**
 	 * @brief Standard deviation
 	 * @tparam type_t Data type
 	 * @param arr Array of elements

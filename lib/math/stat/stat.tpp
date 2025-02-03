@@ -54,7 +54,7 @@ namespace pix::math::stat
 	}
 
 	template <typename type_t>
-	type_t std_dev(const type_t arr[], const unsigned long dim) noexcept(false)
+	type_t var(const type_t arr[], const unsigned long dim) noexcept(false)
 	{
 		is_number_static_assert(type_t);
 
@@ -70,8 +70,12 @@ namespace pix::math::stat
 		for (unsigned long i = 0; i < dim; ++i)
 			result += (arr[i] - mean) * (arr[i] - mean);
 
-		return math::root(result / dim, 2);
+		return result / dim;
 	}
+
+	template <typename type_t>
+	type_t std_dev(const type_t arr[], const unsigned long dim) noexcept(false)
+	{ return math::root(stat::var(arr, dim), 2); }
 
 	template <typename type_t>
 	type_t coeff_det(const type_t arr[], const type_t model[], const unsigned long dim) noexcept(false)
