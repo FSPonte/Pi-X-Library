@@ -22,6 +22,7 @@ include_directories(
 	"lib/adt/deque"
 	"lib/adt/node"
 	"lib/adt/list"
+	"lib/adt/string"
 	"lib/math"
 	"lib/math/trig"
 	"lib/math/hyper"
