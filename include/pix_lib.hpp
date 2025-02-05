@@ -6,8 +6,8 @@
 #include <constants.hpp>
 #include <macros.hpp>
 #include <type_info.hpp>
-#include <memory.hpp>
 #include <smart_pointer.hpp>
+#include <memory.hpp>
 #include <c_array.hpp>
 #include <sort.hpp>
 #include <rand.hpp>
