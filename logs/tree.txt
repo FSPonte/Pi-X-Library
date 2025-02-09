@@ -3,6 +3,7 @@
 ├── LICENSE
 ├── README.md
 ├── files
+│   ├── aprox.txt
 │   ├── data.png
 │   └── data.txt
 ├── include
@@ -22,6 +23,9 @@
 │   │   ├── dyn_array
 │   │   │   ├── dyn_array.hpp
 │   │   │   └── dyn_array.tpp
+│   │   ├── hash_table
+│   │   │   ├── hash_table.hpp
+│   │   │   └── hash_table.tpp
 │   │   ├── list
 │   │   │   ├── list.hpp
 │   │   │   └── list.tpp
@@ -34,6 +38,9 @@
 │   │   ├── stack
 │   │   │   ├── stack.hpp
 │   │   │   └── stack.tpp
+│   │   ├── string
+│   │   │   ├── string.hpp
+│   │   │   └── string.tpp
 │   │   └── tuple
 │   │       ├── tuple.hpp
 │   │       └── tuple.tpp
@@ -47,6 +54,10 @@
 │   │   └── rgb
 │   │       ├── rgb.hpp
 │   │       └── rgb.tpp
+│   ├── machine_learning
+│   │   ├── reinforcement
+│   │   ├── supervised
+│   │   └── unsupervised
 │   ├── math
 │   │   ├── complex
 │   │   │   ├── complex.hpp
@@ -107,4 +118,4 @@
     ├── utils.hpp
     └── utils.tpp
 
-33 directories, 74 files
+39 directories, 79 files

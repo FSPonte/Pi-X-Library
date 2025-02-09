@@ -5,4 +5,4 @@ set grid
 set key outside bottom center horizontal
 set terminal png
 set output "files/data.png"
-plot "files/data.txt" title "Raw data", "files/aprox.txt" with lines title "Aprox." lw 3
+plot "files/data.txt" title "Raw data", "files/aprox.txt" with lines title "Aprox." lw 3 lc rgb "black"
