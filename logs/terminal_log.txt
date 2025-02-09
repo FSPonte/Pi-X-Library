@@ -1,9 +1,4 @@
-[H[2J[3JSlope = 1.39218
-Y-Inter = 0.982939
-R^2 = 0.795521
--1
-Press RETURN to continue...[H[2J[3JSlope = -4.57917
-Y-Inter = -2.2785
-R^2 = 0.722246
--1
+[H[2J[3JSlope = -1.06791
+Y-Inter = 2.4594
+R^2 = 0.951236
 Press RETURN to continue...

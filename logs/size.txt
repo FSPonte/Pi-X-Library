@@ -15,8 +15,8 @@ section               size    addr
 .plt                   448    8224
 .plt.got                16    8672
 .plt.sec               432    8688
-.text                10364    9120
-.fini                   13   19484
+.text                10332    9120
+.fini                   13   19452
 .rodata                890   20480
 .eh_frame_hdr          564   21372
 .eh_frame             2384   21936
@@ -30,12 +30,12 @@ section               size    addr
 .bss                   576   32832
 .comment                43       0
 .debug_aranges         368       0
-.debug_info          27487       0
+.debug_info          27452       0
 .debug_abbrev         4318       0
-.debug_line           4332       0
+.debug_line           4321       0
 .debug_str            8793       0
 .debug_line_str       1500       0
 .debug_rnglists        242       0
-Total                67425
+Total                67347
 
 

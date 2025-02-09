@@ -2,7 +2,6 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
-#include <string.h>
 
 // Utilities
 #include <utils.hpp>
@@ -110,8 +109,6 @@ int main(int argc, char* argv[])
 		}
 		catch (const char ex_msg[])
 		{ std::cout << "Exception: " << ex_msg << '\n'; }
-
-		std::cout << strcmp("aa", "aaba") << '\n';
 
 		utils::pause();
 	}
