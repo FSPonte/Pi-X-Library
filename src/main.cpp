@@ -9,6 +9,11 @@
 // Pi-X library
 #include <pix_lib.hpp>
 
+using type_t = long double;
+
+type_t function(type_t);
+type_t model_function(type_t);
+
 int main(int argc, char* argv[])
 {
 	/*
@@ -33,92 +38,116 @@ int main(int argc, char* argv[])
 	}
 	*/
 
-	using type_t = long double;
 	constexpr const unsigned long SIZE = 1E3;
 	constexpr const type_t
-		MIN = 0,
-		MAX = 10,
-		ERROR = 0.8;
-	type_t
-		var,
-		input[SIZE],
-		output[SIZE];
+		INPUT_MIN = -2 * pix::constants::mathematics::PI,
+		INPUT_MAX = 2 * pix::constants::mathematics::PI;
 
-	try
+	while (true)
 	{
-		for (unsigned long i = 0; i < SIZE; ++i)
-			input[i] = pix::random::drand(MIN, MAX);
+		utils::clear();
 
-		pix::sort::quick_sort(input, SIZE);
-
-		for (unsigned long i = 0; i < SIZE; ++i)
+		try
 		{
-			output[i] = 5 * pix::math::log(input[i]) - 2.5;
+			const type_t
+				ERROR = pix::random::drand(0, 1),
+				slope = pix::random::drand(-5, 5),
+				y_inter = pix::random::drand(-3, 3);
+			type_t input[SIZE];
 
-			var = ERROR * pix::math::abs(output[i]);
-			output[i] += pix::random::drand(output[i] - var, output[i] + var);
-		}
+			for (unsigned long i = 0; i < SIZE; ++i)
+				input[i] = pix::random::drand(INPUT_MIN, INPUT_MAX);
 
-		// Write data to file 1
-		{
+			pix::sort::quick_sort(input, SIZE);
+			type_t output[SIZE];
+
+			for (unsigned long i = 0; i < SIZE; ++i)
+				output[i] = (slope * function(input[i]) + y_inter) * (1 + pix::random::drand(-ERROR, ERROR));
+
 			std::ofstream file("files/data.txt");
 
 			for (unsigned long i = 0; i < SIZE; ++i)
 				file << input[i] << ' ' << output[i] << '\n';
 
 			file.close();
-		}
 
-		type_t
-			input_log[SIZE],
-			sum_input = 0,
-			sum_output = 0,
-			sum_input_squared = 0,
-			sum_input_output = 0;
+			type_t
+				sum_in = 0,
+				sum_out = 0,
+				sum_in_out = 0,
+				sum_in_sq = 0;
 
-		for (unsigned long i = 0; i < SIZE; ++i)
-		{
-			input_log[i] = pix::math::log(input[i]);
-			sum_input += input_log[i];
-			sum_output += output[i];
-			sum_input_squared += input_log[i] * input_log[i];
-			sum_input_output += input_log[i] * output[i];
-		}
+			for (unsigned long i = 0; i < SIZE; ++i)
+			{
+				sum_in += function(input[i]);
+				sum_out += output[i];
+				sum_in_out += function(input[i]) * output[i];
+				sum_in_sq += pix::math::pow(function(input[i]), 2);
+			}
 
-		type_t
-			m = (SIZE * sum_input_output - sum_input * sum_output) / (SIZE * sum_input_squared - sum_input * sum_input),
-			b = (sum_output - m * sum_input) / SIZE;
+			type_t
+				model_slope = (SIZE * sum_in_out - sum_in * sum_out) / (SIZE * sum_in_sq - sum_in * sum_in),
+				model_y_inter = (sum_out - slope * sum_in) / SIZE;
 
-		std::cout
-			<< "m = " << m << '\n'
-			<< "b = " << b << '\n';
+			std::cout
+				<< "Slope = " << model_slope << '\n'
+				<< "Y-Inter = " << model_y_inter << '\n';
+			
+			type_t model[SIZE];
 
-		type_t model[SIZE];
+			for (unsigned long i = 0; i < SIZE; ++i)
+				model[i] = model_slope * model_function(input[i]) + model_y_inter;
 
-		for (unsigned long i = 0; i < SIZE; ++i)
-			model[i] = m * pix::math::log(input[i]) + b;
-
-		std::cout
-			<< "Mean = " << pix::math::stat::mean(output, SIZE) << '\n'
-			<< "Variance = " << pix::math::stat::var(output, SIZE) << '\n'
-			<< "Std_dev = " << pix::math::stat::std_dev(output, SIZE) << '\n'
-			<< "Covariance = " << pix::math::stat::cov(input, output, SIZE) << '\n'
-			<< "R^2 = " << pix::math::stat::coeff_det(output, model, SIZE) << '\n';
-
-		// Write data to file 1
-		{
-			std::ofstream file("files/aprox.txt");
+			std::cout << "R^2 = " << pix::math::stat::coeff_det(output, model, SIZE) << '\n';
+			file.open("files/aprox.txt");
 
 			for (unsigned long i = 0; i < SIZE; ++i)
 				file << input[i] << ' ' << model[i] << '\n';
 
 			file.close();
+			std::system("gnuplot scripts/plot.gp");
 		}
-	}
-	catch (const char msg[])
-	{ std::cout << "Exception: " << msg << '\n'; }
+		catch (const char ex_msg[])
+		{ std::cout << "Exception: " << ex_msg << '\n'; }
 
-	std::system("gnuplot scripts/plot.gp");
+		utils::pause();
+	}
 
 	return EXIT_SUCCESS;
+}
+
+type_t function(const type_t x)
+{
+	type_t ret;
+
+	try
+	{
+		ret = pix::math::trig::sin(x);
+	}
+	catch (const char ex_msg[])
+	{
+		std::cout
+			<< "Exception: " << ex_msg << '\n'
+			<< "Input = " << x << '\n';
+	}
+
+	return ret;
+}
+
+type_t model_function(const type_t x)
+{
+	type_t ret;
+
+	try
+	{
+		ret = pix::math::trig::cos(x - 0.5 * pix::constants::mathematics::PI);
+	}
+	catch (const char ex_msg[])
+	{
+		std::cout
+			<< "Exception: " << ex_msg << '\n'
+			<< "Input = " << x << '\n';
+	}
+
+	return ret;
 }
