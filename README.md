@@ -34,6 +34,7 @@ Includes:
   - Deque
   - Node
   - List
+  - String
 - Mathematical library
   - Logic
   - Mathematical functions
