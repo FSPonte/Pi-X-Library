@@ -40,78 +40,90 @@ int main(int argc, char* argv[])
 
 	constexpr const unsigned long SIZE = 1E3;
 	constexpr const type_t
-		INPUT_MIN = -2 * pix::constants::mathematics::PI,
+		INPUT_MIN = 0,
 		INPUT_MAX = 2 * pix::constants::mathematics::PI;
 
-	while (true)
+	try
 	{
-		utils::clear();
+		const type_t
+			slope = pix::random::drand(-5, 5),
+			y_inter = pix::random::drand(-3, 3),
+			ERROR = pix::random::drand(0, 0.5);
 
-		try
+		std::cout
+			<< "Real values:\n"
+			<< "\tSlope = " << slope << '\n'
+			<< "\tY-Inter = " << y_inter << '\n'
+			<< "\tError = " << ERROR << "\n\n";
+
+		type_t input[SIZE];
+
+		for (unsigned long i = 0; i < SIZE; ++i)
+			input[i] = pix::random::drand(INPUT_MIN, INPUT_MAX);
+
+		pix::sort::quick_sort(input, SIZE);
+		type_t output[SIZE];
+
+		for (unsigned long i = 0; i < SIZE; ++i)
+			output[i] = (slope * function(input[i]) + y_inter) * (1 + pix::random::drand(-ERROR, ERROR));
+
+		std::ofstream file("files/data.txt");
+
+		for (unsigned long i = 0; i < SIZE; ++i)
+			file << input[i] << ' ' << output[i] << '\n';
+
+		file.close();
+
+		type_t
+			sum_in = 0,
+			sum_out = 0,
+			sum_in_out = 0,
+			sum_in_sq = 0;
+
+		for (unsigned long i = 0; i < SIZE; ++i)
 		{
-			const type_t
-				ERROR = pix::random::drand(0, 1),
-				slope = pix::random::drand(-5, 5),
-				y_inter = pix::random::drand(-3, 3);
-			type_t input[SIZE];
-
-			for (unsigned long i = 0; i < SIZE; ++i)
-				input[i] = pix::random::drand(INPUT_MIN, INPUT_MAX);
-
-			pix::sort::quick_sort(input, SIZE);
-			type_t output[SIZE];
-
-			for (unsigned long i = 0; i < SIZE; ++i)
-				output[i] = (slope * function(input[i]) + y_inter) * (1 + pix::random::drand(-ERROR, ERROR));
-
-			std::ofstream file("files/data.txt");
-
-			for (unsigned long i = 0; i < SIZE; ++i)
-				file << input[i] << ' ' << output[i] << '\n';
-
-			file.close();
-
-			type_t
-				sum_in = 0,
-				sum_out = 0,
-				sum_in_out = 0,
-				sum_in_sq = 0;
-
-			for (unsigned long i = 0; i < SIZE; ++i)
-			{
-				sum_in += function(input[i]);
-				sum_out += output[i];
-				sum_in_out += function(input[i]) * output[i];
-				sum_in_sq += pix::math::pow(function(input[i]), 2);
-			}
-
-			type_t
-				model_slope = (SIZE * sum_in_out - sum_in * sum_out) / (SIZE * sum_in_sq - sum_in * sum_in),
-				model_y_inter = (sum_out - slope * sum_in) / SIZE;
-
-			std::cout
-				<< "Slope = " << model_slope << '\n'
-				<< "Y-Inter = " << model_y_inter << '\n';
-			
-			type_t model[SIZE];
-
-			for (unsigned long i = 0; i < SIZE; ++i)
-				model[i] = model_slope * model_function(input[i]) + model_y_inter;
-
-			std::cout << "R^2 = " << pix::math::stat::coeff_det(output, model, SIZE) << '\n';
-			file.open("files/aprox.txt");
-
-			for (unsigned long i = 0; i < SIZE; ++i)
-				file << input[i] << ' ' << model[i] << '\n';
-
-			file.close();
-			std::system("gnuplot scripts/plot.gp");
+			sum_in += function(input[i]);
+			sum_out += output[i];
+			sum_in_out += function(input[i]) * output[i];
+			sum_in_sq += pix::math::pow(function(input[i]), 2);
 		}
-		catch (const char ex_msg[])
-		{ std::cout << "Exception: " << ex_msg << '\n'; }
 
-		utils::pause();
+		type_t
+			model_slope = (SIZE * sum_in_out - sum_in * sum_out) / (SIZE * sum_in_sq - sum_in * sum_in),
+			model_y_inter = (sum_out - slope * sum_in) / SIZE;
+
+		std::cout
+			<< "Aproximation:\n"
+			<< "\tSlope = " << model_slope << '\n'
+			<< "\tY-Inter = " << model_y_inter << '\n';
+		
+		type_t model[SIZE];
+
+		for (unsigned long i = 0; i < SIZE; ++i)
+			model[i] = model_slope * model_function(input[i]) + model_y_inter;
+
+		std::cout << "\tR^2 = " << pix::math::stat::coeff_det(output, model, SIZE) << '\n';
+		file.open("files/aprox.txt");
+
+		for (unsigned long i = 0; i < SIZE; ++i)
+			file << input[i] << ' ' << model[i] << '\n';
+
+		file.close();
+		type_t derivative[SIZE - 1];
+
+		for (unsigned long i = 0; i < SIZE - 1; ++i)
+			derivative[i] = (model[i + 1] - model[i]) / (input[i + 1] - input[i]);
+
+		file.open("files/derivative.txt");
+
+		for (unsigned long i = 0; i < SIZE - 1; ++i)
+			file << input[i] << ' ' << derivative[i] << '\n';
+
+		file.close();
+		std::system("gnuplot scripts/plot.gp");
 	}
+	catch (const char ex_msg[])
+	{ std::cout << "Exception: " << ex_msg << '\n'; }
 
 	return EXIT_SUCCESS;
 }
