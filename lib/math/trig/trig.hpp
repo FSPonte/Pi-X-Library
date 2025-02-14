@@ -54,7 +54,7 @@ namespace pix::math::trig
 	 * @note Domain = [-1, 1]
 	 * @note Codomain = [-pi/2, pi/2]
 	*/
-	long double arcsin(long double) noexcept(false);
+	long double arcsin(long double) noexcept(true);
 
 	/**
 	 * @brief Arccosine function
@@ -64,7 +64,7 @@ namespace pix::math::trig
 	 * @note Domain = [-1, 1]
 	 * @note Codomain = [0, pi]
 	*/
-	long double arccos(long double) noexcept(false);
+	long double arccos(long double) noexcept(true);
 
 	/**
 	 * @brief Arctangent function
