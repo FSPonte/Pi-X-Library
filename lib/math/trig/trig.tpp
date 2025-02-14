@@ -67,8 +67,13 @@ namespace pix::math::trig
 
 	long double arcsin(long double arg) noexcept(false)
 	{
-		if (arg < 1 || arg > 1)
+		if (arg < -1 || arg > 1)
 			throw "Argument is out of bounds";
+
+		if (arg == -1)
+			return - 0.5 * constants::mathematics::PI;
+		else if (arg == 1)
+			return 0.5 * constants::mathematics::PI;
 		
 		const bool is_arg_neg = arg < 0;
 		arg = math::abs(arg);
