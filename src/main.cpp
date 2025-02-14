@@ -9,10 +9,11 @@
 // Pi-X library
 #include <pix_lib.hpp>
 
-using type_t = long double;
+#define function_dataset(arg) pix::math::trig::cos(arg)
+#define function_model(arg) pix::math::trig::sin(arg)
+#define function_model_inv(arg) pix::math::trig::arcsin(arg)
 
-type_t function(type_t);
-type_t model_function(type_t);
+using type_t = long double;
 
 int main(int argc, char* argv[])
 {
@@ -40,40 +41,41 @@ int main(int argc, char* argv[])
 
 	constexpr const unsigned long SIZE = 1E3;
 	constexpr const type_t
-		INPUT_MIN = 0,
-		INPUT_MAX = 2 * pix::constants::mathematics::PI;
+		INPUT_MIN = 1,
+		INPUT_MAX = 10;
+	const type_t
+		amplitude = pix::random::drand(-5, 5),
+		y_inter = pix::random::drand(-3, 3),
+		ERROR = pix::random::drand(0, 0.75);
+	type_t
+		input[SIZE],
+		output[SIZE],
+		model[SIZE],
+		model_amplitude,
+		model_y_inter,
+		model_phase;
+	std::ofstream file;
 
-	try
+	// Manage dataset
 	{
-		const type_t
-			slope = pix::random::drand(-5, 5),
-			y_inter = pix::random::drand(-3, 3),
-			ERROR = pix::random::drand(0, 0.5);
-
-		std::cout
-			<< "Real values:\n"
-			<< "\tSlope = " << slope << '\n'
-			<< "\tY-Inter = " << y_inter << '\n'
-			<< "\tError = " << ERROR << "\n\n";
-
-		type_t input[SIZE];
-
 		for (unsigned long i = 0; i < SIZE; ++i)
 			input[i] = pix::random::drand(INPUT_MIN, INPUT_MAX);
 
 		pix::sort::quick_sort(input, SIZE);
-		type_t output[SIZE];
 
 		for (unsigned long i = 0; i < SIZE; ++i)
-			output[i] = (slope * function(input[i]) + y_inter) * (1 + pix::random::drand(-ERROR, ERROR));
+			output[i] = (amplitude * function_dataset(input[i]) + y_inter) * (1 + pix::random::drand(-ERROR, ERROR));
 
-		std::ofstream file("files/data.txt");
+		file.open("files/dataset.txt");
 
 		for (unsigned long i = 0; i < SIZE; ++i)
 			file << input[i] << ' ' << output[i] << '\n';
 
 		file.close();
+	}
 
+	// Manage model
+	{
 		type_t
 			sum_in = 0,
 			sum_out = 0,
@@ -82,84 +84,48 @@ int main(int argc, char* argv[])
 
 		for (unsigned long i = 0; i < SIZE; ++i)
 		{
-			sum_in += function(input[i]);
+			sum_in += function_dataset(input[i]);
 			sum_out += output[i];
-			sum_in_out += function(input[i]) * output[i];
-			sum_in_sq += pix::math::pow(function(input[i]), 2);
+			sum_in_out += function_dataset(input[i]) * output[i];
+			sum_in_sq += pix::math::pow(function_dataset(input[i]), 2);
 		}
 
-		type_t
-			model_slope = (SIZE * sum_in_out - sum_in * sum_out) / (SIZE * sum_in_sq - sum_in * sum_in),
-			model_y_inter = (sum_out - slope * sum_in) / SIZE;
-
-		std::cout
-			<< "Aproximation:\n"
-			<< "\tSlope = " << model_slope << '\n'
-			<< "\tY-Inter = " << model_y_inter << '\n';
-		
-		type_t model[SIZE];
+		model_amplitude = (SIZE * sum_in_out - sum_in * sum_out) / (SIZE * sum_in_sq - pix::math::pow(sum_in, 2));
+		model_y_inter = (sum_out - model_amplitude * sum_in) / SIZE;
+		model_phase = 0;
 
 		for (unsigned long i = 0; i < SIZE; ++i)
-			model[i] = model_slope * model_function(input[i]) + model_y_inter;
+			model_phase += function_model_inv((output[i] - y_inter) / amplitude);
 
-		std::cout << "\tR^2 = " << pix::math::stat::coeff_det(output, model, SIZE) << '\n';
-		file.open("files/aprox.txt");
+		model_phase = (model_phase - sum_in) / SIZE;
+
+		for (unsigned long i = 0; i < SIZE; ++i)
+			model[i] = model_amplitude * function_model(input[i] - model_phase) + model_y_inter;
+
+		file.open("files/model.txt");
 
 		for (unsigned long i = 0; i < SIZE; ++i)
 			file << input[i] << ' ' << model[i] << '\n';
 
 		file.close();
-		type_t derivative[SIZE - 1];
-
-		for (unsigned long i = 0; i < SIZE - 1; ++i)
-			derivative[i] = (model[i + 1] - model[i]) / (input[i + 1] - input[i]);
-
-		file.open("files/derivative.txt");
-
-		for (unsigned long i = 0; i < SIZE - 1; ++i)
-			file << input[i] << ' ' << derivative[i] << '\n';
-
-		file.close();
-		std::system("gnuplot scripts/plot.gp");
 	}
-	catch (const char ex_msg[])
-	{ std::cout << "Exception: " << ex_msg << '\n'; }
+
+	std::system("gnuplot scripts/plot.gp");
+
+	std::cout
+		<< "Parameters:" << '\n'
+		<< '\t' << "Size = " << SIZE << '\n'
+		<< '\t' << "Input min = " << INPUT_MIN << '\n'
+		<< '\t' << "Input max = " << INPUT_MAX << '\n'
+		<< '\t' << "Error = " << ERROR << "\n\n"
+		<< "Dataset:" << '\n'
+		<< '\t' << "Amplitude = " << amplitude << '\n'
+		<< '\t' << "Y-Inter = " << y_inter << "\n\n"
+		<< "Model:" << '\n'
+		<< '\t' << "Amplitude = " << model_amplitude << '\n'
+		<< '\t' << "Y-Inter = " << model_y_inter << '\n'
+		<< '\t' << "Phase = " << model_phase << '\n'
+		<< '\t' << "R^2 = " << pix::math::stat::coeff_det(output, model, SIZE) << '\n';
 
 	return EXIT_SUCCESS;
-}
-
-type_t function(const type_t x)
-{
-	type_t ret;
-
-	try
-	{
-		ret = pix::math::trig::sin(x);
-	}
-	catch (const char ex_msg[])
-	{
-		std::cout
-			<< "Exception: " << ex_msg << '\n'
-			<< "Input = " << x << '\n';
-	}
-
-	return ret;
-}
-
-type_t model_function(const type_t x)
-{
-	type_t ret;
-
-	try
-	{
-		ret = pix::math::trig::cos(x - 0.5 * pix::constants::mathematics::PI);
-	}
-	catch (const char ex_msg[])
-	{
-		std::cout
-			<< "Exception: " << ex_msg << '\n'
-			<< "Input = " << x << '\n';
-	}
-
-	return ret;
 }
