@@ -65,10 +65,13 @@ namespace pix::math::trig
 	long double cot(const long double arg) noexcept(true)
 	{ return trig::cos(arg) / trig::sin(arg); }
 
-	long double arcsin(long double arg) noexcept(true)
+	long double arcsin(long double arg) noexcept(false)
 	{
+		if (arg < 1 || arg > 1)
+			throw "Argument is out of bounds";
+		
 		const bool is_arg_neg = arg < 0;
-		arg = f_mod(math::abs(arg), static_cast<long double>(2)) - 1;
+		arg = math::abs(arg);
 
 		long double
 			term = arg,
@@ -92,7 +95,7 @@ namespace pix::math::trig
 		return result;
 	}
 	
-	long double arccos(const long double arg) noexcept(true)
+	long double arccos(const long double arg) noexcept(false)
 	{ return 0.5 * constants::mathematics::PI - trig::arcsin(arg); }
 	
 	long double arctan(long double arg) noexcept(true)
