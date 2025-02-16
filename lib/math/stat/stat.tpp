@@ -4,6 +4,72 @@
 namespace pix::math::stat
 {
 	template <typename type_t>
+	type_t min(const type_t arr[], const unsigned long dim) noexcept(false)
+	{
+		is_number_static_assert(type_t);
+
+		if (arr == nullptr)
+			throw "Pointer to array is null";
+
+		if (dim <= 1)
+			throw "Dimension is null";
+
+		type_t min = arr[0];
+
+		for (unsigned long i = 1; i < dim; ++i)
+		{
+			if (arr[i] < min)
+				min = arr[i];
+		}
+
+		return min;
+	}
+	
+	template <typename type_t>
+	type_t max(const type_t arr[], const unsigned long dim) noexcept(false)
+	{
+		is_number_static_assert(type_t);
+
+		if (arr == nullptr)
+			throw "Pointer to array is null";
+
+		if (dim <= 1)
+			throw "Dimension is null";
+
+		type_t max = arr[0];
+
+		for (unsigned long i = 1; i < dim; ++i)
+		{
+			if (arr[i] > max)
+				max = arr[i];
+		}
+
+		return max;
+	}
+
+	template <typename type_t>
+	type_t amp(const type_t arr[], const unsigned long dim) noexcept(false)
+	{
+		is_number_static_assert(type_t);
+
+		if (arr == nullptr)
+			throw "Pointer to array is null";
+
+		if (dim <= 1)
+			throw "Dimension is null";
+
+		return abs(max(arr, dim) - min(arr, dim));
+	}
+
+	template <typename type_t>
+	type_t abs_err(const type_t value_exact, const type_t value_approx) noexcept(true)
+	{ return abs(value_exact - value_approx); }
+
+	template <typename type_t>
+	type_t rel_err(const type_t value_exact, const type_t value_approx) noexcept(true)
+	{ return abs_err(value_exact, value_approx) / value_exact; }
+
+	template <typename type_t>
 	type_t sum(const type_t arr[], const unsigned long dim) noexcept(false)
 	{
 		is_number_static_assert(type_t);
@@ -78,7 +144,7 @@ namespace pix::math::stat
 	{ return math::root(stat::var(arr, dim), 2); }
 
 	template <typename type_t>
-	type_t cov(const type_t input[], const type_t output[], const unsigned long dim) noexcept(false)
+	type_t covar(const type_t input[], const type_t output[], const unsigned long dim) noexcept(false)
 	{
 		is_number_static_assert(type_t);
 

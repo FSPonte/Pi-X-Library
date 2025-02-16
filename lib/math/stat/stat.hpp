@@ -4,6 +4,62 @@
 namespace pix::math::stat
 {
 	/**
+	 * @brief Get minimum
+	 * @tparam type_t Data type
+	 * @param arr Array of elements
+	 * @param dim Number of elements
+	 * @return Minimum value
+	 * @throw Pointer to array is null
+	 * @throw Dimension is null
+	*/
+	template <typename type_t>
+	type_t min(const type_t[], unsigned long) noexcept(false);
+
+	/**
+	 * @brief Get maximum
+	 * @tparam type_t Data type
+	 * @param arr Array of elements
+	 * @param dim Number of elements
+	 * @return Maximum value
+	 * @throw Pointer to array is null
+	 * @throw Dimension is null
+	*/
+	template <typename type_t>
+	type_t max(const type_t[], unsigned long) noexcept(false);
+
+	/**
+	 * @brief Calculate the amplitude
+	 * @tparam type_t Data type
+	 * @param arr Array of elements
+	 * @param dim Number of elements
+	 * @return Difference between maximum and minimum values
+	 * @throw Pointer to array is null
+	 * @throw Dimension is null
+	*/
+	template <typename type_t>
+	type_t amp(const type_t[], unsigned long) noexcept(false);
+
+	/**
+	 * @brief Absolute error
+	 * @tparam type_t Data type
+	 * @param ex Exact value
+	 * @param aprox Approximate value
+	 * @return Absolute error
+	*/
+	template <typename type_t>
+	type_t abs_err(type_t, type_t) noexcept(true);
+
+	/**
+	 * @brief Relative error
+	 * @tparam type_t Data type
+	 * @param ex Exact value
+	 * @param aprox Approximate value
+	 * @return Relative error
+	*/
+	template <typename type_t>
+	type_t rel_err(type_t, type_t) noexcept(true);
+
+	/**
 	 * @brief Sum of array
 	 * @tparam type_t Data type
 	 * @param arr Array of elements
@@ -74,7 +130,7 @@ namespace pix::math::stat
 	 * @throw Dimension is null
 	*/
 	template <typename type_t>
-	type_t cov(const type_t[], const type_t[], unsigned long) noexcept(false);
+	type_t covar(const type_t[], const type_t[], unsigned long) noexcept(false);
 
 	/**
 	 * @brief Coefficient of determination
