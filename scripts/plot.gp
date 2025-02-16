@@ -5,4 +5,4 @@ set grid
 set key outside bottom center horizontal
 set terminal png
 set output "files/data.png"
-plot "files/dataset.txt" title "Dataset", "files/model.txt" with lines title "Model" lw 3 lc rgb "black"
+plot "files/dataset.txt" title "Dataset", "files/model.txt" title "Model" with lines lw 3 lc rgb "black"
