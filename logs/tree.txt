@@ -4,8 +4,9 @@
 ├── README.md
 ├── files
 │   ├── aprox.txt
-│   ├── data.png
-│   └── data.txt
+│   ├── data.txt
+│   ├── der.txt
+│   └── plot.png
 ├── include
 │   ├── constants.hpp
 │   ├── macros.hpp
@@ -83,9 +84,6 @@
 │   ├── memory
 │   │   ├── memory.hpp
 │   │   └── mmap.tpp
-│   ├── number
-│   │   ├── number.hpp
-│   │   └── number.tpp
 │   ├── random
 │   │   ├── rand.hpp
 │   │   └── rand.tpp
@@ -118,4 +116,4 @@
     ├── utils.hpp
     └── utils.tpp
 
-39 directories, 79 files
+38 directories, 78 files
