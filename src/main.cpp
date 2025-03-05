@@ -9,8 +9,9 @@
 // Pi-X library
 #include <pix_lib.hpp>
 
-#define LEARN_RATE 1E-6
+#define MAX_ITER 1E3
 #define THRESHOLD 1E-1
+#define LEARN_RATE 1E-6
 
 using type_t = long double;
 
@@ -45,9 +46,9 @@ int main(int argc, char* argv[])
 			<< "\tSize = " << SIZE << '\n'
 			<< "\tRange = [" << INPUT_MIN << ", " << INPUT_MAX << "]\n"
 			<< "\tError = " << ERROR << '\n'
-			<< "\tMAX_ITER = " << pix::math::MAX_ITER << '\n'
-			<< "\tLearning rate = " << LEARN_RATE << '\n'
-			<< "\tThreshold = " << THRESHOLD << "\n\n";
+			<< "\tMAX_ITER = " << MAX_ITER << '\n'
+			<< "\tThreshold = " << THRESHOLD << '\n'
+			<< "\tLearning rate = " << LEARN_RATE << "\n\n";
 	}
 
 	unsigned long iter = 0;
@@ -160,7 +161,7 @@ int main(int argc, char* argv[])
 			type_t coeff = 2.0 / SIZE;
 			container sum, grad;
 
-			for (iter; iter < pix::math::MAX_ITER; ++iter)
+			for (iter; iter < MAX_ITER; ++iter)
 			{
 				sum.amp = 0;
 				sum.offset = 0;
@@ -197,7 +198,7 @@ int main(int argc, char* argv[])
 				{
 					std::cout
 						<< "> Progress... "
-						<< 100.0 * iter / pix::math::MAX_ITER << " %"
+						<< 100.0 * iter / MAX_ITER << " %"
 						<< " | R^2 = " << coeff_det
 						<< "                    \r"
 						<< std::flush;
@@ -217,7 +218,7 @@ int main(int argc, char* argv[])
 				<< "\t\tFreq = " << model.freq << '\n'
 				<< "\t\tPhase = " << model.phase<< "\n\n"
 				<< "Number of iterations: " << iter << '\n'
-				<< "R^2 = " << coeff_det << '\n';
+				<< "R^2 = " << coeff_det << "\n\n";
 		}
 
 		// Write aprox.txt
