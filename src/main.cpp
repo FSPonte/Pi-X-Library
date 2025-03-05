@@ -9,15 +9,15 @@
 // Pi-X library
 #include <pix_lib.hpp>
 
-#define MAX_ITER 1E3
-#define THRESHOLD 1E-1
+#define MAX_ITER 1E6
+#define THRESHOLD 1E-3
 #define LEARN_RATE 1E-6
 
 using type_t = long double;
 
 constexpr const unsigned long SIZE = 1E3;
 constexpr const type_t
-	INPUT_MIN = -2 * pix::constants::mathematics::PI,
+	INPUT_MIN = - 2 * pix::constants::mathematics::PI,
 	INPUT_MAX = 2 * pix::constants::mathematics::PI,
 	ERROR_MAX = 1;
 const type_t ERROR = pix::random::drand(0, ERROR_MAX);
