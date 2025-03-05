@@ -4,15 +4,12 @@
 // Dependencies
 #include <sys_vars.hpp>
 
-constexpr static const char
-	SEED_BYTE = '\0',
-	MULT_BYTE = '\0',
-	INC_BYTE = '\0';
+constexpr static const char SEED_BYTE = '\0';
 
 static const unsigned long
 	SEED = reinterpret_cast<unsigned long>(&SEED_BYTE), // Initial value
-	MULT = reinterpret_cast<unsigned long>(&MULT_BYTE), // Multiplier
-	INC = reinterpret_cast<unsigned long>(&INC_BYTE); // Increment
+	MULT = reinterpret_cast<unsigned long>(&SEED_BYTE + 1), // Multiplier
+	INC = reinterpret_cast<unsigned long>(&SEED_BYTE - 1); // Increment
 
 namespace pix::random
 {
@@ -27,8 +24,11 @@ namespace pix::random
 
 	long rand(const long min, const long max) noexcept(false)
 	{
-		if (min >= max)
-			throw "Invalid minimum and maximum values (min >= max)";
+		if (min > max)
+			throw "Invalid minimum and maximum values (min > max)";
+		
+		if (min == max)
+			return min;
 
 		return rand() % (max - min) + min;
 	}
@@ -38,8 +38,11 @@ namespace pix::random
 
 	long double drand(const long double min, const long double max) noexcept(false)
 	{
-		if (min >= max)
-			throw "Invalid minimum and maximum values (min >= max)";
+		if (min > max)
+			throw "Invalid minimum and maximum values (min > max)";
+
+		if (min == max)
+			return min;
 
 		return (max - min) * drand() + min;
 	}
