@@ -9,123 +9,260 @@
 // Pi-X library
 #include <pix_lib.hpp>
 
-#define function_dataset(arg) pix::math::trig::cos(arg)
-#define function_model(arg) pix::math::trig::sin(arg)
-#define function_model_inv(arg) pix::math::trig::arcsin(arg)
+#define LEARN_RATE 1E-6
+#define THRESHOLD 1E-1
 
 using type_t = long double;
 
+constexpr const unsigned long SIZE = 1E3;
+constexpr const type_t
+	INPUT_MIN = -2 * pix::constants::mathematics::PI,
+	INPUT_MAX = 2 * pix::constants::mathematics::PI,
+	ERROR_MAX = 1;
+const type_t ERROR = pix::random::drand(0, ERROR_MAX);
+
+struct container
+{
+	type_t
+		amp, // Amplitude
+		offset, // Y Intercept
+		freq, // Frequency
+		phase; // Phase shift
+};
+
+type_t function(container, type_t);
+type_t function_der_amp(container, type_t);
+type_t function_der_offset(container, type_t);
+type_t function_der_freq(container, type_t);
+type_t function_der_phase(container, type_t);
+
 int main(int argc, char* argv[])
 {
-	/*
-	utils::clear();
-	utils::parse(argc, argv);
-	utils::pause();
-	utils::clear();
-
-	for (unsigned long i = 1; i < argc; ++i)
+	// Log parameters
 	{
-		std::cout << "File: " << argv[i] << "\n\n";
-
-		utils::print_file(argv[i]);
-		utils::pause();
-		utils::clear();
-
-		std::cout << "File: " << argv[i] << "\n\n";
-
-		utils::print_file_hex(argv[i]);
-		utils::pause();
-		utils::clear();
+		std::cout
+			<< "Parameters:\n"
+			<< "\tSize = " << SIZE << '\n'
+			<< "\tRange = [" << INPUT_MIN << ", " << INPUT_MAX << "]\n"
+			<< "\tError = " << ERROR << '\n'
+			<< "\tMAX_ITER = " << pix::math::MAX_ITER << '\n'
+			<< "\tLearning rate = " << LEARN_RATE << '\n'
+			<< "\tThreshold = " << THRESHOLD << "\n\n";
 	}
-	*/
 
-	constexpr const unsigned long SIZE = 1E3;
-	constexpr const type_t
-		INPUT_MIN = 1,
-		INPUT_MAX = 10;
-	const type_t
-		amplitude = pix::random::drand(-5, 5),
-		y_inter = pix::random::drand(-3, 3),
-		ERROR = pix::random::drand(0, 0.75);
+	unsigned long iter = 0;
 	type_t
 		input[SIZE],
 		output[SIZE],
-		model[SIZE],
-		model_amplitude,
-		model_y_inter,
-		model_phase;
+		aprox[SIZE],
+		derivative[SIZE - 1];
+	container
+		dataset,
+		model;
 	std::ofstream file;
 
 	// Manage dataset
 	{
-		for (unsigned long i = 0; i < SIZE; ++i)
-			input[i] = pix::random::drand(INPUT_MIN, INPUT_MAX);
+		// Initial values
+		{
+			dataset = container
+			{
+				pix::random::drand(0, 10),
+				pix::random::drand(-5, 5),
+				pix::random::drand(0, 5),
+				pix::random::drand(- pix::constants::mathematics::PI, pix::constants::mathematics::PI)
+			};
+		}
 
-		pix::sort::quick_sort(input, SIZE);
+		// Log dataset
+		{
+			std::cout
+				<< "Dataset:\n"
+				<< "\tAmp = " << dataset.amp << '\n'
+				<< "\tOffset = " << dataset.offset << '\n'
+				<< "\tFreq = " << dataset.freq << '\n'
+				<< "\tPhase = " << dataset.phase << "\n\n";
+		}
 
-		for (unsigned long i = 0; i < SIZE; ++i)
-			output[i] = (amplitude * function_dataset(input[i]) + y_inter) * (1 + pix::random::drand(-ERROR, ERROR));
+		// Create dataset
+		{
+			for (unsigned long i = 0; i < SIZE; ++i)
+				input[i] = pix::random::drand(INPUT_MIN, INPUT_MAX);
 
-		file.open("files/dataset.txt");
+			pix::sort::quick_sort(input, SIZE);
 
-		for (unsigned long i = 0; i < SIZE; ++i)
-			file << input[i] << ' ' << output[i] << '\n';
+			for (unsigned long i = 0; i < SIZE; ++i)
+			{
+				output[i] = function(dataset, input[i]);
+				output[i] += pix::random::drand(-ERROR, ERROR);
+			}
+		}
 
-		file.close();
+		// Write data.txt
+		{
+			file.open("files/data.txt");
+
+			for (unsigned long i = 0; i < SIZE; ++i)
+				file << input[i] << ' ' << output[i] << '\n';
+
+			file.close();
+		}
 	}
 
 	// Manage model
 	{
-		type_t
-			sum_in = 0,
-			sum_out = 0,
-			sum_in_out = 0,
-			sum_in_sq = 0;
+		std::cout << "Model:" << '\n';
 
-		for (unsigned long i = 0; i < SIZE; ++i)
+		type_t coeff_det; // Coefficient of determination (R^2)
+
+		// Initial values
 		{
-			sum_in += function_dataset(input[i]);
-			sum_out += output[i];
-			sum_in_out += function_dataset(input[i]) * output[i];
-			sum_in_sq += pix::math::pow(function_dataset(input[i]), 2);
+			type_t
+				min_val = output[0], // Minimum value
+				max_val = output[0], // Maximum value
+				sum = output[0], // Sum of all elements
+				num_zeros = 0; // Number of zero crossings
+
+			for (unsigned long i = 1; i < SIZE; ++i)
+			{
+				if (output[i] < min_val)
+					min_val = output[i];
+
+				if (output[i] > max_val)
+					max_val = output[i];
+
+				sum += output[i];
+			}
+
+			model = container
+			{
+				0.5 * (max_val - min_val),
+				sum / SIZE,
+				1,
+				0
+			};
+
+			// Log
+			{
+				std::cout
+					<< '\t' << "Initial values:" << '\n'
+					<< "\t\t" << "Amp = " << model.amp << '\n'
+					<< "\t\t" << "Offset = " << model.offset << '\n'
+					<< "\t\t" << "Freq = " << model.freq << '\n'
+					<< "\t\t" << "Phase = " << model.phase << "\n\n";
+			}
 		}
 
-		model_amplitude = (SIZE * sum_in_out - sum_in * sum_out) / (SIZE * sum_in_sq - pix::math::pow(sum_in, 2));
-		model_y_inter = (sum_out - model_amplitude * sum_in) / SIZE;
-		model_phase = 0;
+		// Training
+		{
+			std::cout << std::setprecision(3) << std::fixed;
 
-		for (unsigned long i = 0; i < SIZE; ++i)
-			model_phase += function_model_inv((output[i] - y_inter) / amplitude);
+			type_t coeff = 2.0 / SIZE;
+			container sum, grad;
 
-		model_phase = (model_phase - sum_in) / SIZE;
+			for (iter; iter < pix::math::MAX_ITER; ++iter)
+			{
+				sum.amp = 0;
+				sum.offset = 0;
+				sum.freq = 0;
+				sum.phase = 0;
 
-		for (unsigned long i = 0; i < SIZE; ++i)
-			model[i] = model_amplitude * function_model(input[i] - model_phase) + model_y_inter;
+				for (unsigned long i = 0; i < SIZE; ++i)
+				{
+					sum.amp += (function(model, input[i]) - output[i]) * function_der_amp(model, input[i]);
+					sum.offset += (function(model, input[i]) - output[i]) * function_der_offset(model, input[i]);
+					sum.freq += (function(model, input[i]) - output[i]) * function_der_freq(model, input[i]);
+					sum.phase += (function(model, input[i]) - output[i]) * function_der_phase(model, input[i]);
+				}
 
-		file.open("files/model.txt");
+				grad.amp = coeff * sum.amp;
+				grad.offset = coeff * sum.offset;
+				grad.freq = coeff * sum.freq;
+				grad.phase = coeff * sum.phase;
 
-		for (unsigned long i = 0; i < SIZE; ++i)
-			file << input[i] << ' ' << model[i] << '\n';
+				if (grad.amp < THRESHOLD && grad.offset < THRESHOLD && grad.freq < THRESHOLD && grad.phase < THRESHOLD)
+					break;
 
-		file.close();
+				model.amp -= LEARN_RATE * grad.amp;
+				model.offset -= LEARN_RATE * grad.offset;
+				model.freq -= LEARN_RATE * grad.freq;
+				model.phase -= LEARN_RATE * grad.phase;
+
+				for (unsigned long i = 0; i < SIZE; ++i)
+					aprox[i] = function(model, input[i]);
+
+				coeff_det = pix::math::stat::coeff_det(output, aprox, SIZE);
+
+				// Log
+				{
+					std::cout
+						<< "> Progress... "
+						<< 100.0 * iter / pix::math::MAX_ITER << " %"
+						<< " | R^2 = " << coeff_det
+						<< "                    \r"
+						<< std::flush;
+				}
+			}
+
+			std::cout << "\r                                                  \r" << std::flush;
+			std::cout.precision();
+		}
+
+		// Log model
+		{
+			std::cout
+				<< "\tModel:\n"
+				<< "\t\tAmp = " << model.amp << '\n'
+				<< "\t\tOffset = " << model.offset << '\n'
+				<< "\t\tFreq = " << model.freq << '\n'
+				<< "\t\tPhase = " << model.phase<< "\n\n"
+				<< "Number of iterations: " << iter << '\n'
+				<< "R^2 = " << coeff_det << '\n';
+		}
+
+		// Write aprox.txt
+		{
+			file.open("files/aprox.txt");
+
+			for (unsigned long i = 0; i < SIZE; ++i)
+				file << input[i] << ' ' << aprox[i] << '\n';
+
+			file.close();
+		}
+
+		// Calculate derivative
+		{
+			for (unsigned long i = 0; i < SIZE - 1; ++i)
+				derivative[i] = (aprox[i + 1] - aprox[i]) / (input[i + 1] - input[i]);
+		}
+
+		// Write der.txt
+		{
+			file.open("files/der.txt");
+
+			for (unsigned long i = 0; i < SIZE - 1; ++i)
+				file << input[i] << ' ' << derivative[i] << '\n';
+
+			file.close();
+		}
 	}
 
 	std::system("gnuplot scripts/plot.gp");
 
-	std::cout
-		<< "Parameters:" << '\n'
-		<< '\t' << "Size = " << SIZE << '\n'
-		<< '\t' << "Input min = " << INPUT_MIN << '\n'
-		<< '\t' << "Input max = " << INPUT_MAX << '\n'
-		<< '\t' << "Error = " << ERROR << "\n\n"
-		<< "Dataset:" << '\n'
-		<< '\t' << "Amplitude = " << amplitude << '\n'
-		<< '\t' << "Y-Inter = " << y_inter << "\n\n"
-		<< "Model:" << '\n'
-		<< '\t' << "Amplitude = " << model_amplitude << '\n'
-		<< '\t' << "Y-Inter = " << model_y_inter << '\n'
-		<< '\t' << "Phase = " << model_phase << '\n'
-		<< '\t' << "R^2 = " << pix::math::stat::coeff_det(output, model, SIZE) << '\n';
-
 	return EXIT_SUCCESS;
 }
+
+type_t function(const container params, const type_t input)
+{ return params.amp * pix::math::trig::sin(params.freq * input + params.phase) + params.offset; }
+
+type_t function_der_amp(const container params, const type_t input)
+{ return pix::math::trig::sin(params.freq * input + params.phase); }
+
+type_t function_der_offset(const container params, const type_t input)
+{ return 1; }
+
+type_t function_der_freq(const container params, const type_t input)
+{ return params.amp * pix::math::trig::cos(params.freq * input + params.phase) * input; }
+
+type_t function_der_phase(const container params, const type_t input)
+{ return params.amp * pix::math::trig::cos(params.freq * input + params.phase); }
