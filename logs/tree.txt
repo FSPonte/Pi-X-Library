@@ -3,9 +3,9 @@
 ├── LICENSE
 ├── README.md
 ├── files
-│   ├── aprox.txt
-│   ├── data.txt
-│   ├── der.txt
+│   ├── dataset.txt
+│   ├── fourier.png
+│   ├── fourier.txt
 │   └── plot.png
 ├── include
 │   ├── constants.hpp
