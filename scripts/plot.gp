@@ -6,7 +6,7 @@ set output "files/plot.png"
 set title "Data Visualization"
 set xlabel "time"
 set ylabel "amplitude"
-plot "files/dataset.txt" title "Dataset" with lines lw 3
+plot "files/dataset.txt" title "Dataset"
 
 set output "files/fourier.png"
 set title "Fourier Transform"
