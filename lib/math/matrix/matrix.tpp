@@ -1,6 +1,9 @@
 #ifndef _MATRIX_TPP_
 #define _MATRIX_TPP_
 
+// Dependencies
+#include <type_info.hpp>
+
 namespace pix::math
 {
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
@@ -40,11 +43,15 @@ namespace pix::math
 
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
 	matrix<type_t, N_LIN, N_COL>::matrix(const matrix<type_t, N_LIN, N_COL>& mtx) : matrix<type_t, N_LIN, N_COL>()
-	{ *this = mtx; }
+	{
+		*this = mtx;
+	}
 
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
 	const vector<type_t, N_COL>* matrix<type_t, N_LIN, N_COL>::buffer(void) const
-	{ return this->_data; }
+	{
+		return this->_data;
+	}
 
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
 	vector<type_t, N_COL>& matrix<type_t, N_LIN, N_COL>::operator [] (const unsigned long index) noexcept(false)
@@ -57,11 +64,15 @@ namespace pix::math
 
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
 	constexpr const unsigned long matrix<type_t, N_LIN, N_COL>::n_lin(void) const
-	{ return N_LIN; }
+	{
+		return N_LIN;
+	}
 
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
 	constexpr const unsigned long matrix<type_t, N_LIN, N_COL>::n_col(void) const
-	{ return N_COL; }
+	{
+		return N_COL;
+	}
 
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
 	const bool matrix<type_t, N_LIN, N_COL>::is_upper(void) const
@@ -162,16 +173,22 @@ namespace pix::math
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
 	template <typename _type_t, unsigned long _N_LIN, unsigned long _N_COL>
 	constexpr const bool matrix<type_t, N_LIN, N_COL>::operator == (const matrix<_type_t, _N_LIN, _N_COL>& mtx) const
-	{ return false; }
+	{
+		return false;
+	}
 
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
 	const bool matrix<type_t, N_LIN, N_COL>::operator != (const matrix<type_t, N_LIN, N_COL>& mtx) const
-	{ return !(*this == mtx); }
+	{
+		return !(*this == mtx);
+	}
 
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
 	template <typename _type_t, unsigned long _N_LIN, unsigned long _N_COL>
 	constexpr const bool matrix<type_t, N_LIN, N_COL>::operator != (const matrix<_type_t, _N_LIN, _N_COL>& mtx) const
-	{ return true; }
+	{
+		return true;
+	}
 
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
 	matrix<type_t, N_LIN, N_COL> matrix<type_t, N_LIN, N_COL>::operator + (const matrix<type_t, N_LIN, N_COL>& mtx) const

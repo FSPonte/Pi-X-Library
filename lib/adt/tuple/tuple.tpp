@@ -30,7 +30,9 @@ namespace pix::adt
 
 	template <typename type_t, unsigned long DIM>
 	void tuple<type_t, DIM>::assign(type_t element)
-	{ this->_data[this->_index] = element; }
+	{
+		this->_data[this->_index] = element;
+	}
 
 	template <typename type_t, unsigned long DIM>
 	template <typename... args_t>

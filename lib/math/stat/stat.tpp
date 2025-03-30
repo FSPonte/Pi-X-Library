@@ -1,6 +1,9 @@
 #ifndef _STAT_TPP_
 #define _STAT_TPP_
 
+// Dependencies
+#include <type_info.hpp>
+
 namespace pix::math::stat
 {
 	template <typename type_t>
@@ -63,11 +66,15 @@ namespace pix::math::stat
 
 	template <typename type_t>
 	type_t abs_err(const type_t value_exact, const type_t value_approx) noexcept(true)
-	{ return abs(value_exact - value_approx); }
+	{
+		return abs(value_exact - value_approx);
+	}
 
 	template <typename type_t>
 	type_t rel_err(const type_t value_exact, const type_t value_approx) noexcept(true)
-	{ return abs_err(value_exact, value_approx) / value_exact; }
+	{
+		return abs_err(value_exact, value_approx) / value_exact;
+	}
 
 	template <typename type_t>
 	type_t sum(const type_t arr[], const unsigned long dim) noexcept(false)
@@ -141,7 +148,9 @@ namespace pix::math::stat
 
 	template <typename type_t>
 	type_t std_dev(const type_t arr[], const unsigned long dim) noexcept(false)
-	{ return math::root(stat::var(arr, dim), 2); }
+	{
+		return math::root(stat::var(arr, dim), 2);
+	}
 
 	template <typename type_t>
 	type_t covar(const type_t input[], const type_t output[], const unsigned long dim) noexcept(false)

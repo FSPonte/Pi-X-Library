@@ -1,6 +1,9 @@
 #ifndef _TRIG_TPP_
 #define _TRIG_TPP_
 
+// Dependencies
+#include <type_info.hpp>
+
 namespace pix::math::trig
 {
 	long double sin(long double arg) noexcept(true)
@@ -54,16 +57,24 @@ namespace pix::math::trig
 	}
 
 	long double tan(const long double arg) noexcept(true)
-	{ return trig::sin(arg) / trig::cos(arg); }
+	{
+		return trig::sin(arg) / trig::cos(arg);
+	}
 
 	long double sec(const long double arg) noexcept(true)
-	{ return 1 / trig::cos(arg); }
+	{
+		return 1 / trig::cos(arg);
+	}
 
 	long double csc(const long double arg) noexcept(true)
-	{ return 1 / trig::sin(arg); }
+	{
+		return 1 / trig::sin(arg);
+	}
 
 	long double cot(const long double arg) noexcept(true)
-	{ return trig::cos(arg) / trig::sin(arg); }
+	{
+		return trig::cos(arg) / trig::sin(arg);
+	}
 
 	long double arcsin(long double arg) noexcept(false)
 	{
@@ -101,7 +112,9 @@ namespace pix::math::trig
 	}
 	
 	long double arccos(const long double arg) noexcept(false)
-	{ return 0.5 * constants::mathematics::PI - trig::arcsin(arg); }
+	{
+		return 0.5 * constants::mathematics::PI - trig::arcsin(arg);
+	}
 	
 	long double arctan(long double arg) noexcept(true)
 	{

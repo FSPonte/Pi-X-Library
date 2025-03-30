@@ -18,15 +18,21 @@ namespace pix::adt
 
 	template <unsigned long MAX_LENGTH>
 	string<MAX_LENGTH>::string(const char c_str[]) noexcept(false) : string<MAX_LENGTH>::string()
-	{ *this = c_str; }
+	{
+		*this = c_str;
+	}
 
 	template <unsigned long MAX_LENGTH>
 	string<MAX_LENGTH>::string(const string<MAX_LENGTH>& str) noexcept(false)
-	{ *this = str.data(); }
+	{
+		*this = str.data();
+	}
 
 	template <unsigned long MAX_LENGTH>
 	const char* string<MAX_LENGTH>::data(void) const
-	{ return this->_data; }
+	{
+		return this->_data;
+	}
 
 	template <unsigned long MAX_LENGTH>
 	char string<MAX_LENGTH>::operator [] (const unsigned long index) noexcept(false)
@@ -39,11 +45,15 @@ namespace pix::adt
 
 	template <unsigned long MAX_LENGTH>
 	const unsigned long string<MAX_LENGTH>::length(void) const
-	{ return this->_length; }
+	{
+		return this->_length;
+	}
 
 	template <unsigned long MAX_LENGTH>
 	constexpr const unsigned long string<MAX_LENGTH>::max_length(void) const
-	{ return MAX_LENGTH; }
+	{
+		return MAX_LENGTH;
+	}
 
 	template <unsigned long MAX_LENGTH>
 	void string<MAX_LENGTH>::operator = (const char c_str[]) noexcept(false)
@@ -64,7 +74,9 @@ namespace pix::adt
 
 	template <unsigned long MAX_LENGTH>
 	void string<MAX_LENGTH>::operator = (const string<MAX_LENGTH>& str) noexcept(false)
-	{ *this = str.data(); }
+	{
+		*this = str.data();
+	}
 
 	template <unsigned long MAX_LENGTH>
 	void string<MAX_LENGTH>::operator += (const char c_str[]) noexcept(false)
@@ -85,7 +97,9 @@ namespace pix::adt
 
 	template <unsigned long MAX_LENGTH>
 	void string<MAX_LENGTH>::operator += (const string<MAX_LENGTH>& str) noexcept(false)
-	{ *this += str.data(); }
+	{
+		*this += str.data();
+	}
 
 	template <unsigned long MAX_LENGTH>
 	const bool string<MAX_LENGTH>::operator == (const char c_str[]) const noexcept(false)
@@ -104,19 +118,27 @@ namespace pix::adt
 
 	template <unsigned long MAX_LENGTH>
 	const bool string<MAX_LENGTH>::operator == (const string<MAX_LENGTH>& str) const noexcept(false)
-	{ return *this == str.data(); }
+	{
+		return *this == str.data();
+	}
 
 	template <unsigned long MAX_LENGTH>
 	const bool string<MAX_LENGTH>::operator != (const char c_str[]) const noexcept(false)
-	{ return !(*this == c_str); }
+	{
+		return !(*this == c_str);
+	}
 
 	template <unsigned long MAX_LENGTH>
 	const bool string<MAX_LENGTH>::operator != (const string<MAX_LENGTH>& str) const noexcept(false)
-	{ return !(*this == str.data()); }
+	{
+		return !(*this == str.data());
+	}
 
 	template <unsigned long MAX_LENGTH>
 	string<MAX_LENGTH>::operator const char*() const
-	{ return this->_data; }
+	{
+		return this->_data;
+	}
 }
 
 #endif // _STRING_TPP_

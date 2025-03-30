@@ -47,19 +47,27 @@ namespace pix::adt
 
 	template <typename type_t, unsigned long MAX_SIZE>
 	const unsigned long stack<type_t, MAX_SIZE>::size(void) const
-	{ return this->_index; }
+	{
+		return this->_index;
+	}
 
 	template <typename type_t, unsigned long MAX_SIZE>
 	constexpr const unsigned long stack<type_t, MAX_SIZE>::max_size(void) const
-	{ return MAX_SIZE; }
+	{
+		return MAX_SIZE;
+	}
 
 	template <typename type_t, unsigned long MAX_SIZE>
 	const bool stack<type_t, MAX_SIZE>::is_empty(void) const
-	{ return this->_index == 0; }
+	{
+		return this->_index == 0;
+	}
 
 	template <typename type_t, unsigned long MAX_SIZE>
 	const bool stack<type_t, MAX_SIZE>::is_full(void) const
-	{ return this->_index == MAX_SIZE; }
+	{
+		return this->_index == MAX_SIZE;
+	}
 }
 
 #endif // _STACK_TPP_

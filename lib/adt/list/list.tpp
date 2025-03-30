@@ -12,7 +12,9 @@ namespace pix::adt
 
 	template <typename type_t>
 	list<type_t>::~list(void)
-	{ delete this->_head; }
+	{
+		delete this->_head;
+	}
 
 	template <typename type_t>
 	void list<type_t>::append(type_t element)
@@ -85,7 +87,9 @@ namespace pix::adt
 
 	template <typename type_t>
 	const unsigned long list<type_t>::size(void) const
-	{ return this->_size; }
+	{
+		return this->_size;
+	}
 }
 
 #endif // _LIST_TPP_

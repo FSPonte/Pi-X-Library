@@ -31,11 +31,15 @@ namespace pix::adt
 
 	template <typename type_t>
 	void node<type_t>::set_value(type_t* value)
-	{ this->_value = value; }
+	{
+		this->_value = value;
+	}
 
 	template <typename type_t>
 	type_t* node<type_t>::get_value(void) const
-	{ return this->_value; }
+	{
+		return this->_value;
+	}
 
 	template <typename type_t>
 	void node<type_t>::append(node<type_t>* edge)
@@ -111,7 +115,9 @@ namespace pix::adt
 
 	template <typename type_t>
 	const unsigned long node<type_t>::size(void) const
-	{ return this->_size; }
+	{
+		return this->_size;
+	}
 }
 
 #endif // _NODE_TPP_

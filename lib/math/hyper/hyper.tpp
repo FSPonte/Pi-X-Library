@@ -1,6 +1,9 @@
 #ifndef _HYPER_TPP_
 #define _HYPER_TPP_
 
+// Dependencies
+#include <type_info.hpp>
+
 namespace pix::math::hyper
 {
 	long double sinh(long double arg) noexcept(true)
@@ -46,16 +49,24 @@ namespace pix::math::hyper
 	}
 
 	long double tanh(const long double arg) noexcept(true)
-	{ return hyper::sinh(arg) / hyper::cosh(arg); }
+	{
+		return hyper::sinh(arg) / hyper::cosh(arg);
+	}
 
 	long double sech(const long double arg) noexcept(true)
-	{ return 1 / hyper::cosh(arg); }
+	{
+		return 1 / hyper::cosh(arg);
+	}
 
 	long double csch(const long double arg) noexcept(true)
-	{ return 1 / hyper::sech(arg); }
+	{
+		return 1 / hyper::sech(arg);
+	}
 
 	long double coth(const long double arg) noexcept(true)
-	{ return hyper::cosh(arg) / hyper::sinh(arg); }
+	{
+		return hyper::cosh(arg) / hyper::sinh(arg);
+	}
 }
 
 #endif // _HYPER_TPP_

@@ -20,15 +20,21 @@ namespace pix::math
 
 	template <typename type_t, unsigned long DIM>
 	vector<type_t, DIM>::vector(const type_t arr[]) : vector<type_t, DIM>()
-	{ *this = arr; }
+	{
+		*this = arr;
+	}
 
 	template <typename type_t, unsigned long DIM>
 	vector<type_t, DIM>::vector(const vector<type_t, DIM>& vec) : vector<type_t, DIM>()
-	{ *this = vec; }
+	{
+		*this = vec;
+	}
 
 	template <typename type_t, unsigned long DIM>
 	const type_t* vector<type_t, DIM>::buffer(void) const
-	{ return this->_data; }
+	{
+		return this->_data;
+	}
 
 	template <typename type_t, unsigned long DIM>
 	type_t& vector<type_t, DIM>::operator [] (const unsigned long index) noexcept(false)
@@ -41,7 +47,9 @@ namespace pix::math
 
 	template <typename type_t, unsigned long DIM>
 	constexpr const unsigned long vector<type_t, DIM>::dim(void) const
-	{ return DIM; }
+	{
+		return DIM;
+	}
 
 	template <typename type_t, unsigned long DIM>
 	void vector<type_t, DIM>::operator = (const type_t arr[]) noexcept(false)
@@ -55,12 +63,16 @@ namespace pix::math
 
 	template <typename type_t, unsigned long DIM>
 	void vector<type_t, DIM>::operator = (const vector<type_t, DIM>& vec)
-	{ *this = vec.buffer(); }
+	{
+		*this = vec.buffer();
+	}
 
 	template <typename type_t, unsigned long DIM>
 	template <typename _type_t, unsigned long _DIM>
 	constexpr const bool vector<type_t, DIM>::operator == (const vector<_type_t, _DIM>& vec)
-	{ return false; }
+	{
+		return false;
+	}
 
 	template <typename type_t, unsigned long DIM>
 	const bool vector<type_t, DIM>::operator == (const vector<type_t, DIM>& vec)
@@ -77,11 +89,15 @@ namespace pix::math
 	template <typename type_t, unsigned long DIM>
 	template <typename _type_t, unsigned long _DIM>
 	constexpr const bool vector<type_t, DIM>::operator != (const vector<_type_t, _DIM>& vec)
-	{ return true; }
+	{
+		return true;
+	}
 
 	template <typename type_t, unsigned long DIM>
 	const bool vector<type_t, DIM>::operator != (const vector<type_t, DIM>& vec)
-	{ return !(*this == vec); }
+	{
+		return !(*this == vec);
+	}
 
 	template <typename type_t, unsigned long DIM>
 	vector<type_t, DIM> vector<type_t, DIM>::operator + (const vector<type_t, DIM>& vec) const

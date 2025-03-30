@@ -12,7 +12,9 @@ namespace pix::adt
 
 	template <typename type_t, unsigned long BLOCK_ALLOC_SIZE>
 	dyn_array<type_t, BLOCK_ALLOC_SIZE>::~dyn_array(void)
-	{ delete this->_next; }
+	{
+		delete this->_next;
+	}
 
 	template <typename type_t, unsigned long BLOCK_ALLOC_SIZE>
 	void dyn_array<type_t, BLOCK_ALLOC_SIZE>::push_back(const type_t element)

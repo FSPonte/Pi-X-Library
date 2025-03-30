@@ -8,7 +8,9 @@ namespace pix::memory
 {
 	template <unsigned long MAX_SIZE>
 	mmap<MAX_SIZE>::mmap(void)
-	{ this->_size = 0; }
+	{
+		this->_size = 0;
+	}
 
 	template <unsigned long MAX_SIZE>
 	void mmap<MAX_SIZE>::add(mpart&& part) noexcept(false)
@@ -41,7 +43,9 @@ namespace pix::memory
 
 	template <unsigned long MAX_SIZE>
 	const unsigned long mmap<MAX_SIZE>::size(void) const
-	{ return this->_size; }
+	{
+		return this->_size;
+	}
 }
 
 #endif // _MMAP_TPP_

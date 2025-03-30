@@ -39,19 +39,27 @@ namespace pix::graphics
 
 	template <unsigned long W_DIM, unsigned long H_DIM>
 	constexpr const unsigned long image<W_DIM, H_DIM>::width(void) const
-	{ return W_DIM; }
+	{
+		return W_DIM;
+	}
 
 	template <unsigned long W_DIM, unsigned long H_DIM>
 	constexpr const unsigned long image<W_DIM, H_DIM>::height(void) const
-	{ return H_DIM; }
+	{
+		return H_DIM;
+	}
 
 	template <unsigned long W_DIM, unsigned long H_DIM>
 	constexpr const unsigned long image<W_DIM, H_DIM>::resolution(void) const
-	{ return W_DIM * H_DIM; }
+	{
+		return W_DIM * H_DIM;
+	}
 
 	template <unsigned long W_DIM, unsigned long H_DIM>
 	constexpr const unsigned long image<W_DIM, H_DIM>::size(void) const
-	{ return W_DIM * H_DIM * sizeof(rgb); }
+	{
+		return W_DIM * H_DIM * sizeof(rgb);
+	}
 
 	template <unsigned long W_DIM, unsigned long H_DIM>
 	void image<W_DIM, H_DIM>::operator = (const image<W_DIM, H_DIM>& img)
