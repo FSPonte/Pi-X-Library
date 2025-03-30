@@ -13,12 +13,12 @@
 #include <rand.hpp>
 #include <array.hpp>
 #include <tuple.hpp>
-#include <dyn_array.hpp>
 #include <stack.hpp>
 #include <queue.hpp>
 #include <deque.hpp>
 #include <node.hpp>
 #include <list.hpp>
+#include <dyn_array.hpp>
 #include <string.hpp>
 #include <logic.hpp>
 #include <math.hpp>

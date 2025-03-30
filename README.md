@@ -47,12 +47,12 @@ Includes:
 - Abstract data types
   - Array
   - Tuple
-  - Dynamic array
   - Stack
   - Queue
   - Deque
   - Node
   - List
+  - Dynamic array
   - String
 - Mathematical library
   - Logic
