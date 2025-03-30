@@ -6,11 +6,11 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 include_directories(
-	"include"
 	"utils"
+	"include"
 	"lib/type_info"
-	"lib/smart_pointer"
 	"lib/memory"
+	"lib/smart_pointer"
 	"lib/c_array"
 	"lib/sort"
 	"lib/random"
@@ -30,6 +30,7 @@ include_directories(
 	"lib/math/complex"
 	"lib/math/vector"
 	"lib/math/matrix"
+	"lib/math/signal"
 	"lib/graphics/rgb"
 	"lib/graphics/image"
 )

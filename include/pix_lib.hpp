@@ -6,8 +6,8 @@
 #include <constants.hpp>
 #include <macros.hpp>
 #include <type_info.hpp>
-#include <smart_pointer.hpp>
 #include <memory.hpp>
+#include <smart_pointer.hpp>
 #include <c_array.hpp>
 #include <sort.hpp>
 #include <rand.hpp>
@@ -28,6 +28,7 @@
 #include <complex.hpp>
 #include <vector.hpp>
 #include <matrix.hpp>
+#include <signal.hpp>
 #include <rgb.hpp>
 #include <image.hpp>
 

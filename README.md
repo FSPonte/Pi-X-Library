@@ -44,6 +44,10 @@ Includes:
   - Complex numbers
   - Vectors
   - Matrices
+  - Signal processing
+      - Signal adjusting
+	  - Window functions
+	  - Transforms
 - Graphics
   - RGB values
   - Image object
