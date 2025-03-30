@@ -58,7 +58,9 @@ namespace pix::random
 	}
 
 	char crand(void) noexcept(true)
-	{ return static_cast<char>(rand() % 26 + 97); }
+	{
+		return static_cast<char>(rand() % 26 + 97);
+	}
 }
 
 #endif // _RAND_TPP_
