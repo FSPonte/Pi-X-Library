@@ -9,8 +9,24 @@ Includes:
 - System variables
 - Data types
 - Constants
+  - Mathematics
+    - Pi
+	- Euler's number
+	- Golden ration
+  - Physics
+    - Planck constant
+	- Vacuum electric permittivity
+	- Vacuum magnetic permeability
+	- Speed of light in vacuum
+	- Elementary charge
+	- Newtonian constant of gravitation
 - Macros
 - Type info
+  - is_same: Compares two data types
+  - is_number: Checks if type is a number
+  - is_integer: Checks if type is a integer number
+  - is_float: Checks if type is a float number
+  - type_info: Class object for storing data types
 - Memory management
   - Memory partition
   - Memory map
