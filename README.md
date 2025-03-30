@@ -25,6 +25,9 @@ Includes:
   - Quick sort
   - Merge sort
 - Random number generator (Linear congruency)
+  - Integer generator
+  - Float generator
+  - Character generator (ASCII)
 - Abstract data types
   - Array
   - Tuple
