@@ -16,7 +16,7 @@ namespace pix::math::trig
 
 		for (unsigned long i = 0; i < math::MAX_ITER; ++i)
 		{
-			term *= - arg / ((2 * i + 3) * (2 * i + 2));
+			term *= -arg / ((2 * i + 3) * (2 * i + 2));
 
 			if (math::abs(term) < math::PR_THRESHOLD)
 				break;
@@ -25,7 +25,7 @@ namespace pix::math::trig
 		}
 
 		if (is_arg_neg)
-			return - result;
+			return -result;
 
 		return result;
 	}
@@ -95,7 +95,7 @@ namespace pix::math::trig
 		}
 
 		if (is_arg_neg)
-			return - result;
+			return -result;
 
 		return result;
 	}
@@ -128,7 +128,7 @@ namespace pix::math::trig
 		}
 
 		if (is_arg_neg)
-			return - result;
+			return -result;
 
 		return result;
 	}
