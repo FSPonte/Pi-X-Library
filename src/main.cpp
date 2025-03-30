@@ -2,8 +2,6 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
-#include <vector>
-#include <complex>
 
 // Utilities
 #include <utils.hpp>
@@ -40,13 +38,6 @@ type_t function_der_amp(parameters, type_t);
 type_t function_der_offset(parameters, type_t);
 type_t function_der_freq(parameters, type_t);
 type_t function_der_phase(parameters, type_t);
-
-std::vector<type_t> ndft
-(
-	const std::vector<type_t>&,
-	std::vector<type_t>&,
-	const std::vector<type_t>&
-);
 
 int main(int argc, char* argv[])
 {
