@@ -6,7 +6,9 @@ static const unsigned long STD_NaN = 0x7ff8000000000000; // Standard representat
 namespace pix::math
 {
 	constexpr const double NaN(void) noexcept(true)
-	{ return *reinterpret_cast<const double*>(&STD_NaN); }
+	{
+		return *reinterpret_cast<const double*>(&STD_NaN);
+	}
 
 	template <typename type_t>
 	type_t abs(const type_t number) noexcept(true)
@@ -14,7 +16,7 @@ namespace pix::math
 		is_number_static_assert(type_t);
 
 		if (number < 0)
-			return - number;
+			return -number;
 
 		return number;
 	}
@@ -41,7 +43,9 @@ namespace pix::math
 
 	template <typename type_t>
 	type_t floor(const type_t arg) noexcept(true)
-	{ return static_cast<type_t>(static_cast<int>(arg)); }
+	{
+		return static_cast<type_t>(static_cast<int>(arg));
+	}
 
 	unsigned long fact(unsigned long arg) noexcept(true)
 	{
@@ -56,15 +60,21 @@ namespace pix::math
 
 	template <typename type_t>
 	type_t mod_diff(const type_t arg_1, const type_t arg_2) noexcept(true)
-	{ return math::abs(arg_1 - arg_2); }
+	{
+		return math::abs(arg_1 - arg_2);
+	}
 
 	template <unsigned long arg>
 	struct factorial
-	{ static constexpr const unsigned long value = arg * math::factorial<arg - 1>::value; };
+	{
+		static constexpr const unsigned long value = arg * math::factorial<arg - 1>::value;
+	};
 
 	template <>
 	struct factorial<0>
-	{ static constexpr const unsigned long value = 1; };
+	{
+		static constexpr const unsigned long value = 1;
+	};
 
 	unsigned long fib(unsigned long arg) noexcept(true)
 	{
@@ -81,15 +91,21 @@ namespace pix::math
 
 	template <unsigned long arg>
 	struct fibonacci
-	{ static constexpr const int value = math::fibonacci<arg - 1>::value + math::fibonacci<arg - 2>::value; };
+	{
+		static constexpr const int value = math::fibonacci<arg - 1>::value + math::fibonacci<arg - 2>::value;
+	};
 
 	template <>
 	struct fibonacci<0>
-	{ static constexpr const unsigned long value = 0; };
+	{
+		static constexpr const unsigned long value = 0;
+	};
 
 	template <>
 	struct fibonacci<1>
-	{ static constexpr const unsigned long value = 1; };
+	{
+		static constexpr const unsigned long value = 1;
+	};
 
 	long double log(const long double arg) noexcept(false)
 	{
@@ -112,11 +128,13 @@ namespace pix::math
 			term *= term_sq;
 		}
 
-		return 2 * result;
+		return result * 2;
 	}
 
 	long double log(const long double arg, const long double base) noexcept(false)
-	{ return math::log(arg) / math::log(base); }
+	{
+		return math::log(arg) / math::log(base);
+	}
 
 	long double exp(long double arg) noexcept(true)
 	{
@@ -160,10 +178,9 @@ namespace pix::math
 		if (exponent == 2)
 			return base * base;
 
-		const bool is_e_neg = exponent < 0; // Is exponent negative
+		const bool is_e_neg = exponent < 0;
 		exponent = abs(exponent);
 
-		// Handle the case of (-1)^exponent separately for integer exponents
 		if (base == -1 && floor(exponent) == exponent)
 		{
 			if (static_cast<long long>(exponent) % 2 == 0)
@@ -172,13 +189,11 @@ namespace pix::math
 				return -1;
 		}
 
-		// For non-integer exponents or other cases, proceed with the calculation
 		long double result = exp(exponent * log(abs(base)));
 
 		if (is_e_neg)
 			result = 1 / result;
 
-		// Restore the sign for negative bases
 		if (base < 0 && floor(exponent) == exponent)
 		{
 			if (static_cast<long long>(exponent) % 2 != 0)
@@ -214,11 +229,15 @@ namespace pix::math
 
 	template <unsigned long n, unsigned long k>
 	struct permutation
-	{ static constexpr const unsigned long value = math::factorial<n>::value / math::factorial<n - k>::value; };
+	{
+		static constexpr const unsigned long value = math::factorial<n>::value / math::factorial<n - k>::value;
+	};
 
 	template <unsigned long n>
 	struct permutation<n, 0>
-	{ static constexpr const unsigned long value = 1; };
+	{
+		static constexpr const unsigned long value = 1;
+	};
 
 	unsigned long comb(const unsigned long total_num, const unsigned long choosing_num) noexcept(false)
 	{
@@ -230,18 +249,26 @@ namespace pix::math
 
 	template <unsigned long n, unsigned long k>
 	struct combination
-	{ static constexpr const unsigned long value = math::factorial<n>::value / (math::factorial<k>::value * math::factorial<n - k>::value); };
+	{
+		static constexpr const unsigned long value = math::factorial<n>::value / (math::factorial<k>::value * math::factorial<n - k>::value);
+	};
 
 	unsigned long kron_delta(const unsigned long i, const unsigned long j) noexcept(true)
-	{ return i == j; }
+	{
+		return i == j;
+	}
 
 	template <unsigned long i, unsigned long j>
 	struct kronecker_delta
-	{ static constexpr const unsigned long value = 0; };
+	{
+		static constexpr const unsigned long value = 0;
+	};
 
 	template <unsigned long index>
 	struct kronecker_delta<index, index>
-	{ static constexpr const unsigned long value = 1; };
+	{
+		static constexpr const unsigned long value = 1;
+	};
 }
 
 #endif // _MATH_TPP_
