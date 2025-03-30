@@ -2,6 +2,7 @@
 #define _SORT_TPP_
 
 // Dependencies
+#include <type_info.hpp>
 #include <c_array.hpp>
 
 template <typename type_t>

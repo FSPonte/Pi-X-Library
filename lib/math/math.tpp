@@ -1,6 +1,9 @@
 #ifndef _MATH_TPP_
 #define _MATH_TPP_
 
+// Dependencies
+#include <type_info.hpp>
+
 static const unsigned long STD_NaN = 0x7ff8000000000000; // Standard representation for NaN
 
 namespace pix::math
