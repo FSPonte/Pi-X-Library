@@ -1,11 +1,7 @@
 #ifndef _RAND_TPP_
 #define _RAND_TPP_
 
-// Dependencies
-#include <sys_vars.hpp>
-
 constexpr static const char SEED_BYTE = '\0';
-
 static const unsigned long
 	SEED = reinterpret_cast<unsigned long>(&SEED_BYTE), // Initial value
 	MULT = reinterpret_cast<unsigned long>(&SEED_BYTE + 1), // Multiplier
@@ -13,38 +9,52 @@ static const unsigned long
 
 namespace pix::random
 {
-	unsigned long rand(void) noexcept(true)
+	template <typename type_t>
+	type_t rand(void) noexcept(true)
 	{
-		static unsigned long value = SEED;
+		is_integer_static_assert(type_t);
+
+		static type_t value = SEED;
 		
 		value = (MULT * value + INC) % INT32_MAX;
 
 		return value;
 	}
 
-	long rand(const long min, const long max) noexcept(false)
+	template <typename type_t>
+	type_t rand(const type_t min, const type_t max) noexcept(false)
 	{
+		is_integer_static_assert(type_t);
+
 		if (min > max)
 			throw "Invalid minimum and maximum values (min > max)";
 		
 		if (min == max)
 			return min;
 
-		return rand() % (max - min) + min;
+		return rand<type_t>() % (max - min) + min;
 	}
 
-	long double drand(void) noexcept(true)
-	{ return static_cast<long double>(rand()) / static_cast<long double>(INT32_MAX); }
-
-	long double drand(const long double min, const long double max) noexcept(false)
+	template <typename type_t>
+	type_t drand(void) noexcept(true)
 	{
+		is_float_static_assert(type_t);
+
+		return static_cast<type_t>(rand()) / static_cast<type_t>(INT32_MAX);
+	}
+
+	template <typename type_t>
+	type_t drand(const type_t min, const type_t max) noexcept(false)
+	{
+		is_float_static_assert(type_t);
+
 		if (min > max)
 			throw "Invalid minimum and maximum values (min > max)";
 
 		if (min == max)
 			return min;
 
-		return (max - min) * drand() + min;
+		return (max - min) * drand<type_t>() + min;
 	}
 
 	char crand(void) noexcept(true)

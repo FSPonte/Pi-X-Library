@@ -5,33 +5,41 @@ namespace pix::random
 {
 	/**
 	 * @brief Linear congruential generator
+	 * @tparam type_t Data type
 	 * @return Random integer number between 0 and INT32_MAX
 	*/
-	unsigned long rand(void) noexcept(true);
+	template <typename type_t = unsigned long>
+	type_t rand(void) noexcept(true);
 
 	/**
 	 * @brief Linear congruential generator
+	 * @tparam type_t Data type
 	 * @param min Minimum value
 	 * @param max Maximum value
 	 * @return Random integer number between min and max
 	 * @throw Invalid minimum and maximum values (min >= max)
 	*/
-	long rand(long, long) noexcept(false);
+	template <typename type_t = long>
+	type_t rand(type_t, type_t) noexcept(false);
 
 	/**
 	 * @brief Linear congruential generator
+	 * @tparam type_t Data type
 	 * @return Random decimal number between min and max
 	*/
-	long double drand(void) noexcept(true);
+	template <typename type_t = long double>
+	type_t drand(void) noexcept(true);
 
 	/**
 	 * @brief Linear congruential generator
+	 * @tparam type_t Data type
 	 * @param min Minimum value
 	 * @param max Maximum value
 	 * @return Random decimal number between 0 and 1
 	 * @throw Invalid minimum and maximum values (min >= max)
 	*/
-	long double drand(long double, long double) noexcept(false);
+	template <typename type_t = long double>
+	type_t drand(type_t, type_t) noexcept(false);
 
 	/**
 	 * @brief Linear congruential generator
