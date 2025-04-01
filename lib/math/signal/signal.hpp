@@ -64,7 +64,7 @@ namespace pix::math::signal
 	namespace transform
 	{
 		/**
-		 * @brief Non discrete Fourier transform
+		 * @brief Discrete Fourier transform
 		 * @tparam type_t Data type
 		 * @param t Array of time instants
 		 * @param s Array of signal values
@@ -80,7 +80,7 @@ namespace pix::math::signal
 		 * @throw Transform dimension is null
 		*/
 		template <typename type_t>
-		void ndft(const type_t[], const type_t[], const type_t[], type_t[], unsigned long, unsigned long) noexcept(false);
+		void dft(const type_t[], const type_t[], const type_t[], type_t[], unsigned long, unsigned long) noexcept(false);
 	}
 }
 

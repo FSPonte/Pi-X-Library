@@ -3,6 +3,10 @@
 
 // Dependencies
 #include <type_info.hpp>
+#include <constants.hpp>
+#include <math.hpp>
+#include <trig.hpp>
+#include <stat.hpp>
 
 namespace pix::math::signal
 {
@@ -84,7 +88,7 @@ namespace pix::math::signal
 	namespace transform
 	{
 		template <typename type_t>
-		void ndft
+		void dft
 		(
 			const type_t time[],
 			const type_t signal[],
