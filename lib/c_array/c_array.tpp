@@ -114,6 +114,31 @@ namespace pix::c_array
 		for (unsigned long i = 1; i < dim; ++i)
 			arr[i] = arr[i - 1];
 	}
+
+	template <typename type_t>
+	void bit_rev(type_t arr[], const unsigned long dim) noexcept(false)
+	{
+		if (arr == nullptr) throw "Pointer to array is null";
+		if (dim == 0) throw "Dimension is null";
+
+		unsigned long bit, j = 0;
+
+		for (unsigned long i = 1; i < dim; ++i)
+		{
+			bit = dim >> 1;
+			
+			while (j >= bit)
+			{
+				j -= bit;
+				bit >>= 1;
+			}
+			
+			j += bit;
+			
+			if (i < j)
+				swap(arr[i], arr[j]);
+		}
+	}
 }
 
 #endif // _C_ARRAY_TPP_

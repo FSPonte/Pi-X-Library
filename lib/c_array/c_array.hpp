@@ -86,6 +86,17 @@ namespace pix::c_array
 	*/
 	template <typename type_t>
 	void right_shift(type_t[], unsigned long) noexcept(false);
+
+	/**
+	 * @brief Bit reversal
+	 * @tparam type_t Data type
+	 * @param arr Array of elements
+	 * @param dim Number of elements
+	 * @throw Pointer to array is null
+	 * @throw Dimension is null
+	*/
+	template <typename type_t>
+	void bit_rev(type_t[], unsigned long) noexcept(false);
 }
 
 // Template file
