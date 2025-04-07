@@ -45,10 +45,26 @@ namespace pix::math
 	}
 
 	template <typename type_t>
-	type_t floor(const type_t arg) noexcept(true)
+	type_t floor(const type_t arg) noexcept(false)
 	{
+		is_float_static_assert(type_t);
+
 		return static_cast<type_t>(static_cast<int>(arg));
 	}
+
+	template <typename type_t>
+	type_t ceil(const type_t arg) noexcept(false)
+	{
+		is_float_static_assert(type_t);
+
+		type_t int_part = static_cast<type_t>(static_cast<long>(arg));
+		
+		if (arg > int_part)
+			int_part += 1;
+
+		return int_part;
+	}
+
 
 	unsigned long fact(unsigned long arg) noexcept(true)
 	{
@@ -64,6 +80,8 @@ namespace pix::math
 	template <typename type_t>
 	type_t mod_diff(const type_t arg_1, const type_t arg_2) noexcept(true)
 	{
+		is_number_static_assert(type_t);
+
 		return math::abs(arg_1 - arg_2);
 	}
 

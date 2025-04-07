@@ -41,7 +41,16 @@ namespace pix::math
 	 * @return Largest integer less than or equal to arg
 	*/
 	template <typename type_t>
-	type_t floor(type_t) noexcept(true);
+	type_t floor(type_t) noexcept(false);
+
+	/**
+	 * @brief Round up a number
+	 * @tparam type_t Data type
+	 * @param arg Argument
+	 * @return Largest integer grater than or equal to arg
+	*/
+	template <typename type_t>
+	type_t ceil(type_t) noexcept(false);
 
 	/**
 	 * @brief Modular difference
