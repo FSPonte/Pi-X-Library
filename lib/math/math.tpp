@@ -276,7 +276,7 @@ namespace pix::math
 
 	unsigned long kron_delta(const unsigned long i, const unsigned long j) noexcept(true)
 	{
-		return i == j;
+		return static_cast<unsigned long>(i == j);
 	}
 
 	template <unsigned long i, unsigned long j>
