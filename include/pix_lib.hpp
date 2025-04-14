@@ -28,6 +28,7 @@
 #include <complex.hpp>
 #include <vector.hpp>
 #include <matrix.hpp>
+#include <function.hpp>
 #include <signal.hpp>
 #include <rgb.hpp>
 #include <image.hpp>

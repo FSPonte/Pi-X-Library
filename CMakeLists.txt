@@ -30,6 +30,7 @@ include_directories(
 	"lib/math/complex"
 	"lib/math/vector"
 	"lib/math/matrix"
+	"lib/math/function"
 	"lib/math/signal"
 	"lib/graphics/rgb"
 	"lib/graphics/image"

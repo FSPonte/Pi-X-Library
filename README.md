@@ -63,6 +63,13 @@ Includes:
   - Complex numbers
   - Vectors
   - Matrices
+  - Function
+	  - Root finding
+	  	  - Bissection
+		  - Newton
+		  - Secant
+		  - Golden root
+	  - Derivative
   - Signal processing
       - Signal adjusting
 	  - Window functions
