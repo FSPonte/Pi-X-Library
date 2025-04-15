@@ -1,5 +1,6 @@
 echo -n "File name: "
 read file_name
+echo
 
 pdflatex -output-directory="doc/" doc/$file_name
 
