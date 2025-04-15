@@ -1,4 +1,4 @@
-if [-f "build/pix_tester"]; then
+if [ -f "build/pix_tester" ]; then
 	rm "build/pix_tester"
 fi
 
