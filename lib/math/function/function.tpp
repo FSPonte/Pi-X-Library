@@ -175,7 +175,7 @@ namespace pix::math
 
 		if (TOL <= 0) throw "Invalid tolerance (TOL <= 0)";
 
-		return static_cast<type_out>(0.5 * (this->_callable(arg + TOL) - this->_callable(arg - TOL)) / TOL);
+		return static_cast<type_out>((this->_callable(arg + TOL) - this->_callable(arg)) / TOL);
 	}
 }
 
