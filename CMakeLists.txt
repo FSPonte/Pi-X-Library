@@ -32,6 +32,7 @@ include_directories(
 	"lib/math/complex"
 	"lib/math/vector"
 	"lib/math/matrix"
+	"lib/math/sys_lin_equ"
 	"lib/math/function"
 	"lib/math/signal"
 	"lib/graphics/rgb"

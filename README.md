@@ -63,6 +63,9 @@ Includes:
   - Complex numbers
   - Vectors
   - Matrices
+  - Systems of linear equations
+      - Gaussian elimination
+	  - LU decomposition
   - Function
 	  - Root finding
 	  	  - Bissection
