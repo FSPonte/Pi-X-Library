@@ -1,3 +1,12 @@
+#!/bin/bash
+
+rm -rf "build/"
+mkdir -p "build/"
+
+cd "build/"
+cmake ".."
+cd "../"
+
 if [ -f "build/pix_tester" ]; then
 	rm "build/pix_tester"
 fi
