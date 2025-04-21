@@ -1,7 +1,5 @@
 #!/bin/bash
 
-ls -l "build/"
-
 sh "scripts/build.sh"
 /usr/bin/time -v "build/pix_tester" | tee "logs/terminal_log.txt"
 
