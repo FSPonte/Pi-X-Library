@@ -17,11 +17,11 @@ namespace pix::adt
 	}
 
 	template <typename type_t, unsigned long BLOCK_ALLOC_SIZE>
-	void dyn_array<type_t, BLOCK_ALLOC_SIZE>::push_back(const type_t element)
+	void dyn_array<type_t, BLOCK_ALLOC_SIZE>::push_back(const type_t ELEMENT)
 	{
 		if (this->_index < BLOCK_ALLOC_SIZE)
 		{
-			this->_data[this->_index] = element;
+			this->_data[this->_index] = ELEMENT;
 			++this->_index;
 
 			return;
@@ -30,26 +30,26 @@ namespace pix::adt
 		if (this->_next == nullptr)
 			this->_next = new dyn_array<type_t, BLOCK_ALLOC_SIZE>;
 
-		this->_next->push_back(element);
+		this->_next->push_back(ELEMENT);
 	}
 
 	template <typename type_t, unsigned long BLOCK_ALLOC_SIZE>
-	type_t dyn_array<type_t, BLOCK_ALLOC_SIZE>::pop(const unsigned long index) noexcept(false)
+	type_t dyn_array<type_t, BLOCK_ALLOC_SIZE>::pop(const unsigned long INDEX) noexcept(false)
 	{
-		if (index / BLOCK_ALLOC_SIZE != 0)
+		if (INDEX / BLOCK_ALLOC_SIZE != 0)
 		{
 			if (this->_next == nullptr)
 				throw "Index is out of bounds";
 
-			return this->_next->pop(index - BLOCK_ALLOC_SIZE);
+			return this->_next->pop(INDEX - BLOCK_ALLOC_SIZE);
 		}
 
-		if (index >= this->_index)
+		if (INDEX >= this->_index)
 			throw "Index is out of bounds";
 
-		const type_t ret = this->_data[index]; // Return value
+		const type_t RET = this->_data[INDEX]; // Return value
 
-		for (unsigned long i = index; i < this->_index - 1; ++i)
+		for (unsigned long i = INDEX; i < this->_index - 1; ++i)
 			this->_data[i] = this->_data[i + 1];
 
 		if (this->_next == nullptr)
@@ -65,19 +65,19 @@ namespace pix::adt
 			}
 		}
 
-		return ret;
+		return RET;
 	}
 
 	template <typename type_t, unsigned long BLOCK_ALLOC_SIZE>
-	type_t& dyn_array<type_t, BLOCK_ALLOC_SIZE>::operator [] (const unsigned long index) noexcept(false)
+	type_t& dyn_array<type_t, BLOCK_ALLOC_SIZE>::operator [] (const unsigned long INDEX) noexcept(false)
 	{
-		if (index < this->_index)
-			return this->_data[index];
+		if (INDEX < this->_index)
+			return this->_data[INDEX];
 
 		if (this->_index != BLOCK_ALLOC_SIZE)
 			throw "Index is out of bounds";
 		
-		return (*this->_next)[index - BLOCK_ALLOC_SIZE];
+		return (*this->_next)[INDEX - BLOCK_ALLOC_SIZE];
 	}
 
 	template <typename type_t, unsigned long BLOCK_ALLOC_SIZE>

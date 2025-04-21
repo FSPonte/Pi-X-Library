@@ -32,12 +32,12 @@ namespace pix::adt
 	}
 
 	template <typename type_t, unsigned long DIM>
-	type_t& array<type_t, DIM>::operator [] (unsigned long index) noexcept(false)
+	type_t& array<type_t, DIM>::operator [] (const unsigned long INDEX) noexcept(false)
 	{
-		if (index >= DIM)
+		if (INDEX >= DIM)
 			throw "Index is out of bounds";
 
-		return this->_data[index];
+		return this->_data[INDEX];
 	}
 
 	template <typename type_t, unsigned long DIM>

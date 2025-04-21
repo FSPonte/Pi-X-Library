@@ -35,12 +35,12 @@ namespace pix::adt
 	}
 
 	template <unsigned long MAX_LENGTH>
-	char string<MAX_LENGTH>::operator [] (const unsigned long index) noexcept(false)
+	char string<MAX_LENGTH>::operator [] (const unsigned long INDEX) noexcept(false)
 	{
-		if (index >= this->_length)
+		if (INDEX >= this->_length)
 			throw "Index is out of bounds";
 
-		return this->_data[index];
+		return this->_data[INDEX];
 	}
 
 	template <unsigned long MAX_LENGTH>

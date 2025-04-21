@@ -17,12 +17,12 @@ namespace pix::adt
 	}
 
 	template <typename type_t, unsigned long MAX_SIZE>
-	const bool queue<type_t, MAX_SIZE>::queue_up(const type_t& element)
+	const bool queue<type_t, MAX_SIZE>::queue_up(const type_t& ELEMENT)
 	{
 		if (this->_index == MAX_SIZE)
 			return false;
 
-		this->_data[this->_index++] = element;
+		this->_data[this->_index++] = ELEMENT;
 
 		return true;
 	}
@@ -33,13 +33,13 @@ namespace pix::adt
 		if (this->_index == 0)
 			return type_t();
 
-		type_t temp = this->_data[0];
+		const type_t RET = this->_data[0]; // Return value
 		--this->_index;
 
 		for (unsigned long i = 0; i < this->_index; ++i)
 			this->_data[i] = this->_data[i + 1];
 
-		return temp;
+		return RET;
 	}
 
 	template <typename type_t, unsigned long MAX_SIZE>
@@ -75,13 +75,13 @@ namespace pix::adt
 	template <typename type_t, unsigned long MAX_SIZE>
 	const bool queue<type_t, MAX_SIZE>::is_empty(void) const
 	{
-		return this->_index == 0;
+		return (this->_index == 0);
 	}
 
 	template <typename type_t, unsigned long MAX_SIZE>
 	const bool queue<type_t, MAX_SIZE>::is_full(void) const
 	{
-		return this->_index == MAX_SIZE;
+		return (this->_index == MAX_SIZE);
 	}
 }
 
