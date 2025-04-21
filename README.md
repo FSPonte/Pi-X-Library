@@ -76,6 +76,9 @@ Includes:
   - Signal processing
       - Signal adjusting
 	  - Window functions
+	    - Hann
+		- Hamming
+		- Blackman
 	  - Transforms
 - Graphics
   - RGB values
