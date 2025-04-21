@@ -13,17 +13,15 @@ namespace pix::c_array
 	inline void swap(type_t&, type_t&) noexcept(true);
 
 	/**
-	 * @brief Swap elements
+	 * @brief Swap pointers
 	 * @tparam type_t Data type
 	 * @param arr_1 Pointer to first array
 	 * @param arr_2 Pointer to second array
-	 * @param dim Number of elements
 	 * @throw Pointer to first array is null
 	 * @throw Pointer to second array is null
-	 * @throw Dimension is null
 	*/
 	template <typename type_t>
-	void swap(type_t[], type_t[], unsigned long) noexcept(false);
+	void swap(type_t*, type_t*) noexcept(false);
 
 	/**
 	 * @brief Invert order of elements

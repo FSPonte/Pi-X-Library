@@ -12,7 +12,7 @@ namespace pix::c_array
 	}
 
 	template <typename type_t>
-	void swap(type_t arr_1[], type_t arr_2[], const unsigned long dim) noexcept(false)
+	void swap(type_t* arr_1, type_t* arr_2) noexcept(false)
 	{
 		if (arr_1 == nullptr)
 			throw "Pointer to first array is null";
@@ -20,11 +20,9 @@ namespace pix::c_array
 		if (arr_2 == nullptr)
 			throw "Pointer to second array is null";
 
-		if (dim == 0)
-			throw "Dimension is null";
-
-		for (unsigned long i = 0; i < dim; ++i)
-			swap(arr_1[i], arr_2[i]);
+		type_t* aux = arr_1; // Auxiliar pointer
+		arr_1 = arr_2;
+		arr_2 = aux;
 	}
 
 	template <typename type_t>
