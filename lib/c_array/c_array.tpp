@@ -26,24 +26,24 @@ namespace pix::c_array
 	}
 
 	template <typename type_t>
-	void invert(type_t arr[], const unsigned long dim) noexcept(false)
+	void invert(type_t arr[], const unsigned long DIM) noexcept(false)
 	{
 		is_number_static_assert(type_t);
 
 		if (arr == nullptr)
 			throw "Pointer to array is null";
 
-		if (dim == 0)
+		if (DIM == 0)
 			throw "Dimension is null";
 
 		unsigned long
 			left_ind = 0,
-			right_ind = dim - 1;
+			right_ind = DIM - 1;
 		type_t aux; // Auxiliar value
 
 		while (left_ind < right_ind)
 		{
-			pix::c_array::swap(arr, left_ind, right_ind);
+			pix::c_array::swap(arr[left_ind], arr[right_ind]);
 
 			++left_ind;
 			--right_ind;
@@ -51,7 +51,7 @@ namespace pix::c_array
 	}
 
 	template <typename type_t>
-	void copy(type_t arr_o[], type_t arr_d[], const unsigned long dim) noexcept(false)
+	void copy(type_t arr_o[], type_t arr_d[], const unsigned long DIM) noexcept(false)
 	{
 		if (arr_o == nullptr)
 			throw "Pointer to origin array is null";
@@ -59,15 +59,15 @@ namespace pix::c_array
 		if (arr_d == nullptr)
 			throw "Pointer to destination array is null";
 
-		if (dim == 0)
+		if (DIM == 0)
 			throw "Dimension is null";
 
-		for (unsigned long i = 0; i < dim; ++i)
+		for (unsigned long i = 0; i < DIM; ++i)
 			arr_d[i] = arr_o[i];
 	}
 
 	template <typename type_t>
-	void move(type_t arr_o[], type_t arr_d[], const unsigned long dim) noexcept(false)
+	void move(type_t arr_o[], type_t arr_d[], const unsigned long DIM) noexcept(false)
 	{
 		if (arr_o == nullptr)
 			throw "Pointer to origin array is null";
@@ -75,10 +75,10 @@ namespace pix::c_array
 		if (arr_d == nullptr)
 			throw "Pointer to destination array is null";
 
-		if (dim == 0)
+		if (DIM == 0)
 			throw "Dimension is null";
 
-		for (unsigned long i = 0; i < dim; ++i)
+		for (unsigned long i = 0; i < DIM; ++i)
 		{
 			arr_d[i] = arr_o[i];
 			arr_o[i] = type_t();
@@ -86,44 +86,44 @@ namespace pix::c_array
 	}
 
 	template <typename type_t>
-	void left_shift(type_t arr[], unsigned long dim) noexcept(false)
+	void left_shift(type_t arr[], unsigned long DIM) noexcept(false)
 	{
 		if (arr == nullptr)
 			throw "Pointer to array is null";
 
-		if (dim == 0)
+		if (DIM == 0)
 			throw "Dimension is null";
 
-		--dim;
+		--DIM;
 
-		for (unsigned long i = 0; i < dim; ++i)
+		for (unsigned long i = 0; i < DIM; ++i)
 			arr[i] = arr[i + 1];
 	}
 
 	template <typename type_t>
-	void right_shift(type_t arr[], const unsigned long dim) noexcept(false)
+	void right_shift(type_t arr[], const unsigned long DIM) noexcept(false)
 	{
 		if (arr == nullptr)
 			throw "Pointer to array is null";
 
-		if (dim == 0)
+		if (DIM == 0)
 			throw "Dimension is null";
 
-		for (unsigned long i = 1; i < dim; ++i)
+		for (unsigned long i = 1; i < DIM; ++i)
 			arr[i] = arr[i - 1];
 	}
 
 	template <typename type_t>
-	void bit_rev(type_t arr[], const unsigned long dim) noexcept(false)
+	void bit_rev(type_t arr[], const unsigned long DIM) noexcept(false)
 	{
 		if (arr == nullptr) throw "Pointer to array is null";
-		if (dim == 0) throw "Dimension is null";
+		if (DIM == 0) throw "Dimension is null";
 
 		unsigned long bit, j = 0;
 
-		for (unsigned long i = 1; i < dim; ++i)
+		for (unsigned long i = 1; i < DIM; ++i)
 		{
-			bit = dim >> 1;
+			bit = DIM >> 1;
 			
 			while (j >= bit)
 			{
