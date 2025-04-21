@@ -1,3 +1,5 @@
+#!/bin/bash
+
 sudo apt autoremove -y
 echo
 sudo apt install -f
