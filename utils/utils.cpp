@@ -34,7 +34,7 @@ namespace utils
 	{
 		std::cout << "Arguments:" << '\n';
 
-		for (unsigned long i = 0; i < argc; ++i)
+		for (int i = 0; i < argc; ++i)
 			std::cout << '\t' << argv[i] << '\n';
 
 		std::cout << '\n';
