@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo -n "File name: "
 read file_name
 echo
