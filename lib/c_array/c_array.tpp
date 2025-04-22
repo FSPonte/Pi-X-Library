@@ -98,15 +98,17 @@ namespace pix::c_array
 			throw "Dimension 2 is null";
 
 		for (unsigned long i = 0; i < DIM_1; ++i)
-			pix::c_array::copy(arr_o[i], arr_d[i]);
+			pix::c_array::copy<type_t>(arr_o[i], arr_d[i], DIM_2);
 	}
 
 	template <typename type_t, unsigned long DIM_1, unsigned long DIM_2>
 	void copy(const type_t (&arr_o)[DIM_1][DIM_2], type_t (&arr_d)[DIM_1][DIM_2]) noexcept(true)
 	{
-		assert_not_nulldim(DIM);
+		assert_not_nulldim(DIM_1);
+		assert_not_nulldim(DIM_2);
 
-		pix::c_array::copy<type_t>(arr_o, arr_d, DIM_1, DIM_2);
+		for (unsigned long i = 0; i < DIM_1; ++i)
+			pix::c_array::copy<type_t>(arr_o[i], arr_d[i], DIM_2);
 	}
 
 	template <typename type_t>
