@@ -1,11 +1,17 @@
 #ifndef _IMAGE_TPP_
 #define _IMAGE_TPP_
 
+// Dependencies
+#include <asserts.hpp>
+
 namespace pix::graphics
 {
 	template <unsigned long W_DIM, unsigned long H_DIM>
 	image<W_DIM, H_DIM>::image(void)
 	{
+		assert_not_nulldim(W_DIM);
+		assert_not_nulldim(H_DIM);
+
 		this->_data = new rgb*[H_DIM];
 
 		for (unsigned long i = 0; i < H_DIM; ++i)

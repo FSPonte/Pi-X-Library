@@ -2,6 +2,7 @@
 #define _MATRIX_TPP_
 
 // Dependencies
+#include <asserts.hpp>
 #include <type_info.hpp>
 
 namespace pix::math
@@ -10,6 +11,8 @@ namespace pix::math
 	matrix<type_t, N_LIN, N_COL>::matrix(void)
 	{
 		is_number_static_assert(type_t);
+		assert_not_nulldim(N_LIN);
+		assert_not_nulldim(N_COL);
 
 		static_assert
 		(

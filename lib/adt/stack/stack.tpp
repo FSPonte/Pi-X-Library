@@ -1,16 +1,15 @@
 #ifndef _STACK_TPP_
 #define _STACK_TPP_
 
+// Dependencies
+#include <asserts.hpp>
+
 namespace pix::adt
 {
 	template <typename type_t, unsigned long MAX_SIZE>
 	stack<type_t, MAX_SIZE>::stack(void)
 	{
-		static_assert
-		(
-			MAX_SIZE != 0,
-			"Stack object cannot have a maximum of zero elements"
-		);
+		assert_not_nulldim(MAX_SIZE);
 
 		this->_data[0] = type_t();
 		this->_index = 0;

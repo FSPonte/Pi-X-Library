@@ -2,6 +2,7 @@
 #define _MMAP_TPP_
 
 // Dependencies
+#include <asserts.hpp>
 #include <c_array.hpp>
 
 namespace pix::memory
@@ -9,6 +10,8 @@ namespace pix::memory
 	template <unsigned long MAX_SIZE>
 	mmap<MAX_SIZE>::mmap(void)
 	{
+		assert_not_nulldim(MAX_SIZE);
+		
 		this->_size = 0;
 	}
 

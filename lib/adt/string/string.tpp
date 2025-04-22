@@ -1,16 +1,15 @@
 #ifndef _STRING_TPP_
 #define _STRING_TPP_
 
+// Dependencies
+#include <asserts.hpp>
+
 namespace pix::adt
 {
 	template <unsigned long MAX_LENGTH>
 	string<MAX_LENGTH>::string(void)
 	{
-		static_assert
-		(
-			MAX_LENGTH > 1,
-			"Maximum number of characters has to be grater than 1"
-		);
+		assert_not_nulldim(MAX_LENGTH);
 
 		this->_data[0] = '\0';
 		this->_length = 0;

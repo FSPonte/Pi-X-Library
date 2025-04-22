@@ -1,16 +1,15 @@
 #ifndef _QUEUE_TPP_
 #define _QUEUE_TPP_
 
+// Dependencies
+#include <asserts.hpp>
+
 namespace pix::adt
 {
 	template <typename type_t, unsigned long MAX_SIZE>
 	queue<type_t, MAX_SIZE>::queue(void)
 	{
-		static_assert
-		(
-			MAX_SIZE != 0,
-			"Queue object cannot have a maximum of zero elements"
-		);
+		assert_not_nulldim(MAX_SIZE);
 
 		this->_data[0] = type_t();
 		this->_index = 0;

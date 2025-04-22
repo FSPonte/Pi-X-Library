@@ -1,16 +1,15 @@
 #ifndef _ARRAY_TPP_
 #define _ARRAY_TPP_
 
+// Dependencies
+#include <asserts.hpp>
+
 namespace pix::adt
 {
 	template <typename type_t, unsigned long DIM>
 	array<type_t, DIM>::array(void)
 	{
-		static_assert
-		(
-			DIM != 0,
-			"Array object cannot have zero elements"
-		);
+		assert_not_nulldim(DIM);
 	}
 
 	template <typename type_t, unsigned long DIM>

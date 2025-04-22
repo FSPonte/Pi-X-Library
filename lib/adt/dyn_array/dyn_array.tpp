@@ -1,11 +1,16 @@
 #ifndef _DYN_ARRAY_TPP_
 #define _DYN_ARRAY_TPP_
 
+// Dependencies
+#include <asserts.hpp>
+
 namespace pix::adt
 {
 	template <typename type_t, unsigned long BLOCK_ALLOC_SIZE>
 	dyn_array<type_t, BLOCK_ALLOC_SIZE>::dyn_array(void)
 	{
+		assert_not_nulldim(BLOCK_ALLOC_SIZE);
+		
 		this->_index = 0;
 		this->_next = nullptr;
 	}
