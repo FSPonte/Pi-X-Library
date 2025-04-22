@@ -9,10 +9,17 @@
 namespace pix::math::sys_lin_equ
 {
 	template <typename type_t, unsigned long DIM>
-	void gauss_elim(type_t (&A)[DIM][DIM], type_t (&b)[DIM], type_t (&x)[DIM]) noexcept(false)
+	void gauss_elim(const type_t (&A)[DIM][DIM], const type_t (&b)[DIM], type_t (&x)[DIM]) noexcept(false)
 	{
 		is_number_static_assert(type_t);
 
+		type_t
+			A_[DIM][DIM], // Mutable copy of matrix A
+			b_[DIM]; // Mutable copy of vector b
+		
+		pix::c_array::copy(A, A_);
+		pix::c_array::copy(b, b_);
+		
 		unsigned long i_max; // Partial pivot
 		double factor;
 
@@ -23,31 +30,31 @@ namespace pix::math::sys_lin_equ
 			
 			for (unsigned long i = j + 1; i < DIM; ++i)
 			{
-				if (pix::math::abs(A[i][j]) > pix::math::abs(A[i_max][j]))
+				if (pix::math::abs(A_[i][j]) > pix::math::abs(A_[i_max][j]))
 					i_max = i;
 			}
 
 			if (j != i_max)
 			{
-				pix::c_array::swap(A[j], A[i_max]); // Swap lines in matrix
-				pix::c_array::swap(b[j], b[i_max]); // Swap components in vector
+				pix::c_array::swap(A_[j], A_[i_max]); // Swap lines in matrix
+				pix::c_array::swap(b_[j], b_[i_max]); // Swap components in vector
 			}
 			
-			if (pix::math::abs(A[j][j]) == 0) throw "Singular matrix";
+			if (pix::math::abs(A_[j][j]) == 0) throw "Singular matrix";
 			
 			// Elimination
 			{	
 				for (unsigned long i = j + 1; i < DIM; ++i)
 				{
-					factor = A[i][j] / A[j][j];
+					factor = A_[i][j] / A_[j][j];
 					
 					if (factor == 0)
 						continue;
 
 					for (unsigned long k = j; k < DIM; ++k)
-						A[i][k] -= factor * A[j][k];
+						A_[i][k] -= factor * A_[j][k];
 					
-					b[i] -= factor * b[j];
+					b_[i] -= factor * b_[j];
 				}
 			}
 		}
@@ -55,12 +62,12 @@ namespace pix::math::sys_lin_equ
 		// Regressive substitution
 		for (unsigned long i = DIM - 1; i > 0; --i)
 		{
-			x[i] = b[i];
+			x[i] = b_[i];
 
 			for (unsigned long j = i + 1; j < DIM; ++j)
-				x[i] -= A[i][j] * x[j];
+				x[i] -= A_[i][j] * x[j];
 			
-			x[i] /= A[i][i];
+			x[i] /= A_[i][i];
 			
 			if (x[i] == pix::math::NaN()) throw "NaN value encountered";
 		}
@@ -69,7 +76,7 @@ namespace pix::math::sys_lin_equ
 	}
 
 	template <typename type_t, unsigned long DIM>
-	void lu_decomp(type_t (&A)[DIM][DIM], type_t (&L)[DIM][DIM], type_t (&U)[DIM][DIM])
+	void lu_decomp(const type_t (&A)[DIM][DIM], type_t (&L)[DIM][DIM], type_t (&U)[DIM][DIM])
 	{
 		is_number_static_assert(type_t);
 

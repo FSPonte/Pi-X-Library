@@ -13,7 +13,7 @@ namespace pix::math::sys_lin_equ
 	 * @throw NaN value encountered
 	*/
 	template <typename type_t, unsigned long DIM>
-	void gauss_elim(type_t (&)[DIM][DIM], type_t (&)[DIM], type_t (&)[DIM]) noexcept(false);
+	void gauss_elim(const type_t (&)[DIM][DIM], const type_t (&)[DIM], type_t (&)[DIM]) noexcept(false);
 
 	/**
 	 * @brief LU decomposition
@@ -24,7 +24,7 @@ namespace pix::math::sys_lin_equ
 	 * @throw Pivot encountered is equal to zero
 	*/
 	template <typename type_t, unsigned long DIM>
-	void lu_decomp(type_t (&)[DIM][DIM], type_t (&)[DIM][DIM], type_t (&)[DIM][DIM]) noexcept(false);
+	void lu_decomp(const type_t (&)[DIM][DIM], type_t (&)[DIM][DIM], type_t (&)[DIM][DIM]) noexcept(false);
 }
 
 // Template file
