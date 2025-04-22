@@ -69,8 +69,7 @@ namespace pix::c_array
 		if (DIM == 0)
 			throw "Dimension is null";
 
-		for (unsigned long i = 0; i < DIM; ++i)
-			arr_d[i] = arr_o[i];
+		pix::c_array::copy<type_t, DIM>(arr_o, arr_d);
 	}
 
 	template <typename type_t, unsigned long DIM_1, unsigned long DIM_2>
@@ -95,8 +94,17 @@ namespace pix::c_array
 		if (DIM_2 == 0)
 			throw "Dimension 2 is null";
 
-		for (unsigned long i = 0; i < DIM_1; ++i)
-			pix::c_array::copy(arr_o[i], arr_d[i]);
+		pix::c_array::copy<type_t, DIM_1, DIM_2>(arr_o, arr_d);
+	}
+
+	template <typename type_t, unsigned long DIM>
+	void move(type_t (&arr_o)[DIM], type_t (&arr_d)[DIM]) noexcept(true)
+	{
+		for (unsigned long i = 0; i < DIM; ++i)
+		{
+			arr_d[i] = arr_o[i];
+			arr_o[i] = type_t();
+		}
 	}
 
 	template <typename type_t>
@@ -111,11 +119,7 @@ namespace pix::c_array
 		if (DIM == 0)
 			throw "Dimension is null";
 
-		for (unsigned long i = 0; i < DIM; ++i)
-		{
-			arr_d[i] = arr_o[i];
-			arr_o[i] = type_t();
-		}
+		pix::c_array::move<type_t, DIM>(arr_o, arr_d);
 	}
 
 	template <typename type_t>

@@ -91,13 +91,24 @@ namespace pix::c_array
 	/**
 	 * @brief Move array
 	 * @tparam type_t Data type
+	 * @tparam DIM Number of elements
+	 * @param arr_o Origin array of elements
+	 * @param arr_d Destination array of elements
+	 * @note Moves the elements from arr_o to arr_d and resets arr_o
+	*/
+	template <typename type_t, unsigned long DIM>
+	void move(type_t (&)[DIM], type_t (&)[DIM]) noexcept(true);
+
+	/**
+	 * @brief Move array
+	 * @tparam type_t Data type
 	 * @param arr_o Origin array of elements
 	 * @param arr_d Destination array of elements
 	 * @param dim Number of elements
 	 * @throw Pointer to origin array is null
 	 * @throw Pointer to destination array is null
 	 * @throw Dimension is null
-	 * @note Moves the elements from arr_o to arr_d
+	 * @note Moves the elements from arr_o to arr_d and resets arr_o
 	*/
 	template <typename type_t>
 	void move(type_t[], type_t[], unsigned long) noexcept(false);
