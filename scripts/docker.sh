@@ -11,10 +11,3 @@ docker image build -t pixlib ./
 
 # Create a new container
 docker container create --name pixlib pixlib > /dev/null 2>&1
-
-# Check if the container is running
-if [ "$(docker ps -q -f name=pixlib)" ]; then
-	echo "Container is running"
-else
-	echo "Container is not running"
-fi
