@@ -5,6 +5,7 @@
 #include <types.hpp>
 #include <constants.hpp>
 #include <macros.hpp>
+#include <asserts.hpp>
 #include <type_info.hpp>
 #include <memory.hpp>
 #include <smart_pointer.hpp>

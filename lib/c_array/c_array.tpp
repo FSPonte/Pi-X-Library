@@ -1,6 +1,9 @@
 #ifndef _C_ARRAY_TPP_
 #define _C_ARRAY_TPP_
 
+// Dependencies
+#include <asserts.hpp>
+
 namespace pix::c_array
 {
 	template <typename type_t>
@@ -50,11 +53,7 @@ namespace pix::c_array
 	template <typename type_t, unsigned long DIM>
 	void invert(type_t (&arr)[DIM]) noexcept(true)
 	{
-		static_assert
-		(
-			DIM >= 1,
-			"Dimension needs to be greater than 1"
-		);
+		assert_not_nulldim(DIM);
 
 		pix::c_array::invert<type_t>(arr, DIM);
 	}
@@ -78,6 +77,8 @@ namespace pix::c_array
 	template <typename type_t, unsigned long DIM>
 	void copy(const type_t (&arr_o)[DIM], type_t (&arr_d)[DIM]) noexcept(true)
 	{
+		assert_not_nulldim(DIM);
+
 		pix::c_array::copy<type_t>(arr_o, arr_d, DIM);
 	}
 
@@ -103,6 +104,8 @@ namespace pix::c_array
 	template <typename type_t, unsigned long DIM_1, unsigned long DIM_2>
 	void copy(const type_t (&arr_o)[DIM_1][DIM_2], type_t (&arr_d)[DIM_1][DIM_2]) noexcept(true)
 	{
+		assert_not_nulldim(DIM);
+
 		pix::c_array::copy<type_t>(arr_o, arr_d, DIM_1, DIM_2);
 	}
 
@@ -128,6 +131,8 @@ namespace pix::c_array
 	template <typename type_t, unsigned long DIM>
 	void move(type_t (&arr_o)[DIM], type_t (&arr_d)[DIM]) noexcept(true)
 	{
+		assert_not_nulldim(DIM);
+
 		pix::c_array::move<type_t>(arr_o, arr_d, DIM);
 	}
 
@@ -149,6 +154,8 @@ namespace pix::c_array
 	template <typename type_t, unsigned long DIM>
 	void left_shift(type_t (&arr)[DIM]) noexcept(true)
 	{
+		assert_not_nulldim(DIM);
+
 		pix::c_array::left_shift<type_t>(arr, DIM);
 	}
 
@@ -170,6 +177,8 @@ namespace pix::c_array
 	template <typename type_t, unsigned long DIM>
 	void right_shift(type_t (&arr)[DIM]) noexcept(true)
 	{
+		assert_not_nulldim(DIM);
+
 		pix::c_array::right_shift<type_t>(arr, DIM);
 	}
 
@@ -207,7 +216,7 @@ namespace pix::c_array
 		static_assert
 		(
 			(DIM & (DIM - 1)) == 0,
-			"DIM must be a power of 2"
+			"Dimension must be a power of 2"
 		);
 
 		pix::c_array::bit_rev<type_t>(arr, DIM);
