@@ -10,4 +10,4 @@ fi
 docker image build -t pixlib ./
 
 # Create a new container
-docker container create --name pixlib pixlib > /dev/null 2>&1
+docker container create --name pixlib pixlib:latest > /dev/null 2>&1
