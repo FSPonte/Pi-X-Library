@@ -3,8 +3,8 @@
 
 /**
  * @brief Comparison between two data types
- * @tparam type_1 Data type 1
- * @tparam type_2 Data type 2
+ * @param type_1 Data type 1
+ * @param type_2 Data type 2
  * @return True if arguments have the same data type
 */
 #define is_same(type_1, type_2) is_same<type_1, type_2>::value
@@ -23,7 +23,7 @@ static_assert                                 \
 
 /**
  * @brief Checks type for primitive numerical data type
- * @tparam type Data type
+ * @param type Data type
  * @return True if is a primitive numerical data type
 */
 #define is_number(type) is_number<type>::value
