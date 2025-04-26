@@ -3,6 +3,7 @@
 
 // Dependencies
 #include <type_info.hpp>
+#include <math.hpp>
 
 namespace pix::math
 {
@@ -21,11 +22,10 @@ namespace pix::math
 
 	template<typename type_in, typename type_out, typename callable>
 	template <typename type_t>
-	type_out function<type_in, type_out, callable>::bissection(type_in a, type_in b, const type_t TOL) const noexcept(false)
+	type_out function<type_in, type_out, callable>::bissection(type_in a, type_in b) const noexcept(false)
 	{
 		is_float_static_assert(type_t);
 
-		if (TOL <= 0) throw "Invalid tolerance (TOL <= 0)";
 		if (a > b) throw "Invalid range (a > b)";
 		
 		if (a == b) return this->_callable(a);
@@ -49,41 +49,37 @@ namespace pix::math
 			if (y < 0) // Turn the value of y into it's own absolute value
 				y *= -1;
 		}
-		while (a < b && y > TOL);
+		while (a < b && y > pix::math::PR_THRESHOLD);
 
 		return x;
 	}
 
 	template<typename type_in, typename type_out, typename callable>
 	template <typename type_t>
-	type_out function<type_in, type_out, callable>::newton(type_in x, const type_t TOL) const noexcept(false)
+	type_out function<type_in, type_out, callable>::newton(type_in x) const noexcept(false)
 	{
 		is_float_static_assert(type_t);
 
-		if (TOL <= 0) throw "Invalid tolerance (TOL <= 0)";
-		
 		type_out y; // Image of the mid point
 
 		do
 		{
-			x -= this->_callable(x) / this->derivative(x, TOL);
+			x -= this->_callable(x) / this->derivative(x);
 			y = this->_callable(x);
 			
 			if (y < 0) // Turn the value of y into it's own absolute value
 				y *= -1;
 		}
-		while (y > TOL);
+		while (y > pix::math::PR_THRESHOLD);
 		
 		return x;
 	}
 
 	template<typename type_in, typename type_out, typename callable>
 	template <typename type_t>
-	type_out function<type_in, type_out, callable>::secant(type_in x_0, type_in x_1, const type_t TOL) const noexcept(false)
+	type_out function<type_in, type_out, callable>::secant(type_in x_0, type_in x_1) const noexcept(false)
 	{
 		is_float_static_assert(type_t);
-
-		if (TOL <= 0) throw "Invalid tolerance (TOL <= 0)";
 
 		type_in x;
 		type_out
@@ -109,18 +105,17 @@ namespace pix::math
 			if (y < 0) // Turn the value of y into it's own absolute value
 				y *= -1;
 		}
-		while (y > TOL);
+		while (y > pix::math::PR_THRESHOLD);
 
 		return x_1;
 	}
 
 	template<typename type_in, typename type_out, typename callable>
 	template <typename type_t>
-	type_out function<type_in, type_out, callable>::golden_root(type_in a, type_in b, const type_t TOL) const noexcept(false)
+	type_out function<type_in, type_out, callable>::golden_root(type_in a, type_in b) const noexcept(false)
 	{
 		is_float_static_assert(type_t);
 
-		if (TOL <= 0) throw "Invalid tolerance (TOL <= 0)";
 		if (a >= b) throw "Invalid interval (a >= b)";
 
 		type_out
@@ -135,7 +130,7 @@ namespace pix::math
 		type_in x_1, x_2;
 		type_out y_1, y_2;
 
-		while ((b - a) > TOL)
+		while ((b - a) > pix::math::PR_THRESHOLD)
 		{
 			x_1 = b - phi * (b - a);
 			x_2 = a + phi * (b - a);
@@ -169,13 +164,11 @@ namespace pix::math
 
 	template <typename type_in, typename type_out, typename callable>
 	template <typename type_t>
-	type_out function<type_in, type_out, callable>::derivative(const type_in arg, const type_t TOL) const noexcept(false)
+	type_out function<type_in, type_out, callable>::derivative(const type_in arg) const noexcept(false)
 	{
 		is_float_static_assert(type_t);
 
-		if (TOL <= 0) throw "Invalid tolerance (TOL <= 0)";
-
-		return static_cast<type_out>((this->_callable(arg + TOL) - this->_callable(arg)) / TOL);
+		return static_cast<type_out>((this->_callable(arg + pix::math::PR_THRESHOLD) - this->_callable(arg)) / pix::math::PR_THRESHOLD);
 	}
 }
 
