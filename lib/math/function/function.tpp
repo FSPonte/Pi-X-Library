@@ -26,12 +26,8 @@ namespace pix::math
 	{
 		is_float_static_assert(type_t);
 
-		if (a > b) throw "Invalid range (a > b)";
-		
-		if (a == b) return this->_callable(a);
-
-		if (this->_callable(a) * this->_callable(b) >= 0)
-			return type_out();
+		if (a >= b) throw "Invalid interval (a >= b)";
+		if (this->_callable(a) * this->_callable(b) >= 0) throw "Invalid convergence condition (f(a) * f(b) >= 0)";
 
 		type_in x; // Mid point of the interval
 		type_out y; // Image of the mid point
@@ -60,11 +56,17 @@ namespace pix::math
 	{
 		is_float_static_assert(type_t);
 
-		type_out y; // Image of the mid point
+		type_out
+			der, // Derivative
+			y; // Image of the mid point
 
 		do
 		{
-			x -= this->_callable(x) / this->derivative(x);
+			der = this->derivative(x);
+
+			if (der == 0) throw "Division by zero (f'(x) == 0)";
+
+			x -= this->_callable(x) / der;
 			y = this->_callable(x);
 			
 			if (y < 0) // Turn the value of y into it's own absolute value
@@ -77,37 +79,39 @@ namespace pix::math
 
 	template<typename type_in, typename type_out, typename callable>
 	template <typename type_t>
-	type_out function<type_in, type_out, callable>::secant(type_in x_0, type_in x_1) const noexcept(false)
+	type_out function<type_in, type_out, callable>::secant(type_in a, type_in b) const noexcept(false)
 	{
 		is_float_static_assert(type_t);
 
+		if (a >= b) throw "Invalid interval (a >= b)";
+
 		type_in x;
 		type_out
-			y_0 = this->_callable(x_0),
-			y_1 = this->_callable(x_1),
-			y = y_1;
+			y_a = this->_callable(a),
+			y_b = this->_callable(b),
+			y = y_b;
 
 		do
 		{
-			if (y_0 == y_1) throw "Division by zero (y_0 == y_1)";
+			if (y_a == y_b) throw "Division by zero (f(a) == f(b))";
 			
 			// Secant step
-			x = x_1 - y_1 * (x_1 - x_0) / (y_1 - y_0);
+			x = b - y_b * (b - a) / (y_b - y_a);
 
 			// Update for next iteration
-			x_0 = x_1;
-			y_0 = y_1;
-			x_1 = x;
-			y_1 = this->_callable(x_1);
+			a = b;
+			y_a = y_b;
+			b = x;
+			y_b = this->_callable(b);
 			
-			y = y_1;
+			y = y_b;
 
 			if (y < 0) // Turn the value of y into it's own absolute value
 				y *= -1;
 		}
 		while (y > pix::math::PR_THRESHOLD);
 
-		return x_1;
+		return b;
 	}
 
 	template<typename type_in, typename type_out, typename callable>
@@ -122,8 +126,7 @@ namespace pix::math
 			y_a = this->_callable(a),
 			y_b = this->_callable(b);
 
-		if (y_a * y_b > 0)
-			throw "The function must have opposite signs at the interval endpoints";
+		if (y_a * y_b > 0) throw "Invalid convergence condition (f(a) * f(b) >= 0)";
 
 		const type_t phi = static_cast<type_t>(0.5 * (3.0 - pix::math::root(5.0, 2))); // ~0.381966
 
@@ -164,11 +167,11 @@ namespace pix::math
 
 	template <typename type_in, typename type_out, typename callable>
 	template <typename type_t>
-	type_out function<type_in, type_out, callable>::derivative(const type_in arg) const noexcept(false)
+	type_out function<type_in, type_out, callable>::derivative(const type_in x) const noexcept(false)
 	{
 		is_float_static_assert(type_t);
 
-		return static_cast<type_out>((this->_callable(arg + pix::math::PR_THRESHOLD) - this->_callable(arg)) / pix::math::PR_THRESHOLD);
+		return static_cast<type_out>((this->_callable(x + pix::math::PR_THRESHOLD) - this->_callable(x)) / pix::math::PR_THRESHOLD);
 	}
 }
 

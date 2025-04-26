@@ -16,21 +16,22 @@ namespace pix::math
 		 * @brief Constructor
 		 * @param f Function
 		*/
-		explicit function(const callable& func);
+		explicit function(const callable&);
 
 		/**
 		 * @brief Evaluation
-		 * @param in Input
+		 * @param x Input
 		 * @return Output
 		*/
-		type_out operator()(const type_in& x) const;
+		type_out operator()(const type_in&) const;
 
 		/**
 		 * @brief Bissection method
 		 * @param a Initial point
 		 * @param b Final point
 		 * @return First root found
-		 * @throw Invalid range (a > b)
+		 * @throw Invalid interval (a >= b)
+		 * @throw Invalid convergence condition (f(a) * f(b) >= 0)
 		 * @note Assumes type_in and type_out have the necessary operators
 		 * (arithmetic, assignment, relational)
 		*/
@@ -41,7 +42,7 @@ namespace pix::math
 		 * @brief Newton method
 		 * @param x0 Initial point
 		 * @return First root found
-		 * @throw Invalid range (a > b)
+		 * @throw Division by zero (f'(x) == 0)
 		 * @note Assumes type_in and type_out have the necessary operators
 		 * (arithmetic, assignment, relational)
 		*/
@@ -53,7 +54,8 @@ namespace pix::math
 		 * @param a Initial point
 		 * @param b Final point
 		 * @return First root found
-		 * @throw Invalid range (a > b)
+		 * @throw Invalid interval (a >= b)
+		 * @throw Division by zero (f(a) == f(b))
 		 * @note Assumes type_in and type_out have the necessary operators
 		 * (arithmetic, assignment, relational)
 		*/
@@ -65,7 +67,7 @@ namespace pix::math
 		 * @param a Initial point
 		 * @param b Final point
 		 * @return First root found
-		 * @throw Invalid range (a > b)
+		 * @throw Invalid interval (a >= b)
 		 * @note Assumes type_in and type_out have the necessary operators
 		 * (arithmetic, assignment, relational)
 		*/
@@ -74,8 +76,8 @@ namespace pix::math
 
 		/**
 		 * @brief Derivative
-		 * @param p Point
-		 * @return Derivative in point p
+		 * @param x Point
+		 * @return Derivative in point x
 		*/
 		template <typename type_t = float>
 		type_out derivative(type_in) const noexcept(false);
