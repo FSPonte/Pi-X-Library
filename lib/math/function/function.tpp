@@ -10,8 +10,8 @@ namespace pix::math
 	template<typename type_in, typename type_out, typename callable>
 	function<type_in, type_out, callable>::function(const callable& func) : _callable(func)
 	{
-		is_number_static_assert(type_in);
-		is_number_static_assert(type_out);
+		is_float_static_assert(type_in);
+		is_float_static_assert(type_out);
 	}
 
 	template<typename type_in, typename type_out, typename callable>
@@ -21,18 +21,15 @@ namespace pix::math
 	}
 
 	template<typename type_in, typename type_out, typename callable>
-	template <typename type_t>
 	type_out function<type_in, type_out, callable>::bissection(type_in a, type_in b) const noexcept(false)
 	{
-		is_float_static_assert(type_t);
-
 		if (a >= b) throw "Invalid interval (a >= b)";
 		if (this->_callable(a) * this->_callable(b) >= 0) throw "Invalid convergence condition (f(a) * f(b) >= 0)";
 
 		type_in x; // Mid point of the interval
 		type_out y; // Image of the mid point
 
-		do
+		for (unsigned long i = 0; i < pix::math::MAX_ITER; ++i)
 		{
 			x = a + 0.5 * (b - a);
 			y = this->_callable(x);
@@ -42,47 +39,39 @@ namespace pix::math
 			else if (y * this->_callable(b) < 0)
 				a = x;
 
-			if (y < 0) // Turn the value of y into it's own absolute value
-				y *= -1;
+			if (a >= b || pix::math::abs(y) < pix::math::PR_THRESHOLD)
+				break;
 		}
-		while (a < b && y > pix::math::PR_THRESHOLD);
 
 		return x;
 	}
 
 	template<typename type_in, typename type_out, typename callable>
-	template <typename type_t>
 	type_out function<type_in, type_out, callable>::newton(type_in x) const noexcept(false)
 	{
-		is_float_static_assert(type_t);
-
 		type_out
 			der, // Derivative
 			y; // Image of the mid point
 
-		do
+		for (unsigned long i = 0; i < pix::math::MAX_ITER; ++i)
 		{
 			der = this->derivative(x);
 
-			if (der == 0) throw "Division by zero (f'(x) == 0)";
+			if (der == 0) throw "Null derivative (f'(x) == 0)";
 
 			x -= this->_callable(x) / der;
 			y = this->_callable(x);
 			
-			if (y < 0) // Turn the value of y into it's own absolute value
-				y *= -1;
+			if (pix::math::abs(y) < pix::math::PR_THRESHOLD)
+				break;
 		}
-		while (y > pix::math::PR_THRESHOLD);
 		
 		return x;
 	}
 
 	template<typename type_in, typename type_out, typename callable>
-	template <typename type_t>
 	type_out function<type_in, type_out, callable>::secant(type_in a, type_in b) const noexcept(false)
 	{
-		is_float_static_assert(type_t);
-
 		if (a >= b) throw "Invalid interval (a >= b)";
 
 		type_in x;
@@ -91,7 +80,7 @@ namespace pix::math
 			y_b = this->_callable(b),
 			y = y_b;
 
-		do
+		for (unsigned long i = 0; i < pix::math::MAX_ITER; ++i)
 		{
 			if (y_a == y_b) throw "Division by zero (f(a) == f(b))";
 			
@@ -106,20 +95,16 @@ namespace pix::math
 			
 			y = y_b;
 
-			if (y < 0) // Turn the value of y into it's own absolute value
-				y *= -1;
+			if (pix::math::abs(y) < pix::math::PR_THRESHOLD)
+				break;
 		}
-		while (y > pix::math::PR_THRESHOLD);
 
 		return b;
 	}
 
 	template<typename type_in, typename type_out, typename callable>
-	template <typename type_t>
 	type_out function<type_in, type_out, callable>::golden_root(type_in a, type_in b) const noexcept(false)
 	{
-		is_float_static_assert(type_t);
-
 		if (a >= b) throw "Invalid interval (a >= b)";
 
 		type_out
@@ -128,49 +113,29 @@ namespace pix::math
 
 		if (y_a * y_b > 0) throw "Invalid convergence condition (f(a) * f(b) >= 0)";
 
-		const type_t phi = static_cast<type_t>(0.5 * (3.0 - pix::math::root(5.0, 2))); // ~0.381966
+		const auto invphi = static_cast<type_in>(0.5 * (pix::math::root(5.0, 2) - 1)); // Inverse of the golden ratio
+		type_in c, d;
 
-		type_in x_1, x_2;
-		type_out y_1, y_2;
-
-		while ((b - a) > pix::math::PR_THRESHOLD)
+		for (unsigned long i = 0; i < pix::math::MAX_ITER; ++i)
 		{
-			x_1 = b - phi * (b - a);
-			x_2 = a + phi * (b - a);
+			c = b - (b - a) * invphi;
+			d = a + (b - a) * invphi;
+			
+			if (this->_callable(c) < this->_callable(d))
+				b = d;
+			else
+				a = c;
 
-			y_1 = this->_callable(x_1);
-			y_2 = this->_callable(x_2);
-
-			// Check for sign changes to bracket root
-			if (y_a * y_1 < 0)
-			{
-				b = x_1;
-				y_b = y_1;
-			}
-			else if (y_1 * y_2 < 0)
-			{
-				a = x_1;
-				y_a = y_1;
-				b = x_2;
-				y_b = y_2;
-			}
-			else // f2 * fb < 0
-			{
-				a = x_2;
-				y_a = y_2;
-			}
+			if (b - a > pix::math::PR_THRESHOLD)
+				break;
 		}
 
-		// Return midpoint of final interval as estimated root
-		return static_cast<type_out>(0.5 * (a + b));
+		return 0.5 * (b + a);
 	}
 
 	template <typename type_in, typename type_out, typename callable>
-	template <typename type_t>
-	type_out function<type_in, type_out, callable>::derivative(const type_in x) const noexcept(false)
+	type_out function<type_in, type_out, callable>::derivative(const type_in x) const
 	{
-		is_float_static_assert(type_t);
-
 		return static_cast<type_out>((this->_callable(x + pix::math::PR_THRESHOLD) - this->_callable(x)) / pix::math::PR_THRESHOLD);
 	}
 }

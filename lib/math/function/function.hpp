@@ -35,18 +35,16 @@ namespace pix::math
 		 * @note Assumes type_in and type_out have the necessary operators
 		 * (arithmetic, assignment, relational)
 		*/
-		template <typename type_t = float>
 		type_out bissection(type_in, type_in) const noexcept(false);
 
 		/**
 		 * @brief Newton method
 		 * @param x0 Initial point
 		 * @return First root found
-		 * @throw Division by zero (f'(x) == 0)
+		 * @throw Null derivative (f'(x) == 0)
 		 * @note Assumes type_in and type_out have the necessary operators
 		 * (arithmetic, assignment, relational)
 		*/
-		template <typename type_t = float>
 		type_out newton(type_in) const noexcept(false);
 
 		/**
@@ -59,7 +57,6 @@ namespace pix::math
 		 * @note Assumes type_in and type_out have the necessary operators
 		 * (arithmetic, assignment, relational)
 		*/
-		template <typename type_t = float>
 		type_out secant(type_in, type_in) const noexcept(false);
 
 		/**
@@ -71,7 +68,6 @@ namespace pix::math
 		 * @note Assumes type_in and type_out have the necessary operators
 		 * (arithmetic, assignment, relational)
 		*/
-		template <typename type_t = float>
 		type_out golden_root(type_in, type_in) const noexcept(false);
 
 		/**
@@ -79,8 +75,7 @@ namespace pix::math
 		 * @param x Point
 		 * @return Derivative in point x
 		*/
-		template <typename type_t = float>
-		type_out derivative(type_in) const noexcept(false);
+		type_out derivative(type_in) const;
 	};
 }
 
