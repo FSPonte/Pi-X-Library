@@ -9,238 +9,184 @@
 // Pi-X library
 #include <pix_lib.hpp>
 
-using type_t = double;
+using type_t = long double;
 
 constexpr const unsigned long
-	DIM = 1E3,
-	MAX_ITER = 1E3;
+	SIZE = 1E3,
+	NUM_FREQS = 1E3;
 constexpr const type_t
-	AMP_MAX = 5,
+	TIME_INITIAL = 0,
+	TIME_FINAL = 2 * pix::constants::mathematics::PI,
+	AMP_MIN = 0,
+	AMP_MAX = 10,
+	OFFSET_MIN = -10,
 	OFFSET_MAX = 10,
+	FREQ_MIN = 0,
 	FREQ_MAX = 5,
-	PHASE_MAX = pix::constants::mathematics::PI,
-	ERROR = 1,
-	THRESHOLD = 1E-3,
-	LEARN_RATE = 1E-6,
-	STEP = 1E-2;
+	PHASE_MIN = -pix::constants::mathematics::PI,
+	PHASE_MAX = pix::constants::mathematics::PI;
 
-struct parameters
-{
-	type_t
-		amp,
-		offset,
-		freq,
-		phase;
-};
+/**
+ * @brief Write file
+ * @param in Array of input data
+ * @param out Array of output data
+ * @param dim Number of data entries
+ * @param f_nam File name
+*/
+void write_file(const type_t[], const type_t[], unsigned long, const char[]);
 
-type_t function(parameters, type_t);
-type_t function_der_amp(parameters, type_t);
-type_t function_der_offset(parameters, type_t);
-type_t function_der_freq(parameters, type_t);
-type_t function_der_phase(parameters, type_t);
+type_t f(type_t);
 
 int main(int argc, char* argv[])
 {
+	// Parse arguments
+	utils::parse(argc, argv);
+
+	// Log constraints
+	{
+		std::cout
+			<< "Constraints:\n"
+			<< "\tTime = [" << TIME_INITIAL << ", " << TIME_FINAL << "]\n"
+			<< "\tAmplitude = [" << AMP_MIN << ", " << AMP_MAX << "]\n"
+			<< "\tOffset = [" << OFFSET_MIN << ", " << OFFSET_MAX << "]\n"
+			<< "\tFrequency = [" << FREQ_MIN << ", " << FREQ_MAX << "]\n"
+			<< "\tPhase = [" << PHASE_MIN << ", " << PHASE_MAX << "]\n\n";
+	}
+
 	type_t
-		input[DIM],
-		output[DIM],
-		aprox[DIM];
-	std::ofstream file;
+		amp = pix::random::drand<type_t>(AMP_MIN, AMP_MAX),
+		offset = pix::random::drand<type_t>(OFFSET_MIN, OFFSET_MAX),
+		freq = pix::random::drand<type_t>(FREQ_MIN, FREQ_MAX),
+		phase = pix::random::drand<type_t>(PHASE_MIN, PHASE_MAX);
 
-	// Manage dataset
+	// Log parameters
 	{
-		parameters dataset =
-		{
-			pix::random::drand<type_t>(0, AMP_MAX),
-			pix::random::drand(-OFFSET_MAX, OFFSET_MAX),
-			pix::random::drand<type_t>(0, FREQ_MAX),
-			pix::random::drand(-PHASE_MAX, PHASE_MAX)
-		};
+		std::cout
+			<< "Parameters:\n"
+			<< "\tAmplitude = " << amp
+			<< "\n\tOffset = " << offset
+			<< "\n\tFreq = " << freq
+			<< "\n\tPhase = " << phase << "\n\n";
+	}
 
-		// Log dataset parameters
+	type_t
+		time[SIZE],
+		signal[SIZE];
+
+	// Create dataset
+	{
+		for (unsigned long i = 0; i < SIZE; ++i)
+			time[i] = pix::random::drand<type_t>(TIME_INITIAL, TIME_FINAL);
+
+		pix::sort::quick_sort(time, SIZE);
+		type_t ang_freq = 2 * pix::constants::mathematics::PI * freq;
+
+		for (unsigned long i = 0; i < SIZE; ++i)
+			signal[i] = amp * pix::math::trig::sin(ang_freq * time[i] + phase) + offset;
+
+		write_file(time, signal, SIZE, "files/signal.txt");
+	}
+
+	// Adjust the signal
+	{
+		pix::math::signal::mean_sub(signal, SIZE);
+		pix::math::signal::norm(signal, SIZE);
+		pix::math::signal::window::blackman(signal, SIZE);
+
+		write_file(time, signal, SIZE, "files/adjust.txt");
+	}
+
+	type_t freq_domain[NUM_FREQS];
+
+	// Create frequency domain
+	{
+		type_t step = (FREQ_MAX - FREQ_MIN) / NUM_FREQS;
+		
+		for (unsigned long i = 0; i < NUM_FREQS; ++i)
+			freq_domain[i] = step * i + FREQ_MIN;
+	}
+
+	type_t transform[NUM_FREQS];
+
+	// Create transform
+	{
+		pix::math::signal::transform::dft(time, signal, freq_domain, transform, SIZE, NUM_FREQS);
+		write_file(freq_domain, transform, NUM_FREQS, "files/fourier.txt");
+	}
+
+	// Function
+	{
+		auto func = pix::math::function<type_t, type_t, decltype(&f)>(f);
+		type_t zero = 0.25 * pix::constants::mathematics::PI;
+
+		std::cout
+			<< "f(" << zero << ") = " << func(zero) << '\n'
+			<< "bissection = " << func.bissection(-1, 1) << '\n'
+			<< "newton = " << func.newton(0) << '\n'
+			<< "secant = " << func.secant(-1, 1) << '\n'
+			<< "golden = " << func.golden_root(-1, 1) << "\n\n";
+	}
+
+	// System of linear equations
+	{
+		constexpr const unsigned long DIM = 4;
+		type_t
+			mtx[DIM][DIM] =
+			{
+				{1, 2, 3, 5},
+				{3, 2, 1, -2},
+				{-1, 3, 5, 0},
+				{2, 1, 3, 4}
+			},
+			vec[DIM] = {1, 3, 4, -1};
+
+		std::cout << "Matrix:\n";
+		utils::print(mtx);
+		std::cout << "\nVector:\n";
+		utils::print(vec);
+
+		// Gaussian elimination
 		{
-			std::cout
-				<< "Dataset:\n"
-				<< "\tAmplitude = " << dataset.amp << '\n'
-				<< "\tOffset = " << dataset.offset << '\n'
-				<< "\tFrequency = " << dataset.freq << '\n'
-				<< "\tPhase = " << dataset.phase << "\n\n";
+			type_t sol[DIM]; // Solution vector
+
+			pix::math::sys_lin_equ::gauss_elim(mtx, vec, sol);
+
+			// Print solution
+			std::cout << "\nSolution:\n";
+			utils::print(sol);
 		}
 
-		for (unsigned long i = 0; i < DIM; ++i)
-			input[i] = pix::random::drand<type_t>(0, 2 * pix::constants::mathematics::PI);
-
-		pix::sort::quick_sort(input, DIM);
-
-		for (unsigned long i = 0; i < DIM; ++i)
+		// LU decomposition
 		{
-			output[i] = function(dataset, input[i]);
-			output[i] += pix::random::drand(-ERROR, ERROR);
-		}
+			type_t
+				L[DIM][DIM], // Lower triangular matrix
+				U[DIM][DIM]; // Upper triangular matrix
 
-		// Write dataset.txt
-		{
-			file.open("files/dataset.txt");
+			pix::math::sys_lin_equ::lu_decomp(mtx, L, U);
 
-			for (unsigned long i = 0; i < DIM; ++i)
-				file << input[i] << ' ' << output[i] << '\n';
-
-			file.close();
+			std::cout << "\nLower:\n";
+			utils::print(L);
+			std::cout << "\nUpper:\n";
+			utils::print(U);
 		}
 	}
 
-	// Manage model
-	{
-		std::cout << "Model:" << '\n';
-
-		unsigned long iter;
-		type_t coeff_det; // Coefficient of determination (R^2)
-		parameters model;
-
-		// Initial model paramters
-		{
-			model = parameters
-			{
-				0.5 * pix::math::stat::amp(output, DIM),
-				pix::math::stat::mean(output, DIM),
-				1,
-				0
-			};
-
-			// Log initial model parameters
-			{
-				std::cout
-					<< "\tInitial values:\n"
-					<< "\t\tAmp = " << model.amp << '\n'
-					<< "\t\tOffset = " << model.offset << '\n'
-					<< "\t\tFreq = " << model.freq << '\n'
-					<< "\t\tPhase = " << model.phase << "\n\n";
-			}
-		}
-
-		// Training model
-		{
-			std::cout << std::setprecision(3) << std::fixed;
-
-			type_t coeff = 2.0 / DIM;
-			parameters sum, grad;
-
-			for (iter = 0; iter < MAX_ITER; ++iter)
-			{
-				sum.amp = 0;
-				sum.offset = 0;
-				sum.freq = 0;
-				sum.phase = 0;
-
-				for (unsigned long i = 0; i < DIM; ++i)
-				{
-					sum.amp += (function(model, input[i]) - output[i]) * function_der_amp(model, input[i]);
-					sum.offset += (function(model, input[i]) - output[i]) * function_der_offset(model, input[i]);
-					sum.freq += (function(model, input[i]) - output[i]) * function_der_freq(model, input[i]);
-					sum.phase += (function(model, input[i]) - output[i]) * function_der_phase(model, input[i]);
-				}
-
-				grad.amp = coeff * sum.amp;
-				grad.offset = coeff * sum.offset;
-				grad.freq = coeff * sum.freq;
-				grad.phase = coeff * sum.phase;
-
-				if
-				(
-					grad.amp < THRESHOLD &&
-					grad.offset < THRESHOLD &&
-					grad.freq < THRESHOLD &&
-					grad.phase < THRESHOLD
-				) break;
-
-				model.amp -= LEARN_RATE * grad.amp;
-				model.offset -= LEARN_RATE * grad.offset;
-				model.freq -= LEARN_RATE * grad.freq;
-				model.phase -= LEARN_RATE * grad.phase;
-
-				for (unsigned long i = 0; i < DIM; ++i)
-					aprox[i] = function(model, input[i]);
-
-				coeff_det = pix::math::stat::coeff_det(output, aprox, DIM);
-
-				// Log progress
-				{
-					std::cout
-						<< "> Progress... "
-						<< 100.0 * iter / pix::math::MAX_ITER << " %"
-						<< " | R^2 = " << coeff_det
-						<< "                    \r"
-						<< std::flush;
-				}
-			}
-
-			std::cout << "\r                                                  \r" << std::flush;
-			std::cout.precision();
-
-			// Write aprox.txt
-			{
-				file.open("files/aprox.txt");
-
-				for (unsigned long i = 0; i < DIM; ++i)
-					file << input[i] << ' ' << aprox[i] << '\n';
-
-				file.close();
-			}
-		}
-
-		// Fourier transform
-		{
-			constexpr const unsigned long FREQ_DIM = 5 / STEP;
-			type_t freq[FREQ_DIM], transform[DIM];
-
-			freq[0] = 0;
-
-			for (unsigned long i = 1; i < FREQ_DIM; ++i)
-				freq[i] = freq[i - 1] + STEP;
-
-			pix::math::signal::mean_sub(aprox, DIM);
-			pix::math::signal::norm(aprox, DIM);
-			pix::math::signal::window::blackman(aprox, DIM);
-			pix::math::signal::transform::ndft(input, aprox, freq, transform, DIM, FREQ_DIM);
-			
-			// Write fourier.txt
-			{
-				file.open("files/fourier.txt");
-
-				for (unsigned long i = 0; i < FREQ_DIM; ++i)
-					file << freq[i] << ' ' << transform[i] << '\n';
-
-				file.close();
-			}
-		}
-
-		// Log model parameters
-		{
-			std::cout
-				<< "\tTrained values:\n"
-				<< "\t\tAmp = " << model.amp << '\n'
-				<< "\t\tOffset = " << model.offset << '\n'
-				<< "\t\tFreq = " << model.freq << '\n'
-				<< "\t\tPhase = " << model.phase<< "\n\n"
-				<< "Iter = " << iter << '\n'
-				<< "R^2 = " << coeff_det << "\n\n";
-		}
-	}
+	std::cout << std::endl;
 
 	return EXIT_SUCCESS;
 }
 
-type_t function(const parameters params, const type_t input)
-{ return params.amp * pix::math::trig::sin(2 * pix::constants::mathematics::PI * params.freq * input + params.phase) + params.offset; }
+void write_file(const type_t input[], const type_t output[], const unsigned long SIZE, const char file_name[])
+{
+	std::ofstream file(file_name);
 
-type_t function_der_amp(const parameters params, const type_t input)
-{ return pix::math::trig::sin(2 * pix::constants::mathematics::PI * params.freq * input + params.phase); }
+	for (unsigned long i = 0; i < SIZE; ++i)
+		file << input[i] << ' ' << output[i] << '\n';
 
-type_t function_der_offset(const parameters params, const type_t input)
-{ return 1; }
+	file.close();
+}
 
-type_t function_der_freq(const parameters params, const type_t input)
-{ return params.amp * pix::math::trig::cos(2 * pix::constants::mathematics::PI * params.freq * input + params.phase) * input; }
-
-type_t function_der_phase(const parameters params, const type_t input)
-{ return params.amp * pix::math::trig::cos(2 * pix::constants::mathematics::PI * params.freq * input + params.phase); }
+type_t f(const type_t x)
+{
+	return pix::math::trig::sin(x);
+}
