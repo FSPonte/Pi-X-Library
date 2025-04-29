@@ -33,6 +33,25 @@ namespace utils
 	 * @param f_nam File name
 	*/
 	void print_file_hex(char[]) noexcept(true);
+
+	/**
+	 * @brief Print vector
+	 * @tparam type_t Data type
+	 * @tparam DIM Number of elements
+	 * @param arr Array
+	*/
+	template <typename type_t, unsigned long DIM>
+	void print(type_t (&)[DIM]) noexcept(true);
+
+	/**
+	 * @brief Print matrix
+	 * @tparam type_t Data type
+	 * @tparam N_LIN Number of lines
+	 * @tparam N_COL Number of columns
+	 * @param arr Array
+	*/
+	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
+	void print(type_t (&)[N_LIN][N_COL]) noexcept(true);
 }
 
 // Template file
