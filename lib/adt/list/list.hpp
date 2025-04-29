@@ -56,7 +56,7 @@ namespace pix::adt
 		 * @brief Size of list
 		 * @return Number of elements
 		*/
-		const unsigned long size(void) const;
+		unsigned long size(void) const;
 	};
 }
 

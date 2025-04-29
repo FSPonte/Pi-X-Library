@@ -52,7 +52,7 @@ namespace pix::adt
 		 * @brief Get dimension
 		 * @return Number of elements
 		*/
-		constexpr const unsigned long dim(void) const;
+		constexpr unsigned long dim(void) const;
 
 		/**
 		 * @brief Copy operator
@@ -74,7 +74,7 @@ namespace pix::adt
 		 * @return True if arrays are equal
 		 * @note Assumes same dimensions as object
 		*/
-		const bool operator == (const type_t[]) const;
+		bool operator == (const type_t[]) const;
 
 		/**
 		 * @brief Equality operator
@@ -84,14 +84,14 @@ namespace pix::adt
 		 * @note Assumes same dimensions as object
 		*/
 		template <typename _type_t>
-		constexpr const bool operator == (const _type_t[]) const;
+		constexpr bool operator == (const _type_t[]) const;
 
 		/**
 		 * @brief Equality operator
 		 * @param arr Array
 		 * @return True if arrays are equal
 		*/
-		const bool operator == (const array<type_t, DIM>&) const;
+		bool operator == (const array<type_t, DIM>&) const;
 
 		/**
 		 * @brief Equality operator
@@ -101,7 +101,7 @@ namespace pix::adt
 		 * @return False
 		*/
 		template <typename _type_t, unsigned long _DIM>
-		constexpr const bool operator == (const array<_type_t, _DIM>&) const;
+		constexpr bool operator == (const array<_type_t, _DIM>&) const;
 
 		/**
 		 * @brief Inequality operator
@@ -109,7 +109,7 @@ namespace pix::adt
 		 * @return True if arrays are different
 		 * @note Assumes same dimensions as object
 		*/
-		const bool operator != (const type_t[]) const;
+		bool operator != (const type_t[]) const;
 
 		/**
 		 * @brief Inequality operator
@@ -119,14 +119,14 @@ namespace pix::adt
 		 * @note Assumes same dimensions as object
 		*/
 		template <typename _type_t>
-		constexpr const bool operator != (const _type_t[]) const;
+		constexpr bool operator != (const _type_t[]) const;
 
 		/**
 		 * @brief Inequality operator
 		 * @param arr Array
 		 * @return True if arrays are different
 		*/
-		const bool operator != (const array<type_t, DIM>&) const;
+		bool operator != (const array<type_t, DIM>&) const;
 
 		/**
 		 * @brief Inequality operator
@@ -135,7 +135,7 @@ namespace pix::adt
 		 * @return True
 		*/
 		template <typename _type_t, unsigned long _DIM>
-		constexpr const bool operator != (const array<_type_t, _DIM>&) const;
+		constexpr bool operator != (const array<_type_t, _DIM>&) const;
 	};
 }
 

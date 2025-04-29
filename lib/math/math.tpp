@@ -8,7 +8,7 @@ static const unsigned long STD_NaN = 0x7ff8000000000000; // Standard representat
 
 namespace pix::math
 {
-	constexpr const double NaN(void) noexcept(true)
+	constexpr double NaN(void) noexcept(true)
 	{
 		return *reinterpret_cast<const double*>(&STD_NaN);
 	}

@@ -52,7 +52,7 @@ namespace pix::math
 		 * @brief Get size
 		 * @return Number of components
 		*/
-		constexpr const unsigned long dim(void) const;
+		constexpr unsigned long dim(void) const;
 
 		/**
 		 * @brief Copy operator
@@ -75,14 +75,14 @@ namespace pix::math
 		 * @return False
 		*/
 		template <typename _type_t, unsigned long _DIM>
-		constexpr const bool operator == (const vector<_type_t, _DIM>&);
+		constexpr bool operator == (const vector<_type_t, _DIM>&);
 
 		/**
 		 * @brief Equality operator
 		 * @param vec Vector
 		 * @return True if vectors are equal
 		*/
-		const bool operator == (const vector<type_t, DIM>&);
+		bool operator == (const vector<type_t, DIM>&);
 
 		/**
 		 * @brief Inequality operator
@@ -92,14 +92,14 @@ namespace pix::math
 		 * @return True
 		*/
 		template <typename _type_t, unsigned long _DIM>
-		constexpr const bool operator != (const vector<_type_t, _DIM>&);
+		constexpr bool operator != (const vector<_type_t, _DIM>&);
 
 		/**
 		 * @brief Inequality operator
 		 * @param vec Vector
 		 * @return True if vectors are different
 		*/
-		const bool operator != (const vector<type_t, DIM>&);
+		bool operator != (const vector<type_t, DIM>&);
 
 		/**
 		 * @brief Addition operator

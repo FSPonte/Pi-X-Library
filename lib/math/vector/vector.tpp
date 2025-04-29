@@ -42,7 +42,7 @@ namespace pix::math
 	}
 
 	template <typename type_t, unsigned long DIM>
-	constexpr const unsigned long vector<type_t, DIM>::dim(void) const
+	constexpr unsigned long vector<type_t, DIM>::dim(void) const
 	{
 		return DIM;
 	}
@@ -65,13 +65,13 @@ namespace pix::math
 
 	template <typename type_t, unsigned long DIM>
 	template <typename _type_t, unsigned long _DIM>
-	constexpr const bool vector<type_t, DIM>::operator == (const vector<_type_t, _DIM>& vec)
+	constexpr bool vector<type_t, DIM>::operator == (const vector<_type_t, _DIM>& vec)
 	{
 		return false;
 	}
 
 	template <typename type_t, unsigned long DIM>
-	const bool vector<type_t, DIM>::operator == (const vector<type_t, DIM>& vec)
+	bool vector<type_t, DIM>::operator == (const vector<type_t, DIM>& vec)
 	{
 		for (unsigned long i = 0; i < DIM; ++i)
 		{
@@ -84,13 +84,13 @@ namespace pix::math
 
 	template <typename type_t, unsigned long DIM>
 	template <typename _type_t, unsigned long _DIM>
-	constexpr const bool vector<type_t, DIM>::operator != (const vector<_type_t, _DIM>& vec)
+	constexpr bool vector<type_t, DIM>::operator != (const vector<_type_t, _DIM>& vec)
 	{
 		return true;
 	}
 
 	template <typename type_t, unsigned long DIM>
-	const bool vector<type_t, DIM>::operator != (const vector<type_t, DIM>& vec)
+	bool vector<type_t, DIM>::operator != (const vector<type_t, DIM>& vec)
 	{
 		return !(*this == vec);
 	}

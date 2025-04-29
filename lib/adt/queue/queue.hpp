@@ -28,7 +28,7 @@ namespace pix::adt
 		 * @param ele Element
 		 * @return True if the element was added
 		*/
-		const bool queue_up(const type_t&);
+		bool queue_up(const type_t&);
 
 		/**
 		 * @brief Unqueue a element
@@ -52,25 +52,25 @@ namespace pix::adt
 		 * @brief Size of queue
 		 * @return Number of elements
 		*/
-		const unsigned long size(void) const;
+		unsigned long size(void) const;
 
 		/**
 		 * @brief Maximum size
 		 * @return Maximum number of elements
 		*/
-		constexpr const unsigned long max_size(void) const;
+		constexpr unsigned long max_size(void) const;
 
 		/**
 		 * @brief Is empty
 		 * @return True if queue is empty
 		*/
-		const bool is_empty(void) const;
+		bool is_empty(void) const;
 
 		/**
 		 * @brief Is Full
 		 * @return True if queue is full
 		*/
-		const bool is_full(void) const;
+		bool is_full(void) const;
 	};
 }
 

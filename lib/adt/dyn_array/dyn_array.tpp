@@ -86,7 +86,7 @@ namespace pix::adt
 	}
 
 	template <typename type_t, unsigned long BLOCK_ALLOC_SIZE>
-	const unsigned long dyn_array<type_t, BLOCK_ALLOC_SIZE>::size(void) const
+	unsigned long dyn_array<type_t, BLOCK_ALLOC_SIZE>::size(void) const
 	{
 		if (this->_next == nullptr)
 			return this->_index;

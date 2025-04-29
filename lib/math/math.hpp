@@ -11,7 +11,7 @@ namespace pix::math
 	 * @brief Not a Number
 	 * @return Get the nan value
 	*/
-	constexpr const double NaN(void) noexcept(true);
+	constexpr double NaN(void) noexcept(true);
 
 	/**
 	 * @brief Absolute value

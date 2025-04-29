@@ -51,7 +51,7 @@ namespace pix::math
 	}
 
 	template <typename type_t>
-	const bool complex<type_t>::operator == (const complex<type_t>& cpx) const
+	bool complex<type_t>::operator == (const complex<type_t>& cpx) const
 	{
 		if (this->_re == cpx._re && this->_im == cpx._im)
 			return true;
@@ -61,20 +61,20 @@ namespace pix::math
 
 	template <typename type_t>
 	template <typename _type_t>
-	constexpr const bool complex<type_t>::operator == (const complex<_type_t>& cpx) const
+	constexpr bool complex<type_t>::operator == (const complex<_type_t>& cpx) const
 	{
 		return false;
 	}
 
 	template <typename type_t>
-	const bool complex<type_t>::operator != (const complex<type_t>& cpx) const
+	bool complex<type_t>::operator != (const complex<type_t>& cpx) const
 	{
 		return !(*this == cpx);
 	}
 
 	template <typename type_t>
 	template <typename _type_t>
-	constexpr const bool complex<type_t>::operator != (const complex<_type_t>& cpx) const
+	constexpr bool complex<type_t>::operator != (const complex<_type_t>& cpx) const
 	{
 		return true;
 	}

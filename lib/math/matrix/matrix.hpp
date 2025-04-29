@@ -64,25 +64,25 @@ namespace pix::math
 		 * @brief Get number of lines
 		 * @return Number of lines
 		*/
-		constexpr const unsigned long n_lin(void) const;
+		constexpr unsigned long n_lin(void) const;
 
 		/**
 		 * @brief Get number of columns
 		 * @return Number of columns
 		*/
-		constexpr const unsigned long n_col(void) const;
+		constexpr unsigned long n_col(void) const;
 
 		/**
 		 * @brief Check upper
 		 * @return True if matrix is upper triangular
 		*/
-		const bool is_upper(void) const;
+		bool is_upper(void) const;
 
 		/**
 		 * @brief Check lower
 		 * @return True if matrix is lower triangular
 		*/
-		const bool is_lower(void) const;
+		bool is_lower(void) const;
 
 		/**
 		 * @brief Get upper
@@ -107,7 +107,7 @@ namespace pix::math
 		 * @param mtx Matrix
 		 * @return True if matrices are equal
 		*/
-		const bool operator == (const matrix<type_t, N_LIN, N_COL>&) const;
+		bool operator == (const matrix<type_t, N_LIN, N_COL>&) const;
 
 		/**
 		 * @brief Equality operator
@@ -118,14 +118,14 @@ namespace pix::math
 		 * @return False
 		*/
 		template <typename _type_t, unsigned long _N_LIN, unsigned long _N_COL>
-		constexpr const bool operator == (const matrix<_type_t, _N_LIN, _N_COL>&) const;
+		constexpr bool operator == (const matrix<_type_t, _N_LIN, _N_COL>&) const;
 
 		/**
 		 * @brief Inequality operator
 		 * @param mtx Matrix
 		 * @return True if matrices are different
 		*/
-		const bool operator != (const matrix<type_t, N_LIN, N_COL>&) const;
+		bool operator != (const matrix<type_t, N_LIN, N_COL>&) const;
 
 		/**
 		 * @brief Inequality operator
@@ -136,7 +136,7 @@ namespace pix::math
 		 * @return True
 		*/
 		template <typename _type_t, unsigned long _N_LIN, unsigned long _N_COL>
-		constexpr const bool operator != (const matrix<_type_t, _N_LIN, _N_COL>&) const;
+		constexpr bool operator != (const matrix<_type_t, _N_LIN, _N_COL>&) const;
 
 		/**
 		 * @brief Addition operator

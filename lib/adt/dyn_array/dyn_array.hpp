@@ -54,7 +54,7 @@ namespace pix::adt
 		 * @brief Get size
 		 * @return Number of elements
 		*/
-		const unsigned long size(void) const;
+		unsigned long size(void) const;
 	};
 }
 

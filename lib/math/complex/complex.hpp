@@ -65,7 +65,7 @@ namespace pix::math
 		 * @param cpx Complex
 		 * @return True if complex numbers are equal
 		*/
-		const bool operator == (const complex<type_t>&) const;
+		bool operator == (const complex<type_t>&) const;
 
 		/**
 		 * @brief Equality operator
@@ -74,14 +74,14 @@ namespace pix::math
 		 * @return False
 		*/
 		template <typename _type_t>
-		constexpr const bool operator == (const complex<_type_t>&) const;
+		constexpr bool operator == (const complex<_type_t>&) const;
 
 		/**
 		 * @brief Inequality operator
 		 * @param cpx Complex
 		 * @return True if complex numbers are different
 		*/
-		const bool operator != (const complex<type_t>&) const;
+		bool operator != (const complex<type_t>&) const;
 
 		/**
 		 * @brief Inequality operator
@@ -90,7 +90,7 @@ namespace pix::math
 		 * @return True
 		*/
 		template <typename _type_t>
-		constexpr const bool operator != (const complex<_type_t>&) const;
+		constexpr bool operator != (const complex<_type_t>&) const;
 
 		/**
 		 * @brief Scalar multiplication

@@ -114,7 +114,7 @@ namespace pix::adt
 	}
 
 	template <typename type_t>
-	const unsigned long node<type_t>::size(void) const
+	unsigned long node<type_t>::size(void) const
 	{
 		return this->_size;
 	}

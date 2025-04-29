@@ -10,7 +10,7 @@ namespace pix::graphics
 		this->_blue = color._blue;
 	}
 
-	const bool rgb::operator == (const rgb& color) const
+	bool rgb::operator == (const rgb& color) const
 	{
 		return
 			this->_red == color._red
@@ -20,7 +20,7 @@ namespace pix::graphics
 			this->_blue == color._blue;
 	}
 
-	const bool rgb::operator != (const rgb& color) const
+	bool rgb::operator != (const rgb& color) const
 	{
 		return
 			this->_red != color._red

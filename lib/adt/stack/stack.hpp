@@ -28,7 +28,7 @@ namespace pix::adt
 		 * @param ele Element
 		 * @return True if the element was added
 		*/
-		const bool add(const type_t&);
+		bool add(const type_t&);
 
 		/**
 		 * @brief Pop a element
@@ -46,25 +46,25 @@ namespace pix::adt
 		 * @brief Size of stack
 		 * @return Number of elements
 		*/
-		const unsigned long size(void) const;
+		unsigned long size(void) const;
 
 		/**
 		 * @brief Maximum size
 		 * @return Maximum number of elements
 		*/
-		constexpr const unsigned long max_size(void) const;
+		constexpr unsigned long max_size(void) const;
 
 		/**
 		 * @brief Is empty
 		 * @return True if stack is empty
 		*/
-		const bool is_empty(void) const;
+		bool is_empty(void) const;
 
 		/**
 		 * @brief Is Full
 		 * @return True if stack is full
 		*/
-		const bool is_full(void) const;
+		bool is_full(void) const;
 	};
 }
 

@@ -28,7 +28,7 @@ namespace pix::adt
 		 * @param ele Element
 		 * @return True if the element was added
 		*/
-		const bool push_back(const type_t&);
+		bool push_back(const type_t&);
 
 		/**
 		 * @brief Unqueue the back element
@@ -41,7 +41,7 @@ namespace pix::adt
 		 * @param ele Element
 		 * @return True if the element was added
 		*/
-		const bool push_front(const type_t&);
+		bool push_front(const type_t&);
 
 		/**
 		 * @brief Unqueue the front element
@@ -65,25 +65,25 @@ namespace pix::adt
 		 * @brief Size of queue
 		 * @return Number of elements
 		*/
-		const unsigned long size(void) const;
+		unsigned long size(void) const;
 
 		/**
 		 * @brief Maximum size
 		 * @return Maximum number of elements
 		*/
-		constexpr const unsigned long max_size(void) const;
+		constexpr unsigned long max_size(void) const;
 
 		/**
 		 * @brief Is empty
 		 * @return true if deque is empty
 		*/
-		const bool is_empty(void) const;
+		bool is_empty(void) const;
 
 		/**
 		 * @brief Is Full
 		 * @return true if deque is full
 		*/
-		const bool is_full(void) const;
+		bool is_full(void) const;
 	};
 }
 

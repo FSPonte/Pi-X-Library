@@ -57,7 +57,7 @@ namespace pix::memory
 		 * @brief Get size
 		 * @return Number of partitions
 		*/
-		const unsigned long size(void) const;
+		unsigned long size(void) const;
 	};
 }
 

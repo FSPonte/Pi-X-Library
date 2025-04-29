@@ -16,7 +16,7 @@ namespace pix::adt
 	}
 
 	template <typename type_t, unsigned long MAX_SIZE>
-	const bool deque<type_t, MAX_SIZE>::push_back(const type_t& ELEMENT)
+	bool deque<type_t, MAX_SIZE>::push_back(const type_t& ELEMENT)
 	{
 		if (this->_index == MAX_SIZE)
 			return false;
@@ -36,7 +36,7 @@ namespace pix::adt
 	}
 
 	template <typename type_t, unsigned long MAX_SIZE>
-	const bool deque<type_t, MAX_SIZE>::push_front(const type_t& ELEMENT)
+	bool deque<type_t, MAX_SIZE>::push_front(const type_t& ELEMENT)
 	{
 		if (this->_index == MAX_SIZE)
 			return false;
@@ -84,25 +84,25 @@ namespace pix::adt
 	}
 
 	template <typename type_t, unsigned long MAX_SIZE>
-	const unsigned long deque<type_t, MAX_SIZE>::size(void) const
+	unsigned long deque<type_t, MAX_SIZE>::size(void) const
 	{
 		return this->_index;
 	}
 
 	template <typename type_t, unsigned long MAX_SIZE>
-	constexpr const unsigned long deque<type_t, MAX_SIZE>::max_size(void) const
+	constexpr unsigned long deque<type_t, MAX_SIZE>::max_size(void) const
 	{
 		return MAX_SIZE;
 	}
 
 	template <typename type_t, unsigned long MAX_SIZE>
-	const bool deque<type_t, MAX_SIZE>::is_empty(void) const
+	bool deque<type_t, MAX_SIZE>::is_empty(void) const
 	{
 		return (this->_index == 0);
 	}
 
 	template <typename type_t, unsigned long MAX_SIZE>
-	const bool deque<type_t, MAX_SIZE>::is_full(void) const
+	bool deque<type_t, MAX_SIZE>::is_full(void) const
 	{
 		return (this->_index == MAX_SIZE);
 	}

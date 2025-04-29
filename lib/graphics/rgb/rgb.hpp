@@ -19,8 +19,8 @@ namespace pix::graphics
 			_blue;
 
 		void operator = (const rgb&);
-		const bool operator == (const rgb&) const;
-		const bool operator != (const rgb&) const;
+		bool operator == (const rgb&) const;
+		bool operator != (const rgb&) const;
 	};
 }
 

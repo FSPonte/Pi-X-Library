@@ -49,26 +49,26 @@ namespace pix::graphics
 		 * @brief Get width
 		 * @return Width
 		*/
-		constexpr const unsigned long width(void) const;
+		constexpr unsigned long width(void) const;
 
 		/**
 		 * @brief Get height
 		 * @return Height
 		*/
-		constexpr const unsigned long height(void) const;
+		constexpr unsigned long height(void) const;
 
 		/**
 		 * @brief Get resolution
 		 * @return Number of pixels
 		*/
-		constexpr const unsigned long resolution(void) const;
+		constexpr unsigned long resolution(void) const;
 
 		/**
 		 * @brief Size of image
 		 * @return Number of bytes
 		 * @note This is the size of the image object, not the final image file
 		*/
-		constexpr const unsigned long size(void) const;
+		constexpr unsigned long size(void) const;
 
 		/**
 		 * @brief Copy a image

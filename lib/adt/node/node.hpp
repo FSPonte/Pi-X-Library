@@ -85,7 +85,7 @@ namespace pix::adt
 		 * @brief Get size
 		 * @return Number of edges
 		*/
-		const unsigned long size(void) const;
+		unsigned long size(void) const;
 	};
 }
 

@@ -45,7 +45,7 @@ namespace pix::memory
 	}
 
 	template <unsigned long MAX_SIZE>
-	const unsigned long mmap<MAX_SIZE>::size(void) const
+	unsigned long mmap<MAX_SIZE>::size(void) const
 	{
 		return this->_size;
 	}

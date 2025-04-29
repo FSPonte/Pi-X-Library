@@ -6,7 +6,7 @@
 #include <c_array.hpp>
 
 template <typename type_t>
-static const unsigned long _partition_(type_t[], unsigned long, unsigned long) noexcept(true);
+static unsigned long _partition_(type_t[], unsigned long, unsigned long) noexcept(true);
 
 template <typename type_t>
 static void _quick_sort_(type_t[], unsigned long, unsigned long) noexcept(true);
@@ -129,7 +129,7 @@ namespace pix::sort
 }
 
 template <typename type_t>
-static const unsigned long _partition_(type_t arr[], unsigned long start_ind, unsigned long end_ind) noexcept(true)
+static unsigned long _partition_(type_t arr[], unsigned long start_ind, unsigned long end_ind) noexcept(true)
 {
 	unsigned long count = 0;
 	type_t pivot = arr[start_ind];

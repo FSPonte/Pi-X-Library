@@ -86,7 +86,7 @@ namespace pix::adt
 	}
 
 	template <typename type_t>
-	const unsigned long list<type_t>::size(void) const
+	unsigned long list<type_t>::size(void) const
 	{
 		return this->_size;
 	}

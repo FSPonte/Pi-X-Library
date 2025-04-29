@@ -54,13 +54,13 @@ namespace pix::adt
 		 * @brief Get length
 		 * @return Number of characters
 		*/
-		const unsigned long length(void) const;
+		unsigned long length(void) const;
 
 		/**
 		 * @brief Get maximum length
 		 * @return Maximum number of characters
 		*/
-		constexpr const unsigned long max_length(void) const;
+		constexpr unsigned long max_length(void) const;
 
 		/**
 		 * @brief Copy operator
@@ -96,7 +96,7 @@ namespace pix::adt
 		 * @return True if characters are equal
 		 * @throw Pointer to C styled string is null
 		*/
-		const bool operator == (const char[]) const noexcept(false);
+		bool operator == (const char[]) const noexcept(false);
 
 		/**
 		 * @brief Comparisson operator
@@ -104,7 +104,7 @@ namespace pix::adt
 		 * @return True if characters are equal
 		 * @throw Pointer to C styled string is null
 		*/
-		const bool operator == (const string<MAX_LENGTH>&) const noexcept(false);
+		bool operator == (const string<MAX_LENGTH>&) const noexcept(false);
 
 		/**
 		 * @brief Comparisson operator
@@ -112,7 +112,7 @@ namespace pix::adt
 		 * @return True if characters are different
 		 * @throw Pointer to C styled string is null
 		*/
-		const bool operator != (const char[]) const noexcept(false);
+		bool operator != (const char[]) const noexcept(false);
 
 		/**
 		 * @brief Comparisson operator
@@ -120,7 +120,7 @@ namespace pix::adt
 		 * @return True if characters are different
 		 * @throw Pointer to C styled string is null
 		*/
-		const bool operator != (const string<MAX_LENGTH>&) const noexcept(false);
+		bool operator != (const string<MAX_LENGTH>&) const noexcept(false);
 
 		/**
 		 * @brief Type casting operator

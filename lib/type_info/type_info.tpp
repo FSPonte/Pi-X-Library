@@ -181,26 +181,26 @@ namespace pix
 
 	template <typename type_t>
 	template <typename _type_t>
-	constexpr const bool type_info<type_t>::operator == (const type_info<_type_t>& t_inf) const
+	constexpr bool type_info<type_t>::operator == (const type_info<_type_t>& t_inf) const
 	{
 		return false;
 	}
 
 	template <typename type_t>
-	constexpr const bool type_info<type_t>::operator == (const type_info<type_t>& t_inf) const
+	constexpr bool type_info<type_t>::operator == (const type_info<type_t>& t_inf) const
 	{
 		return true;
 	}
 
 	template <typename type_t>
 	template <typename _type_t>
-	constexpr const bool type_info<type_t>::operator != (const type_info<_type_t>& t_inf) const
+	constexpr bool type_info<type_t>::operator != (const type_info<_type_t>& t_inf) const
 	{
 		return true;
 	}
 
 	template <typename type_t>
-	constexpr const bool type_info<type_t>::operator != (const type_info<type_t>& t_inf) const
+	constexpr bool type_info<type_t>::operator != (const type_info<type_t>& t_inf) const
 	{
 		return false;
 	}
