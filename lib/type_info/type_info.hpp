@@ -19,7 +19,7 @@ static_assert                                 \
 (                                             \
 	is_same(type_1, type_2),                  \
 	"Not the same data type"                  \
-);
+)
 
 /**
  * @brief Checks type for primitive numerical data type
@@ -37,7 +37,7 @@ static_assert                           \
 (                                       \
 	is_number(type),                    \
 	"Non primitive numerical data type" \
-);
+)
 
 /**
  * @brief Checks type for primitive integer numerical data type
