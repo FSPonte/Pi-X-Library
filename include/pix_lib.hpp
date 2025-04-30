@@ -1,6 +1,22 @@
 #ifndef _PIX_LIB_HPP_
 #define _PIX_LIB_HPP_
 
+#define LOGGER_MODE true
+
+#if LOGGER_MODE
+
+	#include <logger.hpp>
+
+	#define LOGGER_INIT(file_path) logger _logger_(file_path)
+	#define LOGGER_WRITE(msg) _logger_.log(msg)
+
+#else
+
+	#define LOGGER_INIT(file_path)
+	#define LOGGER_WRITE(msg)
+
+#endif // LOGGER_MODE
+
 #include <sys_vars.hpp>
 #include <types.hpp>
 #include <constants.hpp>

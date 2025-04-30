@@ -9,7 +9,10 @@ add_compile_options(-Wall -Wextra -Wpedantic)
 
 include_directories(
 	"utils"
+	"logger"
+
 	"include"
+	
 	"lib/type_info"
 	"lib/memory"
 	"lib/smart_pointer"
@@ -42,4 +45,5 @@ include_directories(
 add_executable(pix_tester
 	src/main.cpp
 	utils/utils.cpp
+	logger/logger.cpp
 )
