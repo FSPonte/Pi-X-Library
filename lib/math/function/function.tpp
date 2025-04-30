@@ -42,12 +42,12 @@ namespace pix::math
 		// Logger
 		LOGGER_INIT("logs/bissection.log");
 		{
-			LOGGER_WRITE("Parameters:");
-			LOGGER_WRITE("\tTOL = " + std::to_string(this->_TOL));
-			LOGGER_WRITE("\tMAX_ITER = " + std::to_string(this->_MAX_ITER));
-			LOGGER_WRITE("Initial values:");
-			LOGGER_WRITE("\ta = " + std::to_string(a) + " | f(a) = " + std::to_string(y_a));
-			LOGGER_WRITE("\tb = " + std::to_string(b) + " | f(b) = " + std::to_string(y_b));
+			LOGGER_LOG("Parameters:");
+			LOGGER_LOG("\tTOL = " + std::to_string(this->_TOL));
+			LOGGER_LOG("\tMAX_ITER = " + std::to_string(this->_MAX_ITER));
+			LOGGER_LOG("Initial values:");
+			LOGGER_LOG("\ta = " + std::to_string(a) + " | f(a) = " + std::to_string(y_a));
+			LOGGER_LOG("\tb = " + std::to_string(b) + " | f(b) = " + std::to_string(y_b));
 		}
 
 		for (unsigned long i = 1; i <= this->_MAX_ITER; ++i)
@@ -68,9 +68,9 @@ namespace pix::math
 
 			// Logger
 			{
-				LOGGER_WRITE("\nIteration: " + std::to_string(i));
-				LOGGER_WRITE("\ta = " + std::to_string(a) + " | f(a) = " + std::to_string(y_a));
-				LOGGER_WRITE("\tb = " + std::to_string(b) + " | f(b) = " + std::to_string(y_b));
+				LOGGER_LOG("\nIteration: " + std::to_string(i));
+				LOGGER_LOG("\ta = " + std::to_string(a) + " | f(a) = " + std::to_string(y_a));
+				LOGGER_LOG("\tb = " + std::to_string(b) + " | f(b) = " + std::to_string(y_b));
 			}
 
 			if (pix::math::abs(y) < this->_TOL || a == b)
@@ -90,11 +90,11 @@ namespace pix::math
 		// Logger
 		LOGGER_INIT("logs/newton.log");
 		{
-			LOGGER_WRITE("Parameters:");
-			LOGGER_WRITE("\tTOL = " + std::to_string(this->_TOL));
-			LOGGER_WRITE("\tMAX_ITER = " + std::to_string(this->_MAX_ITER));
-			LOGGER_WRITE("Initial values:");
-			LOGGER_WRITE("\tx = " + std::to_string(x) + " | f(x) = " + std::to_string(y));
+			LOGGER_LOG("Parameters:");
+			LOGGER_LOG("\tTOL = " + std::to_string(this->_TOL));
+			LOGGER_LOG("\tMAX_ITER = " + std::to_string(this->_MAX_ITER));
+			LOGGER_LOG("Initial values:");
+			LOGGER_LOG("\tx = " + std::to_string(x) + " | f(x) = " + std::to_string(y));
 		}
 
 		for (unsigned long i = 1; i <= this->_MAX_ITER; ++i)
@@ -108,9 +108,9 @@ namespace pix::math
 
 			// Logger
 			{
-				LOGGER_WRITE("\nIteration: " + std::to_string(i));
-				LOGGER_WRITE("\tm = " + std::to_string(m));
-				LOGGER_WRITE("\tx = " + std::to_string(x) + " | f(x) = " + std::to_string(y));
+				LOGGER_LOG("\nIteration: " + std::to_string(i));
+				LOGGER_LOG("\tm = " + std::to_string(m));
+				LOGGER_LOG("\tx = " + std::to_string(x) + " | f(x) = " + std::to_string(y));
 			}
 			
 			if (pix::math::abs(y) < this->_TOL)
@@ -134,12 +134,12 @@ namespace pix::math
 		// Logger
 		LOGGER_INIT("logs/secant.log");
 		{
-			LOGGER_WRITE("Parameters:");
-			LOGGER_WRITE("\tTOL = " + std::to_string(this->_TOL));
-			LOGGER_WRITE("\tMAX_ITER = " + std::to_string(this->_MAX_ITER));
-			LOGGER_WRITE("Initial values:");
-			LOGGER_WRITE("\ta = " + std::to_string(a) + " | f(a) = " + std::to_string(y_a));
-			LOGGER_WRITE("\tb = " + std::to_string(b) + " | f(b) = " + std::to_string(y_b));
+			LOGGER_LOG("Parameters:");
+			LOGGER_LOG("\tTOL = " + std::to_string(this->_TOL));
+			LOGGER_LOG("\tMAX_ITER = " + std::to_string(this->_MAX_ITER));
+			LOGGER_LOG("Initial values:");
+			LOGGER_LOG("\ta = " + std::to_string(a) + " | f(a) = " + std::to_string(y_a));
+			LOGGER_LOG("\tb = " + std::to_string(b) + " | f(b) = " + std::to_string(y_b));
 		}
 
 		for (unsigned long i = 1; i <= this->_MAX_ITER; ++i)
@@ -159,9 +159,9 @@ namespace pix::math
 
 			// Logger
 			{
-				LOGGER_WRITE("\nIteration: " + std::to_string(i));
-				LOGGER_WRITE("\ta = " + std::to_string(a) + " | f(a) = " + std::to_string(y_a));
-				LOGGER_WRITE("\tb = " + std::to_string(b) + " | f(b) = " + std::to_string(y_b));
+				LOGGER_LOG("\nIteration: " + std::to_string(i));
+				LOGGER_LOG("\ta = " + std::to_string(a) + " | f(a) = " + std::to_string(y_a));
+				LOGGER_LOG("\tb = " + std::to_string(b) + " | f(b) = " + std::to_string(y_b));
 			}
 
 			if (pix::math::abs(y) < this->_TOL || a == b)
@@ -185,12 +185,12 @@ namespace pix::math
 		// Logger
 		LOGGER_INIT("logs/golden_root.log");
 		{
-			LOGGER_WRITE("Parameters:");
-			LOGGER_WRITE("\tTOL = " + std::to_string(this->_TOL));
-			LOGGER_WRITE("\tMAX_ITER = " + std::to_string(this->_MAX_ITER));
-			LOGGER_WRITE("Initial values:");
-			LOGGER_WRITE("\ta = " + std::to_string(a) + " | f(a) = " + std::to_string(y_a));
-			LOGGER_WRITE("\tb = " + std::to_string(b) + " | f(b) = " + std::to_string(y_b));
+			LOGGER_LOG("Parameters:");
+			LOGGER_LOG("\tTOL = " + std::to_string(this->_TOL));
+			LOGGER_LOG("\tMAX_ITER = " + std::to_string(this->_MAX_ITER));
+			LOGGER_LOG("Initial values:");
+			LOGGER_LOG("\ta = " + std::to_string(a) + " | f(a) = " + std::to_string(y_a));
+			LOGGER_LOG("\tb = " + std::to_string(b) + " | f(b) = " + std::to_string(y_b));
 		}
 
 		constexpr const auto invphi = static_cast<type_in>(1.0 / pix::constants::mathematics::GOLDEN_RATIO); // Inverse of the golden ratio
@@ -214,9 +214,9 @@ namespace pix::math
 
 			// Logger
 			{
-				LOGGER_WRITE("\nIteration: " + std::to_string(i));
-				LOGGER_WRITE("\ta = " + std::to_string(a) + " | f(a) = " + std::to_string(y_a));
-				LOGGER_WRITE("\tb = " + std::to_string(b) + " | f(b) = " + std::to_string(y_b));
+				LOGGER_LOG("\nIteration: " + std::to_string(i));
+				LOGGER_LOG("\ta = " + std::to_string(a) + " | f(a) = " + std::to_string(y_a));
+				LOGGER_LOG("\tb = " + std::to_string(b) + " | f(b) = " + std::to_string(y_b));
 			}
 
 			if (b - a < this->_TOL)

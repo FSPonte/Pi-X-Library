@@ -8,12 +8,12 @@
 	#include <logger.hpp>
 
 	#define LOGGER_INIT(file_path) logger _logger_(file_path)
-	#define LOGGER_WRITE(msg) _logger_.log(msg)
+	#define LOGGER_LOG(msg) _logger_.log(msg)
 
 #else
 
 	#define LOGGER_INIT(file_path)
-	#define LOGGER_WRITE(msg)
+	#define LOGGER_LOG(msg)
 
 #endif // LOGGER_MODE
 
