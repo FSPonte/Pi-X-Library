@@ -12,8 +12,8 @@ if [ -f "build/pix_tester" ]; then
 fi
 
 cmake --build "build/"
-hexdump -C -v "build/pix_tester" > "logs/hexdump.txt"
-objdump -D "build/pix_tester" > "logs/objdump.txt"
-size -A "build/pix_tester" > "logs/size.txt"
-apt list > "logs/packages.txt"
-tree -I "build" > "logs/tree.txt"
+hexdump -C -v "build/pix_tester" > "build/hexdump.txt"
+objdump -D "build/pix_tester" > "build/objdump.txt"
+size -A "build/pix_tester" > "build/size.txt"
+apt list > "build/packages.txt"
+tree -I "build" > "build/tree.txt"
