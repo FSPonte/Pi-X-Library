@@ -1,13 +1,18 @@
 #ifndef _FUNCTION_HPP_
 #define _FUNCTION_HPP_
 
+// Depedencies
+#include <math.hpp>
+
 namespace pix::math
 {
-	template<typename type_in, typename type_out, typename callable>
+	template <typename type_in, typename type_out, typename callable>
 	class function
 	{
 	private:
 
+		double _TOL; // Tolerance
+		unsigned long _MAX_ITER; // Maximum number of iterations
 		callable _callable;
 
 	public:
@@ -15,8 +20,12 @@ namespace pix::math
 		/**
 		 * @brief Constructor
 		 * @param f Function
+		 * @param TOL Tolerance
+		 * @param MAX_ITER Maximum number of iterations
+		 * @throw Invalid tolerance (TOL <= 0)
+		 * @throw Invalid maximum number of iterations (MAX_ITER == 0)
 		*/
-		explicit function(const callable&);
+		explicit function(const callable&, double = pix::math::PR_THRESHOLD, unsigned long = pix::math::MAX_ITER) noexcept(false);
 
 		/**
 		 * @brief Evaluation

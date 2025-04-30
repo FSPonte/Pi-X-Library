@@ -2,74 +2,125 @@
 #define _FUNCTION_TPP_
 
 // Dependencies
+#include <constants.hpp>
 #include <type_info.hpp>
-#include <math.hpp>
 
 namespace pix::math
 {
-	template<typename type_in, typename type_out, typename callable>
-	function<type_in, type_out, callable>::function(const callable& func) : _callable(func)
+	template <typename type_in, typename type_out, typename callable>
+	function<type_in, type_out, callable>::function(const callable& func, const double TOL, const unsigned long MAX_ITER) noexcept(false) : _callable(func)
 	{
 		is_float_static_assert(type_in);
 		is_float_static_assert(type_out);
+
+		if (TOL <= 0) throw "Invalid tolerance (TOL <= 0)";
+		if (MAX_ITER == 0) throw "Invalid maximum number of iterations (MAX_ITER == 0)";
+		
+		this->_TOL = TOL;
+		this->_MAX_ITER = MAX_ITER;
 	}
 
-	template<typename type_in, typename type_out, typename callable>
+	template <typename type_in, typename type_out, typename callable>
 	type_out function<type_in, type_out, callable>::operator () (const type_in& x) const
 	{
 		return this->_callable(x);
 	}
 
-	template<typename type_in, typename type_out, typename callable>
+	template <typename type_in, typename type_out, typename callable>
 	type_out function<type_in, type_out, callable>::bissection(type_in a, type_in b) const noexcept(false)
 	{
 		if (a >= b) throw "Invalid interval (a >= b)";
-		if (this->_callable(a) * this->_callable(b) >= 0) throw "Invalid convergence condition (f(a) * f(b) >= 0)";
 
 		type_in x; // Mid point of the interval
-		type_out y; // Image of the mid point
+		type_out
+			y_a = this->_callable(a), // Image of a
+			y_b = this->_callable(b), // Image of b
+			y; // Image of x
 
-		for (unsigned long i = 0; i < pix::math::MAX_ITER; ++i)
+		if (y_a * y_b >= 0) throw "Invalid convergence condition (f(a) * f(b) >= 0)";
+
+		// Logger
+		LOGGER_INIT("logs/bissection.log");
+		{
+			LOGGER_WRITE("Parameters:");
+			LOGGER_WRITE("\tTOL = " + std::to_string(this->_TOL));
+			LOGGER_WRITE("\tMAX_ITER = " + std::to_string(this->_MAX_ITER));
+			LOGGER_WRITE("Initial values:");
+			LOGGER_WRITE("\ta = " + std::to_string(a) + " | f(a) = " + std::to_string(y_a));
+			LOGGER_WRITE("\tb = " + std::to_string(b) + " | f(b) = " + std::to_string(y_b));
+		}
+
+		for (unsigned long i = 1; i <= this->_MAX_ITER; ++i)
 		{
 			x = a + 0.5 * (b - a);
 			y = this->_callable(x);
 
-			if (this->_callable(a) * y < 0)
+			if (y_a * y < 0)
+			{
 				b = x;
-			else if (y * this->_callable(b) < 0)
+				y_b = this->_callable(b);
+			}
+			else if (y * y_b < 0)
+			{
 				a = x;
+				y_a = this->_callable(a);
+			}
 
-			if (a >= b || pix::math::abs(y) < pix::math::PR_THRESHOLD)
+			// Logger
+			{
+				LOGGER_WRITE("\nIteration: " + std::to_string(i));
+				LOGGER_WRITE("\ta = " + std::to_string(a) + " | f(a) = " + std::to_string(y_a));
+				LOGGER_WRITE("\tb = " + std::to_string(b) + " | f(b) = " + std::to_string(y_b));
+			}
+
+			if (pix::math::abs(y) < this->_TOL || a == b)
 				break;
 		}
 
 		return x;
 	}
 
-	template<typename type_in, typename type_out, typename callable>
+	template <typename type_in, typename type_out, typename callable>
 	type_out function<type_in, type_out, callable>::newton(type_in x) const noexcept(false)
 	{
 		type_out
-			der, // Derivative
-			y; // Image of the mid point
+			y = this->_callable(x), // Image of x
+			m; // Slope
 
-		for (unsigned long i = 0; i < pix::math::MAX_ITER; ++i)
+		// Logger
+		LOGGER_INIT("logs/newton.log");
 		{
-			der = this->derivative(x);
+			LOGGER_WRITE("Parameters:");
+			LOGGER_WRITE("\tTOL = " + std::to_string(this->_TOL));
+			LOGGER_WRITE("\tMAX_ITER = " + std::to_string(this->_MAX_ITER));
+			LOGGER_WRITE("Initial values:");
+			LOGGER_WRITE("\tx = " + std::to_string(x) + " | f(x) = " + std::to_string(y));
+		}
 
-			if (der == 0) throw "Null derivative (f'(x) == 0)";
+		for (unsigned long i = 1; i <= this->_MAX_ITER; ++i)
+		{
+			m = this->derivative(x);
 
-			x -= this->_callable(x) / der;
+			if (m == 0) throw "Null derivative (f'(x) == 0)";
+
+			x -= this->_callable(x) / m;
 			y = this->_callable(x);
+
+			// Logger
+			{
+				LOGGER_WRITE("\nIteration: " + std::to_string(i));
+				LOGGER_WRITE("\tm = " + std::to_string(m));
+				LOGGER_WRITE("\tx = " + std::to_string(x) + " | f(x) = " + std::to_string(y));
+			}
 			
-			if (pix::math::abs(y) < pix::math::PR_THRESHOLD)
+			if (pix::math::abs(y) < this->_TOL)
 				break;
 		}
 		
 		return x;
 	}
 
-	template<typename type_in, typename type_out, typename callable>
+	template <typename type_in, typename type_out, typename callable>
 	type_out function<type_in, type_out, callable>::secant(type_in a, type_in b) const noexcept(false)
 	{
 		if (a >= b) throw "Invalid interval (a >= b)";
@@ -80,7 +131,18 @@ namespace pix::math
 			y_b = this->_callable(b),
 			y = y_b;
 
-		for (unsigned long i = 0; i < pix::math::MAX_ITER; ++i)
+		// Logger
+		LOGGER_INIT("logs/secant.log");
+		{
+			LOGGER_WRITE("Parameters:");
+			LOGGER_WRITE("\tTOL = " + std::to_string(this->_TOL));
+			LOGGER_WRITE("\tMAX_ITER = " + std::to_string(this->_MAX_ITER));
+			LOGGER_WRITE("Initial values:");
+			LOGGER_WRITE("\ta = " + std::to_string(a) + " | f(a) = " + std::to_string(y_a));
+			LOGGER_WRITE("\tb = " + std::to_string(b) + " | f(b) = " + std::to_string(y_b));
+		}
+
+		for (unsigned long i = 1; i <= this->_MAX_ITER; ++i)
 		{
 			if (y_a == y_b) throw "Division by zero (f(a) == f(b))";
 			
@@ -95,14 +157,21 @@ namespace pix::math
 			
 			y = y_b;
 
-			if (pix::math::abs(y) < pix::math::PR_THRESHOLD)
+			// Logger
+			{
+				LOGGER_WRITE("\nIteration: " + std::to_string(i));
+				LOGGER_WRITE("\ta = " + std::to_string(a) + " | f(a) = " + std::to_string(y_a));
+				LOGGER_WRITE("\tb = " + std::to_string(b) + " | f(b) = " + std::to_string(y_b));
+			}
+
+			if (pix::math::abs(y) < this->_TOL || a == b)
 				break;
 		}
 
 		return b;
 	}
 
-	template<typename type_in, typename type_out, typename callable>
+	template <typename type_in, typename type_out, typename callable>
 	type_out function<type_in, type_out, callable>::golden_root(type_in a, type_in b) const noexcept(false)
 	{
 		if (a >= b) throw "Invalid interval (a >= b)";
@@ -113,30 +182,56 @@ namespace pix::math
 
 		if (y_a * y_b > 0) throw "Invalid convergence condition (f(a) * f(b) >= 0)";
 
-		const auto invphi = static_cast<type_in>(0.5 * (pix::math::root(5.0, 2) - 1)); // Inverse of the golden ratio
+		// Logger
+		LOGGER_INIT("logs/golden_root.log");
+		{
+			LOGGER_WRITE("Parameters:");
+			LOGGER_WRITE("\tTOL = " + std::to_string(this->_TOL));
+			LOGGER_WRITE("\tMAX_ITER = " + std::to_string(this->_MAX_ITER));
+			LOGGER_WRITE("Initial values:");
+			LOGGER_WRITE("\ta = " + std::to_string(a) + " | f(a) = " + std::to_string(y_a));
+			LOGGER_WRITE("\tb = " + std::to_string(b) + " | f(b) = " + std::to_string(y_b));
+		}
+
+		constexpr const auto invphi = static_cast<type_in>(1.0 / pix::constants::mathematics::GOLDEN_RATIO); // Inverse of the golden ratio
 		type_in c, d;
 
-		for (unsigned long i = 0; i < pix::math::MAX_ITER; ++i)
+		for (unsigned long i = 1; i <= this->_MAX_ITER; ++i)
 		{
 			c = b - (b - a) * invphi;
 			d = a + (b - a) * invphi;
 			
 			if (this->_callable(c) < this->_callable(d))
+			{
 				b = d;
+				y_b = this->_callable(b);
+			}
 			else
+			{
 				a = c;
+				y_a = this->_callable(a);
+			}
 
-			if (b - a > pix::math::PR_THRESHOLD)
+			// Logger
+			{
+				LOGGER_WRITE("\nIteration: " + std::to_string(i));
+				LOGGER_WRITE("\ta = " + std::to_string(a) + " | f(a) = " + std::to_string(y_a));
+				LOGGER_WRITE("\tb = " + std::to_string(b) + " | f(b) = " + std::to_string(y_b));
+			}
+
+			if (b - a < this->_TOL)
 				break;
 		}
 
-		return 0.5 * (b + a);
+		return (y_a < y_b) ? a : b;
 	}
 
 	template <typename type_in, typename type_out, typename callable>
 	type_out function<type_in, type_out, callable>::derivative(const type_in x) const
 	{
-		return static_cast<type_out>((this->_callable(x + pix::math::PR_THRESHOLD) - this->_callable(x)) / pix::math::PR_THRESHOLD);
+		static const auto h = static_cast<type_in>(this->_TOL);
+
+		return static_cast<type_out>((this->_callable(x + h) - this->_callable(x)) / h);
 	}
 }
 
