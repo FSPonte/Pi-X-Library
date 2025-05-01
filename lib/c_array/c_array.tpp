@@ -15,27 +15,21 @@ namespace pix::c_array
 	}
 
 	template <typename type_t>
-	void swap(type_t* arr_1, type_t* arr_2) noexcept(false)
+	void swap(type_t* ptr_1, type_t* ptr_2) noexcept(false)
 	{
-		if (arr_1 == nullptr)
-			throw "Pointer to first array is null";
+		if (ptr_1 == nullptr) throw "Pointer to first array is null";
+		if (ptr_2 == nullptr) throw "Pointer to second array is null";
 
-		if (arr_2 == nullptr)
-			throw "Pointer to second array is null";
-
-		type_t* aux = arr_1; // Auxiliar pointer
-		arr_1 = arr_2;
-		arr_2 = aux;
+		type_t* aux = ptr_1; // Auxiliar pointer
+		ptr_1 = ptr_2;
+		ptr_2 = aux;
 	}
 
 	template <typename type_t>
 	void invert(type_t arr[], const unsigned long DIM) noexcept(false)
 	{
-		if (arr == nullptr)
-			throw "Pointer to array is null";
-
-		if (DIM == 0)
-			throw "Dimension is null";
+		if (arr == nullptr) throw "Pointer to array is null";
+		if (DIM == 0) throw "Dimension is null";
 
 		unsigned long
 			left_ind = 0,
@@ -61,14 +55,9 @@ namespace pix::c_array
 	template <typename type_t>
 	void copy(const type_t arr_o[], type_t arr_d[], const unsigned long DIM) noexcept(false)
 	{
-		if (arr_o == nullptr)
-			throw "Pointer to origin array is null";
-
-		if (arr_d == nullptr)
-			throw "Pointer to destination array is null";
-
-		if (DIM == 0)
-			throw "Dimension is null";
+		if (arr_o == nullptr) throw "Pointer to origin array is null";
+		if (arr_d == nullptr) throw "Pointer to destination array is null";
+		if (DIM == 0) throw "Dimension is null";
 
 		for (unsigned long i = 0; i < DIM; ++i)
 			arr_d[i] = arr_o[i];
@@ -85,17 +74,10 @@ namespace pix::c_array
 	template <typename type_t>
 	void copy(const type_t* arr_o[], type_t* arr_d[], const unsigned long DIM_1, const unsigned long DIM_2) noexcept(false)
 	{
-		if (arr_o == nullptr)
-			throw "Pointer to origin array is null";
-
-		if (arr_d == nullptr)
-			throw "Pointer to destination array is null";
-
-		if (DIM_1 == 0)
-			throw "Dimension 1 is null";
-
-		if (DIM_2 == 0)
-			throw "Dimension 2 is null";
+		if (arr_o == nullptr) throw "Pointer to origin array is null";
+		if (arr_d == nullptr) throw "Pointer to destination array is null";
+		if (DIM_1 == 0) throw "Dimension 1 is null";
+		if (DIM_2 == 0) throw "Dimension 2 is null";
 
 		for (unsigned long i = 0; i < DIM_1; ++i)
 			pix::c_array::copy<type_t>(arr_o[i], arr_d[i], DIM_2);
@@ -114,14 +96,9 @@ namespace pix::c_array
 	template <typename type_t>
 	void move(type_t arr_o[], type_t arr_d[], const unsigned long DIM) noexcept(false)
 	{
-		if (arr_o == nullptr)
-			throw "Pointer to origin array is null";
-
-		if (arr_d == nullptr)
-			throw "Pointer to destination array is null";
-
-		if (DIM == 0)
-			throw "Dimension is null";
+		if (arr_o == nullptr) throw "Pointer to origin array is null";
+		if (arr_d == nullptr) throw "Pointer to destination array is null";
+		if (DIM == 0) throw "Dimension is null";
 
 		for (unsigned long i = 0; i < DIM; ++i)
 		{
@@ -141,11 +118,8 @@ namespace pix::c_array
 	template <typename type_t>
 	void left_shift(type_t arr[], const unsigned long DIM) noexcept(false)
 	{
-		if (arr == nullptr)
-			throw "Pointer to array is null";
-
-		if (DIM == 0)
-			throw "Dimension is null";
+		if (arr == nullptr) throw "Pointer to array is null";
+		if (DIM == 0) throw "Dimension is null";
 
 		for (unsigned long i = 1; i < DIM; ++i)
 			arr[i - 1] = arr[i];
@@ -164,11 +138,8 @@ namespace pix::c_array
 	template <typename type_t>
 	void right_shift(type_t arr[], const unsigned long DIM) noexcept(false)
 	{
-		if (arr == nullptr)
-			throw "Pointer to array is null";
-
-		if (DIM == 0)
-			throw "Dimension is null";
+		if (arr == nullptr) throw "Pointer to array is null";
+		if (DIM == 0) throw "Dimension is null";
 
 		for (unsigned long i = DIM - 1; i > 0; --i)
 			arr[i] = arr[i - 1];
