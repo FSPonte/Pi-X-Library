@@ -16,12 +16,19 @@ namespace pix::math::sys_lin_equ
 		type_t
 			A_[DIM][DIM], // Mutable copy of matrix A
 			b_[DIM]; // Mutable copy of vector b
-		
+
 		pix::c_array::copy(A, A_);
 		pix::c_array::copy(b, b_);
 		
 		unsigned long i_max; // Partial pivot
-		double factor;
+		type_t factor;
+
+		// Logger
+		LOGGER_INIT("logs/gauss_elim.log");
+		{
+			LOGGER_LOG_MSG("Initial values:");
+			LOGGER_LOG_AUG(A_, b_);
+		}
 
 		// Gaussian elimination with partial pivot
 		for (unsigned long j = 0; j < DIM; ++j)
@@ -36,18 +43,27 @@ namespace pix::math::sys_lin_equ
 
 			if (j != i_max)
 			{
-				pix::c_array::swap(A_[j], A_[i_max]); // Swap lines in matrix
+				// Swap lines in matrix
+				for (unsigned long k = 0; k < DIM; ++k)
+					pix::c_array::swap(A_[i_max][k], A_[j][k]); // Swap rows in matrix
+
 				pix::c_array::swap(b_[j], b_[i_max]); // Swap components in vector
+
+				// Logger
+				{
+					LOGGER_LOG_MSG("\nLine swap (" + std::to_string(j + 1) + " <-> " + std::to_string(i_max + 1) + "):");
+					LOGGER_LOG_AUG(A_, b_);
+				}
 			}
 			
 			if (pix::math::abs(A_[j][j]) == 0) throw "Singular matrix";
 			
 			// Elimination
-			{	
+			{
 				for (unsigned long i = j + 1; i < DIM; ++i)
 				{
 					factor = A_[i][j] / A_[j][j];
-					
+
 					if (factor == 0)
 						continue;
 
@@ -55,12 +71,18 @@ namespace pix::math::sys_lin_equ
 						A_[i][k] -= factor * A_[j][k];
 					
 					b_[i] -= factor * b_[j];
+
+					// Logger
+					{
+						LOGGER_LOG_MSG("\nLine elimination (" + std::to_string(j + 1) + " -> " + std::to_string(i + 1) + "):");
+						LOGGER_LOG_MSG("\tFactor: " + std::to_string(factor));
+						LOGGER_LOG_AUG(A_, b_);
+					}
 				}
 			}
 		}
-		
-		// Regressive substitution
-		for (unsigned long i = DIM - 1; i > 0; --i)
+
+		for (unsigned long i = DIM - 1; i + 1 != 0; --i)
 		{
 			x[i] = b_[i];
 
@@ -71,6 +93,13 @@ namespace pix::math::sys_lin_equ
 			
 			if (x[i] == pix::math::NaN()) throw "NaN value encountered";
 		}
+
+		// Logger
+		{
+			LOGGER_LOG_MSG("\nRegressive substitution:");
+			for (unsigned long i = 0; i < DIM; ++i)
+				LOGGER_LOG_MSG("\tx[" + std::to_string(i + 1) + "] = " + std::to_string(x[i]));
+		}
     
     	return;
 	}
@@ -79,6 +108,13 @@ namespace pix::math::sys_lin_equ
 	void lu_decomp(const type_t (&A)[DIM][DIM], type_t (&L)[DIM][DIM], type_t (&U)[DIM][DIM])
 	{
 		is_number_static_assert(type_t);
+
+		// Logger
+		LOGGER_INIT("logs/lu_decomp.log");
+		{
+			LOGGER_LOG_MSG("Initial values:");
+			LOGGER_LOG_ARR(A);
+		}
 
 		// Initialize L to identity and U to zero
 		for (unsigned long i = 0; i < DIM; ++i)
@@ -103,6 +139,12 @@ namespace pix::math::sys_lin_equ
 					sum += L[k][s] * U[s][j];
 			
 				U[k][j] = A[k][j] - sum;
+
+				// Logger
+				{
+					LOGGER_LOG_MSG("\nU[" + std::to_string(k + 1) + "][" + std::to_string(j + 1) + "] = " + std::to_string(U[k][j]));
+					LOGGER_LOG_ARR(U);
+				}
 			}
 
 			if (pix::math::abs(U[k][k]) == 0) throw "Pivot encountered is equal to zero";
@@ -116,6 +158,12 @@ namespace pix::math::sys_lin_equ
 					sum += L[i][s] * U[s][k];
 			
 				L[i][k] = (A[i][k] - sum) / U[k][k];
+
+				// Logger
+				{
+					LOGGER_LOG_MSG("\nL[" + std::to_string(i + 1) + "][" + std::to_string(k + 1) + "] = " + std::to_string(L[i][k]));
+					LOGGER_LOG_ARR(L);
+				}
 			}
 		}
 	}
