@@ -10,7 +10,7 @@ void logger::log_arr(const type_t (&arr)[DIM])
 		throw "[Logger] File is not open";
 
 	for (unsigned long i = 0; i < DIM; ++i)
-		this->_file << arr[i] << '\t';
+		this->_file << arr[i] << ' ';
 
 	this->_file << '\n';
 }
