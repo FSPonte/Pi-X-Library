@@ -4,6 +4,7 @@ Library for embedded systems
 Notes:
 - No need for additional compilation (Template files instead of source files for the libraries)
 - No outside dependencies (e.g. iostream)
+- Provides a logger class for logging
 
 Includes:
 - System variables
@@ -21,6 +22,12 @@ Includes:
 	- Elementary charge
 	- Newtonian constant of gravitation
 - Macros
+	- Default buffer size
+	- Default block allocation size
+	- Logger mode
+- Asserts
+	- not_nullptr: Pointer is null
+	- not_nulldim: Dimension is null
 - Type info
   - is_same: Compares two data types
   - is_number: Checks if type is a number
