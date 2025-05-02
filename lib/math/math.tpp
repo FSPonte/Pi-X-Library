@@ -2,6 +2,7 @@
 #define _MATH_TPP_
 
 // Dependencies
+#include <macros.hpp>
 #include <type_info.hpp>
 
 static const unsigned long STD_NaN = 0x7ff8000000000000; // Standard representation for NaN
@@ -79,13 +80,13 @@ namespace pix::math
 	{
 		is_number_static_assert(type_t);
 
-		return math::abs(arg_1 - arg_2);
+		return pix::math::abs(arg_1 - arg_2);
 	}
 
 	template <unsigned long arg>
 	struct factorial
 	{
-		static constexpr const unsigned long value = arg * math::factorial<arg - 1>::value;
+		static constexpr const unsigned long value = arg * pix::math::factorial<arg - 1>::value;
 	};
 
 	template <>
@@ -110,7 +111,7 @@ namespace pix::math
 	template <unsigned long arg>
 	struct fibonacci
 	{
-		static constexpr const int value = math::fibonacci<arg - 1>::value + math::fibonacci<arg - 2>::value;
+		static constexpr const int value = pix::math::fibonacci<arg - 1>::value + pix::math::fibonacci<arg - 2>::value;
 	};
 
 	template <>
@@ -134,11 +135,11 @@ namespace pix::math
 			coef = (arg - 1) / (arg + 1),
 			term = coef,
 			term_sq = coef * coef;
-		const unsigned long MAX_ITER = math::MAX_ITER + 1;
+		const unsigned long MAX_ITER = pix::math::MAX_ITER + 1;
 
 		for (unsigned long i = 1; i < MAX_ITER; i += 2)
 		{
-			if (math::abs(term) < math::PR_THRESHOLD)
+			if (pix::math::abs(term) < pix::math::PR_THRESHOLD)
 				break;
 			
 			result += term / i;
@@ -150,23 +151,23 @@ namespace pix::math
 
 	long double log(const long double arg, const long double base) noexcept(false)
 	{
-		return math::log(arg) / math::log(base);
+		return pix::math::log(arg) / pix::math::log(base);
 	}
 
 	long double exp(long double arg) noexcept(true)
 	{
 		const bool is_neg = arg < 0;
-		arg = math::abs(arg);
+		arg = pix::math::abs(arg);
 
 		long double
 			result = 1,
 			term = 1;
 		
-		for (unsigned long i = 0; i < math::MAX_ITER; ++i)
+		for (unsigned long i = 0; i < pix::math::MAX_ITER; ++i)
 		{
 			term *= arg / (i + 1);
 
-			if (math::abs(term) < math::PR_THRESHOLD)
+			if (pix::math::abs(term) < pix::math::PR_THRESHOLD)
 				break;
 			
 			result += term;
@@ -216,7 +217,7 @@ namespace pix::math
 				result = -result;
 		}
 		else if (base < 0)
-			return NaN();
+			return pix::math::NaN();
 
 		return result;
 	}
@@ -229,7 +230,7 @@ namespace pix::math
 		if (index == 1)
 			return arg;
 
-		return math::pow(arg, 1 / index);
+		return pix::math::pow(arg, 1 / index);
 	}
 
 	unsigned long permut(const unsigned long n, const unsigned long k) noexcept(false)
@@ -237,13 +238,13 @@ namespace pix::math
 		if (k > n)
 			return 0;
 
-		return math::fact(n) / math::fact(n - k);
+		return pix::math::fact(n) / pix::math::fact(n - k);
 	}
 
 	template <unsigned long n, unsigned long k>
 	struct permutation
 	{
-		static constexpr const unsigned long value = math::factorial<n>::value / math::factorial<n - k>::value;
+		static constexpr const unsigned long value = pix::math::factorial<n>::value / pix::math::factorial<n - k>::value;
 	};
 
 	template <unsigned long n>
@@ -257,13 +258,13 @@ namespace pix::math
 		if (choosing_num > total_num)
 			return 0;
 
-		return math::fact(total_num) / (math::fact(choosing_num) * math::fact(total_num - choosing_num));
+		return pix::math::fact(total_num) / (pix::math::fact(choosing_num) * pix::math::fact(total_num - choosing_num));
 	}
 
 	template <unsigned long n, unsigned long k>
 	struct combination
 	{
-		static constexpr const unsigned long value = math::factorial<n>::value / (math::factorial<k>::value * math::factorial<n - k>::value);
+		static constexpr const unsigned long value = pix::math::factorial<n>::value / (pix::math::factorial<k>::value * pix::math::factorial<n - k>::value);
 	};
 
 	unsigned long kron_delta(const unsigned long i, const unsigned long j) noexcept(true)
