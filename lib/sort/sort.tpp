@@ -24,11 +24,8 @@ namespace pix::sort
 	{
 		is_number_static_assert(type_t);
 
-		if (arr == nullptr)
-			throw "Pointer to array is null";
-
-		if (dim == 0)
-			throw "Dimension is null";
+		if (arr == nullptr) throw "Pointer to array is null";
+		if (dim == 0) throw "Dimension is null";
 
 		type_t aux; // Auxiliar value
 
@@ -49,11 +46,8 @@ namespace pix::sort
 	{
 		is_number_static_assert(type_t);
 
-		if (arr == nullptr)
-			throw "Pointer to array is null";
-
-		if (dim == 0)
-			throw "Dimension is null";
+		if (arr == nullptr) throw "Pointer to array is null";
+		if (dim == 0) throw "Dimension is null";
 
 		unsigned long min_ind; // Index of minimum value
 		type_t aux; // Auxiliar value
@@ -79,11 +73,8 @@ namespace pix::sort
 	{
 		is_number_static_assert(type_t);
 
-		if (arr == nullptr)
-			throw "Pointer to array is null";
-
-		if (dim == 0)
-			throw "Dimension is null";
+		if (arr == nullptr) throw "Pointer to array is null";
+		if (dim == 0) throw "Dimension is null";
 
 		unsigned long j;
 		type_t aux;
@@ -104,11 +95,8 @@ namespace pix::sort
 	{
 		is_number_static_assert(type_t);
 
-		if (arr == nullptr)
-			throw "Pointer to array is null";
-
-		if (dim == 0)
-			throw "Dimension is null";
+		if (arr == nullptr) throw "Pointer to array is null";
+		if (dim == 0) throw "Dimension is null";
 
 		_quick_sort_(arr, 0, dim - 1);
 	}
@@ -118,11 +106,8 @@ namespace pix::sort
 	{
 		is_number_static_assert(type_t);
 
-		if (arr == nullptr)
-			throw "Pointer to array is null";
-
-		if (dim == 0)
-			throw "Dimension is null";
+		if (arr == nullptr) throw "Pointer to array is null";
+		if (dim == 0) throw "Dimension is null";
 
 		_merge_sort_(arr, 0, dim - 1);
 	}

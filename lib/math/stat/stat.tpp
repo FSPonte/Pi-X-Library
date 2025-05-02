@@ -11,11 +11,8 @@ namespace pix::math::stat
 	{
 		is_number_static_assert(type_t);
 
-		if (arr == nullptr)
-			throw "Pointer to array is null";
-
-		if (dim <= 1)
-			throw "Dimension is null";
+		if (arr == nullptr) throw "Pointer to array is null";
+		if (dim <= 1) throw "Dimension is null";
 
 		type_t min = arr[0];
 
@@ -33,11 +30,8 @@ namespace pix::math::stat
 	{
 		is_number_static_assert(type_t);
 
-		if (arr == nullptr)
-			throw "Pointer to array is null";
-
-		if (dim <= 1)
-			throw "Dimension is null";
+		if (arr == nullptr) throw "Pointer to array is null";
+		if (dim <= 1) throw "Dimension is null";
 
 		type_t max = arr[0];
 
@@ -55,11 +49,8 @@ namespace pix::math::stat
 	{
 		is_number_static_assert(type_t);
 
-		if (arr == nullptr)
-			throw "Pointer to array is null";
-
-		if (dim <= 1)
-			throw "Dimension is null";
+		if (arr == nullptr) throw "Pointer to array is null";
+		if (dim <= 1) throw "Dimension is null";
 
 		return abs(max(arr, dim) - min(arr, dim));
 	}
@@ -81,11 +72,8 @@ namespace pix::math::stat
 	{
 		is_number_static_assert(type_t);
 
-		if (arr == nullptr)
-			throw "Pointer to array is null";
-
-		if (dim == 0)
-			throw "Dimension is null";
+		if (arr == nullptr) throw "Pointer to array is null";
+		if (dim == 0) throw "Dimension is null";
 
 		type_t result = 0;
 
@@ -100,11 +88,8 @@ namespace pix::math::stat
 	{
 		is_number_static_assert(type_t);
 
-		if (arr == nullptr)
-			throw "Pointer to array is null";
-
-		if (dim == 0)
-			throw "Dimension is null";
+		if (arr == nullptr) throw "Pointer to array is null";
+		if (dim == 0) throw "Dimension is null";
 
 		return stat::sum(arr, dim) / dim;
 	}
@@ -114,11 +99,8 @@ namespace pix::math::stat
 	{
 		is_number_static_assert(type_t);
 
-		if (arr == nullptr)
-			throw "Pointer to array is null";
-
-		if (dim == 0)
-			throw "Dimension is null";
+		if (arr == nullptr) throw "Pointer to array is null";
+		if (dim == 0) throw "Dimension is null";
 
 		if (dim % 2 == 0)
 			return (arr[dim / 2] + arr[(dim / 2) - 1]) / 2;
@@ -131,11 +113,8 @@ namespace pix::math::stat
 	{
 		is_number_static_assert(type_t);
 
-		if (arr == nullptr)
-			throw "Pointer to array is null";
-
-		if (dim == 0)
-			throw "Dimension is null";
+		if (arr == nullptr) throw "Pointer to array is null";
+		if (dim == 0) throw "Dimension is null";
 
 		const type_t mean = stat::mean(arr, dim);
 		type_t result = 0;
@@ -157,14 +136,9 @@ namespace pix::math::stat
 	{
 		is_number_static_assert(type_t);
 
-		if (input == nullptr)
-			throw "Pointer to input array is null";
-
-		if (output == nullptr)
-			throw "Pointer to output array is null";
-
-		if (dim == 0)
-			throw "Dimension is null";
+		if (input == nullptr) throw "Pointer to input array is null";
+		if (output == nullptr) throw "Pointer to output array is null";
+		if (dim == 0) throw "Dimension is null";
 
 		const type_t
 			mean_input = stat::mean(input, dim),
@@ -182,14 +156,9 @@ namespace pix::math::stat
 	{
 		is_number_static_assert(type_t);
 
-		if (arr == nullptr)
-			throw "Pointer to array is null";
-
-		if (model == nullptr)
-			throw "Pointer to model is null";
-
-		if (dim == 0)
-			throw "Dimension is null";
+		if (arr == nullptr) throw "Pointer to array is null";
+		if (model == nullptr) throw "Pointer to model is null";
+		if (dim == 0) throw "Dimension is null";
 
 		const type_t mean = stat::mean(arr, dim);
 

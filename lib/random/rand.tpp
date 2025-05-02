@@ -29,8 +29,7 @@ namespace pix::random
 	{
 		is_integer_static_assert(type_t);
 
-		if (min > max)
-			throw "Invalid minimum and maximum values (min > max)";
+		if (min > max) throw "Invalid minimum and maximum values (min > max)";
 		
 		if (min == max)
 			return min;
@@ -51,8 +50,7 @@ namespace pix::random
 	{
 		is_float_static_assert(type_t);
 
-		if (min > max)
-			throw "Invalid minimum and maximum values (min > max)";
+		if (min > max) throw "Invalid minimum and maximum values (min > max)";
 
 		if (min == max)
 			return min;

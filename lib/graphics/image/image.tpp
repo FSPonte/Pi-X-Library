@@ -34,11 +34,8 @@ namespace pix::graphics
 	template <unsigned long W_DIM, unsigned long H_DIM>
 	rgb& image<W_DIM, H_DIM>::get(const unsigned long y, const unsigned long x) noexcept(false)
 	{
-		if (y >= H_DIM)
-			throw "Y coordinate is out of bounds";
-
-		if (x >= W_DIM)
-			throw "X coordinate is out of bounds";
+		if (y >= H_DIM) throw "Y coordinate is out of bounds";
+		if (x >= W_DIM) throw "X coordinate is out of bounds";
 
 		return this->_data[y][x];
 	}

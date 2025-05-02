@@ -29,11 +29,8 @@ namespace pix::math
 	{
 		is_float_static_assert(type_t);
 
-		if (arg < 0)
-			throw "Argument is a negative number";
-
-		if (mod <= 0)
-			throw "Modulus is a non positive number";
+		if (arg < 0) throw "Argument is a negative number";
+		if (mod <= 0) throw "Modulus is a non positive number";
 
 		if (arg < mod)
 			return arg;
@@ -130,8 +127,7 @@ namespace pix::math
 
 	long double log(const long double arg) noexcept(false)
 	{
-		if (arg <= 0)
-			throw "Argument is a non positive number";
+		if (arg <= 0) throw "Argument is a non positive number";
 
 		long double
 			result = 0,
@@ -184,8 +180,7 @@ namespace pix::math
 
 	long double pow(long double base, long double exponent) noexcept(false)
 	{
-		if (base == 0 && exponent == 0)
-			throw "Indeterminate case of 0^0";
+		if (base == 0 && exponent == 0) throw "Indeterminate case of 0^0";
 
 		if (base == 0)
 			return 0;
@@ -228,11 +223,8 @@ namespace pix::math
 
 	long double root(const long double arg, const long double index) noexcept(false)
 	{
-		if (arg < 0)
-			throw "Argument is a negative number";
-
-		if (index == 0)
-			throw "Index is equal to zero";
+		if (arg < 0) throw "Argument is a negative number";
+		if (index == 0) throw "Index is equal to zero";
 		
 		if (index == 1)
 			return arg;

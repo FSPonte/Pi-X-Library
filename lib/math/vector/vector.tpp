@@ -35,8 +35,7 @@ namespace pix::math
 	template <typename type_t, unsigned long DIM>
 	type_t& vector<type_t, DIM>::operator [] (const unsigned long index) noexcept(false)
 	{
-		if (index >= DIM)
-			throw "Index is out of bounds";
+		if (index >= DIM) throw "Index is out of bounds";
 
 		return this->_data[index];
 	}
@@ -50,8 +49,7 @@ namespace pix::math
 	template <typename type_t, unsigned long DIM>
 	void vector<type_t, DIM>::operator = (const type_t arr[]) noexcept(false)
 	{
-		if (arr == nullptr)
-			throw "Pointer to array is null";
+		if (arr == nullptr) throw "Pointer to array is null";
 
 		for (unsigned long i = 0; i < DIM; ++i)
 			this->_data[i] = arr[i];

@@ -36,8 +36,7 @@ namespace pix::adt
 	template <unsigned long MAX_LENGTH>
 	char string<MAX_LENGTH>::operator [] (const unsigned long INDEX) noexcept(false)
 	{
-		if (INDEX >= this->_length)
-			throw "Index is out of bounds";
+		if (INDEX >= this->_length) throw "Index is out of bounds";
 
 		return this->_data[INDEX];
 	}
@@ -57,8 +56,7 @@ namespace pix::adt
 	template <unsigned long MAX_LENGTH>
 	void string<MAX_LENGTH>::operator = (const char c_str[]) noexcept(false)
 	{
-		if (c_str == nullptr)
-			throw "Pointer to C styled string is null";
+		if (c_str == nullptr) throw "Pointer to C styled string is null";
 
 		for (this->_length = 0; this->_length < MAX_LENGTH; ++this->_length)
 		{
@@ -80,8 +78,7 @@ namespace pix::adt
 	template <unsigned long MAX_LENGTH>
 	void string<MAX_LENGTH>::operator += (const char c_str[]) noexcept(false)
 	{
-		if (c_str == nullptr)
-			throw "Pointer to C styled string is null";
+		if (c_str == nullptr) throw "Pointer to C styled string is null";
 
 		--this->_length;
 
@@ -103,8 +100,7 @@ namespace pix::adt
 	template <unsigned long MAX_LENGTH>
 	bool string<MAX_LENGTH>::operator == (const char c_str[]) const noexcept(false)
 	{
-		if (c_str == nullptr)
-			throw "Pointer to C styled string is null";
+		if (c_str == nullptr) throw "Pointer to C styled string is null";
 
 		for (unsigned long i = 0; i < this->_length; ++i)
 		{
