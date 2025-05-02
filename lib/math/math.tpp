@@ -2,6 +2,7 @@
 #define _MATH_TPP_
 
 // Dependencies
+#include <macros.hpp>
 #include <type_info.hpp>
 
 static const unsigned long STD_NaN = 0x7ff8000000000000; // Standard representation for NaN
@@ -132,12 +133,12 @@ namespace pix::math
 
 		if (arg <= 0) throw "Argument is a non positive number";
 
+		const unsigned long MAX_ITER = pix::math::MAX_ITER + 1;
 		type_t
 			result = 0,
 			coef = (arg - 1) / (arg + 1),
 			term = coef,
 			term_sq = coef * coef;
-		const unsigned long MAX_ITER = pix::math::MAX_ITER + 1;
 
 		for (unsigned long i = 1; i < MAX_ITER; i += 2)
 		{
@@ -194,17 +195,10 @@ namespace pix::math
 
 		if (base == 0 && exponent == 0) throw "Indeterminate case of 0^0";
 
-		if (base == 0)
-			return 0;
-
-		if (exponent == 0)
-			return 1;
-
-		if (exponent == 1)
-			return base;
-
-		if (exponent == 2)
-			return base * base;
+		if (base == 0) return 0;
+		if (exponent == 0) return 1;
+		if (exponent == 1) return base;
+		if (exponent == 2) return base * base;
 
 		const bool is_e_neg = exponent < 0;
 		exponent = abs(exponent);
@@ -217,12 +211,12 @@ namespace pix::math
 				return -1;
 		}
 
-		type_t result = exp(exponent * log(abs(base)));
+		type_t result = pix::math::exp(exponent * pix::math::log(pix::math::abs(base)));
 
 		if (is_e_neg)
 			result = 1 / result;
 
-		if (base < 0 && floor(exponent) == exponent)
+		if (base < 0 && pix::math::floor(exponent) == exponent)
 		{
 			if (static_cast<long long>(exponent) % 2 != 0)
 				result = -result;
