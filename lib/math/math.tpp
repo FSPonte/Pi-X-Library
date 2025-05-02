@@ -150,19 +150,19 @@ namespace pix::math
 
 		for (unsigned long i = 1; i <= pix::math::MAX_ITER; ++i)
 		{
-			// Logger
-			{
-				LOGGER_LOG_MSG("\nIteration: " + std::to_string(i));
-				LOGGER_LOG_MSG("Term: " + std::to_string(term));
-				LOGGER_LOG_MSG("Result: " + std::to_string(result));
-			}
-
 			if (pix::math::abs(term) < pix::math::PR_THRESHOLD)
 				break;
 			
 			result += term / index;
 			index += 2;
 			term *= term_sq;
+
+			// Logger
+			{
+				LOGGER_LOG_MSG("\nIteration: " + std::to_string(i));
+				LOGGER_LOG_MSG("\tTerm: " + std::to_string(term));
+				LOGGER_LOG_MSG("\tResult: " + std::to_string(result));
+			}
 		}
 
 		return result * 2;
@@ -187,15 +187,32 @@ namespace pix::math
 		type_t
 			result = 1,
 			term = 1;
-		
-		for (unsigned long i = 0; i < pix::math::MAX_ITER; ++i)
+
+		// Logger
+		LOGGER_INIT("logs/math_exp.log");
 		{
-			term *= arg / (i + 1);
+			LOGGER_LOG_MSG("Parameters:");
+			LOGGER_LOG_MSG("\tTHRESHOLD = " + std::to_string(pix::math::PR_THRESHOLD));
+			LOGGER_LOG_MSG("\tMAX_ITER = " + std::to_string(pix::math::MAX_ITER));
+			LOGGER_LOG_MSG("Initial values:");
+			LOGGER_LOG_MSG("\targ = " + std::to_string(arg) + " | Result = " + std::to_string(result));
+		}
+		
+		for (unsigned long i = 1; i <= pix::math::MAX_ITER; ++i)
+		{
+			term *= arg / i;
 
 			if (pix::math::abs(term) < pix::math::PR_THRESHOLD)
 				break;
 			
 			result += term;
+
+			// Logger
+			{
+				LOGGER_LOG_MSG("\nIteration: " + std::to_string(i));
+				LOGGER_LOG_MSG("\tTerm: " + std::to_string(term));
+				LOGGER_LOG_MSG("\tResult: " + std::to_string(result));
+			}
 		}
 
 		if (is_neg)
@@ -217,9 +234,9 @@ namespace pix::math
 		if (exponent == 2) return base * base;
 
 		const bool is_e_neg = exponent < 0;
-		exponent = abs(exponent);
+		exponent = pix::math::abs(exponent);
 
-		if (base == -1 && floor(exponent) == exponent)
+		if (base == -1 && pix::math::floor(exponent) == exponent)
 		{
 			if (static_cast<long long>(exponent) % 2 == 0)
 				return 1;
@@ -235,7 +252,7 @@ namespace pix::math
 		if (base < 0 && pix::math::floor(exponent) == exponent)
 		{
 			if (static_cast<long long>(exponent) % 2 != 0)
-				result = -result;
+				result *= -1;
 		}
 		else if (base < 0)
 			return pix::math::NaN();
