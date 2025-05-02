@@ -2,7 +2,7 @@
 #define _FUNCTION_TPP_
 
 // Dependencies
-#include <constants.hpp>
+#include <macros.hpp>
 #include <type_info.hpp>
 
 namespace pix::math

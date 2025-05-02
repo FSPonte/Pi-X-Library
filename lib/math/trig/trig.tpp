@@ -2,26 +2,31 @@
 #define _TRIG_TPP_
 
 // Dependencies
+#include <constants.hpp>
 #include <type_info.hpp>
+#include <math.hpp>
 
 namespace pix::math::trig
 {
-	long double sin(long double arg) noexcept(true)
+	template <typename type_t>
+	type_t sin(type_t arg) noexcept(true)
 	{
-		const bool is_arg_neg = arg < 0;
-		arg = math::f_mod(math::abs(arg), 2 * constants::mathematics::PI);
+		is_float_static_assert(type_t);
 
-		long double
+		const bool is_arg_neg = arg < 0;
+		arg = pix::math::f_mod(pix::math::abs(arg), 2 * pix::constants::mathematics::PI);
+
+		type_t
 			term = arg,
 			result = arg;
 
 		arg *= arg;
 
-		for (unsigned long i = 0; i < math::MAX_ITER; ++i)
+		for (unsigned long i = 0; i < pix::math::MAX_ITER; ++i)
 		{
 			term *= -arg / ((2 * i + 3) * (2 * i + 2));
 
-			if (math::abs(term) < math::PR_THRESHOLD)
+			if (pix::math::abs(term) < pix::math::PR_THRESHOLD)
 				break;
 			
 			result += term;
@@ -33,21 +38,24 @@ namespace pix::math::trig
 		return result;
 	}
 
-	long double cos(long double arg) noexcept(true)
+	template <typename type_t>
+	type_t cos(type_t arg) noexcept(true)
 	{
-		arg = math::f_mod(math::abs(arg), 2 * constants::mathematics::PI);
+		is_float_static_assert(type_t);
+		
+		arg = pix::math::f_mod(pix::math::abs(arg), 2 * pix::constants::mathematics::PI);
 
-		long double
+		type_t
 			term = 1,
 			result = 1;
 
 		arg *= arg;
 
-		for (unsigned long i = 1; i <= math::MAX_ITER; ++i)
+		for (unsigned long i = 1; i <= pix::math::MAX_ITER; ++i)
 		{
 			term *= - arg / ((2 * i) * (2 * i - 1));
 
-			if (math::abs(term) < math::PR_THRESHOLD)
+			if (pix::math::abs(term) < pix::math::PR_THRESHOLD)
 				break;
 			
 			result += term;
@@ -56,49 +64,64 @@ namespace pix::math::trig
 		return result;
 	}
 
-	long double tan(const long double arg) noexcept(true)
+	template <typename type_t>
+	type_t tan(const type_t arg) noexcept(true)
 	{
-		return trig::sin(arg) / trig::cos(arg);
+		is_float_static_assert(type_t);
+		
+		return pix::math::trig::sin(arg) / pix::math::trig::cos(arg);
 	}
 
-	long double sec(const long double arg) noexcept(true)
+	template <typename type_t>
+	type_t sec(const type_t arg) noexcept(true)
 	{
-		return 1 / trig::cos(arg);
+		is_float_static_assert(type_t);
+		
+		return 1 / pix::math::trig::cos(arg);
 	}
 
-	long double csc(const long double arg) noexcept(true)
+	template <typename type_t>
+	type_t csc(const type_t arg) noexcept(true)
 	{
-		return 1 / trig::sin(arg);
+		is_float_static_assert(type_t);
+		
+		return 1 / pix::math::trig::sin(arg);
 	}
 
-	long double cot(const long double arg) noexcept(true)
+	template <typename type_t>
+	type_t cot(const type_t arg) noexcept(true)
 	{
-		return trig::cos(arg) / trig::sin(arg);
+		is_float_static_assert(type_t);
+		
+		return pix::math::trig::cos(arg) / pix::math::trig::sin(arg);
 	}
 
-	long double arcsin(long double arg) noexcept(false)
+	template <typename type_t>
+	type_t arcsin(type_t arg) noexcept(false)
 	{
+		is_float_static_assert(type_t);
+		
 		if (arg < -1 || arg > 1) throw "Argument is out of bounds";
 
 		if (arg == -1)
-			return - 0.5 * constants::mathematics::PI;
+			return - 0.5 * pix::constants::mathematics::PI;
 		else if (arg == 1)
-			return 0.5 * constants::mathematics::PI;
+			return 0.5 * pix::constants::mathematics::PI;
 		
 		const bool is_arg_neg = arg < 0;
-		arg = math::abs(arg);
+		arg = pix::math::abs(arg);
 
-		long double
+		type_t
 			term = arg,
 			result = arg;
 
 		arg *= arg;
 
-		for (unsigned long i = 0; i < math::MAX_ITER; ++i)
+		for (unsigned long i = 0; i < pix::math::MAX_ITER; ++i)
 		{
 			term *= 0.25 * arg * (2 * i + 2) * (2 * i + 1) * (2 * i + 1) / ((2 * i + 3) * (i + 1) * (i + 1));
 
-			if (term < math::PR_THRESHOLD)
+			if (term < pix::math::PR_THRESHOLD)
 				break;
 
 			result += term;
@@ -110,30 +133,36 @@ namespace pix::math::trig
 		return result;
 	}
 	
-	long double arccos(const long double arg) noexcept(false)
+	template <typename type_t>
+	type_t arccos(const type_t arg) noexcept(false)
 	{
-		return 0.5 * constants::mathematics::PI - trig::arcsin(arg);
+		is_float_static_assert(type_t);
+		
+		return 0.5 * pix::constants::mathematics::PI - trig::arcsin(arg);
 	}
 	
-	long double arctan(long double arg) noexcept(true)
+	template <typename type_t>
+	type_t arctan(type_t arg) noexcept(true)
 	{
-		if (math::abs(arg) > 1)
-			return 0.5 * constants::mathematics::PI - trig::arctan(1 / arg);
+		is_float_static_assert(type_t);
+		
+		if (pix::math::abs(arg) > 1)
+			return 0.5 * pix::constants::mathematics::PI - pix::math::trig::arctan(1 / arg);
 
 		const bool is_arg_neg = arg < 0;
-		arg = math::abs(arg);
+		arg = pix::math::abs(arg);
 
-		long double
+		type_t
 			term = arg,
 			result = arg;
 
 		arg *= arg;
 
-		for (unsigned long i = 0; i < math::MAX_ITER; ++i)
+		for (unsigned long i = 0; i < pix::math::MAX_ITER; ++i)
 		{
 			term *= - arg * (2 * i + 1) / (2 * i + 3);
 
-			if (math::abs(term) < math::PR_THRESHOLD)
+			if (pix::math::abs(term) < pix::math::PR_THRESHOLD)
 				break;
 
 			result += term;

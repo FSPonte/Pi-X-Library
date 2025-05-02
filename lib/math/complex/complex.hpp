@@ -1,6 +1,7 @@
 #ifndef _COMPLEX_HPP_
 #define _COMPLEX_HPP_
 
+// Mathematical complex number
 namespace pix::math
 {
 	/**

@@ -1,6 +1,7 @@
 #ifndef _SIGNAL_HPP_
 #define _SIGNAL_HPP_
 
+// Signal processing
 namespace pix::math::signal
 {
 	/**
@@ -25,6 +26,7 @@ namespace pix::math::signal
 	template <typename type_t>
 	void norm(type_t[], unsigned long) noexcept(false);
 
+	// Window functions
 	namespace window
 	{
 		/**
@@ -61,6 +63,7 @@ namespace pix::math::signal
 		void blackman(type_t[], unsigned long) noexcept(false);
 	}
 
+	// Transform functions
 	namespace transform
 	{
 		/**

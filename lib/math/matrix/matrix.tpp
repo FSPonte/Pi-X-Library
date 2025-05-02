@@ -10,9 +10,9 @@ namespace pix::math
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
 	matrix<type_t, N_LIN, N_COL>::matrix(void)
 	{
-		is_number_static_assert(type_t);
 		assert_not_nulldim(N_LIN);
 		assert_not_nulldim(N_COL);
+		is_number_static_assert(type_t);
 
 		static_assert
 		(
@@ -125,7 +125,7 @@ namespace pix::math
 			}
 		}
 
-		return matrix<type_t, N_LIN, N_COL>(&arr[0][0]);
+		return pix::math::matrix<type_t, N_LIN, N_COL>(&arr[0][0]);
 	}
 
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
@@ -148,7 +148,7 @@ namespace pix::math
 			}
 		}
 
-		return matrix<type_t, N_LIN, N_COL>(&arr[0][0]);
+		return pix::math::matrix<type_t, N_LIN, N_COL>(&arr[0][0]);
 	}
 
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
@@ -193,52 +193,52 @@ namespace pix::math
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
 	matrix<type_t, N_LIN, N_COL> matrix<type_t, N_LIN, N_COL>::operator + (const matrix<type_t, N_LIN, N_COL>& mtx) const
 	{
-		vector<type_t, N_COL> arr[N_LIN];
+		pix::math::vector<type_t, N_COL> arr[N_LIN];
 
 		for (unsigned long i = 0; i < N_LIN; ++i)
 			arr[i] = this->_data[i] + mtx._data[i];
 
-		return matrix<type_t, N_LIN, N_COL>(arr);
+		return pix::math::matrix<type_t, N_LIN, N_COL>(arr);
 	}
 
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
 	matrix<type_t, N_LIN, N_COL> matrix<type_t, N_LIN, N_COL>::operator - (const matrix<type_t, N_LIN, N_COL>& mtx) const
 	{
-		vector<type_t, N_COL> arr[N_LIN];
+		pix::math::vector<type_t, N_COL> arr[N_LIN];
 
 		for (unsigned long i = 0; i < N_LIN; ++i)
 			arr[i] = this->_data[i] - mtx._data[i];
 
-		return matrix<type_t, N_LIN, N_COL>(arr);
+		return pix::math::matrix<type_t, N_LIN, N_COL>(arr);
 	}
 
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
 	matrix<type_t, N_LIN, N_COL> matrix<type_t, N_LIN, N_COL>::operator * (const type_t scalar) const
 	{
-		vector<type_t, N_COL> arr[N_LIN];
+		pix::math::vector<type_t, N_COL> arr[N_LIN];
 
 		for (unsigned long i = 0; i < N_LIN; ++i)
 			arr[i] = this->_data[i] * scalar;
 
-		return matrix<type_t, N_LIN, N_COL>(arr);
+		return pix::math::matrix<type_t, N_LIN, N_COL>(arr);
 	}
 
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
 	matrix<type_t, N_LIN, N_COL> matrix<type_t, N_LIN, N_COL>::operator / (const type_t scalar) const
 	{
-		vector<type_t, N_COL> arr[N_LIN];
+		pix::math::vector<type_t, N_COL> arr[N_LIN];
 
 		for (unsigned long i = 0; i < N_LIN; ++i)
 			arr[i] = this->_data[i] / scalar;
 
-		return matrix<type_t, N_LIN, N_COL>(arr);
+		return pix::math::matrix<type_t, N_LIN, N_COL>(arr);
 	}
 
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
 	template <unsigned long _N_COL>
 	matrix<type_t, N_LIN, _N_COL> matrix<type_t, N_LIN, N_COL>::operator * (const matrix<type_t, N_COL, _N_COL>& mtx) const
 	{
-		vector<type_t, _N_COL> arr[N_LIN];
+		pix::math::vector<type_t, _N_COL> arr[N_LIN];
 
 		for (unsigned long i = 0; i < N_LIN; ++i)
 		{
@@ -251,7 +251,7 @@ namespace pix::math
 			}
 		}
 
-		return matrix<type_t, N_LIN, _N_COL>(arr);
+		return pix::math::matrix<type_t, N_LIN, _N_COL>(arr);
 	}
 }
 

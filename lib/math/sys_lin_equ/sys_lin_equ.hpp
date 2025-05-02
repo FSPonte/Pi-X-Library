@@ -1,6 +1,7 @@
 #ifndef _SYS_LIN_EQU_HPP_
 #define _SYS_LIN_EQU_HPP_
 
+// Systems of linear equations
 namespace pix::math::sys_lin_equ
 {
 	/**

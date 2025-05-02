@@ -1,6 +1,7 @@
 #ifndef _STAT_HPP_
 #define _STAT_HPP_
 
+// Statistics
 namespace pix::math::stat
 {
 	/**

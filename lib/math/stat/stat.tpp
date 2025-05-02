@@ -3,6 +3,7 @@
 
 // Dependencies
 #include <type_info.hpp>
+#include <math.hpp>
 
 namespace pix::math::stat
 {
@@ -52,19 +53,19 @@ namespace pix::math::stat
 		if (arr == nullptr) throw "Pointer to array is null";
 		if (dim <= 1) throw "Dimension is null";
 
-		return abs(max(arr, dim) - min(arr, dim));
+		return pix::math::abs(pix::math::stat::max(arr, dim) - pix::math::stat::min(arr, dim));
 	}
 
 	template <typename type_t>
 	type_t abs_err(const type_t value_exact, const type_t value_approx) noexcept(true)
 	{
-		return abs(value_exact - value_approx);
+		return pix::math::abs(value_exact - value_approx);
 	}
 
 	template <typename type_t>
 	type_t rel_err(const type_t value_exact, const type_t value_approx) noexcept(true)
 	{
-		return abs_err(value_exact, value_approx) / value_exact;
+		return pix::math::stat::abs_err(value_exact, value_approx) / value_exact;
 	}
 
 	template <typename type_t>
@@ -91,7 +92,7 @@ namespace pix::math::stat
 		if (arr == nullptr) throw "Pointer to array is null";
 		if (dim == 0) throw "Dimension is null";
 
-		return stat::sum(arr, dim) / dim;
+		return pix::math::stat::sum(arr, dim) / dim;
 	}
 
 	template <typename type_t>
@@ -116,7 +117,7 @@ namespace pix::math::stat
 		if (arr == nullptr) throw "Pointer to array is null";
 		if (dim == 0) throw "Dimension is null";
 
-		const type_t mean = stat::mean(arr, dim);
+		const type_t mean = pix::math::stat::mean(arr, dim);
 		type_t result = 0;
 
 		for (unsigned long i = 0; i < dim; ++i)
@@ -128,7 +129,7 @@ namespace pix::math::stat
 	template <typename type_t>
 	type_t std_dev(const type_t arr[], const unsigned long dim) noexcept(false)
 	{
-		return math::root(stat::var(arr, dim), 2);
+		return pix::math::root(pix::math::stat::var(arr, dim), 2);
 	}
 
 	template <typename type_t>
@@ -141,8 +142,8 @@ namespace pix::math::stat
 		if (dim == 0) throw "Dimension is null";
 
 		const type_t
-			mean_input = stat::mean(input, dim),
-			mean_output = stat::mean(output, dim);
+			mean_input = pix::math::stat::mean(input, dim),
+			mean_output = pix::math::stat::mean(output, dim);
 		type_t result = 0;
 
 		for (unsigned long i = 0; i < dim; ++i)
@@ -160,7 +161,7 @@ namespace pix::math::stat
 		if (model == nullptr) throw "Pointer to model is null";
 		if (dim == 0) throw "Dimension is null";
 
-		const type_t mean = stat::mean(arr, dim);
+		const type_t mean = pix::math::stat::mean(arr, dim);
 
 		type_t
 			sum_squared_errors = 0,

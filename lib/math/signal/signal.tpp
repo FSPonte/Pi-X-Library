@@ -2,8 +2,8 @@
 #define _SIGNAL_TPP_
 
 // Dependencies
-#include <type_info.hpp>
 #include <constants.hpp>
+#include <type_info.hpp>
 #include <math.hpp>
 #include <trig.hpp>
 #include <stat.hpp>

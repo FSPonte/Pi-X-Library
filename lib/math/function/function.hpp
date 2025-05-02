@@ -1,9 +1,10 @@
 #ifndef _FUNCTION_HPP_
 #define _FUNCTION_HPP_
 
-// Depedencies
+// Dependencies
 #include <math.hpp>
 
+// Mathematical function
 namespace pix::math
 {
 	template <typename type_in, typename type_out, typename callable>

@@ -91,47 +91,57 @@ namespace pix::math
 
 	/**
 	 * @brief Natural logaritm function
+	 * @tparam type_t Data type
 	 * @param arg Argument
 	 * @return Natural logaritm of argument
 	 * @throw Argument is a negative number
 	*/
-	long double log(long double) noexcept(false);
+	template <typename type_t>
+	type_t log(type_t) noexcept(false);
 
 	/**
 	 * @brief Logaritm of base function
+	 * @tparam type_t Data type
 	 * @param arg Argument
 	 * @param b Base
 	 * @return Logaritm of base of argument
 	 * @throw Argument is a non positive number
 	*/
-	long double log(long double, long double) noexcept(false);
+	template <typename type_t>
+	type_t log(type_t, type_t) noexcept(false);
 
 	/**
 	 * @brief Exponential function
+	 * @tparam type_t Data type
 	 * @param arg Argument
 	 * @return Exponential of argument
 	*/
-	long double exp(long double) noexcept(true);
+	template <typename type_t>
+	type_t exp(type_t) noexcept(true);
 
 	/**
 	 * @brief Power function
+	 * @tparam type_t Data type
 	 * @param b Base
 	 * @param e Exponent
 	 * @return Base to the power of exponent
 	 * @throw Inderteminate case of 0^0
 	 * @throw Division by zero
 	*/
-	long double pow(long double, long double) noexcept(false);
+	template <typename type_t>
+	type_t pow(type_t, type_t) noexcept(false);
 
 	/**
 	 * @brief Root function
+	 * @tparam type_t Data type
 	 * @param arg Argument
 	 * @param ind Index
 	 * @return Root index of argument
 	 * @throw Argument is a negative number
 	 * @throw Index is equal to zero
 	*/
-	long double root(long double, long double) noexcept(false);
+	template <typename type_t>
+	type_t root(type_t, type_t) noexcept(false);
 
 	/**
 	 * @brief Permutation function

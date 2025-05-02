@@ -4,6 +4,7 @@
 // Dependencies
 #include <vector.hpp>
 
+// Mathematical matrix
 namespace pix::math
 {
 	/**

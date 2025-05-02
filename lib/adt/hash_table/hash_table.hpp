@@ -1,0 +1,31 @@
+#ifndef _HASH_TABLE_HPP_
+#define _HASH_TABLE_HPP_
+
+// Dependencies
+#include <macros.hpp>
+
+// Abstract data types
+namespace pix::adt
+{
+	template <typename type_t, unsigned long BUFFER_SIZE = D_BUFFER_SIZE>
+	struct hash_item
+	{
+		char key[BUFFER_SIZE];
+		type_t _value;
+	};
+
+	template <typename type_t, unsigned long BUFFER_SIZE = D_BUFFER_SIZE, unsigned long DIM>
+	class hash_table
+	{
+	private:
+
+		hash_item _data[DIM];
+
+	public:
+	};
+}
+
+// Template file
+#include <hash_table.tpp>
+
+#endif // _HASH_TABLE_HPP_

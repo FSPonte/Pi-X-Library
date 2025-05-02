@@ -3,22 +3,26 @@
 
 // Dependencies
 #include <type_info.hpp>
+#include <math.hpp>
 
 namespace pix::math::hyper
 {
-	long double sinh(long double arg) noexcept(true)
+	template <typename type_t>
+	type_t sinh(type_t arg) noexcept(true)
 	{
-		long double
+		is_float_static_assert(type_t);
+
+		type_t
 			term = arg,
 			result = arg;
 
 		arg *= arg;
 
-		for (unsigned long i = 0; i < math::MAX_ITER; ++i)
+		for (unsigned long i = 0; i < pix::math::MAX_ITER; ++i)
 		{
 			term *= arg / ((2 * i + 3) * (2 * i + 2));
 
-			if (math::abs(term) < math::PR_THRESHOLD)
+			if (pix::math::abs(term) < pix::math::PR_THRESHOLD)
 				break;
 			
 			result += term;
@@ -27,19 +31,22 @@ namespace pix::math::hyper
 		return result;
 	}
 
-	long double cosh(long double arg) noexcept(true)
+	template <typename type_t>
+	type_t cosh(type_t arg) noexcept(true)
 	{
-		long double
+		is_float_static_assert(type_t);
+		
+		type_t
 			term = 1,
 			result = 1;
 
 		arg *= arg;
 
-		for (unsigned long i = 0; i < math::MAX_ITER; ++i)
+		for (unsigned long i = 0; i < pix::math::MAX_ITER; ++i)
 		{
 			term *= arg / ((2 * i + 2) * (2 * i + 1));
 
-			if (math::abs(term) < math::PR_THRESHOLD)
+			if (pix::math::abs(term) < pix::math::PR_THRESHOLD)
 				break;
 			
 			result += term;
@@ -48,24 +55,36 @@ namespace pix::math::hyper
 		return result;
 	}
 
-	long double tanh(const long double arg) noexcept(true)
+	template <typename type_t>
+	type_t tanh(const type_t arg) noexcept(true)
 	{
-		return hyper::sinh(arg) / hyper::cosh(arg);
+		is_float_static_assert(type_t);
+		
+		return pix::math::hyper::sinh(arg) / pix::math::hyper::cosh(arg);
 	}
 
-	long double sech(const long double arg) noexcept(true)
+	template <typename type_t>
+	type_t sech(const type_t arg) noexcept(true)
 	{
-		return 1 / hyper::cosh(arg);
+		is_float_static_assert(type_t);
+		
+		return 1 / pix::math::hyper::cosh(arg);
 	}
 
-	long double csch(const long double arg) noexcept(true)
+	template <typename type_t>
+	type_t csch(const type_t arg) noexcept(true)
 	{
-		return 1 / hyper::sech(arg);
+		is_float_static_assert(type_t);
+		
+		return 1 / pix::math::hyper::sech(arg);
 	}
 
-	long double coth(const long double arg) noexcept(true)
+	template <typename type_t>
+	type_t coth(const type_t arg) noexcept(true)
 	{
-		return hyper::cosh(arg) / hyper::sinh(arg);
+		is_float_static_assert(type_t);
+		
+		return pix::math::hyper::cosh(arg) / pix::math::hyper::sinh(arg);
 	}
 }
 

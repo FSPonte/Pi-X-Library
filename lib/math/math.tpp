@@ -2,7 +2,6 @@
 #define _MATH_TPP_
 
 // Dependencies
-#include <macros.hpp>
 #include <type_info.hpp>
 
 static const unsigned long STD_NaN = 0x7ff8000000000000; // Standard representation for NaN
@@ -126,11 +125,14 @@ namespace pix::math
 		static constexpr const unsigned long value = 1;
 	};
 
-	long double log(const long double arg) noexcept(false)
+	template <typename type_t>
+	type_t log(const type_t arg) noexcept(false)
 	{
+		is_float_static_assert(type_t);
+
 		if (arg <= 0) throw "Argument is a non positive number";
 
-		long double
+		type_t
 			result = 0,
 			coef = (arg - 1) / (arg + 1),
 			term = coef,
@@ -149,17 +151,23 @@ namespace pix::math
 		return result * 2;
 	}
 
-	long double log(const long double arg, const long double base) noexcept(false)
+	template <typename type_t>
+	type_t log(const type_t arg, const type_t base) noexcept(false)
 	{
+		is_float_static_assert(type_t);
+
 		return pix::math::log(arg) / pix::math::log(base);
 	}
 
-	long double exp(long double arg) noexcept(true)
+	template <typename type_t>
+	type_t exp(type_t arg) noexcept(true)
 	{
+		is_float_static_assert(type_t);
+
 		const bool is_neg = arg < 0;
 		arg = pix::math::abs(arg);
 
-		long double
+		type_t
 			result = 1,
 			term = 1;
 		
@@ -179,8 +187,11 @@ namespace pix::math
 		return result;
 	}
 
-	long double pow(long double base, long double exponent) noexcept(false)
+	template <typename type_t>
+	type_t pow(type_t base, type_t exponent) noexcept(false)
 	{
+		is_float_static_assert(type_t);
+
 		if (base == 0 && exponent == 0) throw "Indeterminate case of 0^0";
 
 		if (base == 0)
@@ -206,7 +217,7 @@ namespace pix::math
 				return -1;
 		}
 
-		long double result = exp(exponent * log(abs(base)));
+		type_t result = exp(exponent * log(abs(base)));
 
 		if (is_e_neg)
 			result = 1 / result;
@@ -222,8 +233,11 @@ namespace pix::math
 		return result;
 	}
 
-	long double root(const long double arg, const long double index) noexcept(false)
+	template <typename type_t>
+	type_t root(const type_t arg, const type_t index) noexcept(false)
 	{
+		is_float_static_assert(type_t);
+		
 		if (arg < 0) throw "Argument is a negative number";
 		if (index == 0) throw "Index is equal to zero";
 		

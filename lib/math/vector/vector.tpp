@@ -10,8 +10,8 @@ namespace pix::math
 	template <typename type_t, unsigned long DIM>
 	vector<type_t, DIM>::vector(void)
 	{
-		is_number_static_assert(type_t);
 		assert_not_nulldim(DIM);
+		is_number_static_assert(type_t);
 	}
 
 	template <typename type_t, unsigned long DIM>
@@ -101,7 +101,7 @@ namespace pix::math
 		for (unsigned long i = 0; i < DIM; ++i)
 			arr[i] = this->_data[i] + vec._data[i];
 
-		return vector<type_t, DIM>(arr);
+		return pix::math::vector<type_t, DIM>(arr);
 	}
 
 	template <typename type_t, unsigned long DIM>
@@ -112,7 +112,7 @@ namespace pix::math
 		for (unsigned long i = 0; i < DIM; ++i)
 			arr[i] = this->_data[i] - vec._data[i];
 
-		return vector<type_t, DIM>(arr);
+		return pix::math::vector<type_t, DIM>(arr);
 	}
 
 	template <typename type_t, unsigned long DIM>
@@ -123,21 +123,21 @@ namespace pix::math
 		for (unsigned long i = 0; i < DIM; ++i)
 			arr[i] = this->_data[i] * scalar;
 
-		return vector<type_t, DIM>(arr);
+		return pix::math::vector<type_t, DIM>(arr);
 	}
 
 	template <typename type_t, unsigned long DIM>
 	vector<type_t, DIM> vector<type_t, DIM>::operator / (const type_t scalar) const
 	{
 		if (scalar == 0)
-			return vector<type_t, DIM>();
+			return pix::math::vector<type_t, DIM>();
 
 		type_t arr[DIM];
 
 		for (unsigned long i = 0; i < DIM; ++i)
 			arr[i] = this->_data[i] / scalar;
 
-		return vector<type_t, DIM>(arr);
+		return pix::math::vector<type_t, DIM>(arr);
 	}
 
 	template <typename type_t, unsigned long DIM>
@@ -166,7 +166,7 @@ namespace pix::math
 		arr[1] = this->_data[2] * vec._data[0] - this->_data[0] * vec._data[2];
 		arr[2] = this->_data[0] * vec._data[1] - this->_data[1] * vec._data[0];
 
-		return vector<type_t, DIM>(arr);
+		return pix::math::vector<type_t, DIM>(arr);
 	}
 
 	template <typename type_t, unsigned long DIM>

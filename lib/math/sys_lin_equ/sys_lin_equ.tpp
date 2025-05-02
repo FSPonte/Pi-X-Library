@@ -2,7 +2,7 @@
 #define _SYS_LIN_EQU_TPP_
 
 // Dependencies
-#include <type_info.hpp>
+#include <macros.hpp>
 #include <c_array.hpp>
 #include <math.hpp>
 
