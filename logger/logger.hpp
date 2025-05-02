@@ -6,6 +6,9 @@
 #include <string>
 #include <mutex>
 
+/**
+ * @brief Logger class
+*/
 class logger
 {
 private:
