@@ -3,7 +3,6 @@
 
 // Dependencies
 #include <asserts.hpp>
-#include <exceptions.hpp>
 #include <c_array.hpp>
 
 namespace pix::memory
