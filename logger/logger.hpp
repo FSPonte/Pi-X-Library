@@ -13,7 +13,8 @@ class logger
 {
 private:
 
-	std::ofstream _file;
+	unsigned long _session_id; // Session id number
+	std::ofstream _file; // File
 	std::mutex _mutex;
 
 public:
@@ -32,6 +33,11 @@ public:
 	 * @brief Destructor
 	*/
 	~logger(void);
+
+	/**
+	 * @brief Open a logging session
+	*/
+	void open_session(void);
 
 	/**
 	 * @brief Log a message

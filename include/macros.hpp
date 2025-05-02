@@ -14,7 +14,9 @@
 
 	#include <logger.hpp>
 
-	#define LOGGER_INIT(file_path) logger _logger_(file_path)
+	#define LOGGER_INIT(file_path) \
+		static logger _logger_(file_path); \
+		_logger_.open_session()
 	#define LOGGER_LOG_MSG(msg) _logger_.log_msg(msg)
 	#define LOGGER_LOG_ARR(arr) _logger_.log_arr(arr)
 	#define LOGGER_LOG_AUG(mtx, vec) _logger_.log_arr(mtx, vec)
