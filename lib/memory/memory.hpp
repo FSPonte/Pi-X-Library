@@ -1,6 +1,7 @@
 #ifndef _MEMORY_HPP_
 #define _MEMORY_HPP_
 
+// Memory management
 namespace pix::memory
 {
 	/**

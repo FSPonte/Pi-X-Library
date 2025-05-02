@@ -1,6 +1,10 @@
 #ifndef _ARRAY_HPP_
 #define _ARRAY_HPP_
 
+// Dependencies
+#include <macros.hpp>
+
+// Abstract data types
 namespace pix::adt
 {
 	/**
@@ -8,7 +12,7 @@ namespace pix::adt
 	 * @tparam type_t Data type
 	 * @tparam DIM Number of elements
 	*/
-	template <typename type_t, unsigned long DIM>
+	template <typename type_t, unsigned long DIM = D_BUFFER_SIZE>
 	class array
 	{
 	private:

@@ -4,6 +4,7 @@
 // Dependencies
 #include <node.hpp>
 
+// Abstract data types
 namespace pix::adt
 {
 	/**

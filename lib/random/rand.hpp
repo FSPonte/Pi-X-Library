@@ -1,6 +1,7 @@
 #ifndef _RAND_HPP_
 #define _RAND_HPP_
 
+// Random number generator
 namespace pix::random
 {
 	/**

@@ -1,6 +1,10 @@
 #ifndef _QUEUE_HPP_
 #define _QUEUE_HPP_
 
+// Dependencies
+#include <macros.hpp>
+
+// Abstract data types
 namespace pix::adt
 {
 	/**
@@ -8,7 +12,7 @@ namespace pix::adt
 	 * @tparam type_t Data type
 	 * @tparam MAX_SIZE Maximum number of elements
 	*/
-	template <typename type_t, unsigned long MAX_SIZE>
+	template <typename type_t, unsigned long MAX_SIZE  = D_BUFFER_SIZE>
 	class queue
 	{
 	private:

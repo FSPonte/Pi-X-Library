@@ -1,10 +1,11 @@
 #ifndef _RGB_HPP_
 #define _RGB_HPP_
 
+// Graphics
 namespace pix::graphics
 {
 	// Maximum value for color
-	const unsigned int MAX_VALUE = 255;
+	constexpr const unsigned int MAX_VALUE = 255;
 
 	/**
 	 * @brief RGB color

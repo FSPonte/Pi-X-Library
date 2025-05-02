@@ -1,9 +1,7 @@
 #ifndef _IMAGE_HPP_
 #define _IMAGE_HPP_
 
-// Dependencies
-#include <rgb.hpp>
-
+// Graphics
 namespace pix::graphics
 {
 	/**

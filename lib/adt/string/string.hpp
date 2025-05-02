@@ -1,13 +1,17 @@
 #ifndef _STRING_HPP_
 #define _STRING_HPP_
 
+// Dependencies
+#include <macros.hpp>
+
+// Abstract data types
 namespace pix::adt
 {
 	/**
 	 * @brief String
 	 * @tparam MAX_LENGTH Maximum number of characters
 	*/
-	template <unsigned long MAX_LENGTH>
+	template <unsigned long MAX_LENGTH = D_BUFFER_SIZE>
 	class string
 	{
 	private:

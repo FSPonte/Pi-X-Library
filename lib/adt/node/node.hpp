@@ -1,6 +1,7 @@
 #ifndef _NODE_HPP_
 #define _NODE_HPP_
 
+// Abstract data types
 namespace pix::adt
 {
 	/**

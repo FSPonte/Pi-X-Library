@@ -1,6 +1,7 @@
 #ifndef _C_ARRAY_HPP_
 #define _C_ARRAY_HPP_
 
+// C styled arrays
 namespace pix::c_array
 {
 	/**

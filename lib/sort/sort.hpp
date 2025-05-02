@@ -1,6 +1,7 @@
 #ifndef _SORT_HPP_
 #define _SORT_HPP_
 
+// Sorting algorithms
 namespace pix::sort
 {
 	/**

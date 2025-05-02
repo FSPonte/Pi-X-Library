@@ -16,9 +16,7 @@ namespace
 	};
 }
 
-#ifndef _AUTO_POINTER_
-#define _AUTO_POINTER_
-
+// Smart pointers
 namespace pix::smart_pointer
 {
 	template <typename type_t>
@@ -47,18 +45,7 @@ namespace pix::smart_pointer
 		*/
 		type_t& operator * (void) override;
 	};
-}
 
-// Template file
-#include "auto_pointer.tpp"
-
-#endif // _AUTO_POINTER_
-
-#ifndef _UNIQUE_POINTER_
-#define _UNIQUE_POINTER_
-
-namespace pix::smart_pointer
-{
 	template <typename type_t>
 	class unique_pointer : public smart_pointer<type_t>
 	{
@@ -96,8 +83,7 @@ namespace pix::smart_pointer
 }
 
 // Template file
+#include "auto_pointer.tpp"
 #include "unique_pointer.tpp"
-
-#endif // _UNIQUE_POINTER_
 
 #endif // _SMART_POINTER_HPP_

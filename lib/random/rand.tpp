@@ -5,7 +5,7 @@
 #include <type_info.hpp>
 
 constexpr static const char SEED_BYTE = '\0';
-static const unsigned long
+constexpr static const unsigned long
 	SEED = reinterpret_cast<unsigned long>(&SEED_BYTE), // Initial value
 	MULT = reinterpret_cast<unsigned long>(&SEED_BYTE + 1), // Multiplier
 	INC = reinterpret_cast<unsigned long>(&SEED_BYTE - 1); // Increment
