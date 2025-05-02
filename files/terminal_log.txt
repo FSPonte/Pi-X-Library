@@ -9,10 +9,10 @@ Constraints:
 	Phase = [-3.14159, 3.14159]
 
 Parameters:
-	Amplitude = 2.97948
-	Offset = -5.77537
-	Freq = 3.72277
-	Phase = 0.149348
+	Amplitude = 9.16072
+	Offset = 6.76592
+	Freq = 0.68892
+	Phase = 2.42326
 
 f(0.785398) = 0.707107
 bissection = -3.14159
