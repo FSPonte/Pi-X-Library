@@ -132,19 +132,36 @@ namespace pix::math
 
 		if (arg <= 0) throw "Argument is a non positive number";
 
-		const unsigned long MAX_ITER = pix::math::MAX_ITER + 1;
+		// Logger
+		LOGGER_INIT("logs/math_log.log");
+		{
+			LOGGER_LOG_MSG("Parameters:");
+			LOGGER_LOG_MSG("\tTHRESHOLD = " + std::to_string(pix::math::PR_THRESHOLD));
+			LOGGER_LOG_MSG("\tMAX_ITER = " + std::to_string(pix::math::MAX_ITER));
+			LOGGER_LOG_MSG("Initial value: " + std::to_string(arg));
+		}
+
+		unsigned long index = 1;
 		type_t
 			result = 0,
 			coef = (arg - 1) / (arg + 1),
 			term = coef,
 			term_sq = coef * coef;
 
-		for (unsigned long i = 1; i < MAX_ITER; i += 2)
+		for (unsigned long i = 1; i <= pix::math::MAX_ITER; ++i)
 		{
+			// Logger
+			{
+				LOGGER_LOG_MSG("\nIteration: " + std::to_string(i));
+				LOGGER_LOG_MSG("Term: " + std::to_string(term));
+				LOGGER_LOG_MSG("Result: " + std::to_string(result));
+			}
+
 			if (pix::math::abs(term) < pix::math::PR_THRESHOLD)
 				break;
 			
-			result += term / i;
+			result += term / index;
+			index += 2;
 			term *= term_sq;
 		}
 
