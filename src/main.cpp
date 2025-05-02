@@ -42,89 +42,92 @@ int main(int argc, char* argv[])
 	// Parse arguments
 	utils::parse(argc, argv);
 
-	// Log constraints
+	// Transform
 	{
-		std::cout
-			<< "Constraints:\n"
-			<< "\tTime = [" << TIME_INITIAL << ", " << TIME_FINAL << "]\n"
-			<< "\tAmplitude = [" << AMP_MIN << ", " << AMP_MAX << "]\n"
-			<< "\tOffset = [" << OFFSET_MIN << ", " << OFFSET_MAX << "]\n"
-			<< "\tFrequency = [" << FREQ_MIN << ", " << FREQ_MAX << "]\n"
-			<< "\tPhase = [" << PHASE_MIN << ", " << PHASE_MAX << "]\n\n";
-	}
+		// Log constraints
+		{
+			std::cout
+				<< "Constraints:\n"
+				<< "\tTime = [" << TIME_INITIAL << ", " << TIME_FINAL << "]\n"
+				<< "\tAmplitude = [" << AMP_MIN << ", " << AMP_MAX << "]\n"
+				<< "\tOffset = [" << OFFSET_MIN << ", " << OFFSET_MAX << "]\n"
+				<< "\tFrequency = [" << FREQ_MIN << ", " << FREQ_MAX << "]\n"
+				<< "\tPhase = [" << PHASE_MIN << ", " << PHASE_MAX << "]\n\n";
+		}
 
-	type_t
-		amp = pix::random::drand<type_t>(AMP_MIN, AMP_MAX),
-		offset = pix::random::drand<type_t>(OFFSET_MIN, OFFSET_MAX),
-		freq = pix::random::drand<type_t>(FREQ_MIN, FREQ_MAX),
-		phase = pix::random::drand<type_t>(PHASE_MIN, PHASE_MAX);
+		type_t
+			amp = pix::random::drand<type_t>(AMP_MIN, AMP_MAX),
+			offset = pix::random::drand<type_t>(OFFSET_MIN, OFFSET_MAX),
+			freq = pix::random::drand<type_t>(FREQ_MIN, FREQ_MAX),
+			phase = pix::random::drand<type_t>(PHASE_MIN, PHASE_MAX);
 
-	// Log parameters
-	{
-		std::cout
-			<< "Parameters:\n"
-			<< "\tAmplitude = " << amp
-			<< "\n\tOffset = " << offset
-			<< "\n\tFreq = " << freq
-			<< "\n\tPhase = " << phase << "\n\n";
-	}
+		// Log parameters
+		{
+			std::cout
+				<< "Parameters:\n"
+				<< "\tAmplitude = " << amp
+				<< "\n\tOffset = " << offset
+				<< "\n\tFreq = " << freq
+				<< "\n\tPhase = " << phase << "\n\n";
+		}
 
-	type_t
-		time[SIZE],
-		signal[SIZE];
+		type_t
+			time[SIZE],
+			signal[SIZE];
 
-	// Create dataset
-	{
-		for (unsigned long i = 0; i < SIZE; ++i)
-			time[i] = pix::random::drand<type_t>(TIME_INITIAL, TIME_FINAL);
+		// Create dataset
+		{
+			for (unsigned long i = 0; i < SIZE; ++i)
+				time[i] = pix::random::drand<type_t>(TIME_INITIAL, TIME_FINAL);
 
-		pix::sort::quick_sort(time, SIZE);
-		type_t ang_freq = 2 * pix::constants::mathematics::PI * freq;
+			pix::sort::quick_sort(time, SIZE);
+			type_t ang_freq = 2 * pix::constants::mathematics::PI * freq;
 
-		for (unsigned long i = 0; i < SIZE; ++i)
-			signal[i] = amp * pix::math::trig::sin(ang_freq * time[i] + phase) + offset;
+			for (unsigned long i = 0; i < SIZE; ++i)
+				signal[i] = amp * pix::math::trig::sin(ang_freq * time[i] + phase) + offset;
 
-		write_file(time, signal, SIZE, "files/signal.txt");
-	}
+			write_file(time, signal, SIZE, "files/signal.txt");
+		}
 
-	// Adjust the signal
-	{
-		pix::math::signal::mean_sub(signal, SIZE);
-		pix::math::signal::norm(signal, SIZE);
-		pix::math::signal::window::blackman(signal, SIZE);
+		// Adjust the signal
+		{
+			pix::math::signal::mean_sub(signal, SIZE);
+			pix::math::signal::norm(signal, SIZE);
+			pix::math::signal::window::blackman(signal, SIZE);
 
-		write_file(time, signal, SIZE, "files/adjust.txt");
-	}
+			write_file(time, signal, SIZE, "files/adjust.txt");
+		}
 
-	type_t freq_domain[NUM_FREQS];
+		type_t freq_domain[NUM_FREQS];
 
-	// Create frequency domain
-	{
-		type_t step = (FREQ_MAX - FREQ_MIN) / NUM_FREQS;
-		
-		for (unsigned long i = 0; i < NUM_FREQS; ++i)
-			freq_domain[i] = step * i + FREQ_MIN;
-	}
+		// Create frequency domain
+		{
+			type_t step = (FREQ_MAX - FREQ_MIN) / NUM_FREQS;
+			
+			for (unsigned long i = 0; i < NUM_FREQS; ++i)
+				freq_domain[i] = step * i + FREQ_MIN;
+		}
 
-	type_t transform[NUM_FREQS];
+		type_t transform[NUM_FREQS];
 
-	// Create transform
-	{
-		pix::math::signal::transform::dft(time, signal, freq_domain, transform, SIZE, NUM_FREQS);
-		write_file(freq_domain, transform, NUM_FREQS, "files/fourier.txt");
+		// Create transform
+		{
+			pix::math::signal::transform::dft(time, signal, freq_domain, transform, SIZE, NUM_FREQS);
+			write_file(freq_domain, transform, NUM_FREQS, "files/fourier.txt");
+		}
 	}
 
 	// Function
 	{
-		auto func = pix::math::function<type_t, type_t, decltype(&f)>(f);
+		auto func = pix::math::function<type_t, type_t, decltype(&f)>(f, 1E-6, 1E3);
 		type_t zero = 0.25 * pix::constants::mathematics::PI;
 
 		std::cout
 			<< "f(" << zero << ") = " << func(zero) << '\n'
-			<< "bissection = " << func.bissection(-1, 1) << '\n'
-			<< "newton = " << func.newton(0) << '\n'
-			<< "secant = " << func.secant(-1, 1) << '\n'
-			<< "golden = " << func.golden_root(-1, 1) << "\n\n";
+			<< "bissection = " << func.bissection(-10, 6) << '\n'
+			<< "newton = " << func.newton(-2) << '\n'
+			<< "secant = " << func.secant(-10, 6) << '\n'
+			<< "golden = " << func.golden_root(-10, 6) << "\n\n";
 	}
 
 	// System of linear equations
@@ -148,6 +151,9 @@ int main(int argc, char* argv[])
 		// Gaussian elimination
 		{
 			type_t sol[DIM]; // Solution vector
+
+			pix::c_array::swap(vec, sol);
+			pix::c_array::swap(vec, sol);
 
 			pix::math::sys_lin_equ::gauss_elim(mtx, vec, sol);
 
