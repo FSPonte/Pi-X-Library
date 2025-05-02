@@ -97,10 +97,11 @@ namespace pix::math::sys_lin_equ
 		// Logger
 		{
 			LOGGER_LOG_MSG("\nRegressive substitution:");
+
 			for (unsigned long i = 0; i < DIM; ++i)
 				LOGGER_LOG_MSG("\tx[" + std::to_string(i + 1) + "] = " + std::to_string(x[i]));
 		}
-    
+
     	return;
 	}
 
