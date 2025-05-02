@@ -4,8 +4,8 @@
 // Mathematical functions
 namespace pix::math
 {
-	constexpr const unsigned long MAX_ITER = 1E6; // Maximum number of iterations
-	constexpr const long double PR_THRESHOLD = 1E-30; // Precision threshold
+	constexpr const unsigned long MAX_ITER = 1E3; // Maximum number of iterations
+	constexpr const long double PR_THRESHOLD = 1E-3; // Precision threshold
 
 	/**
 	 * @brief Not a Number
