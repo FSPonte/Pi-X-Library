@@ -1,4 +1,6 @@
 # Directories
 .vscode/
 build/
+files/
+logs/
 temp/
