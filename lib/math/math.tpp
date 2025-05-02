@@ -63,6 +63,13 @@ namespace pix::math
 		return int_part;
 	}
 
+	template <typename type_t>
+	type_t mod_diff(const type_t arg_1, const type_t arg_2) noexcept(true)
+	{
+		is_number_static_assert(type_t);
+
+		return pix::math::abs(arg_1 - arg_2);
+	}
 
 	unsigned long fact(unsigned long arg) noexcept(true)
 	{
@@ -73,14 +80,6 @@ namespace pix::math
 			arg *= i;
 
 		return arg;
-	}
-
-	template <typename type_t>
-	type_t mod_diff(const type_t arg_1, const type_t arg_2) noexcept(true)
-	{
-		is_number_static_assert(type_t);
-
-		return pix::math::abs(arg_1 - arg_2);
 	}
 
 	template <unsigned long arg>
