@@ -127,7 +127,7 @@ namespace pix::math::signal
 					imag += signal[j] * pix::math::trig::sin(arg);
 				}
 
-				transform[i] = pix::math::root(real * real + imag * imag, 2);
+				transform[i] = pix::math::root(real * real + imag * imag, static_cast<type_t>(2));
 			}
 		}
 	}
