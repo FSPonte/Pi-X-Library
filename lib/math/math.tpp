@@ -133,7 +133,7 @@ namespace pix::math
 		if (arg <= 0) throw "Argument is a non positive number";
 
 		// Logger
-		LOGGER_INIT("logs/math_log.log");
+		LOGGER_INIT("logs/ln.log");
 		{
 			LOGGER_LOG_MSG("Parameters:");
 			LOGGER_LOG_MSG("\tTHRESHOLD = " + std::to_string(pix::math::PR_THRESHOLD));
