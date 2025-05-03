@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 if [ ! -d "docs/" ]; then
 	mkdir -p "docs/"
