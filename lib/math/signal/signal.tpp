@@ -78,7 +78,7 @@ namespace pix::math::signal
 			
 			constexpr const auto
 				PI_2 = static_cast<type_t>(2 * pix::constants::mathematics::PI),
-				PI_4 = 2 * PI_2;
+				PI_4 = PI_2 * 2;
 
 			for (unsigned long i = 0; i < DIM; ++i)
 				arr[i] *= 0.42 - 0.5 * pix::math::trig::cos(PI_2 * i / (DIM - 1)) + 0.08 * pix::math::trig::cos(PI_4 * i / (DIM - 1));
@@ -107,7 +107,7 @@ namespace pix::math::signal
 			if (DOMAIN_DIM == 0) throw "Domain dimension is null";
 			if (TRANSFORM_DIM == 0) throw "Transform dimension is null";
 
-			constexpr const type_t PI_2 = 2 * pix::constants::mathematics::PI;
+			constexpr const auto PI_2 = static_cast<type_t>(2 * pix::constants::mathematics::PI);
 			type_t
 				omega, // Angular frequency
 				arg, // Complex angle
