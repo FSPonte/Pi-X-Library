@@ -26,12 +26,12 @@ void logger::open_session(void)
 	if (!this->_file.is_open())
 		throw "[Logger] File is not open";
 
-	if (this->_session != 0)
+	if (this->_session_id != 0)
 		this->_file << '\n';
 	
 	this->_file
 		<< "====================\n"
-		<< "[LOGGER] Session ID: " << ++this->_session << '\n'
+		<< "[LOGGER] Session ID: " << ++this->_session_id << '\n'
 		<< "====================\n\n";
 }
 
