@@ -5,7 +5,4 @@ mkdir -p "files/"
 mkdir -p "logs/"
 
 /usr/bin/time -v "build/pix_tester" | tee "logs/stdout.txt"
-
-if [ ! -d "gnuplot" ]; then
-	gnuplot "scripts/plot.gp"
-fi
+gnuplot "scripts/plot.gp"
