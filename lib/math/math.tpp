@@ -189,7 +189,7 @@ namespace pix::math
 			term = 1;
 
 		// Logger
-		LOGGER_INIT("logs/math_exp.log");
+		LOGGER_INIT("logs/exp.log");
 		{
 			LOGGER_LOG_MSG("Parameters:");
 			LOGGER_LOG_MSG("\tTHRESHOLD = " + std::to_string(pix::math::PR_THRESHOLD));
