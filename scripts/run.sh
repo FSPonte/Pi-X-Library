@@ -1,16 +1,10 @@
 #!/bin/sh
 
 sh "scripts/build.sh"
+mkdir -p "files/"
+mkdir -p "logs/"
 
-if [ ! -d "files/" ]; then
-	mkdir -p "files/"
-fi
-
-if [ ! -d "logs/" ]; then
-	mkdir -p "logs/"
-fi
-
-/usr/bin/time -v "build/pix_tester" | tee "files/stdout.txt"
+/usr/bin/time -v "build/pix_tester" | tee "logs/stdout.txt"
 
 if [ ! -d "gnuplot" ]; then
 	gnuplot "scripts/plot.gp"
