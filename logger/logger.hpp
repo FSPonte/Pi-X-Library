@@ -6,6 +6,8 @@
 #include <string>
 #include <mutex>
 
+constexpr const unsigned long MAX_SESSION_ID = 1E3; // Maximum number of sessions
+
 /**
  * @brief Logger class
 */
