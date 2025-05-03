@@ -91,7 +91,7 @@ namespace pix::math::sys_lin_equ
 			
 			x[i] /= A_[i][i];
 			
-			if (x[i] == pix::math::NaN()) throw "NaN value encountered";
+			if (x[i] == pix::math::NaN) throw "NaN value encountered";
 		}
 
 		// Logger

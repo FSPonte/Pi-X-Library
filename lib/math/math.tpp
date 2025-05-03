@@ -5,15 +5,8 @@
 #include <macros.hpp>
 #include <type_info.hpp>
 
-static constexpr const unsigned long STD_NaN = 0x7ff8000000000000; // Standard representation for NaN
-
 namespace pix::math
 {
-	constexpr double NaN(void) noexcept(true)
-	{
-		return *reinterpret_cast<const double*>(&STD_NaN);
-	}
-
 	template <typename type_t>
 	type_t abs(const type_t number) noexcept(true)
 	{
@@ -255,7 +248,7 @@ namespace pix::math
 				result *= -1;
 		}
 		else if (base < 0)
-			return pix::math::NaN();
+			return pix::math::NaN;
 
 		return result;
 	}
