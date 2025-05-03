@@ -1,7 +1,7 @@
 #!/bin/sh
 
 rm -rf "build/"
-mkdir -p "build/"
+mkdir "build/"
 
 cd "build/"
 cmake ".."
