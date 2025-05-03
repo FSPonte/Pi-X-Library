@@ -6,7 +6,7 @@ namespace pix::math
 {
 	constexpr const double NaN = static_cast<double>(0x7ff8000000000000); // NaN value
 	constexpr const unsigned long MAX_ITER = 1E3; // Maximum number of iterations
-	constexpr const long double PR_THRESHOLD = 1E-3; // Precision threshold
+	constexpr const long double PR_THRESHOLD = 1E-6; // Precision threshold
 
 	/**
 	 * @brief Absolute value
