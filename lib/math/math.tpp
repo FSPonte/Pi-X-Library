@@ -89,15 +89,22 @@ namespace pix::math
 
 	unsigned long fib(unsigned long arg) noexcept(true)
 	{
-		unsigned long arr[arg + 2];
+		if (arg == 0) return 0;
+		if (arg == 1) return 1;
 
-		arr[0] = 0;
-		arr[1] = 1;
+		unsigned long 
+			fib_1 = 0,
+			fib_2 = 1,
+			fib_n = 0;
 
 		for (unsigned long i = 2; i <= arg; ++i)
-			arr[i] = arr[i - 1] + arr[i - 2];
+		{
+			fib_n = fib_1 + fib_2;
+			fib_1 = fib_2;
+			fib_2 = fib_n;
+		}
 
-		return arr[arg];
+		return fib_n;
 	}
 
 	template <unsigned long arg>
