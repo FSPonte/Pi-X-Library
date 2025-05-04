@@ -38,43 +38,69 @@ public:
 
 	/**
 	 * @brief Open a logging session
+	 * @throw File is not open
 	*/
-	void open_session(void);
+	void open_session(void) noexcept(false);
 
 	/**
 	 * @brief Log a message
 	 * @param msg Message to log
+	 * @throw File is not open
 	*/
-	void log_msg(const std::string&);
+	void log_msg(const std::string&) noexcept(false);
 
 	/**
-	 * @brief Log a message
+	 * @brief Log an array as a list
+	 * @tparam type_t Data type
+	 * @param arr Array to log
+	 * @param dim Number of elements
+	 * @throw File is not open
+	*/
+	template <typename type_t>
+	void log_lst(const type_t[], unsigned long) noexcept(false);
+
+	/**
+	 * @brief Log an array as a list
 	 * @tparam type_t Data type
 	 * @tparam DIM Number of elements
 	 * @param arr Array to log
+	 * @throw File is not open
 	*/
 	template <typename type_t, unsigned long DIM>
-	void log_arr(const type_t (&)[DIM]);
+	void log_lst(const type_t (&)[DIM]) noexcept(false);
 
 	/**
-	 * @brief Log a message
+	 * @brief Log an array
+	 * @tparam type_t Data type
+	 * @tparam DIM Number of elements
+	 * @param arr Array to log
+	 * @throw File is not open
+	*/
+	template <typename type_t, unsigned long DIM>
+	void log_arr(const type_t (&)[DIM]) noexcept(false);
+
+	/**
+	 * @brief Log an array
 	 * @tparam type_t Data type
 	 * @tparam N_LIN Number of lines
 	 * @tparam N_COL Number of columns
 	 * @param arr Array to log
+	 * @throw File is not open
 	*/
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
-	void log_arr(const type_t (&)[N_LIN][N_COL]);
+	void log_arr(const type_t (&)[N_LIN][N_COL]) noexcept(false);
 
 	/**
-	 * @brief Log a message
+	 * @brief Log two arrays
 	 * @tparam type_t Data type
 	 * @tparam N_LIN Number of lines
 	 * @tparam N_COL Number of columns
-	 * @param arr Array to log
+	 * @param arr_1 Array 1 to log
+	 * @param arr_2 Array 2 to log
+	 * @throw File is not open
 	*/
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
-	void log_arr(const type_t (&)[N_LIN][N_COL], const type_t (&)[N_LIN]);
+	void log_arr(const type_t (&)[N_LIN][N_COL], const type_t (&)[N_LIN]) noexcept(false);
 
 	// Disable assignment operator
 	logger& operator = (const logger&) = delete;
