@@ -110,13 +110,6 @@ namespace pix::math::sys_lin_equ
 	{
 		is_number_static_assert(type_t);
 
-		// Logger
-		LOGGER_INIT("logs/lu_decomp.log");
-		{
-			LOGGER_LOG_MSG("Initial values:");
-			LOGGER_LOG_ARR(A);
-		}
-
 		// Initialize L to identity and U to zero
 		for (unsigned long i = 0; i < DIM; ++i)
 		{
@@ -128,6 +121,13 @@ namespace pix::math::sys_lin_equ
 		}
 
 		type_t sum;
+
+		// Logger
+		LOGGER_INIT("logs/lu_decomp.log");
+		{
+			LOGGER_LOG_MSG("Initial values:");
+			LOGGER_LOG_ARR(A);
+		}
 
 		for (unsigned long k = 0; k < DIM; ++k)
 		{
