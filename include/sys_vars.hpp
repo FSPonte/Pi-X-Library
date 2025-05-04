@@ -41,4 +41,10 @@
 #define U_INT64_MAX 18446744073709551615
 #endif
 
+// Default buffer size
+#define D_BUFFER_SIZE 20
+
+// Default block allocation size
+#define D_BLOCK_ALLOC_SIZE 1000
+
 #endif // _SYS_VARS_HPP_
