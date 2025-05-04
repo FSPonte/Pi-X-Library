@@ -12,6 +12,7 @@
 		static logger _logger_(file_path); \
 		_logger_.open_session()
 	#define LOGGER_LOG_MSG(msg) _logger_.log_msg(msg)
+	#define LOGGER_LOG_LST(lst, dim) _logger_.log_lst(lst, dim)
 	#define LOGGER_LOG_ARR(arr) _logger_.log_arr(arr)
 	#define LOGGER_LOG_AUG(mtx, vec) _logger_.log_arr(mtx, vec)
 
@@ -19,6 +20,7 @@
 
 	#define LOGGER_INIT(file_path)
 	#define LOGGER_LOG_MSG(msg)
+	#define LOGGER_LOG_LST(lst, dim)
 	#define LOGGER_LOG_ARR(arr)
 	#define LOGGER_LOG_AUG(mtx, vec)
 
