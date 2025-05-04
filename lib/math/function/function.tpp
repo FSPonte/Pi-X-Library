@@ -182,6 +182,9 @@ namespace pix::math
 
 		if (y_a * y_b > 0) throw "Invalid convergence condition (f(a) * f(b) >= 0)";
 
+		constexpr const auto invphi = static_cast<type_in>(1.0 / pix::constants::mathematics::GOLDEN_RATIO); // Inverse of the golden ratio
+		type_in c, d;
+
 		// Logger
 		LOGGER_INIT("logs/golden_root.log");
 		{
@@ -192,9 +195,6 @@ namespace pix::math
 			LOGGER_LOG_MSG("\ta = " + std::to_string(a) + " | f(a) = " + std::to_string(y_a));
 			LOGGER_LOG_MSG("\tb = " + std::to_string(b) + " | f(b) = " + std::to_string(y_b));
 		}
-
-		constexpr const auto invphi = static_cast<type_in>(1.0 / pix::constants::mathematics::GOLDEN_RATIO); // Inverse of the golden ratio
-		type_in c, d;
 
 		for (unsigned long i = 1; i <= this->_MAX_ITER; ++i)
 		{
