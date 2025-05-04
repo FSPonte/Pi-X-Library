@@ -19,7 +19,7 @@ logger::~logger(void)
 	this->_file.close();
 }
 
-void logger::open_session(void)
+void logger::open_session(void) noexcept(false)
 {
 	std::lock_guard<std::mutex> lock(this->_mutex);
 
