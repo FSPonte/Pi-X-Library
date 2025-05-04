@@ -20,18 +20,16 @@ static void _merge_sort_(type_t[], unsigned long, unsigned long) noexcept(true);
 namespace pix::sort
 {
 	template <typename type_t>
-	void bubble_sort(type_t arr[], const unsigned long dim) noexcept(false)
+	void bubble_sort(type_t arr[], const unsigned long DIM) noexcept(false)
 	{
 		is_number_static_assert(type_t);
 
 		if (arr == nullptr) throw "Pointer to array is null";
-		if (dim == 0) throw "Dimension is null";
+		if (DIM == 0) throw "Dimension is null";
 
-		type_t aux; // Auxiliar value
-
-		for (unsigned long i = 0; i < dim; ++i)
+		for (unsigned long i = 0; i < DIM; ++i)
 		{
-			for (unsigned long j = 0; j < dim - 1; ++j)
+			for (unsigned long j = 0; j < DIM - 1; ++j)
 			{
 				if (arr[j] <= arr[j + 1])
 					continue;
@@ -41,22 +39,29 @@ namespace pix::sort
 		}
 	}
 
+	template <typename type_t, unsigned long DIM>
+	void bubble_sort(type_t (&arr)[DIM])
+	{
+		is_number_static_assert(type_t);
+
+		pix::sort::bubble_sort(arr, DIM);
+	}
+
 	template <typename type_t>
-	void selection_sort(type_t arr[], const unsigned long dim) noexcept(false)
+	void selection_sort(type_t arr[], const unsigned long DIM) noexcept(false)
 	{
 		is_number_static_assert(type_t);
 
 		if (arr == nullptr) throw "Pointer to array is null";
-		if (dim == 0) throw "Dimension is null";
+		if (DIM == 0) throw "Dimension is null";
 
 		unsigned long min_ind; // Index of minimum value
-		type_t aux; // Auxiliar value
 
-		for (unsigned long i = 0; i < dim; ++i)
+		for (unsigned long i = 0; i < DIM; ++i)
 		{
 			min_ind = i;
 
-			for (unsigned long j = i + 1; j < dim; ++j)
+			for (unsigned long j = i + 1; j < DIM; ++j)
 			{
 				if (arr[min_ind] <= arr[j])
 					continue;
@@ -68,48 +73,80 @@ namespace pix::sort
 		}
 	}
 
+	template <typename type_t, unsigned long DIM>
+	void selection_sort(type_t (&arr)[DIM])
+	{
+		is_number_static_assert(type_t);
+
+		pix::sort::selection_sort(arr, DIM);
+	}
+
 	template <typename type_t>
-	void insertion_sort(type_t arr[], const unsigned long dim) noexcept(false)
+	void insertion_sort(type_t arr[], const unsigned long DIM) noexcept(false)
 	{
 		is_number_static_assert(type_t);
 
 		if (arr == nullptr) throw "Pointer to array is null";
-		if (dim == 0) throw "Dimension is null";
+		if (DIM == 0) throw "Dimension is null";
 
 		unsigned long j;
 		type_t aux;
 
-		for (unsigned long i = 1; i < dim; ++i)
+		for (unsigned long i = 1; i < DIM; ++i)
 		{
 			aux = arr[i];
 
-			for (j = i - 1; j >= 0 && arr[j] > aux; --j)
+			for (j = i - 1; j > 0 && arr[j] > aux; --j)
 				arr[j + 1] = arr[j];
 
 			arr[j + 1] = aux;
 		}
 	}
 
-	template <typename type_t>
-	void quick_sort(type_t arr[], const unsigned long dim) noexcept(false)
+	template <typename type_t, unsigned long DIM>
+	void insertion_sort(type_t (&arr)[DIM])
 	{
 		is_number_static_assert(type_t);
 
-		if (arr == nullptr) throw "Pointer to array is null";
-		if (dim == 0) throw "Dimension is null";
-
-		_quick_sort_(arr, 0, dim - 1);
+		pix::sort::insertion_sort(arr, DIM);
 	}
 
 	template <typename type_t>
-	void merge_sort(type_t arr[], const unsigned long dim) noexcept(false)
+	void quick_sort(type_t arr[], const unsigned long DIM) noexcept(false)
 	{
 		is_number_static_assert(type_t);
 
 		if (arr == nullptr) throw "Pointer to array is null";
-		if (dim == 0) throw "Dimension is null";
+		if (DIM == 0) throw "Dimension is null";
 
-		_merge_sort_(arr, 0, dim - 1);
+		_quick_sort_(arr, 0, DIM - 1);
+	}
+
+	template <typename type_t, unsigned long DIM>
+	void quick_sort(type_t (&arr)[DIM])
+	{
+		is_number_static_assert(type_t);
+
+		pix::sort::quick_sort(arr, DIM);
+	}
+
+	template <typename type_t>
+	void merge_sort(type_t arr[], const unsigned long DIM) noexcept(false)
+	{
+		is_number_static_assert(type_t);
+
+		if (arr == nullptr) throw "Pointer to array is null";
+		if (DIM == 0) throw "Dimension is null";
+
+		_merge_sort_(arr, 0, DIM - 1);
+	}
+
+	template <typename type_t, unsigned long DIM>
+	void merge_sort(type_t (&arr)[DIM])
+	{
+		is_number_static_assert(type_t);
+
+		pix::sort::merge_sort(arr, DIM);
 	}
 }
 
@@ -130,7 +167,7 @@ static unsigned long _partition_(type_t arr[], unsigned long start_ind, unsigned
 	unsigned long pi_ind = start_ind + count;
 	pix::c_array::swap(arr[pi_ind], arr[start_ind]);
 
-	while (start_ind < pi_ind && end_ind > pi_ind)
+	for (unsigned long i = 0; start_ind < pi_ind && end_ind > pi_ind; ++i)
 	{
 		while (arr[start_ind] <= pivot)
 			++start_ind;
@@ -150,40 +187,40 @@ static unsigned long _partition_(type_t arr[], unsigned long start_ind, unsigned
 }
 
 template <typename type_t>
-static void _quick_sort_(type_t arr[], const unsigned long start_ind, const unsigned long end_ind) noexcept(true)
+static void _quick_sort_(type_t arr[], const unsigned long START_IND, const unsigned long END_IND) noexcept(true)
 {
-	if (start_ind >= end_ind)
+	if (START_IND >= END_IND)
 		return;
 
-	const unsigned long part_ind = _partition_(arr, start_ind, end_ind); // Partition index
+	const unsigned long part_ind = _partition_(arr, START_IND, END_IND); // Partition index
 
-	_quick_sort_(arr, start_ind, part_ind);
-	_quick_sort_(arr, part_ind + 1, end_ind);
+	_quick_sort_(arr, START_IND, part_ind);
+	_quick_sort_(arr, part_ind + 1, END_IND);
 }
 
 template <typename type_t>
-static void _merge_(type_t arr[], const unsigned long start_ind, const unsigned long mid_ind, const unsigned long end_ind) noexcept(true)
+static void _merge_(type_t arr[], const unsigned long START_IND, const unsigned long MID_IND, const unsigned long END_IND) noexcept(true)
 {
 	const unsigned long
-		left_dim = mid_ind - start_ind + 1,
-		right_dim = end_ind - mid_ind;
+		LEFT_DIM = MID_IND - START_IND + 1,
+		RIGHT_DIM = END_IND - MID_IND;
 
-	auto
-		*left_arr = new type_t[left_dim],
-		*right_arr = new type_t[right_dim];
+	type_t
+		left_arr[LEFT_DIM],
+		right_arr[RIGHT_DIM];
 
-	for (unsigned long i = 0; i < left_dim; ++i)
-		left_arr[i] = arr[start_ind + i];
+	for (unsigned long i = 0; i < LEFT_DIM; ++i)
+		left_arr[i] = arr[START_IND + i];
 
-	for (unsigned long i = 0; i < right_dim; ++i)
-		right_arr[i] = arr[mid_ind + i + 1];
+	for (unsigned long i = 0; i < RIGHT_DIM; ++i)
+		right_arr[i] = arr[MID_IND + i + 1];
 
 	unsigned long
 		left_ind = 0,
 		right_ind = 0,
 		arr_ind;
 
-	for (arr_ind = start_ind; left_ind < left_dim && right_ind < right_dim; ++arr_ind)
+	for (arr_ind = START_IND; left_ind < LEFT_DIM && right_ind < RIGHT_DIM; ++arr_ind)
 	{
 		if (left_arr[left_ind] <= right_arr[right_ind])
 		{
@@ -197,36 +234,33 @@ static void _merge_(type_t arr[], const unsigned long start_ind, const unsigned 
 		}
 	}
 
-	while (left_ind < left_dim)
+	while (left_ind < LEFT_DIM)
 	{
 		arr[arr_ind] = left_arr[left_ind];
 		++arr_ind;
 		++left_ind;
 	}
 
-	while (right_ind < right_dim)
+	while (right_ind < RIGHT_DIM)
 	{
 		arr[arr_ind] = right_arr[right_ind];
 		++arr_ind;
 		++right_ind;
 	}
-
-	delete[] left_arr;
-	delete[] right_arr;
 }
 
 template <typename type_t>
-static void _merge_sort_(type_t arr[], const unsigned long start_ind, const unsigned long end_ind) noexcept(true)
+static void _merge_sort_(type_t arr[], const unsigned long START_IND, const unsigned long END_IND) noexcept(true)
 {
-	if (start_ind >= end_ind)
+	if (START_IND >= END_IND)
 		return;
 
-	const unsigned long mid_ind = start_ind + (end_ind - start_ind) / 2;
+	const unsigned long MID_IND = START_IND + (END_IND - START_IND) / 2;
 
-	_merge_sort_(arr, start_ind, mid_ind);
-	_merge_sort_(arr, mid_ind + 1, end_ind);
+	_merge_sort_(arr, START_IND, MID_IND);
+	_merge_sort_(arr, MID_IND + 1, END_IND);
 
-	_merge_(arr, start_ind, mid_ind, end_ind);
+	_merge_(arr, START_IND, MID_IND, END_IND);
 }
 
 #endif // _SORT_TPP_

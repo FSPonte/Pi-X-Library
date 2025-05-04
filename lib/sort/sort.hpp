@@ -16,6 +16,15 @@ namespace pix::sort
 	void bubble_sort(type_t[], unsigned long) noexcept(false);
 
 	/**
+	 * @brief Bubble sort
+	 * @tparam type_t Data type
+	 * @tparam DIM Number of elements
+	 * @param arr Pointer to array of elements
+	*/
+	template <typename type_t, unsigned long DIM>
+	void bubble_sort(type_t (&)[DIM]);
+
+	/**
 	 * @brief Selection sort
 	 * @tparam type_t Data type
 	 * @param arr Pointer to array of elements
@@ -25,6 +34,15 @@ namespace pix::sort
 	*/
 	template <typename type_t>
 	void selection_sort(type_t[], unsigned long) noexcept(false);
+
+	/**
+	 * @brief Selection sort
+	 * @tparam type_t Data type
+	 * @tparam DIM Number of elements
+	 * @param arr Pointer to array of elements
+	*/
+	template <typename type_t, unsigned long DIM>
+	void selection_sort(type_t (&)[DIM]);
 
 	/**
 	 * @brief Insertion sort
@@ -38,6 +56,15 @@ namespace pix::sort
 	void insertion_sort(type_t[], unsigned long) noexcept(false);
 
 	/**
+	 * @brief Insertion sort
+	 * @tparam type_t Data type
+	 * @tparam DIM Number of elements
+	 * @param arr Pointer to array of elements
+	*/
+	template <typename type_t, unsigned long DIM>
+	void insertion_sort(type_t (&)[DIM]);
+
+	/**
 	 * @brief Quick sort
 	 * @tparam type_t Data type
 	 * @param arr Pointer to array of elements
@@ -49,6 +76,15 @@ namespace pix::sort
 	void quick_sort(type_t[], unsigned long) noexcept(false);
 
 	/**
+	 * @brief Quick sort
+	 * @tparam type_t Data type
+	 * @tparam DIM Number of elements
+	 * @param arr Pointer to array of elements
+	*/
+	template <typename type_t, unsigned long DIM>
+	void quick_sort(type_t (&)[DIM]);
+
+	/**
 	 * @brief Merge sort
 	 * @tparam type_t Data type
 	 * @param arr Pointer to array of elements
@@ -58,6 +94,15 @@ namespace pix::sort
 	*/
 	template <typename type_t>
 	void merge_sort(type_t[], unsigned long) noexcept(false);
+
+	/**
+	 * @brief Merge sort
+	 * @tparam type_t Data type
+	 * @tparam DIM Number of elements
+	 * @param arr Pointer to array of elements
+	*/
+	template <typename type_t, unsigned long DIM>
+	void merge_sort(type_t (&)[DIM]);
 }
 
 // Template file
