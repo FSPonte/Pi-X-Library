@@ -2,7 +2,6 @@
 #define _MATH_TPP_
 
 // Dependencies
-#include <macros.hpp>
 #include <type_info.hpp>
 
 namespace pix::math
@@ -132,15 +131,6 @@ namespace pix::math
 
 		if (arg <= 0) throw "Argument is a non positive number";
 
-		// Logger
-		LOGGER_INIT("logs/ln.log");
-		{
-			LOGGER_LOG_MSG("Parameters:");
-			LOGGER_LOG_MSG("\tTHRESHOLD = " + std::to_string(pix::math::PR_THRESHOLD));
-			LOGGER_LOG_MSG("\tMAX_ITER = " + std::to_string(pix::math::MAX_ITER));
-			LOGGER_LOG_MSG("Initial value: " + std::to_string(arg));
-		}
-
 		unsigned long index = 1;
 		type_t
 			result = 0,
@@ -156,13 +146,6 @@ namespace pix::math
 			result += term / index;
 			index += 2;
 			term *= term_sq;
-
-			// Logger
-			{
-				LOGGER_LOG_MSG("\nIteration: " + std::to_string(i));
-				LOGGER_LOG_MSG("\tTerm: " + std::to_string(term));
-				LOGGER_LOG_MSG("\tResult: " + std::to_string(result));
-			}
 		}
 
 		return result * 2;
@@ -188,16 +171,6 @@ namespace pix::math
 			result = 1,
 			term = 1;
 
-		// Logger
-		LOGGER_INIT("logs/exp.log");
-		{
-			LOGGER_LOG_MSG("Parameters:");
-			LOGGER_LOG_MSG("\tTHRESHOLD = " + std::to_string(pix::math::PR_THRESHOLD));
-			LOGGER_LOG_MSG("\tMAX_ITER = " + std::to_string(pix::math::MAX_ITER));
-			LOGGER_LOG_MSG("Initial values:");
-			LOGGER_LOG_MSG("\targ = " + std::to_string(arg) + " | Result = " + std::to_string(result));
-		}
-		
 		for (unsigned long i = 1; i <= pix::math::MAX_ITER; ++i)
 		{
 			term *= arg / i;
@@ -206,13 +179,6 @@ namespace pix::math
 				break;
 			
 			result += term;
-
-			// Logger
-			{
-				LOGGER_LOG_MSG("\nIteration: " + std::to_string(i));
-				LOGGER_LOG_MSG("\tTerm: " + std::to_string(term));
-				LOGGER_LOG_MSG("\tResult: " + std::to_string(result));
-			}
 		}
 
 		if (is_neg)
