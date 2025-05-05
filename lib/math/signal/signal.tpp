@@ -8,8 +8,6 @@
 #include <trig.hpp>
 #include <stat.hpp>
 
-static constexpr const auto PI_2 = static_cast<type_t>(2 * pix::constants::mathematics::PI);
-
 namespace pix::math::signal
 {
 	template <typename type_t>
@@ -50,6 +48,8 @@ namespace pix::math::signal
 			if (arr == nullptr) throw "Pointer to array is null";
 			if (DIM == 0) throw "Dimension is null";
 
+			static constexpr const auto PI_2 = static_cast<type_t>(2 * pix::constants::mathematics::PI);
+
 			for (unsigned long i = 0; i < DIM; ++i)
 				arr[i] *= 0.5 * (1 - pix::math::trig::cos(PI_2 * i / (DIM - 1)));
 		}
@@ -61,6 +61,8 @@ namespace pix::math::signal
 
 			if (arr == nullptr) throw "Pointer to array is null";
 			if (DIM == 0) throw "Dimension is null";
+
+			static constexpr const auto PI_2 = static_cast<type_t>(2 * pix::constants::mathematics::PI);
 
 			for (unsigned long i = 0; i < DIM; ++i)
 				arr[i] *= 0.54 - 0.46 * pix::math::trig::cos(PI_2 * i / (DIM - 1));
@@ -74,7 +76,9 @@ namespace pix::math::signal
 			if (arr == nullptr) throw "Pointer to array is null";
 			if (DIM == 0) throw "Dimension is null";
 			
-			constexpr const auto PI_4 = PI_2 * 2;
+			constexpr const auto
+				PI_2 = static_cast<type_t>(2 * pix::constants::mathematics::PI),
+				PI_4 = PI_2 * 2;
 
 			for (unsigned long i = 0; i < DIM; ++i)
 				arr[i] *= 0.42 - 0.5 * pix::math::trig::cos(PI_2 * i / (DIM - 1)) + 0.08 * pix::math::trig::cos(PI_4 * i / (DIM - 1));
