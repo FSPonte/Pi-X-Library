@@ -53,44 +53,44 @@ namespace pix::c_array
 	}
 
 	template <typename type_t>
-	void copy(const type_t arr_o[], type_t arr_d[], const unsigned long DIM) noexcept(false)
+	void copy(const type_t ARR_O[], type_t arr_d[], const unsigned long DIM) noexcept(false)
 	{
-		if (arr_o == nullptr) throw "Pointer to origin array is null";
+		if (ARR_O == nullptr) throw "Pointer to origin array is null";
 		if (arr_d == nullptr) throw "Pointer to destination array is null";
 		if (DIM == 0) throw "Dimension is null";
 
 		for (unsigned long i = 0; i < DIM; ++i)
-			arr_d[i] = arr_o[i];
+			arr_d[i] = ARR_O[i];
 	}
 
 	template <typename type_t, unsigned long DIM>
-	void copy(const type_t (&arr_o)[DIM], type_t (&arr_d)[DIM]) noexcept(true)
+	void copy(const type_t (&ARR_O)[DIM], type_t (&arr_d)[DIM]) noexcept(true)
 	{
 		assert_not_nulldim(DIM);
 
-		pix::c_array::copy<type_t>(arr_o, arr_d, DIM);
+		pix::c_array::copy<type_t>(ARR_O, arr_d, DIM);
 	}
 
 	template <typename type_t>
-	void copy(const type_t* arr_o[], type_t* arr_d[], const unsigned long DIM_1, const unsigned long DIM_2) noexcept(false)
+	void copy(const type_t* ARR_O[], type_t* arr_d[], const unsigned long DIM_1, const unsigned long DIM_2) noexcept(false)
 	{
-		if (arr_o == nullptr) throw "Pointer to origin array is null";
+		if (ARR_O == nullptr) throw "Pointer to origin array is null";
 		if (arr_d == nullptr) throw "Pointer to destination array is null";
 		if (DIM_1 == 0) throw "Dimension 1 is null";
 		if (DIM_2 == 0) throw "Dimension 2 is null";
 
 		for (unsigned long i = 0; i < DIM_1; ++i)
-			pix::c_array::copy<type_t>(arr_o[i], arr_d[i], DIM_2);
+			pix::c_array::copy<type_t>(ARR_O[i], arr_d[i], DIM_2);
 	}
 
 	template <typename type_t, unsigned long DIM_1, unsigned long DIM_2>
-	void copy(const type_t (&arr_o)[DIM_1][DIM_2], type_t (&arr_d)[DIM_1][DIM_2]) noexcept(true)
+	void copy(const type_t (&ARR_O)[DIM_1][DIM_2], type_t (&arr_d)[DIM_1][DIM_2]) noexcept(true)
 	{
 		assert_not_nulldim(DIM_1);
 		assert_not_nulldim(DIM_2);
 
 		for (unsigned long i = 0; i < DIM_1; ++i)
-			pix::c_array::copy<type_t>(arr_o[i], arr_d[i], DIM_2);
+			pix::c_array::copy<type_t>(ARR_O[i], arr_d[i], DIM_2);
 	}
 
 	template <typename type_t>

@@ -10,9 +10,9 @@ namespace pix::smart_pointer
 	}
 
 	template <typename type_t>
-	unique_pointer<type_t>::unique_pointer(const type_t value) : unique_pointer<type_t>()
+	unique_pointer<type_t>::unique_pointer(const type_t VALUE) : unique_pointer<type_t>()
 	{
-		*this->_ptr = value;
+		*this->_ptr = VALUE;
 	}
 
 	template <typename type_t>

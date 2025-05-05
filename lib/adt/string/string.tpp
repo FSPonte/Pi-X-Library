@@ -16,15 +16,15 @@ namespace pix::adt
 	}
 
 	template <unsigned long MAX_LENGTH>
-	string<MAX_LENGTH>::string(const char c_str[]) noexcept(false) : string<MAX_LENGTH>::string()
+	string<MAX_LENGTH>::string(const char C_STR[]) noexcept(false) : string<MAX_LENGTH>::string()
 	{
-		*this = c_str;
+		*this = C_STR;
 	}
 
 	template <unsigned long MAX_LENGTH>
-	string<MAX_LENGTH>::string(const string<MAX_LENGTH>& str) noexcept(false)
+	string<MAX_LENGTH>::string(const string<MAX_LENGTH>& STR) noexcept(false)
 	{
-		*this = str.data();
+		*this = STR.data();
 	}
 
 	template <unsigned long MAX_LENGTH>
@@ -54,15 +54,15 @@ namespace pix::adt
 	}
 
 	template <unsigned long MAX_LENGTH>
-	void string<MAX_LENGTH>::operator = (const char c_str[]) noexcept(false)
+	void string<MAX_LENGTH>::operator = (const char C_STR[]) noexcept(false)
 	{
-		if (c_str == nullptr) throw "Pointer to C styled string is null";
+		if (C_STR == nullptr) throw "Pointer to C styled string is null";
 
 		for (this->_length = 0; this->_length < MAX_LENGTH; ++this->_length)
 		{
-			this->_data[this->_length] = c_str[this->_length];
+			this->_data[this->_length] = C_STR[this->_length];
 
-			if (c_str[this->_length] == '\0')
+			if (C_STR[this->_length] == '\0')
 				break;
 		}
 
@@ -70,41 +70,41 @@ namespace pix::adt
 	}
 
 	template <unsigned long MAX_LENGTH>
-	void string<MAX_LENGTH>::operator = (const string<MAX_LENGTH>& str) noexcept(false)
+	void string<MAX_LENGTH>::operator = (const string<MAX_LENGTH>& STR) noexcept(false)
 	{
-		*this = str.data();
+		*this = STR.data();
 	}
 
 	template <unsigned long MAX_LENGTH>
-	void string<MAX_LENGTH>::operator += (const char c_str[]) noexcept(false)
+	void string<MAX_LENGTH>::operator += (const char C_STR[]) noexcept(false)
 	{
-		if (c_str == nullptr) throw "Pointer to C styled string is null";
+		if (C_STR == nullptr) throw "Pointer to C styled string is null";
 
 		--this->_length;
 
 		for (unsigned long i = 0; this->_length < MAX_LENGTH; ++i)
 		{
-			this->_data[this->_length++] = c_str[i];
+			this->_data[this->_length++] = C_STR[i];
 
-			if (c_str[i] == '\0')
+			if (C_STR[i] == '\0')
 				break;
 		}
 	}
 
 	template <unsigned long MAX_LENGTH>
-	void string<MAX_LENGTH>::operator += (const string<MAX_LENGTH>& str) noexcept(false)
+	void string<MAX_LENGTH>::operator += (const string<MAX_LENGTH>& STR) noexcept(false)
 	{
-		*this += str.data();
+		*this += STR.data();
 	}
 
 	template <unsigned long MAX_LENGTH>
-	bool string<MAX_LENGTH>::operator == (const char c_str[]) const noexcept(false)
+	bool string<MAX_LENGTH>::operator == (const char C_STR[]) const noexcept(false)
 	{
-		if (c_str == nullptr) throw "Pointer to C styled string is null";
+		if (C_STR == nullptr) throw "Pointer to C styled string is null";
 
 		for (unsigned long i = 0; i < this->_length; ++i)
 		{
-			if (this->_data[i] != c_str[i])
+			if (this->_data[i] != C_STR[i])
 				return false;
 		}
 
@@ -112,21 +112,21 @@ namespace pix::adt
 	}
 
 	template <unsigned long MAX_LENGTH>
-	bool string<MAX_LENGTH>::operator == (const string<MAX_LENGTH>& str) const noexcept(false)
+	bool string<MAX_LENGTH>::operator == (const string<MAX_LENGTH>& STR) const noexcept(false)
 	{
-		return *this == str.data();
+		return *this == STR.data();
 	}
 
 	template <unsigned long MAX_LENGTH>
-	bool string<MAX_LENGTH>::operator != (const char c_str[]) const noexcept(false)
+	bool string<MAX_LENGTH>::operator != (const char C_STR[]) const noexcept(false)
 	{
-		return !(*this == c_str);
+		return !(*this == C_STR);
 	}
 
 	template <unsigned long MAX_LENGTH>
-	bool string<MAX_LENGTH>::operator != (const string<MAX_LENGTH>& str) const noexcept(false)
+	bool string<MAX_LENGTH>::operator != (const string<MAX_LENGTH>& STR) const noexcept(false)
 	{
-		return !(*this == str.data());
+		return !(*this == STR.data());
 	}
 
 	template <unsigned long MAX_LENGTH>

@@ -8,7 +8,7 @@
 namespace pix::math
 {
 	template <typename type_in, typename type_out, typename callable>
-	function<type_in, type_out, callable>::function(const callable& func, const double TOL, const unsigned long MAX_ITER) noexcept(false) : _callable(func)
+	function<type_in, type_out, callable>::function(const callable& FUNC, const double TOL, const unsigned long MAX_ITER) noexcept(false) : _callable(FUNC)
 	{
 		is_float_static_assert(type_in);
 		is_float_static_assert(type_out);
@@ -21,9 +21,9 @@ namespace pix::math
 	}
 
 	template <typename type_in, typename type_out, typename callable>
-	type_out function<type_in, type_out, callable>::operator () (const type_in& x) const
+	type_out function<type_in, type_out, callable>::operator () (const type_in& INPUT) const
 	{
-		return this->_callable(x);
+		return this->_callable(INPUT);
 	}
 
 	template <typename type_in, typename type_out, typename callable>
@@ -182,7 +182,7 @@ namespace pix::math
 
 		if (y_a * y_b > 0) throw "Invalid convergence condition (f(a) * f(b) >= 0)";
 
-		constexpr const auto invphi = static_cast<type_in>(1.0 / pix::constants::mathematics::GOLDEN_RATIO); // Inverse of the golden ratio
+		constexpr const auto INVPHI = static_cast<type_in>(1.0 / pix::constants::mathematics::GOLDEN_RATIO); // Inverse of the golden ratio
 		type_in c, d;
 
 		// Logger
@@ -198,8 +198,8 @@ namespace pix::math
 
 		for (unsigned long i = 1; i <= this->_MAX_ITER; ++i)
 		{
-			c = b - (b - a) * invphi;
-			d = a + (b - a) * invphi;
+			c = b - (b - a) * INVPHI;
+			d = a + (b - a) * INVPHI;
 			
 			if (this->_callable(c) < this->_callable(d))
 			{
@@ -227,11 +227,11 @@ namespace pix::math
 	}
 
 	template <typename type_in, typename type_out, typename callable>
-	type_out function<type_in, type_out, callable>::derivative(const type_in x) const
+	type_out function<type_in, type_out, callable>::derivative(const type_in INPUT) const
 	{
 		static const auto h = static_cast<type_in>(this->_TOL);
 
-		return static_cast<type_out>((this->_callable(x + h) - this->_callable(x)) / h);
+		return static_cast<type_out>((this->_callable(INPUT + h) - this->_callable(INPUT)) / h);
 	}
 }
 

@@ -9,7 +9,7 @@
 namespace pix::math::sys_lin_equ
 {
 	template <typename type_t, unsigned long DIM>
-	void gauss_elim(const type_t (&A)[DIM][DIM], const type_t (&b)[DIM], type_t (&x)[DIM]) noexcept(false)
+	void gauss_elim(const type_t (&MTX)[DIM][DIM], const type_t (&VEC)[DIM], type_t (&sol)[DIM]) noexcept(false)
 	{
 		is_number_static_assert(type_t);
 
@@ -17,8 +17,8 @@ namespace pix::math::sys_lin_equ
 			A_[DIM][DIM], // Mutable copy of matrix A
 			b_[DIM]; // Mutable copy of vector b
 
-		pix::c_array::copy(A, A_);
-		pix::c_array::copy(b, b_);
+		pix::c_array::copy(MTX, A_);
+		pix::c_array::copy(VEC, b_);
 		
 		unsigned long i_max; // Partial pivot
 		type_t factor;
@@ -84,14 +84,14 @@ namespace pix::math::sys_lin_equ
 
 		for (unsigned long i = DIM - 1; i + 1 != 0; --i)
 		{
-			x[i] = b_[i];
+			sol[i] = b_[i];
 
 			for (unsigned long j = i + 1; j < DIM; ++j)
-				x[i] -= A_[i][j] * x[j];
+				sol[i] -= A_[i][j] * sol[j];
 			
-			x[i] /= A_[i][i];
+			sol[i] /= A_[i][i];
 			
-			if (x[i] == pix::math::NaN) throw "NaN value encountered";
+			if (sol[i] == pix::math::NaN) throw "NaN value encountered";
 		}
 
 		// Logger
@@ -99,14 +99,14 @@ namespace pix::math::sys_lin_equ
 			LOGGER_LOG_MSG("\nRegressive substitution:");
 
 			for (unsigned long i = 0; i < DIM; ++i)
-				LOGGER_LOG_MSG("\tx[" + std::to_string(i + 1) + "] = " + std::to_string(x[i]));
+				LOGGER_LOG_MSG("\tx[" + std::to_string(i + 1) + "] = " + std::to_string(sol[i]));
 		}
 
     	return;
 	}
 
 	template <typename type_t, unsigned long DIM>
-	void lu_decomp(const type_t (&A)[DIM][DIM], type_t (&L)[DIM][DIM], type_t (&U)[DIM][DIM])
+	void lu_decomp(const type_t (&MTX)[DIM][DIM], type_t (&lower)[DIM][DIM], type_t (&upper)[DIM][DIM])
 	{
 		is_number_static_assert(type_t);
 
@@ -115,8 +115,8 @@ namespace pix::math::sys_lin_equ
 		{
 			for (unsigned long j = 0; j < DIM; ++j)
 			{
-				L[i][j] = (i == j);
-				U[i][j] = 0;
+				lower[i][j] = (i == j);
+				upper[i][j] = 0;
 			}
 		}
 
@@ -126,7 +126,7 @@ namespace pix::math::sys_lin_equ
 		LOGGER_INIT("logs/lu_decomp.log");
 		{
 			LOGGER_LOG_MSG("Initial values:");
-			LOGGER_LOG_ARR(A);
+			LOGGER_LOG_ARR(MTX);
 		}
 
 		for (unsigned long k = 0; k < DIM; ++k)
@@ -137,18 +137,18 @@ namespace pix::math::sys_lin_equ
 				sum = 0;
 			
 				for (unsigned long s = 0; s < k; ++s)
-					sum += L[k][s] * U[s][j];
+					sum += lower[k][s] * upper[s][j];
 			
-				U[k][j] = A[k][j] - sum;
+				upper[k][j] = MTX[k][j] - sum;
 
 				// Logger
 				{
-					LOGGER_LOG_MSG("\nU[" + std::to_string(k + 1) + "][" + std::to_string(j + 1) + "] = " + std::to_string(U[k][j]));
-					LOGGER_LOG_ARR(U);
+					LOGGER_LOG_MSG("\nU[" + std::to_string(k + 1) + "][" + std::to_string(j + 1) + "] = " + std::to_string(upper[k][j]));
+					LOGGER_LOG_ARR(upper);
 				}
 			}
 
-			if (pix::math::abs(U[k][k]) == 0) throw "Pivot encountered is equal to zero";
+			if (pix::math::abs(upper[k][k]) == 0) throw "Pivot encountered is equal to zero";
 
 			// Compute L[i][k]
 			for (unsigned long i = k + 1; i < DIM; ++i)
@@ -156,14 +156,14 @@ namespace pix::math::sys_lin_equ
 				sum = 0;
 			
 				for (unsigned long s = 0; s < k; ++s)
-					sum += L[i][s] * U[s][k];
+					sum += lower[i][s] * upper[s][k];
 			
-				L[i][k] = (A[i][k] - sum) / U[k][k];
+				lower[i][k] = (MTX[i][k] - sum) / upper[k][k];
 
 				// Logger
 				{
-					LOGGER_LOG_MSG("\nL[" + std::to_string(i + 1) + "][" + std::to_string(k + 1) + "] = " + std::to_string(L[i][k]));
-					LOGGER_LOG_ARR(L);
+					LOGGER_LOG_MSG("\nL[" + std::to_string(i + 1) + "][" + std::to_string(k + 1) + "] = " + std::to_string(lower[i][k]));
+					LOGGER_LOG_ARR(lower);
 				}
 			}
 		}

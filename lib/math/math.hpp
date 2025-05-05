@@ -140,50 +140,50 @@ namespace pix::math
 
 	/**
 	 * @brief Permutation function
-	 * @param n Total number of objects in the set
-	 * @param k Number of choosing objects from the set
+	 * @param total_num Total number of objects in the set
+	 * @param selected_num Number of choosing objects from the set
 	 * @return k permutation of n
 	*/
 	unsigned long permut(unsigned long, unsigned long) noexcept(false);
 
 	/**
 	 * @brief Permutation
-	 * @tparam n Total number of objects in the set
-	 * @tparam k Number of choosing objects from the set
+	 * @tparam TOTAL_NUM Total number of objects in the set
+	 * @tparam SELECTED_NUM Number of choosing objects from the set
 	*/
-	template <unsigned long n, unsigned long k>
+	template <unsigned long TOTAL_NUM, unsigned long SELECTED_NUM>
 	struct permutation;
 
 	/**
 	 * @brief Combination function
-	 * @param n Total number of objects in the set
-	 * @param k Number of choosing objects from the set
+	 * @param total_num Total number of objects in the set
+	 * @param choosing_num Number of choosing objects from the set
 	 * @return Number of combinations
 	*/
 	unsigned long comb(unsigned long, unsigned long) noexcept(false);
 
 	/**
 	 * @brief Combination
-	 * @tparam n Total number of objects in the set
-	 * @tparam k Number of choosing objects from the set
+	 * @tparam TOTAL_NUM Total number of objects in the set
+	 * @tparam CHOOSING_NUM Number of choosing objects from the set
 	*/
-	template <unsigned long n, unsigned long k>
+	template <unsigned long TOTAL_NUM, unsigned long CHOOSING_NUM>
 	struct combination;
 	
 	/**
 	 * @brief Kronecker delta function
-	 * @param ind_1 Index 1
-	 * @param ind_2 Index 2
+	 * @param lin Line index
+	 * @param col Column index
 	 * @return 1 if indeces are equal
 	*/
 	unsigned long kron_delta(unsigned long, unsigned long) noexcept(true);
 
 	/**
 	 * @brief Kronecker delta
-	 * @tparam ind_1 Index 1
-	 * @tparam ind_2 Index 2
+	 * @tparam LIN Line index
+	 * @tparam COL Column index
 	*/
-	template <unsigned long ind_1, unsigned long ind_2>
+	template <unsigned long LIN_INDEX, unsigned long COL_INDEX>
 	struct kronecker_delta;
 }
 

@@ -25,16 +25,16 @@ namespace pix::random
 	}
 
 	template <typename type_t>
-	type_t rand(const type_t min, const type_t max) noexcept(false)
+	type_t rand(const type_t MIN, const type_t MAX) noexcept(false)
 	{
 		is_integer_static_assert(type_t);
 
-		if (min > max) throw "Invalid minimum and maximum values (min > max)";
+		if (MIN > MAX) throw "Invalid minimum and maximum values (min > max)";
 		
-		if (min == max)
-			return min;
+		if (MIN == MAX)
+			return MIN;
 
-		return rand<type_t>() % (max - min) + min;
+		return rand<type_t>() % (MAX - MIN) + MIN;
 	}
 
 	template <typename type_t>
@@ -46,16 +46,16 @@ namespace pix::random
 	}
 
 	template <typename type_t>
-	type_t drand(const type_t min, const type_t max) noexcept(false)
+	type_t drand(const type_t MIN, const type_t MAX) noexcept(false)
 	{
 		is_float_static_assert(type_t);
 
-		if (min > max) throw "Invalid minimum and maximum values (min > max)";
+		if (MIN > MAX) throw "Invalid minimum and maximum values (min > max)";
 
-		if (min == max)
-			return min;
+		if (MIN == MAX)
+			return MIN;
 
-		return (max - min) * drand<type_t>() + min;
+		return (MAX - MIN) * drand<type_t>() + MIN;
 	}
 
 	char crand(void) noexcept(true)

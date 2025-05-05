@@ -36,10 +36,10 @@ namespace pix::graphics
 
 		/**
 		 * @brief Get pixel
-		 * @param y Vertical coordinate
 		 * @param x Horizontal coordinate
-		 * @throw Y coordinate is out of bounds
+		 * @param y Vertical coordinate
 		 * @throw X coordinate is out of bounds
+		 * @throw Y coordinate is out of bounds
 		*/
 		rgb& get(unsigned long, unsigned long) noexcept(false);
 

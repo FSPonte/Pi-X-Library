@@ -13,15 +13,15 @@ namespace pix::adt
 	}
 
 	template <typename type_t, unsigned long DIM>
-	array<type_t, DIM>::array(const type_t arr[]) : array<type_t, DIM>()
+	array<type_t, DIM>::array(const type_t ARR[]) : array<type_t, DIM>()
 	{
-		*this = arr;
+		*this = ARR;
 	}
 
 	template <typename type_t, unsigned long DIM>
-	array<type_t, DIM>::array(const array<type_t, DIM>& arr) : array<type_t, DIM>()
+	array<type_t, DIM>::array(const array<type_t, DIM>& ARR) : array<type_t, DIM>()
 	{
-		*this = arr;
+		*this = ARR;
 	}
 
 	template <typename type_t, unsigned long DIM>
@@ -45,29 +45,29 @@ namespace pix::adt
 	}
 
 	template <typename type_t, unsigned long DIM>
-	void array<type_t, DIM>::operator = (const type_t arr[]) noexcept(false)
+	void array<type_t, DIM>::operator = (const type_t ARR[]) noexcept(false)
 	{
-		if (arr == nullptr) throw "Pointer to array is null";
+		if (ARR == nullptr) throw "Pointer to array is null";
 
 		for (unsigned long i = 0; i < DIM; ++i)
-			this->_data[i] = arr[i];
+			this->_data[i] = ARR[i];
 	}
 
 	template <typename type_t, unsigned long DIM>
-	void array<type_t, DIM>::operator = (const array<type_t, DIM>& arr)
+	void array<type_t, DIM>::operator = (const array<type_t, DIM>& ARR)
 	{
-		*this = arr.buffer();
+		*this = ARR.buffer();
 	}
 
 	template <typename type_t, unsigned long DIM>
-	bool array<type_t, DIM>::operator == (const type_t arr[]) const
+	bool array<type_t, DIM>::operator == (const type_t ARR[]) const
 	{
-		if (arr == nullptr)
+		if (ARR == nullptr)
 			return false;
 
 		for (unsigned long i = 0; i < DIM; ++i)
 		{
-			if (this->_data[i] != arr[i])
+			if (this->_data[i] != ARR[i])
 				return false;
 		}
 
@@ -76,46 +76,46 @@ namespace pix::adt
 
 	template <typename type_t, unsigned long DIM>
 	template <typename _type_t>
-	constexpr bool array<type_t, DIM>::operator == (const _type_t arr[]) const
+	constexpr bool array<type_t, DIM>::operator == (const _type_t ARR[]) const
 	{
 		return false;
 	}
 
 	template <typename type_t, unsigned long DIM>
-	bool array<type_t, DIM>::operator == (const array<type_t, DIM>& arr) const
+	bool array<type_t, DIM>::operator == (const array<type_t, DIM>& ARR) const
 	{
-		return *this == arr.buffer();
+		return *this == ARR.buffer();
 	}
 
 	template <typename type_t, unsigned long DIM>
 	template <typename _type_t, unsigned long _DIM>
-	constexpr bool array<type_t, DIM>::operator == (const array<_type_t, _DIM>& arr) const
+	constexpr bool array<type_t, DIM>::operator == (const array<_type_t, _DIM>& ARR) const
 	{
 		return false;
 	}
 
 	template <typename type_t, unsigned long DIM>
-	bool array<type_t, DIM>::operator != (const type_t arr[]) const
+	bool array<type_t, DIM>::operator != (const type_t ARR[]) const
 	{
-		return !(*this == arr);
+		return !(*this == ARR);
 	}
 
 	template <typename type_t, unsigned long DIM>
 	template <typename _type_t>
-	constexpr bool array<type_t, DIM>::operator != (const _type_t arr[]) const
+	constexpr bool array<type_t, DIM>::operator != (const _type_t ARR[]) const
 	{
 		return true;
 	}
 
 	template <typename type_t, unsigned long DIM>
-	bool array<type_t, DIM>::operator != (const array<type_t, DIM>& arr) const
+	bool array<type_t, DIM>::operator != (const array<type_t, DIM>& ARR) const
 	{
-		return !(*this == arr.buffer());
+		return !(*this == ARR.buffer());
 	}
 
 	template <typename type_t, unsigned long DIM>
 	template <typename _type_t, unsigned long _DIM>
-	constexpr bool array<type_t, DIM>::operator != (const array<_type_t, _DIM>& arr) const
+	constexpr bool array<type_t, DIM>::operator != (const array<_type_t, _DIM>& ARR) const
 	{
 		return true;
 	}

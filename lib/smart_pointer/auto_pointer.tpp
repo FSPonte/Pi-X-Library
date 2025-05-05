@@ -10,9 +10,9 @@ namespace pix::smart_pointer
 	}
 
 	template <typename type_t>
-	auto_pointer<type_t>::auto_pointer(const type_t value) : auto_pointer<type_t>()
+	auto_pointer<type_t>::auto_pointer(const type_t VALUE) : auto_pointer<type_t>()
 	{
-		*this->_ptr = value;
+		*this->_ptr = VALUE;
 	}
 
 	template <typename type_t>

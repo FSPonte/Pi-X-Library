@@ -12,10 +12,10 @@ namespace pix::graphics
 		assert_not_nulldim(W_DIM);
 		assert_not_nulldim(H_DIM);
 
-		this->_data = new rgb*[H_DIM];
+		this->_data = new rgb*[W_DIM];
 
-		for (unsigned long i = 0; i < H_DIM; ++i)
-			this->_data[i] = new rgb[W_DIM];
+		for (unsigned long i = 0; i < W_DIM; ++i)
+			this->_data[i] = new rgb[H_DIM];
 	}
 
 	template <unsigned long W_DIM, unsigned long H_DIM>
@@ -32,12 +32,12 @@ namespace pix::graphics
 	{ return this->_data; }
 
 	template <unsigned long W_DIM, unsigned long H_DIM>
-	rgb& image<W_DIM, H_DIM>::get(const unsigned long y, const unsigned long x) noexcept(false)
+	rgb& image<W_DIM, H_DIM>::get(const unsigned long X, const unsigned long Y) noexcept(false)
 	{
-		if (y >= H_DIM) throw "Y coordinate is out of bounds";
-		if (x >= W_DIM) throw "X coordinate is out of bounds";
+		if (X >= W_DIM) throw "X coordinate is out of bounds";
+		if (Y >= H_DIM) throw "Y coordinate is out of bounds";
 
-		return this->_data[y][x];
+		return this->_data[X][Y];
 	}
 
 	template <unsigned long W_DIM, unsigned long H_DIM>
@@ -65,20 +65,20 @@ namespace pix::graphics
 	}
 
 	template <unsigned long W_DIM, unsigned long H_DIM>
-	void image<W_DIM, H_DIM>::operator = (const image<W_DIM, H_DIM>& img)
+	void image<W_DIM, H_DIM>::operator = (const image<W_DIM, H_DIM>& IMG)
 	{
-		rgb** _data = img.data();
+		rgb** data = IMG.data();
 
-		if (_data == nullptr)
+		if (data == nullptr)
 			return;
 
-		for (unsigned long y = 0; y < H_DIM; ++y)
+		for (unsigned long x = 0; x < W_DIM; ++x)
 		{
-			if (_data[y] == nullptr)
+			if (data[x] == nullptr)
 				return;
 
-			for (unsigned long x = 0; x < W_DIM; ++x)
-				this->_data[y][x] = _data[y][x];
+			for (unsigned long y = 0; y < H_DIM; ++y)
+				this->_data[x][y] = data[x][y];
 		}
 	}
 }

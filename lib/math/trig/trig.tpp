@@ -65,35 +65,35 @@ namespace pix::math::trig
 	}
 
 	template <typename type_t>
-	type_t tan(const type_t arg) noexcept(true)
+	type_t tan(const type_t ARG) noexcept(true)
 	{
 		is_float_static_assert(type_t);
 		
-		return pix::math::trig::sin(arg) / pix::math::trig::cos(arg);
+		return pix::math::trig::sin(ARG) / pix::math::trig::cos(ARG);
 	}
 
 	template <typename type_t>
-	type_t sec(const type_t arg) noexcept(true)
+	type_t sec(const type_t ARG) noexcept(true)
 	{
 		is_float_static_assert(type_t);
 		
-		return 1 / pix::math::trig::cos(arg);
+		return 1 / pix::math::trig::cos(ARG);
 	}
 
 	template <typename type_t>
-	type_t csc(const type_t arg) noexcept(true)
+	type_t csc(const type_t ARG) noexcept(true)
 	{
 		is_float_static_assert(type_t);
 		
-		return 1 / pix::math::trig::sin(arg);
+		return 1 / pix::math::trig::sin(ARG);
 	}
 
 	template <typename type_t>
-	type_t cot(const type_t arg) noexcept(true)
+	type_t cot(const type_t ARG) noexcept(true)
 	{
 		is_float_static_assert(type_t);
 		
-		return pix::math::trig::cos(arg) / pix::math::trig::sin(arg);
+		return pix::math::trig::cos(ARG) / pix::math::trig::sin(ARG);
 	}
 
 	template <typename type_t>
@@ -134,11 +134,11 @@ namespace pix::math::trig
 	}
 	
 	template <typename type_t>
-	type_t arccos(const type_t arg) noexcept(false)
+	type_t arccos(const type_t ARG) noexcept(false)
 	{
 		is_float_static_assert(type_t);
 		
-		return 0.5 * pix::constants::mathematics::PI - trig::arcsin(arg);
+		return 0.5 * pix::constants::mathematics::PI - trig::arcsin(ARG);
 	}
 	
 	template <typename type_t>
