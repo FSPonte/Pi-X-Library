@@ -157,7 +157,7 @@ namespace pix
 	type_info<type_t>::type_info(void) {}
 
 	template <typename type_t>
-	type_info<type_t>::type_info(const type_t val) {}
+	type_info<type_t>::type_info(const type_t VAL) {}
 
 	template <typename type_t>
 	template <typename _type_t>

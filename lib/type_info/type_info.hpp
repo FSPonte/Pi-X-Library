@@ -7,7 +7,7 @@
  * @param type_2 Data type 2
  * @return True if arguments have the same data type
 */
-#define is_same(type_1, type_2) is_same<type_1, type_2>::value
+#define is_same(type_1, type_2) is_same<type_1, type_2>::VALUE
 
 /**
  * @brief Static assertion for is_same
@@ -26,7 +26,7 @@ static_assert                                 \
  * @param type Data type
  * @return True if is a primitive numerical data type
 */
-#define is_number(type) is_number<type>::value
+#define is_number(type) is_number<type>::VALUE
 
 /**
  * @brief Static assertion for is_number
@@ -44,7 +44,7 @@ static_assert                           \
  * @param type Data type
  * @return True if is a primitive integer numerical data type
 */
-#define is_integer(type) is_integer<type>::value
+#define is_integer(type) is_integer<type>::VALUE
 
 /**
  * @brief Static assertion for is_integer
@@ -62,7 +62,7 @@ static_assert                          \
  * @param type Data type
  * @return True if is a primitive floating point numerical data type
 */
-#define is_float(type) is_float<type>::value
+#define is_float(type) is_float<type>::VALUE
 
 /**
  * @brief Static assertion for is_float
