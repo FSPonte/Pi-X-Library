@@ -251,7 +251,7 @@ namespace pix::math
 	template <unsigned long TOTAL_NUM, unsigned long SELECTED_NUM>
 	struct permutation
 	{
-		static constexpr const unsigned long VALUE = pix::math::factorial<n>::VALUE / pix::math::factorial<n - k>::VALUE;
+		static constexpr const unsigned long VALUE = pix::math::factorial<TOTAL_NUM>::VALUE / pix::math::factorial<TOTAL_NUM - SELECTED_NUM>::VALUE;
 	};
 
 	template <unsigned long TOTAL_NUM>
@@ -271,7 +271,7 @@ namespace pix::math
 	template <unsigned long TOTAL_NUM, unsigned long SELECTED_NUM>
 	struct combination
 	{
-		static constexpr const unsigned long VALUE = pix::math::factorial<n>::VALUE / (pix::math::factorial<k>::VALUE * pix::math::factorial<n - k>::VALUE);
+		static constexpr const unsigned long VALUE = pix::math::factorial<TOTAL_NUM>::VALUE / (pix::math::factorial<SELECTED_NUM>::VALUE * pix::math::factorial<TOTAL_NUM - SELECTED_NUM>::VALUE);
 	};
 
 	unsigned long kron_delta(const unsigned long LIN_INDEX, const unsigned long COL_INDEX) noexcept(true)
