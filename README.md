@@ -21,13 +21,10 @@ Includes:
 	- Speed of light in vacuum
 	- Elementary charge
 	- Newtonian constant of gravitation
-- Macros
-	- Default buffer size
-	- Default block allocation size
-	- Logger mode
 - Asserts
 	- not_nullptr: Pointer is null
 	- not_nulldim: Dimension is null
+- Macros
 - Type info
   - is_same: Compares two data types
   - is_number: Checks if type is a number
