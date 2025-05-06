@@ -23,6 +23,7 @@ namespace pix::smart_pointer
 	class auto_pointer : public smart_pointer<type_t>
 	{
 	public:
+	
 		/**
 		 * @brief Default constructor
 		*/
