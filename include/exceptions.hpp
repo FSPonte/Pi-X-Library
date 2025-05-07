@@ -1,8 +1,10 @@
 #ifndef _EXCEPTIONS_HPP_
 #define _EXCEPTIONS_HPP_
 
+// Exceptions
 namespace pix::exception
 {
+	// Exception type
 	enum type
 	{
 		underflow, // Numeric underflow
@@ -13,6 +15,7 @@ namespace pix::exception
 		null_ptr // Null pointer
 	};
 
+	// Exception message
 	constexpr const char* msg[] =
 	{
 		"Underflow",
