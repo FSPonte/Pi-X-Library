@@ -23,7 +23,7 @@ namespace pix::exception
 		"Dimension is equal to zero",
 		"Index is out of bounds",
 		"Bad memory allocation",
-		"Dereferencing a null pointer"
+		"Dereference of a null pointer"
 	};
 }
 
