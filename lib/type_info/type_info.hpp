@@ -79,7 +79,7 @@ namespace pix
 {
 	/**
 	 * @brief Information of data types
-	 * @tparam type Data type
+	 * @tparam type_t Data type
 	 * @note Template parameter meant to be implicit
 	*/
 	template <typename type_t>
