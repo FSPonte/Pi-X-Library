@@ -24,6 +24,13 @@ Includes:
 - Asserts
 	- not_nullptr: Pointer is null
 	- not_nulldim: Dimension is null
+- Exceptions
+	- Underflow
+	- Overflow
+	- Null dimension
+	- Index out of bounds
+	- Bad memory allocation
+	- Null pointer
 - Macros
 - Type info
   - is_same: Compares two data types
