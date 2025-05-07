@@ -1,7 +1,7 @@
 #ifndef _MATH_HPP_
 #define _MATH_HPP_
 
-// Mathematical functions
+// Mathematics
 namespace pix::math
 {
 	constexpr const double NaN = static_cast<double>(0x7ff8000000000000); // NaN value

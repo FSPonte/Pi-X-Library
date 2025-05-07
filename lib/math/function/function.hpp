@@ -4,7 +4,7 @@
 // Dependencies
 #include <math.hpp>
 
-// Mathematical function
+// Mathematics
 namespace pix::math
 {
 	template <typename type_in, typename type_out, typename callable>
