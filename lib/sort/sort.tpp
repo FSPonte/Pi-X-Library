@@ -205,9 +205,9 @@ static void _merge_(type_t arr[], const unsigned long START_IND, const unsigned 
 		LEFT_DIM = MID_IND - START_IND + 1,
 		RIGHT_DIM = END_IND - MID_IND;
 
-	type_t
-		left_arr[LEFT_DIM],
-		right_arr[RIGHT_DIM];
+	auto
+		left_arr = new type_t[LEFT_DIM],
+		right_arr = new type_t[RIGHT_DIM];
 
 	for (unsigned long i = 0; i < LEFT_DIM; ++i)
 		left_arr[i] = arr[START_IND + i];
@@ -247,6 +247,9 @@ static void _merge_(type_t arr[], const unsigned long START_IND, const unsigned 
 		++arr_ind;
 		++right_ind;
 	}
+
+	delete[] left_arr;
+	delete[] right_arr;
 }
 
 template <typename type_t>
