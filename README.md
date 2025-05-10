@@ -28,7 +28,7 @@ Includes:
 	- Underflow
 	- Overflow
 	- Null dimension
-	- Index out of bounds
+	- Out of bounds memory access
 	- Bad memory allocation
 	- Null pointer
 - Macros
