@@ -6,17 +6,6 @@
 
 namespace pix
 {
-	// Exception message
-	static constexpr const char* msg[] =
-	{
-		"Underflow",
-		"Overflow",
-		"Dimension is equal to zero",
-		"Out of bounds memory access",
-		"Bad memory allocation",
-		"Dereference of a null pointer"
-	};
-
 	template <excep_t excep_type>
 	exception<excep_type>::exception(const char msg[])
 	{
