@@ -19,11 +19,11 @@
 	static_assert(dim != 0, "Dimension is null")
 
 /**
- * @brief Static assertion for is_same
+ * @brief Assert data types are the same
  * @param type_1 Data type 1
  * @param type_2 Data type 2
 */
-#define is_same_static_assert(type_1, type_2) \
+#define assert_is_same(type_1, type_2) \
 static_assert                                 \
 (                                             \
 	is_same(type_1, type_2),                  \
@@ -31,10 +31,10 @@ static_assert                                 \
 )
 
 /**
- * @brief Static assertion for is_number
+ * @brief Assert data type is a number
  * @param type Data type
 */
-#define is_number_static_assert(type)   \
+#define assert_is_number(type)   \
 static_assert                           \
 (                                       \
 	is_number(type),                    \
@@ -42,10 +42,10 @@ static_assert                           \
 )
 
 /**
- * @brief Static assertion for is_integer
+ * @brief Assert data type is an integer
  * @param type Data type
 */
-#define is_integer_static_assert(type) \
+#define assert_is_integer(type) \
 static_assert                          \
 (                                      \
 	is_integer(type),                  \
@@ -53,10 +53,10 @@ static_assert                          \
 )
 
 /**
- * @brief Static assertion for is_float
+ * @brief Assert data type is an float
  * @param type Data type
 */
-#define is_float_static_assert(type) \
+#define assert_is_float(type) \
 static_assert                        \
 (                                    \
 	is_float(type),                  \
