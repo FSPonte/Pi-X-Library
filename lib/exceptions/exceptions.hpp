@@ -37,7 +37,7 @@ namespace pix
 		 * @brief Constructor
 		 * @param msg Message
 		*/
-		explicit exception(const char[]);
+		exception(const char[]);
 
 		/**
 		 * @brief Get message
