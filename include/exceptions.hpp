@@ -2,7 +2,7 @@
 #define _EXCEPTIONS_HPP_
 
 // Exceptions
-namespace pix
+namespace pix::exceptions
 {
 	// Exception type
 	enum excep_t
