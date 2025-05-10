@@ -19,10 +19,10 @@ namespace pix::exceptions
 	{
 		"Numeric underflow",
 		"Numeric overflow",
-		"Dimension is equal to zero",
+		"Null dimension",
 		"Out of bounds memory access",
 		"Bad memory allocation",
-		"Pointer is null"
+		"Null pointer"
 	};
 }
 
