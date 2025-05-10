@@ -13,6 +13,7 @@ include_directories(
 
 	"include"
 	
+	"lib/exceptions"
 	"lib/type_info"
 	"lib/memory"
 	"lib/smart_pointer"
