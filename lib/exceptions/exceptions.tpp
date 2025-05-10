@@ -1,6 +1,9 @@
 #ifndef _EXCEPTIONS_TPP_
 #define _EXCEPTIONS_TPP_
 
+// Dependencies
+#include <sys_vars.hpp>
+
 namespace pix
 {
 	// Exception message
@@ -25,7 +28,7 @@ namespace pix
 		do
 		{
 			this->_msg[i] = msg[i];
-		} while (i != D_BUFFER_SIZE && this->_msg[i] = '\0');
+		} while (i != D_BUFFER_SIZE && this->_msg[i] == '\0');
 	}
 
 	template <excep_t excep_type>
