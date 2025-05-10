@@ -10,7 +10,7 @@ namespace pix::exception
 		underflow, // Numeric underflow
 		overflow, // Numeric overflow
 		null_dim, // Null dimension
-		out_of_bounds, // Index is out of bounds
+		out_of_bounds, // Out of bounds memory access
 		bad_alloc, // Bad memory allocation
 		null_ptr // Null pointer
 	};
@@ -21,7 +21,7 @@ namespace pix::exception
 		"Underflow",
 		"Overflow",
 		"Dimension is equal to zero",
-		"Index is out of bounds",
+		"Out of bounds memory access",
 		"Bad memory allocation",
 		"Dereference of a null pointer"
 	};
