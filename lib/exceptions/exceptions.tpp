@@ -1,9 +1,6 @@
 #ifndef _EXCEPTIONS_TPP_
 #define _EXCEPTIONS_TPP_
 
-// Dependencies
-#include <sys_vars.hpp>
-
 namespace pix
 {
 	template <excep_t excep_type>
