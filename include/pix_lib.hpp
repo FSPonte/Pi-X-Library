@@ -5,7 +5,6 @@
 #include <types.hpp>
 #include <constants.hpp>
 #include <asserts.hpp>
-#include <exceptions.hpp>
 #include <macros.hpp>
 #include <type_info.hpp>
 #include <memory.hpp>
