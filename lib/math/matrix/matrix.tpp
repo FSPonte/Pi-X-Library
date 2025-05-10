@@ -11,7 +11,7 @@ namespace pix::math
 	{
 		assert_not_nulldim(N_LIN);
 		assert_not_nulldim(N_COL);
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 
 		static_assert
 		(
