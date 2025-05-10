@@ -2,7 +2,7 @@
 #define _RAND_TPP_
 
 // Dependencies
-#include <type_info.hpp>
+#include <asserts.hpp>
 
 constexpr static const char SEED_BYTE = '\0';
 static const unsigned long
@@ -15,7 +15,7 @@ namespace pix::random
 	template <typename type_t>
 	type_t rand(void) noexcept(true)
 	{
-		is_integer_static_assert(type_t);
+		assert_is_integer(type_t);
 
 		static type_t value = SEED;
 		
@@ -27,7 +27,7 @@ namespace pix::random
 	template <typename type_t>
 	type_t rand(const type_t MIN, const type_t MAX) noexcept(false)
 	{
-		is_integer_static_assert(type_t);
+		assert_is_integer(type_t);
 
 		if (MIN > MAX) throw "Invalid minimum and maximum values (min > max)";
 		
@@ -40,27 +40,27 @@ namespace pix::random
 	template <typename type_t>
 	type_t drand(void) noexcept(true)
 	{
-		is_float_static_assert(type_t);
+		assert_is_float(type_t);
 
-		return static_cast<type_t>(rand()) / static_cast<type_t>(INT32_MAX);
+		return static_cast<type_t>(pix::random::rand()) / static_cast<type_t>(INT32_MAX);
 	}
 
 	template <typename type_t>
 	type_t drand(const type_t MIN, const type_t MAX) noexcept(false)
 	{
-		is_float_static_assert(type_t);
+		assert_is_float(type_t);
 
 		if (MIN > MAX) throw "Invalid minimum and maximum values (min > max)";
 
 		if (MIN == MAX)
 			return MIN;
 
-		return (MAX - MIN) * drand<type_t>() + MIN;
+		return (MAX - MIN) * pix::random::drand<type_t>() + MIN;
 	}
 
 	char crand(void) noexcept(true)
 	{
-		return static_cast<char>(rand() % 26 + 97);
+		return static_cast<char>(pix::random::rand() % 26 + 97);
 	}
 }
 

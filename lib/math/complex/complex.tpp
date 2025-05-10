@@ -2,14 +2,14 @@
 #define _COMPLEX_TPP_
 
 // Dependencies
-#include <type_info.hpp>
+#include <asserts.hpp>
 
 namespace pix::math
 {
 	template <typename type_t>
 	complex<type_t>::complex(void)
 	{
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 	}
 
 	template <typename type_t>

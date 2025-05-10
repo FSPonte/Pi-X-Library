@@ -2,7 +2,7 @@
 #define _SORT_TPP_
 
 // Dependencies
-#include <type_info.hpp>
+#include <asserts.hpp>
 #include <c_array.hpp>
 
 template <typename type_t>
@@ -22,7 +22,7 @@ namespace pix::sort
 	template <typename type_t>
 	void bubble_sort(type_t arr[], const unsigned long DIM) noexcept(false)
 	{
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 
 		if (arr == nullptr) throw "Pointer to array is null";
 		if (DIM == 0) throw "Dimension is null";
@@ -42,7 +42,7 @@ namespace pix::sort
 	template <typename type_t, unsigned long DIM>
 	void bubble_sort(type_t (&arr)[DIM])
 	{
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 
 		pix::sort::bubble_sort(arr, DIM);
 	}
@@ -50,7 +50,7 @@ namespace pix::sort
 	template <typename type_t>
 	void selection_sort(type_t arr[], const unsigned long DIM) noexcept(false)
 	{
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 
 		if (arr == nullptr) throw "Pointer to array is null";
 		if (DIM == 0) throw "Dimension is null";
@@ -76,7 +76,7 @@ namespace pix::sort
 	template <typename type_t, unsigned long DIM>
 	void selection_sort(type_t (&arr)[DIM])
 	{
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 
 		pix::sort::selection_sort(arr, DIM);
 	}
@@ -84,7 +84,7 @@ namespace pix::sort
 	template <typename type_t>
 	void insertion_sort(type_t arr[], const unsigned long DIM) noexcept(false)
 	{
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 
 		if (arr == nullptr) throw "Pointer to array is null";
 		if (DIM == 0) throw "Dimension is null";
@@ -106,7 +106,7 @@ namespace pix::sort
 	template <typename type_t, unsigned long DIM>
 	void insertion_sort(type_t (&arr)[DIM])
 	{
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 
 		pix::sort::insertion_sort(arr, DIM);
 	}
@@ -114,7 +114,7 @@ namespace pix::sort
 	template <typename type_t>
 	void quick_sort(type_t arr[], const unsigned long DIM) noexcept(false)
 	{
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 
 		if (arr == nullptr) throw "Pointer to array is null";
 		if (DIM == 0) throw "Dimension is null";
@@ -125,7 +125,7 @@ namespace pix::sort
 	template <typename type_t, unsigned long DIM>
 	void quick_sort(type_t (&arr)[DIM])
 	{
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 
 		pix::sort::quick_sort(arr, DIM);
 	}
@@ -133,7 +133,7 @@ namespace pix::sort
 	template <typename type_t>
 	void merge_sort(type_t arr[], const unsigned long DIM) noexcept(false)
 	{
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 
 		if (arr == nullptr) throw "Pointer to array is null";
 		if (DIM == 0) throw "Dimension is null";
@@ -144,7 +144,7 @@ namespace pix::sort
 	template <typename type_t, unsigned long DIM>
 	void merge_sort(type_t (&arr)[DIM])
 	{
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 
 		pix::sort::merge_sort(arr, DIM);
 	}

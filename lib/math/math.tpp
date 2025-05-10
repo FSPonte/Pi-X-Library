@@ -2,14 +2,14 @@
 #define _MATH_TPP_
 
 // Dependencies
-#include <type_info.hpp>
+#include <asserts.hpp>
 
 namespace pix::math
 {
 	template <typename type_t>
 	type_t abs(const type_t number) noexcept(true)
 	{
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 
 		if (number < 0)
 			return -number;
@@ -20,7 +20,7 @@ namespace pix::math
 	template <typename type_t>
 	type_t f_mod(type_t arg, const type_t MOD) noexcept(false)
 	{
-		is_float_static_assert(type_t);
+		assert_is_float(type_t);
 
 		if (arg < 0) throw "Argument is a negative number";
 		if (MOD <= 0) throw "Modulus is a non positive number";
@@ -37,7 +37,7 @@ namespace pix::math
 	template <typename type_t>
 	type_t floor(const type_t ARG) noexcept(false)
 	{
-		is_float_static_assert(type_t);
+		assert_is_float(type_t);
 
 		return static_cast<type_t>(static_cast<int>(ARG));
 	}
@@ -45,7 +45,7 @@ namespace pix::math
 	template <typename type_t>
 	type_t ceil(const type_t ARG) noexcept(false)
 	{
-		is_float_static_assert(type_t);
+		assert_is_float(type_t);
 
 		type_t int_part = static_cast<type_t>(static_cast<long>(ARG));
 		
@@ -58,7 +58,7 @@ namespace pix::math
 	template <typename type_t>
 	type_t mod_diff(const type_t ARG_1, const type_t ARG_2) noexcept(true)
 	{
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 
 		return pix::math::abs(ARG_1 - ARG_2);
 	}
@@ -127,7 +127,7 @@ namespace pix::math
 	template <typename type_t>
 	type_t log(const type_t ARG) noexcept(false)
 	{
-		is_float_static_assert(type_t);
+		assert_is_float(type_t);
 
 		if (ARG <= 0) throw "Argument is a non positive number";
 
@@ -154,7 +154,7 @@ namespace pix::math
 	template <typename type_t>
 	type_t log(const type_t ARG, const type_t BASE) noexcept(false)
 	{
-		is_float_static_assert(type_t);
+		assert_is_float(type_t);
 
 		return pix::math::log(ARG) / pix::math::log(BASE);
 	}
@@ -162,7 +162,7 @@ namespace pix::math
 	template <typename type_t>
 	type_t exp(type_t arg) noexcept(true)
 	{
-		is_float_static_assert(type_t);
+		assert_is_float(type_t);
 
 		const bool is_neg = arg < 0;
 		arg = pix::math::abs(arg);
@@ -190,7 +190,7 @@ namespace pix::math
 	template <typename type_t>
 	type_t pow(type_t base, type_t exponent) noexcept(false)
 	{
-		is_float_static_assert(type_t);
+		assert_is_float(type_t);
 
 		if (base == 0 && exponent == 0) throw "Indeterminate case of 0^0";
 
@@ -229,7 +229,7 @@ namespace pix::math
 	template <typename type_t>
 	type_t root(const type_t ARG, const type_t INDEX) noexcept(false)
 	{
-		is_float_static_assert(type_t);
+		assert_is_float(type_t);
 		
 		if (ARG < 0) throw "Argument is a negative number";
 		if (INDEX == 0) throw "Index is equal to zero";

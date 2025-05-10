@@ -3,7 +3,6 @@
 
 // Dependencies
 #include <asserts.hpp>
-#include <type_info.hpp>
 
 namespace pix::math
 {

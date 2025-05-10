@@ -2,7 +2,7 @@
 #define _STAT_TPP_
 
 // Dependencies
-#include <type_info.hpp>
+#include <asserts.hpp>
 #include <math.hpp>
 
 namespace pix::math::stat
@@ -10,7 +10,7 @@ namespace pix::math::stat
 	template <typename type_t>
 	type_t min(const type_t ARR[], const unsigned long DIM) noexcept(false)
 	{
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 
 		if (ARR == nullptr) throw "Pointer to array is null";
 		if (DIM <= 1) throw "Dimension is null";
@@ -29,7 +29,7 @@ namespace pix::math::stat
 	template <typename type_t>
 	type_t max(const type_t ARR[], const unsigned long DIM) noexcept(false)
 	{
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 
 		if (ARR == nullptr) throw "Pointer to array is null";
 		if (DIM <= 1) throw "Dimension is null";
@@ -48,7 +48,7 @@ namespace pix::math::stat
 	template <typename type_t>
 	type_t amp(const type_t ARR[], const unsigned long DIM) noexcept(false)
 	{
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 
 		if (ARR == nullptr) throw "Pointer to array is null";
 		if (DIM <= 1) throw "Dimension is null";
@@ -71,7 +71,7 @@ namespace pix::math::stat
 	template <typename type_t>
 	type_t sum(const type_t ARR[], const unsigned long DIM) noexcept(false)
 	{
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 
 		if (ARR == nullptr) throw "Pointer to array is null";
 		if (DIM == 0) throw "Dimension is null";
@@ -87,7 +87,7 @@ namespace pix::math::stat
 	template <typename type_t>
 	type_t mean(const type_t ARR[], const unsigned long DIM) noexcept(false)
 	{
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 
 		if (ARR == nullptr) throw "Pointer to array is null";
 		if (DIM == 0) throw "Dimension is null";
@@ -98,7 +98,7 @@ namespace pix::math::stat
 	template <typename type_t>
 	type_t median(const type_t ARR[], const unsigned long DIM) noexcept(false)
 	{
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 
 		if (ARR == nullptr) throw "Pointer to array is null";
 		if (DIM == 0) throw "Dimension is null";
@@ -112,7 +112,7 @@ namespace pix::math::stat
 	template <typename type_t>
 	type_t var(const type_t ARR[], const unsigned long DIM) noexcept(false)
 	{
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 
 		if (ARR == nullptr) throw "Pointer to array is null";
 		if (DIM == 0) throw "Dimension is null";
@@ -135,7 +135,7 @@ namespace pix::math::stat
 	template <typename type_t>
 	type_t covar(const type_t INPUT[], const type_t OUTPUT[], const unsigned long DIM) noexcept(false)
 	{
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 
 		if (INPUT == nullptr) throw "Pointer to input array is null";
 		if (OUTPUT == nullptr) throw "Pointer to output array is null";
@@ -155,7 +155,7 @@ namespace pix::math::stat
 	template <typename type_t>
 	type_t coeff_det(const type_t ARR[], const type_t MODEL[], const unsigned long DIM) noexcept(false)
 	{
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 
 		if (ARR == nullptr) throw "Pointer to array is null";
 		if (MODEL == nullptr) throw "Pointer to model is null";

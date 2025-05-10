@@ -3,7 +3,7 @@
 
 // Dependencies
 #include <constants.hpp>
-#include <type_info.hpp>
+#include <asserts.hpp>
 #include <math.hpp>
 #include <trig.hpp>
 #include <stat.hpp>
@@ -13,7 +13,7 @@ namespace pix::math::signal
 	template <typename type_t>
 	void mean_sub(type_t arr[], const unsigned long DIM) noexcept(false)
 	{
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 
 		if (arr == nullptr) throw "Pointer to array is null";
 		if (DIM == 0) throw "Dimension is null";
@@ -27,7 +27,7 @@ namespace pix::math::signal
 	template <typename type_t>
 	void norm(type_t arr[], const unsigned long DIM) noexcept(false)
 	{
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 
 		if (arr == nullptr) throw "Pointer to array is null";
 		if (DIM == 0) throw "Dimension is null";
@@ -43,7 +43,7 @@ namespace pix::math::signal
 		template <typename type_t>
 		void hann(type_t arr[], const unsigned long DIM) noexcept(false)
 		{
-			is_number_static_assert(type_t);
+			assert_is_number(type_t);
 
 			if (arr == nullptr) throw "Pointer to array is null";
 			if (DIM == 0) throw "Dimension is null";
@@ -57,7 +57,7 @@ namespace pix::math::signal
 		template <typename type_t>
 		void hamming(type_t arr[], const unsigned long DIM) noexcept(false)
 		{
-			is_number_static_assert(type_t);
+			assert_is_number(type_t);
 
 			if (arr == nullptr) throw "Pointer to array is null";
 			if (DIM == 0) throw "Dimension is null";
@@ -71,7 +71,7 @@ namespace pix::math::signal
 		template <typename type_t>
 		void blackman(type_t arr[], const unsigned long DIM) noexcept(false)
 		{
-			is_number_static_assert(type_t);
+			assert_is_number(type_t);
 
 			if (arr == nullptr) throw "Pointer to array is null";
 			if (DIM == 0) throw "Dimension is null";
@@ -98,7 +98,7 @@ namespace pix::math::signal
 			const unsigned long TRANSFORM_DIM
 		) noexcept(false)
 		{
-			is_number_static_assert(type_t);
+			assert_is_number(type_t);
 
 			if (TIME == nullptr) throw "Pointer to time array is null";
 			if (SIGNAL == nullptr) throw "Pointer to signal array is null";

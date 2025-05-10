@@ -3,15 +3,15 @@
 
 // Dependencies
 #include <macros.hpp>
-#include <type_info.hpp>
+#include <asserts.hpp>
 
 namespace pix::math
 {
 	template <typename type_in, typename type_out, typename callable>
 	function<type_in, type_out, callable>::function(const callable& FUNC, const double TOL, const unsigned long MAX_ITER) noexcept(false) : _callable(FUNC)
 	{
-		is_float_static_assert(type_in);
-		is_float_static_assert(type_out);
+		assert_is_float(type_in);
+		assert_is_float(type_out);
 
 		if (TOL <= 0) throw "Invalid tolerance (TOL <= 0)";
 		if (MAX_ITER == 0) throw "Invalid maximum number of iterations (MAX_ITER == 0)";

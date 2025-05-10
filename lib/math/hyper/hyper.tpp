@@ -2,7 +2,7 @@
 #define _HYPER_TPP_
 
 // Dependencies
-#include <type_info.hpp>
+#include <asserts.hpp>
 #include <math.hpp>
 
 namespace pix::math::hyper
@@ -10,7 +10,7 @@ namespace pix::math::hyper
 	template <typename type_t>
 	type_t sinh(type_t arg) noexcept(true)
 	{
-		is_float_static_assert(type_t);
+		assert_is_float(type_t);
 
 		type_t
 			term = arg,
@@ -34,7 +34,7 @@ namespace pix::math::hyper
 	template <typename type_t>
 	type_t cosh(type_t arg) noexcept(true)
 	{
-		is_float_static_assert(type_t);
+		assert_is_float(type_t);
 		
 		type_t
 			term = 1,
@@ -58,7 +58,7 @@ namespace pix::math::hyper
 	template <typename type_t>
 	type_t tanh(const type_t ARG) noexcept(true)
 	{
-		is_float_static_assert(type_t);
+		assert_is_float(type_t);
 		
 		return pix::math::hyper::sinh(ARG) / pix::math::hyper::cosh(ARG);
 	}
@@ -66,7 +66,7 @@ namespace pix::math::hyper
 	template <typename type_t>
 	type_t sech(const type_t ARG) noexcept(true)
 	{
-		is_float_static_assert(type_t);
+		assert_is_float(type_t);
 		
 		return 1 / pix::math::hyper::cosh(ARG);
 	}
@@ -74,7 +74,7 @@ namespace pix::math::hyper
 	template <typename type_t>
 	type_t csch(const type_t ARG) noexcept(true)
 	{
-		is_float_static_assert(type_t);
+		assert_is_float(type_t);
 		
 		return 1 / pix::math::hyper::sech(ARG);
 	}
@@ -82,7 +82,7 @@ namespace pix::math::hyper
 	template <typename type_t>
 	type_t coth(const type_t ARG) noexcept(true)
 	{
-		is_float_static_assert(type_t);
+		assert_is_float(type_t);
 		
 		return pix::math::hyper::cosh(ARG) / pix::math::hyper::sinh(ARG);
 	}

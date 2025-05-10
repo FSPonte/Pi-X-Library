@@ -2,6 +2,7 @@
 #define _SYS_LIN_EQU_TPP_
 
 // Dependencies
+#include <asserts.hpp>
 #include <macros.hpp>
 #include <c_array.hpp>
 #include <math.hpp>
@@ -11,7 +12,7 @@ namespace pix::math::sys_lin_equ
 	template <typename type_t, unsigned long DIM>
 	void gauss_elim(const type_t (&MTX)[DIM][DIM], const type_t (&VEC)[DIM], type_t (&sol)[DIM]) noexcept(false)
 	{
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 
 		type_t
 			A_[DIM][DIM], // Mutable copy of matrix A
@@ -108,7 +109,7 @@ namespace pix::math::sys_lin_equ
 	template <typename type_t, unsigned long DIM>
 	void lu_decomp(const type_t (&MTX)[DIM][DIM], type_t (&lower)[DIM][DIM], type_t (&upper)[DIM][DIM])
 	{
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 
 		// Initialize L to identity and U to zero
 		for (unsigned long i = 0; i < DIM; ++i)

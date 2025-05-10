@@ -3,7 +3,6 @@
 
 // Dependencies
 #include <asserts.hpp>
-#include <type_info.hpp>
 
 namespace pix::math
 {
@@ -11,7 +10,7 @@ namespace pix::math
 	vector<type_t, DIM>::vector(void)
 	{
 		assert_not_nulldim(DIM);
-		is_number_static_assert(type_t);
+		assert_is_number(type_t);
 	}
 
 	template <typename type_t, unsigned long DIM>

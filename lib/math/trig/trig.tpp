@@ -3,7 +3,7 @@
 
 // Dependencies
 #include <constants.hpp>
-#include <type_info.hpp>
+#include <asserts.hpp>
 #include <math.hpp>
 
 namespace pix::math::trig
@@ -11,7 +11,7 @@ namespace pix::math::trig
 	template <typename type_t>
 	type_t sin(type_t arg) noexcept(true)
 	{
-		is_float_static_assert(type_t);
+		assert_is_float(type_t);
 
 		const bool is_arg_neg = arg < 0;
 		arg = pix::math::f_mod(pix::math::abs(arg), 2 * pix::constants::mathematics::PI);
@@ -41,7 +41,7 @@ namespace pix::math::trig
 	template <typename type_t>
 	type_t cos(type_t arg) noexcept(true)
 	{
-		is_float_static_assert(type_t);
+		assert_is_float(type_t);
 		
 		arg = pix::math::f_mod(pix::math::abs(arg), 2 * pix::constants::mathematics::PI);
 
@@ -67,7 +67,7 @@ namespace pix::math::trig
 	template <typename type_t>
 	type_t tan(const type_t ARG) noexcept(true)
 	{
-		is_float_static_assert(type_t);
+		assert_is_float(type_t);
 		
 		return pix::math::trig::sin(ARG) / pix::math::trig::cos(ARG);
 	}
@@ -75,7 +75,7 @@ namespace pix::math::trig
 	template <typename type_t>
 	type_t sec(const type_t ARG) noexcept(true)
 	{
-		is_float_static_assert(type_t);
+		assert_is_float(type_t);
 		
 		return 1 / pix::math::trig::cos(ARG);
 	}
@@ -83,7 +83,7 @@ namespace pix::math::trig
 	template <typename type_t>
 	type_t csc(const type_t ARG) noexcept(true)
 	{
-		is_float_static_assert(type_t);
+		assert_is_float(type_t);
 		
 		return 1 / pix::math::trig::sin(ARG);
 	}
@@ -91,7 +91,7 @@ namespace pix::math::trig
 	template <typename type_t>
 	type_t cot(const type_t ARG) noexcept(true)
 	{
-		is_float_static_assert(type_t);
+		assert_is_float(type_t);
 		
 		return pix::math::trig::cos(ARG) / pix::math::trig::sin(ARG);
 	}
@@ -99,7 +99,7 @@ namespace pix::math::trig
 	template <typename type_t>
 	type_t arcsin(type_t arg) noexcept(false)
 	{
-		is_float_static_assert(type_t);
+		assert_is_float(type_t);
 		
 		if (arg < -1 || arg > 1) throw "Argument is out of bounds";
 
@@ -136,7 +136,7 @@ namespace pix::math::trig
 	template <typename type_t>
 	type_t arccos(const type_t ARG) noexcept(false)
 	{
-		is_float_static_assert(type_t);
+		assert_is_float(type_t);
 		
 		return 0.5 * pix::constants::mathematics::PI - trig::arcsin(ARG);
 	}
@@ -144,7 +144,7 @@ namespace pix::math::trig
 	template <typename type_t>
 	type_t arctan(type_t arg) noexcept(true)
 	{
-		is_float_static_assert(type_t);
+		assert_is_float(type_t);
 		
 		if (pix::math::abs(arg) > 1)
 			return 0.5 * pix::constants::mathematics::PI - pix::math::trig::arctan(1 / arg);

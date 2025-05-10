@@ -2,7 +2,7 @@
 #define _TUPLE_HPP_
 
 // Dependencies
-#include <macros.hpp>
+#include <sys_vars.hpp>
 
 // Abstract data types
 namespace pix::adt
