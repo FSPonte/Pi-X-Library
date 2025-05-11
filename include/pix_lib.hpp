@@ -7,6 +7,7 @@
 #include <types.hpp>
 #include <constants.hpp>
 #include <macros.hpp>
+
 #include <type_info.hpp>
 #include <memory.hpp>
 #include <smart_pointer.hpp>
