@@ -1,9 +1,10 @@
 #ifndef _EXCEPTIONS_HPP_
 #define _EXCEPTIONS_HPP_
 
-namespace pix
+// Exceptions
+namespace pix::exceptions
 {
-	enum excep_id
+	enum id
 	{
 		null_dim, // Null dimension
 		null_ptr, // Null pointer
@@ -12,12 +13,10 @@ namespace pix
 		overflow, // Numeric overflow
 		bad_range, // Bad numeric range
 		div_zero, // Division by zero
-		inv_arg, // Invalid argument
-
-		other // Other
+		inv_arg // Invalid argument
 	};
 
-	constexpr const char* excep_msg[excep_id::other] =
+	constexpr const char* msg[] =
 	{
 		"Null dimension",
 		"Null pointer",
