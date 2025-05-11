@@ -8,6 +8,22 @@ Notes:
 
 Includes:
 - System variables
+- Asserts
+	- not_nullptr: Pointer is null
+	- not_nulldim: Dimension is null
+	- is_same: Are two data types equal
+	- is_number: Is a data type a number
+	- is_integer: Is data type a integer
+	- is_float: Is data type a float
+- Exceptions:
+	- Null dimension
+	- Null pointer
+	- Bad memory allocation
+	- Numeric underflow
+	- Numeric overflow
+	- Bad numeric range
+	- Division by zero
+	- Invalid argument
 - Data types
 - Constants
   - Mathematics
@@ -21,71 +37,68 @@ Includes:
 	- Speed of light in vacuum
 	- Elementary charge
 	- Newtonian constant of gravitation
-- Asserts
-	- not_nullptr: Pointer is null
-	- not_nulldim: Dimension is null
 - Macros
 - Type info
-  - is_same: Compares two data types
-  - is_number: Checks if type is a number
-  - is_integer: Checks if type is a integer number
-  - is_float: Checks if type is a float number
-  - type_info: Class object for storing data types
+	- is_same: Compares two data types
+  	- is_number: Checks if type is a number
+  	- is_integer: Checks if type is a integer number
+  	- is_float: Checks if type is a float number
+  	- type_info: Class object for storing data types
 - Memory management
-  - Memory partition
-  - Memory map
+  	- Memory partition
+  	- Memory map
 - Smart pointers
-  - Auto pointer
-  - Unique pointer
+	- Auto pointer
+  	- Unique pointer
 - Functions for C styled arrays
 - Sorting algorithms
-  - Bubble sort
-  - Selection sort
-  - Insertion sort
-  - Quick sort
-  - Merge sort
+  	- Bubble sort
+  	- Selection sort
+  	- Insertion sort
+  	- Quick sort
+	- Merge sort
 - Random number generator (Linear congruency)
-  - Integer generator
-  - Float generator
-  - Character generator (ASCII)
+  	- Integer generator
+  	- Float generator
+  	- Character generator (ASCII)
 - Abstract data types
-  - Array
-  - Tuple
-  - Stack
-  - Queue
-  - Deque
-  - Node
-  - List
-  - Dynamic array
-  - String
+  	- Array
+  	- Tuple
+  	- Stack
+  	- Queue
+  	- Deque
+  	- Node
+  	- List
+  	- Dynamic array
+  	- String
 - Mathematical library
-  - Logic
-  - Mathematical functions
-  - Trigonometric functions
-  - Hyperbolic functions
-  - Statistics
-  - Complex numbers
-  - Vectors
-  - Matrices
-  - Systems of linear equations
-      - Gaussian elimination
-	  - LU decomposition
-  - Function
-	  - Root finding
-	  	  - Bissection
-		  - Newton
-		  - Secant
-		  - Golden root
-	  - Derivative
-  - Signal processing
-      - Signal adjusting
-	  - Window functions
-	    - Hann
-		- Hamming
-		- Blackman
-	  - Transforms
+  	- Logic
+  	- Mathematical functions
+  	- Trigonometric functions
+  	- Hyperbolic functions
+  	- Statistics
+  	- Complex numbers
+  	- Vectors
+  	- Matrices
+  	- Systems of linear equations
+    	- Gaussian elimination
+	  	- LU decomposition
+  	- Function
+	  	- Root finding
+	  		- Bissection
+		  	- Newton
+		  	- Secant
+		  	- Golden root
+	  	- Derivative
+  	- Signal processing
+      	- Signal adjusting
+	  	- Window functions
+		    - Hann
+			- Hamming
+			- Blackman
+	  	- Transforms
 - Graphics
-  - RGB values
-  - Image object
+  	- RGB values
+  	- Image object
 
 Author: FSPonte @ 2025
