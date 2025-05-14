@@ -30,6 +30,7 @@
 */
 #define is_float(type) pix::types::is_float<type>::VALUE
 
+// Data types
 namespace pix::types
 {
 	typedef unsigned char byte_t;
