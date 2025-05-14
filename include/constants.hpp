@@ -1,8 +1,10 @@
 #ifndef _CONSTANTS_HPP_
 #define _CONSTANTS_HPP_
 
+// Constant values
 namespace pix::constants
 {
+	// Mathematical constants
 	namespace mathematics
 	{
 		constexpr const long double PI = 3.141592653589793; // Ratio of a circle's circumference to its diameter
@@ -10,6 +12,7 @@ namespace pix::constants
 		constexpr const long double GOLDEN_RATIO = 1.618033988749895; // Golden ratio
 	}
 
+	// Physics constants
 	namespace physics
 	{
 		constexpr const long double PLANCK_CONST = 6.62607015E-34; // Planck constant
