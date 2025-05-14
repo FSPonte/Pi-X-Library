@@ -9,7 +9,7 @@ namespace pix::math
 	{
 	private:
 
-		double _TOL; // Tolerance
+		type_in _TOL; // Tolerance
 		unsigned long _MAX_ITER; // Maximum number of iterations
 		callable _callable;
 
@@ -23,7 +23,7 @@ namespace pix::math
 		 * @throw Invalid tolerance (TOL <= 0)
 		 * @throw Invalid maximum number of iterations (MAX_ITER == 0)
 		*/
-		explicit function(const callable&, double = pix::math::PR_THRESHOLD, unsigned long = pix::math::MAX_ITER) noexcept(false);
+		explicit function(const callable&, type_in = pix::math::PR_THRESHOLD, unsigned long = pix::math::MAX_ITER) noexcept(false);
 
 		/**
 		 * @brief Evaluation

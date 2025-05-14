@@ -4,7 +4,7 @@
 namespace pix::math
 {
 	template <typename callable, typename type_in, typename type_out>
-	function<callable, type_in, type_out>::function(const callable& FUNC, const double TOL, const unsigned long MAX_ITER) noexcept(false) : _callable(FUNC)
+	function<callable, type_in, type_out>::function(const callable& FUNC, const type_in TOL, const unsigned long MAX_ITER) noexcept(false) : _callable(FUNC)
 	{
 		assert_is_float(type_in);
 		assert_is_float(type_out);
@@ -19,7 +19,7 @@ namespace pix::math
 	template <typename callable, typename type_in, typename type_out>
 	type_out function<callable, type_in, type_out>::operator () (const type_in& INPUT) const
 	{
-		return this->_callable(INPUT);
+		return static_cast<type_out>(this->_callable(INPUT));
 	}
 
 	template <typename callable, typename type_in, typename type_out>
@@ -73,7 +73,7 @@ namespace pix::math
 				break;
 		}
 
-		return x;
+		return static_cast<type_out>(x);
 	}
 
 	template <typename callable, typename type_in, typename type_out>
@@ -113,7 +113,7 @@ namespace pix::math
 				break;
 		}
 		
-		return x;
+		return static_cast<type_out>(x);
 	}
 
 	template <typename callable, typename type_in, typename type_out>
@@ -164,7 +164,7 @@ namespace pix::math
 				break;
 		}
 
-		return b;
+		return static_cast<type_out>(b);
 	}
 
 	template <typename callable, typename type_in, typename type_out>
@@ -219,15 +219,13 @@ namespace pix::math
 				break;
 		}
 
-		return (y_a < y_b) ? a : b;
+		return (y_a < y_b) ? static_cast<type_out>(a) : static_cast<type_out>(b);
 	}
 
 	template <typename callable, typename type_in, typename type_out>
 	type_out function<callable, type_in, type_out>::derivative(const type_in INPUT) const
 	{
-		static const auto h = static_cast<type_in>(this->_TOL);
-
-		return static_cast<type_out>((this->_callable(INPUT + h) - this->_callable(INPUT)) / h);
+		return static_cast<type_out>((this->_callable(INPUT + this->_TOL) - this->_callable(INPUT)) / this->_TOL);
 	}
 
 	template <typename callable, typename type_in, typename type_out>
