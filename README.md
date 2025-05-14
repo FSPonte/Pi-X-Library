@@ -44,13 +44,13 @@ Includes:
   	- is_integer: Checks if type is a integer number
   	- is_float: Checks if type is a float number
   	- type_info: Class object for storing data types
+- Functions for C styled arrays
 - Memory management
   	- Memory partition
   	- Memory map
 - Smart pointers
 	- Auto pointer
   	- Unique pointer
-- Functions for C styled arrays
 - Sorting algorithms
   	- Bubble sort
   	- Selection sort

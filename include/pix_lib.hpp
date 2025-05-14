@@ -9,9 +9,9 @@
 #include <macros.hpp>
 
 #include <type_info.hpp>
+#include <c_array.hpp>
 #include <memory.hpp>
 #include <smart_pointer.hpp>
-#include <c_array.hpp>
 #include <sort.hpp>
 #include <rand.hpp>
 #include <array.hpp>

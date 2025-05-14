@@ -14,9 +14,9 @@ include_directories(
 	"include/"
 
 	"lib/type_info/"
+	"lib/c_array/"
 	"lib/memory/"
 	"lib/smart_pointer/"
-	"lib/c_array/"
 	"lib/sort/"
 	"lib/random/"
 	"lib/adt/array/"
