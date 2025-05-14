@@ -1,13 +1,6 @@
 #ifndef _SIGNAL_TPP_
 #define _SIGNAL_TPP_
 
-// Dependencies
-#include <constants.hpp>
-#include <asserts.hpp>
-#include <math.hpp>
-#include <trig.hpp>
-#include <stat.hpp>
-
 namespace pix::math::signal
 {
 	template <typename type_t>

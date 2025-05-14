@@ -1,9 +1,6 @@
 #ifndef _LIST_HPP_
 #define _LIST_HPP_
 
-// Dependencies
-#include <node.hpp>
-
 // Abstract data types
 namespace pix::adt
 {

@@ -1,9 +1,6 @@
 #ifndef _QUEUE_HPP_
 #define _QUEUE_HPP_
 
-// Dependencies
-#include <sys_vars.hpp>
-
 // Abstract data types
 namespace pix::adt
 {

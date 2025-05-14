@@ -1,12 +1,6 @@
 #ifndef _SYS_LIN_EQU_TPP_
 #define _SYS_LIN_EQU_TPP_
 
-// Dependencies
-#include <asserts.hpp>
-#include <macros.hpp>
-#include <c_array.hpp>
-#include <math.hpp>
-
 namespace pix::math::sys_lin_equ
 {
 	template <typename type_t, unsigned long DIM>

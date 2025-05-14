@@ -1,10 +1,6 @@
 #ifndef _HYPER_TPP_
 #define _HYPER_TPP_
 
-// Dependencies
-#include <asserts.hpp>
-#include <math.hpp>
-
 namespace pix::math::hyper
 {
 	template <typename type_t>

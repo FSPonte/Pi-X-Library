@@ -1,9 +1,6 @@
 #ifndef _IMAGE_TPP_
 #define _IMAGE_TPP_
 
-// Dependencies
-#include <asserts.hpp>
-
 namespace pix::graphics
 {
 	template <unsigned long W_DIM, unsigned long H_DIM>

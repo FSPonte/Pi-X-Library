@@ -1,10 +1,6 @@
 #ifndef _STAT_TPP_
 #define _STAT_TPP_
 
-// Dependencies
-#include <asserts.hpp>
-#include <math.hpp>
-
 namespace pix::math::stat
 {
 	template <typename type_t>

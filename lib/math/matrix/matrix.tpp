@@ -1,9 +1,6 @@
 #ifndef _MATRIX_TPP_
 #define _MATRIX_TPP_
 
-// Dependencies
-#include <asserts.hpp>
-
 namespace pix::math
 {
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>

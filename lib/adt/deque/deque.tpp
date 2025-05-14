@@ -1,9 +1,6 @@
 #ifndef _DEQUE_TPP_
 #define _DEQUE_TPP_
 
-// Dependencies
-#include <asserts.hpp>
-
 namespace pix::adt
 {
 	template <typename type_t, unsigned long MAX_SIZE>

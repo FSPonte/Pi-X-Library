@@ -1,9 +1,6 @@
 #ifndef _C_ARRAY_TPP_
 #define _C_ARRAY_TPP_
 
-// Dependencies
-#include <asserts.hpp>
-
 namespace pix::c_array
 {
 	template <typename type_t>

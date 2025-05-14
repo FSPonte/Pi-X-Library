@@ -1,9 +1,6 @@
 #ifndef _ARRAY_HPP_
 #define _ARRAY_HPP_
 
-// Dependencies
-#include <sys_vars.hpp>
-
 // Abstract data types
 namespace pix::adt
 {

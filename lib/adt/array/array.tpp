@@ -1,9 +1,6 @@
 #ifndef _ARRAY_TPP_
 #define _ARRAY_TPP_
 
-// Dependencies
-#include <asserts.hpp>
-
 namespace pix::adt
 {
 	template <typename type_t, unsigned long DIM>

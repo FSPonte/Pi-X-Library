@@ -1,9 +1,6 @@
 #ifndef _STACK_HPP_
 #define _STACK_HPP_
 
-// Dependencies
-#include <sys_vars.hpp>
-
 // Abstract data types
 namespace pix::adt
 {

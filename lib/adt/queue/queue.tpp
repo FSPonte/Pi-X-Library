@@ -1,9 +1,6 @@
 #ifndef _QUEUE_TPP_
 #define _QUEUE_TPP_
 
-// Dependencies
-#include <asserts.hpp>
-
 namespace pix::adt
 {
 	template <typename type_t, unsigned long MAX_SIZE>

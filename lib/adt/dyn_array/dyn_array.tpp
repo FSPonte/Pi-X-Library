@@ -1,9 +1,6 @@
 #ifndef _DYN_ARRAY_TPP_
 #define _DYN_ARRAY_TPP_
 
-// Dependencies
-#include <asserts.hpp>
-
 namespace pix::adt
 {
 	template <typename type_t, unsigned long BLOCK_ALLOC_SIZE>

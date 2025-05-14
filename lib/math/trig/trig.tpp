@@ -1,11 +1,6 @@
 #ifndef _TRIG_TPP_
 #define _TRIG_TPP_
 
-// Dependencies
-#include <constants.hpp>
-#include <asserts.hpp>
-#include <math.hpp>
-
 namespace pix::math::trig
 {
 	template <typename type_t>

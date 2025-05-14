@@ -1,10 +1,6 @@
 #ifndef _MMAP_TPP_
 #define _MMAP_TPP_
 
-// Dependencies
-#include <asserts.hpp>
-#include <c_array.hpp>
-
 namespace pix::memory
 {
 	template <unsigned long MAX_SIZE>

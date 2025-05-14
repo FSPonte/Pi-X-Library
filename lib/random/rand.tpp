@@ -1,9 +1,6 @@
 #ifndef _RAND_TPP_
 #define _RAND_TPP_
 
-// Dependencies
-#include <asserts.hpp>
-
 constexpr static const char SEED_BYTE = '\0';
 static const unsigned long
 	SEED = reinterpret_cast<unsigned long>(&SEED_BYTE), // Initial value

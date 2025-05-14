@@ -1,9 +1,6 @@
 #ifndef _MATRIX_HPP_
 #define _MATRIX_HPP_
 
-// Dependencies
-#include <vector.hpp>
-
 // Mathematics
 namespace pix::math
 {

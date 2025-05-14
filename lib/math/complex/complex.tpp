@@ -1,9 +1,6 @@
 #ifndef _COMPLEX_TPP_
 #define _COMPLEX_TPP_
 
-// Dependencies
-#include <asserts.hpp>
-
 namespace pix::math
 {
 	template <typename type_t>

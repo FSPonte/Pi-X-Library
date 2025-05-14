@@ -1,9 +1,6 @@
 #ifndef _ASSERTS_HPP_
 #define _ASSERTS_HPP_
 
-// Dependencies
-#include <types.hpp>
-
 /**
  * @brief Assert pointer is not null
  * @param ptr Pointer

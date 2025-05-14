@@ -1,10 +1,6 @@
 #ifndef _SORT_TPP_
 #define _SORT_TPP_
 
-// Dependencies
-#include <asserts.hpp>
-#include <c_array.hpp>
-
 template <typename type_t>
 static unsigned long _partition_(type_t[], unsigned long, unsigned long) noexcept(true);
 

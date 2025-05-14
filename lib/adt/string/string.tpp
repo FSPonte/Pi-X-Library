@@ -1,9 +1,6 @@
 #ifndef _STRING_TPP_
 #define _STRING_TPP_
 
-// Dependencies
-#include <asserts.hpp>
-
 namespace pix::adt
 {
 	template <unsigned long MAX_LENGTH>
