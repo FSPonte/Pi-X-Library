@@ -90,6 +90,7 @@ Includes:
 		  	- Secant
 		  	- Golden root
 	  	- Derivative
+		- Integral
   	- Signal processing
       	- Signal adjusting
 	  	- Window functions
