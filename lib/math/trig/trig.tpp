@@ -14,7 +14,7 @@ namespace pix::math::trig
 		assert_is_float(type_t);
 
 		const bool is_arg_neg = arg < 0;
-		arg = pix::math::f_mod(pix::math::abs(arg), 2 * pix::constants::mathematics::PI);
+		arg = pix::math::f_mod(pix::math::abs(arg), static_cast<type_t>(2 * pix::constants::mathematics::PI));
 
 		type_t
 			term = arg,
@@ -43,7 +43,7 @@ namespace pix::math::trig
 	{
 		assert_is_float(type_t);
 		
-		arg = pix::math::f_mod(pix::math::abs(arg), 2 * pix::constants::mathematics::PI);
+		arg = pix::math::f_mod(pix::math::abs(arg), static_cast<type_t>(2 * pix::constants::mathematics::PI));
 
 		type_t
 			term = 1,
