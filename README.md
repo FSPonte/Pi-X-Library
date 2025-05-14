@@ -89,15 +89,15 @@ Includes:
 		  	- Newton
 		  	- Secant
 		  	- Golden root
-	  	- Derivative
-		- Integral
+	  	- Derivative (Tangent method)
+		- Integral (Trapezoid method)
   	- Signal processing
       	- Signal adjusting
 	  	- Window functions
 		    - Hann
 			- Hamming
 			- Blackman
-	  	- Transforms
+	  	- Fourier transform (Non uniform discrete algoritm)
 - Graphics
   	- RGB values
   	- Image object
