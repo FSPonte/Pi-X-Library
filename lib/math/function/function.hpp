@@ -67,17 +67,6 @@ namespace pix::math
 		type_out secant(type_in, type_in) const noexcept(false);
 
 		/**
-		 * @brief Golden ratio method
-		 * @param a Initial point
-		 * @param b Final point
-		 * @return First root found
-		 * @throw Invalid interval (a >= b)
-		 * @note Assumes type_in and type_out have the necessary operators
-		 * (arithmetic, assignment, relational)
-		*/
-		type_out golden_root(type_in, type_in) const noexcept(false);
-
-		/**
 		 * @brief Derivative
 		 * @param x Point
 		 * @return Derivative in point x
