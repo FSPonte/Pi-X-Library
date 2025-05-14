@@ -1,13 +1,10 @@
 #ifndef _FUNCTION_HPP_
 #define _FUNCTION_HPP_
 
-// Dependencies
-#include <math.hpp>
-
 // Mathematics
 namespace pix::math
 {
-	template <typename type_in, typename type_out, typename callable>
+	template <typename callable, typename type_in, typename type_out>
 	class function
 	{
 	private:
@@ -86,6 +83,15 @@ namespace pix::math
 		 * @return Derivative in point x
 		*/
 		type_out derivative(type_in) const;
+
+		/**
+		 * @brief Integration
+		 * @param a Initial point
+		 * @param b Final point
+		 * @return Integral
+		 * @throw Invalid range (a >= b)
+		*/
+		type_out integral(type_in, type_in) const noexcept(false);
 	};
 }
 

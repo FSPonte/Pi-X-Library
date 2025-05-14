@@ -1,14 +1,10 @@
 #ifndef _FUNCTION_TPP_
 #define _FUNCTION_TPP_
 
-// Dependencies
-#include <macros.hpp>
-#include <asserts.hpp>
-
 namespace pix::math
 {
-	template <typename type_in, typename type_out, typename callable>
-	function<type_in, type_out, callable>::function(const callable& FUNC, const double TOL, const unsigned long MAX_ITER) noexcept(false) : _callable(FUNC)
+	template <typename callable, typename type_in, typename type_out>
+	function<callable, type_in, type_out>::function(const callable& FUNC, const double TOL, const unsigned long MAX_ITER) noexcept(false) : _callable(FUNC)
 	{
 		assert_is_float(type_in);
 		assert_is_float(type_out);
@@ -20,14 +16,14 @@ namespace pix::math
 		this->_MAX_ITER = MAX_ITER;
 	}
 
-	template <typename type_in, typename type_out, typename callable>
-	type_out function<type_in, type_out, callable>::operator () (const type_in& INPUT) const
+	template <typename callable, typename type_in, typename type_out>
+	type_out function<callable, type_in, type_out>::operator () (const type_in& INPUT) const
 	{
 		return this->_callable(INPUT);
 	}
 
-	template <typename type_in, typename type_out, typename callable>
-	type_out function<type_in, type_out, callable>::bissection(type_in a, type_in b) const noexcept(false)
+	template <typename callable, typename type_in, typename type_out>
+	type_out function<callable, type_in, type_out>::bissection(type_in a, type_in b) const noexcept(false)
 	{
 		if (a >= b) throw "Invalid interval (a >= b)";
 
@@ -80,8 +76,8 @@ namespace pix::math
 		return x;
 	}
 
-	template <typename type_in, typename type_out, typename callable>
-	type_out function<type_in, type_out, callable>::newton(type_in x) const noexcept(false)
+	template <typename callable, typename type_in, typename type_out>
+	type_out function<callable, type_in, type_out>::newton(type_in x) const noexcept(false)
 	{
 		type_out
 			y = this->_callable(x), // Image of x
@@ -120,8 +116,8 @@ namespace pix::math
 		return x;
 	}
 
-	template <typename type_in, typename type_out, typename callable>
-	type_out function<type_in, type_out, callable>::secant(type_in a, type_in b) const noexcept(false)
+	template <typename callable, typename type_in, typename type_out>
+	type_out function<callable, type_in, type_out>::secant(type_in a, type_in b) const noexcept(false)
 	{
 		if (a >= b) throw "Invalid interval (a >= b)";
 
@@ -171,8 +167,8 @@ namespace pix::math
 		return b;
 	}
 
-	template <typename type_in, typename type_out, typename callable>
-	type_out function<type_in, type_out, callable>::golden_root(type_in a, type_in b) const noexcept(false)
+	template <typename callable, typename type_in, typename type_out>
+	type_out function<callable, type_in, type_out>::golden_root(type_in a, type_in b) const noexcept(false)
 	{
 		if (a >= b) throw "Invalid interval (a >= b)";
 
@@ -226,12 +222,61 @@ namespace pix::math
 		return (y_a < y_b) ? a : b;
 	}
 
-	template <typename type_in, typename type_out, typename callable>
-	type_out function<type_in, type_out, callable>::derivative(const type_in INPUT) const
+	template <typename callable, typename type_in, typename type_out>
+	type_out function<callable, type_in, type_out>::derivative(const type_in INPUT) const
 	{
 		static const auto h = static_cast<type_in>(this->_TOL);
 
 		return static_cast<type_out>((this->_callable(INPUT + h) - this->_callable(INPUT)) / h);
+	}
+
+	template <typename callable, typename type_in, typename type_out>
+	type_out function<callable, type_in, type_out>::integral(const type_in a, const type_in b) const noexcept(false)
+	{
+		if (a >= b) throw pix::exceptions::bad_range;
+
+		type_in
+			step = this->_TOL * (b - a), // Step value
+			x_1 = a,
+			x_2;
+		type_out
+			y_1 = this->_callable(x_1),
+			y_2,
+			term, // Value of term
+			ret = static_cast<type_out>(0); // Return value
+
+		// Logger
+		LOGGER_INIT("logs/integral.log");
+		{
+			LOGGER_LOG_MSG("Parameters:");
+			LOGGER_LOG_MSG("\tTOL = " + std::to_string(this->_TOL));
+			LOGGER_LOG_MSG("Initial values:");
+			LOGGER_LOG_MSG("\ta = " + std::to_string(a));
+			LOGGER_LOG_MSG("\tb = " + std::to_string(b));
+			LOGGER_LOG_MSG("\tstep = " + std::to_string(step));
+		}
+
+		for (unsigned long i = 1; x_1 < b; ++i)
+		{
+			x_2 = x_1 + step;
+			y_2 = this->_callable(x_2);
+			term = 0.5 * step * (y_1 + y_2);
+			ret += term;
+
+			// Logger
+			{
+				LOGGER_LOG_MSG("\nIteration: " + std::to_string(i));
+				LOGGER_LOG_MSG("\tx_1 = " + std::to_string(x_1) + " | f(x_1) = " + std::to_string(y_1));
+				LOGGER_LOG_MSG("\tx_2 = " + std::to_string(x_2) + " | f(x_2) = " + std::to_string(y_2));
+				LOGGER_LOG_MSG("\tTerm = " + std::to_string(term));
+				LOGGER_LOG_MSG("\tResult = " + std::to_string(ret));
+			}
+
+			x_1 = x_2;
+			y_1 = this->_callable(x_1);
+		}
+
+		return ret;
 	}
 }
 
