@@ -37,7 +37,7 @@ namespace pix::adt
 	template <typename type_t>
 	type_t list<type_t>::pop(unsigned long index) noexcept(false)
 	{
-		if (index >= this->_size) throw "Index is out of bounds";
+		if (index >= this->_size) throw pix::exceptions::out_of_bounds;
 
 		type_t ret_val; // Return value
 
@@ -73,7 +73,7 @@ namespace pix::adt
 	template <typename type_t>
 	type_t& list<type_t>::operator [] (const unsigned long INDEX) noexcept(false)
 	{
-		if (INDEX >= this->_size) throw "Index is out of bounds";
+		if (INDEX >= this->_size) throw pix::exceptions::out_of_bounds;
 
 		node<type_t>* iter_ptr = this->_head; // Iterator pointer
 

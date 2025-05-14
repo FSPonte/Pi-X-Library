@@ -25,7 +25,7 @@ namespace pix::math
 	template <typename callable, typename type_in, typename type_out>
 	type_out function<callable, type_in, type_out>::bissection(type_in a, type_in b) const noexcept(false)
 	{
-		if (a >= b) throw "Invalid interval (a >= b)";
+		if (a >= b) throw pix::exceptions::bad_range;
 
 		type_in x; // Mid point of the interval
 		type_out
@@ -119,7 +119,7 @@ namespace pix::math
 	template <typename callable, typename type_in, typename type_out>
 	type_out function<callable, type_in, type_out>::secant(type_in a, type_in b) const noexcept(false)
 	{
-		if (a >= b) throw "Invalid interval (a >= b)";
+		if (a >= b) throw pix::exceptions::bad_range;
 
 		type_in x;
 		type_out
@@ -170,7 +170,7 @@ namespace pix::math
 	template <typename callable, typename type_in, typename type_out>
 	type_out function<callable, type_in, type_out>::golden_root(type_in a, type_in b) const noexcept(false)
 	{
-		if (a >= b) throw "Invalid interval (a >= b)";
+		if (a >= b) throw pix::exceptions::bad_range;
 
 		type_out
 			y_a = this->_callable(a),

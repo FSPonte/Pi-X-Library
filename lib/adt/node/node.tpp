@@ -64,7 +64,7 @@ namespace pix::adt
 	template <typename type_t>
 	void node<type_t>::pop(const unsigned long INDEX) noexcept(false)
 	{
-		if (INDEX >= this->_size) throw "Index is out of bounds";
+		if (INDEX >= this->_size) throw pix::exceptions::out_of_bounds;
 
 		if (this->_size == 1)
 		{

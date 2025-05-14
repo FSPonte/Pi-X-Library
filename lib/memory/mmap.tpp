@@ -23,7 +23,7 @@ namespace pix::memory
 	template <unsigned long MAX_SIZE>
 	void mmap<MAX_SIZE>::rm(const unsigned long INDEX) noexcept(false)
 	{
-		if (INDEX >= this->_size) throw "Index is out of bounds";
+		if (INDEX >= this->_size) throw pix::exceptions::out_of_bounds;
 
 		pix::c_array::left_shift(this->_part[INDEX], this->_size - INDEX);
 		--this->_size;
@@ -32,7 +32,7 @@ namespace pix::memory
 	template <unsigned long MAX_SIZE>
 	mpart mmap<MAX_SIZE>::operator [] (const unsigned long INDEX) noexcept(false)
 	{
-		if (INDEX >= this->_size) throw "Index is out of bounds";
+		if (INDEX >= this->_size) throw pix::exceptions::out_of_bounds;
 
 		return this->_part[INDEX];
 	}

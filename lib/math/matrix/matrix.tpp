@@ -20,7 +20,7 @@ namespace pix::math
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
 	matrix<type_t, N_LIN, N_COL>::matrix(const type_t ARR[]) noexcept(false) : matrix<type_t, N_LIN, N_COL>()
 	{
-		if (ARR == nullptr) throw "Pointer to array is null";
+		if (ARR == nullptr) throw pix::exceptions::null_ptr;
 
 		for (unsigned long i = 0; i < N_LIN; ++i)
 			this->_data[i] = vector<type_t, N_COL>(ARR + i * N_LIN);
@@ -29,7 +29,7 @@ namespace pix::math
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
 	matrix<type_t, N_LIN, N_COL>::matrix(const vector<type_t, N_COL> ARR[]) noexcept(false) : matrix<type_t, N_LIN, N_COL>()
 	{
-		if (ARR == nullptr) throw "Pointer to array is null";
+		if (ARR == nullptr) throw pix::exceptions::null_ptr;
 
 		for (unsigned long i = 0; i < N_LIN; ++i)
 		{
@@ -53,7 +53,7 @@ namespace pix::math
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
 	vector<type_t, N_COL>& matrix<type_t, N_LIN, N_COL>::operator [] (const unsigned long INDEX) noexcept(false)
 	{
-		if (INDEX >= N_LIN) throw "Index is out bounds";
+		if (INDEX >= N_LIN) throw pix::exceptions::out_of_bounds;
 
 		return this->_data[INDEX % N_LIN];
 	}
