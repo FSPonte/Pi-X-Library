@@ -2,6 +2,9 @@
 
 mkdir -p "logs/"
 
+# Force remove dangling images
+docker image prune -f
+
 # Check if a container with the name "pixlib" already exists
 if [ "$(docker ps -aq -f name=pixlib)" ]; then
     docker container stop pixlib > /dev/null 2>&1
