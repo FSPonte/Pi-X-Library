@@ -185,7 +185,6 @@ namespace pix::math
 		type_out
 			y_1 = this->_callable(x_1),
 			y_2,
-			term, // Value of term
 			ret = static_cast<type_out>(0); // Return value
 
 		// Logger
@@ -203,15 +202,13 @@ namespace pix::math
 		{
 			x_2 = x_1 + step;
 			y_2 = this->_callable(x_2);
-			term = 0.5 * step * (y_1 + y_2);
-			ret += term;
+			ret += y_1 + y_2;
 
 			// Logger
 			{
 				LOGGER_LOG_MSG("\nIteration: " + std::to_string(i));
 				LOGGER_LOG_MSG("\tx_1 = " + std::to_string(x_1) + " | f(x_1) = " + std::to_string(y_1));
 				LOGGER_LOG_MSG("\tx_2 = " + std::to_string(x_2) + " | f(x_2) = " + std::to_string(y_2));
-				LOGGER_LOG_MSG("\tTerm = " + std::to_string(term));
 				LOGGER_LOG_MSG("\tResult = " + std::to_string(ret));
 			}
 
@@ -219,7 +216,7 @@ namespace pix::math
 			y_1 = this->_callable(x_1);
 		}
 
-		return ret;
+		return 0.5 * step * ret;
 	}
 }
 
