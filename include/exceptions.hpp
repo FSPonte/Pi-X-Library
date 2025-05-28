@@ -13,7 +13,7 @@ namespace pix::exceptions
 		bad_range[] = "Bad numeric range",
 		div_zero[] = "Division by zero",
 		inv_arg[] = "Invalid argument",
-		out_of_bounds[] = "Out of bounds memory access";
+		out_of_bounds[] = "Out of bounds";
 }
 
 #endif // _EXCEPTIONS_HPP_
