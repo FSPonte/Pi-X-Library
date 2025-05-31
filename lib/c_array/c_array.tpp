@@ -176,7 +176,7 @@ namespace pix::c_array
 	}
 
 	template <typename type_t, unsigned long DIM>
-	void bit_rev(type_t (&arr)[DIM]) noexcept(true)
+	void bit_rev(type_t (&arr)[DIM]) noexcept(false)
 	{
 		static_assert
 		(
@@ -185,6 +185,40 @@ namespace pix::c_array
 		);
 
 		pix::c_array::bit_rev<type_t>(arr, DIM);
+	}
+
+	template <typename type_t>
+	unsigned long binary_search(type_t arr[], const unsigned long DIM, const type_t TARGET) noexcept(false)
+	{
+		if (arr == nullptr) throw pix::exceptions::null_ptr;
+		if (DIM == 0) throw pix::exceptions::null_dim;
+
+		unsigned long
+			left = 0,
+			right = DIM - 1,
+			midp;
+
+		while (left <= right)
+		{
+			midp = left + static_cast<unsigned long>(0.5 * (right - left));
+			
+			if (arr[midp] < TARGET)
+				left = midp + 1;
+			else if (arr[midp] > TARGET)
+				right = midp - 1;
+			else
+				return midp;
+		}
+
+		throw "Element not found";
+	}
+
+	template <typename type_t, unsigned long DIM>
+	unsigned long binary_search(type_t (&arr)[DIM], const type_t TARGET) noexcept(false)
+	{
+		assert_is_number(type_t);
+
+		return pix::c_array::binary_search<type_t>(arr, DIM, TARGET);
 	}
 }
 

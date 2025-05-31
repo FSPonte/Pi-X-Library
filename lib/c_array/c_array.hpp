@@ -183,7 +183,35 @@ namespace pix::c_array
 	 * @param arr Array of elements
 	*/
 	template <typename type_t, unsigned long DIM>
-	void bit_rev(type_t (&)[DIM]) noexcept(true);
+	void bit_rev(type_t (&)[DIM]) noexcept(false);
+
+	/**
+	 * @brief Binary search
+	 * @tparam type_t Data type
+	 * @param arr Array of elements
+	 * @param dim Number of elements
+	 * @param trg Target value
+	 * @return Index of target
+	 * @throw Pointer to array is null
+	 * @throw Dimension is null
+	 * @throw Element not found
+	*/
+	template <typename type_t>
+	unsigned long binary_search(type_t[], unsigned long, type_t) noexcept(false);
+
+	/**
+	 * @brief Binary search
+	 * @tparam type_t Data type
+	 * @tparam DIM Number of elements
+	 * @param arr Array of elements
+	 * @param trg Target value
+	 * @return Index of target
+	 * @throw Pointer to array is null
+	 * @throw Dimension is null
+	 * @throw Element not found
+	*/
+	template <typename type_t, unsigned long DIM>
+	unsigned long binary_search(type_t (&)[DIM], type_t) noexcept(false);
 }
 
 // Template file
