@@ -5,6 +5,17 @@
 namespace pix::memory
 {
 	/**
+	 * @brief Copy memory
+	 * @param src Source
+	 * @param dst Destination
+	 * @param size Number of bytes
+	 * @throw Pointer to source memory is null
+	 * @throw Pointer to destination memory is null
+	 * @throw Size is null
+	*/
+	void* memcpy(const void*, void*, unsigned long) noexcept(false);
+
+	/**
 	 * @brief Memory partition
 	*/
 	struct mpart
@@ -63,6 +74,7 @@ namespace pix::memory
 }
 
 // Template file
+#include "memory.tpp"
 #include "mmap.tpp"
 
 #endif // _MEMORY_HPP_
