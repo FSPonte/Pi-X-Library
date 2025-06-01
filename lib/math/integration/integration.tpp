@@ -3,7 +3,7 @@
 
 namespace pix::math::integration
 {
-	template <typename function, typename type_t = float>
+	template <typename function, typename type_t>
 	type_t trapezoid(const function f, const type_t a, const type_t b, const type_t TOL) noexcept(false)
 	{
 		assert_is_float(type_t);
@@ -31,7 +31,7 @@ namespace pix::math::integration
 		return 0.5 * step * ret;
 	}
 
-	template <typename function, typename type_t = float>
+	template <typename function, typename type_t>
 	type_t romberg(const function f, const type_t a, const type_t b, const type_t TOL, const unsigned long MAX_STEPS) noexcept(false)
 	{
 		assert_is_float(type_t);

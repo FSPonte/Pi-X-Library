@@ -3,7 +3,7 @@
 
 namespace pix::math::root_finding
 {
-	template <typename function, typename type_t = float>
+	template <typename function, typename type_t>
 	type_t bissection(const function fn, type_t a, type_t b, const type_t TOL, const unsigned long MAX_ITER) noexcept(false)
 	{
 		assert_is_float(type_t);
@@ -43,7 +43,7 @@ namespace pix::math::root_finding
 		return x;
 	}
 
-	template <typename function, typename type_t = float>
+	template <typename function, typename type_t>
 	type_t newton(const function fn, type_t x, const type_t TOL, const unsigned long MAX_ITER) noexcept(false)
 	{
 		assert_is_float(type_t);
@@ -71,7 +71,7 @@ namespace pix::math::root_finding
 		return x;
 	}
 
-	template <typename function, typename type_t = float>
+	template <typename function, typename type_t>
 	type_t secant(const function fn, type_t a, type_t b, const type_t TOL, const unsigned long MAX_ITER) noexcept(false)
 	{
 		assert_is_float(type_t);
