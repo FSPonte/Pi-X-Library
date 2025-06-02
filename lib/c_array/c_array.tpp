@@ -196,18 +196,18 @@ namespace pix::c_array
 		unsigned long
 			left = 0,
 			right = DIM - 1,
-			midp;
+			mid;
 
 		while (left <= right)
 		{
-			midp = left + static_cast<unsigned long>(0.5 * (right - left));
+			mid = left + static_cast<unsigned long>(0.5 * (right - left));
 			
-			if (arr[midp] < TARGET)
-				left = midp + 1;
-			else if (arr[midp] > TARGET)
-				right = midp - 1;
+			if (arr[mid] < TARGET)
+				left = mid + 1;
+			else if (arr[mid] > TARGET)
+				right = mid - 1;
 			else
-				return midp;
+				return mid;
 		}
 
 		throw "Element not found";
