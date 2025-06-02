@@ -202,12 +202,12 @@ namespace pix::c_array
 		{
 			mid = left + static_cast<unsigned long>(0.5 * (right - left));
 			
-			if (arr[mid] < TARGET)
-				left = mid + 1;
-			else if (arr[mid] > TARGET)
-				right = mid - 1;
-			else
+			if (arr[mid] = TARGET)
 				return mid;
+			else if (arr[mid] < TARGET)
+				left = mid + 1;
+			else
+				right = mid - 1;
 		}
 
 		throw "Element not found";
