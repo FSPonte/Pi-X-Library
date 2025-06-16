@@ -14,18 +14,18 @@ namespace pix::math::integration
 		type_t
 			step = TOL * (b - a), // Step value
 			x_1 = a,
-			x_2,
-			y_1 = f(x_1),
+			x_2 = x_1 + step,
+			y_1,
 			y_2,
 			ret = 0; // Return value
 
-		for (unsigned long i = 1; x_1 < b; ++i)
+		while (x_2 < b)
 		{
-			x_2 = x_1 + step;
+			y_1 = f(x_1);
 			y_2 = f(x_2);
 			ret += y_1 + y_2;
 			x_1 = x_2;
-			y_1 = f(x_1);
+			x_2 += step;
 		}
 
 		return 0.5 * step * ret;
@@ -47,7 +47,7 @@ namespace pix::math::integration
 			*Rc = &R2[0], // Rp is previous row, Rc is current row
 			h = b - a; //step size
 
-		Rp[0] = (f(a) + f(b)) * h * 0.5; // first trapezoidal step
+		Rp[0] = 0.5 * h * (f(a) + f(b)); // first trapezoidal step
 
 		unsigned long ep;
 		type_t c, n_k, *rt;
