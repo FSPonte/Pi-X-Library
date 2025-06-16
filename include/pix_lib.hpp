@@ -32,7 +32,9 @@
 #include <vector.hpp>
 #include <matrix.hpp>
 #include <sys_lin_equ.hpp>
-#include <function.hpp>
+#include <interpolation.hpp>
+#include <root_finding.hpp>
+#include <integration.hpp>
 #include <signal.hpp>
 #include <rgb.hpp>
 #include <image.hpp>
