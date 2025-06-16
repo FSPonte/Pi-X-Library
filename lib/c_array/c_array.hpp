@@ -206,12 +206,36 @@ namespace pix::c_array
 	 * @param arr Array of elements
 	 * @param trg Target value
 	 * @return Index of target
-	 * @throw Pointer to array is null
 	 * @throw Dimension is null
 	 * @throw Element not found
 	*/
 	template <typename type_t, unsigned long DIM>
 	unsigned long binary_search(type_t (&)[DIM], type_t) noexcept(false);
+
+	/**
+	 * @brief Binary approximation
+	 * @tparam type_t Data type
+	 * @param arr Array of elements
+	 * @param dim Number of elements
+	 * @param trg Target value
+	 * @return Index closest to target
+	 * @throw Pointer to array is null
+	 * @throw Dimension is null
+	*/
+	template <typename type_t>
+	unsigned long binary_approx(type_t[], unsigned long, type_t) noexcept(false);
+
+	/**
+	 * @brief Binary approximation
+	 * @tparam type_t Data type
+	 * @tparam DIM Number of elements
+	 * @param arr Array of elements
+	 * @param trg Target value
+	 * @return Index closest to target
+	 * @throw Dimension is null
+	*/
+	template <typename type_t, unsigned long DIM>
+	unsigned long binary_approx(type_t (&)[DIM], type_t) noexcept(false);
 }
 
 // Template file

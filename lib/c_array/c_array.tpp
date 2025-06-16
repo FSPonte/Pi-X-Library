@@ -200,14 +200,14 @@ namespace pix::c_array
 
 		while (left <= right)
 		{
-			mid = left + static_cast<unsigned long>(0.5 * (right - left));
-			
-			if (arr[mid] = TARGET)
-				return mid;
-			else if (arr[mid] < TARGET)
+			mid = left + 0.5 * (right - left);
+
+			if (arr[mid] < TARGET)
 				left = mid + 1;
-			else
+			else if (arr[mid] > TARGET)
 				right = mid - 1;
+			else
+				return mid;
 		}
 
 		throw "Element not found";
@@ -219,6 +219,43 @@ namespace pix::c_array
 		assert_is_number(type_t);
 
 		return pix::c_array::binary_search<type_t>(arr, DIM, TARGET);
+	}
+
+	template <typename type_t>
+	unsigned long binary_approx(type_t arr[], const unsigned long DIM, const type_t TARGET) noexcept(false)
+	{
+		if (arr == nullptr) throw pix::exceptions::null_ptr;
+		if (DIM == 0) throw pix::exceptions::null_dim;
+
+		unsigned long
+			left = 0,
+			right = DIM - 1,
+			mid;
+
+		if (TARGET <= arr[left]) return left;
+		if (TARGET >= arr[right]) return right;
+
+		while (left + 1 < right)
+		{
+			mid = left + 0.5 * (right - left);
+
+			if (arr[mid] < TARGET)
+				left = mid;
+			else if (arr[mid] > TARGET)
+				right = mid;
+			else
+				return mid;
+		}
+
+		return left;
+	}
+
+	template <typename type_t, unsigned long DIM>
+	unsigned long binary_approx(type_t (&arr)[DIM], const type_t TARGET) noexcept(false)
+	{
+		assert_is_number(type_t);
+
+		return pix::c_array::binary_approx<type_t>(arr, DIM, TARGET);
 	}
 }
 
