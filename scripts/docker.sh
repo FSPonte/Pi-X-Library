@@ -1,9 +1,7 @@
 #!/bin/sh
 
 mkdir -p "logs/"
-
-# Force remove dangling images
-docker image prune -f
+docker image prune -f # Force remove dangling images
 
 # Check if a container with the name "pixlib" already exists
 if [ "$(docker ps -aq -f name=pixlib)" ]; then
@@ -11,8 +9,5 @@ if [ "$(docker ps -aq -f name=pixlib)" ]; then
     docker container rm pixlib > /dev/null 2>&1
 fi
 
-# Build the image
-docker image build -t pixlib "./" 2>&1 | tee logs/docker.txt
-
-# Create a new container
-docker container create --name pixlib pixlib:latest > /dev/null 2>&1
+docker image build -t pixlib "./" 2>&1 | tee logs/docker.txt # Build the image
+docker container create --name pixlib pixlib:latest > /dev/null 2>&1 # Create a new container
