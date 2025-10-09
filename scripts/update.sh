@@ -1,11 +1,17 @@
 #!/bin/sh
 
+sudo -l
+
+echo "\n\tRemoving unused dependency packages"
 sudo apt autoremove -y
-echo
+
+echo "\n\tFixing broken dependencies"
 sudo apt install -f
-echo
+
+echo "\n\tUpdating the package index"
 sudo apt update
-echo
+
+echo "\n\tInstalling available upgrades"
 sudo apt full-upgrade -y
-echo
-sudo apt autoclean
+
+sudo apt clean
