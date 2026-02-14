@@ -1,11 +1,11 @@
-set terminal png
+set terminal png size 1080, 720
 set key outside right center vertical
 set grid
 
-set output "files/plot.png"
+set output "output/plot.png"
 set title "Data Visualization"
-set xlabel "event"
-set ylabel "probability"
+set xlabel "Event"
+set ylabel "Probability"
 plot \
-	"files/dataset.dat" notitle with lines lw 3, \
-	"files/probability.dat" title "Cumulative" with lines lw 3
+	"input/dataset.dat" notitle with lines lw 3, \
+	"input/probability.dat" title "Cumulative" with lines lw 3
