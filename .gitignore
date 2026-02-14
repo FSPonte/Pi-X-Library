@@ -1,6 +1,11 @@
 # Directories
 .vscode/
 build/
+assets/
+input/
+output/
 files/
 logs/
+tests/
+docs/
 temp/
