@@ -1,5 +1,3 @@
-#!/bin/sh
-
 mkdir -p "logs/"
 docker image prune -f # Force remove dangling images
 

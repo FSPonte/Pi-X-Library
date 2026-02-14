@@ -1,5 +1,3 @@
-#!/bin/sh
-
 sudo -l
 
 echo "\n\tRemoving unused dependency packages"
@@ -14,4 +12,5 @@ sudo apt update
 echo "\n\tInstalling available upgrades"
 sudo apt full-upgrade -y
 
-sudo apt clean
+echo "\n\tRemoving package cache"
+sudo apt autoclean

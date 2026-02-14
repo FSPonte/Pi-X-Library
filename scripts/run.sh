@@ -1,5 +1,3 @@
-#!/bin/sh
-
 sh "scripts/build.sh"
 mkdir -p "files/"
 mkdir -p "logs/"

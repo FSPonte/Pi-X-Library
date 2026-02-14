@@ -1,6 +1,5 @@
-#!/bin/sh
-
-mkdir -p "docs/"
-mkdir -p "docs/images/"
-
-pdflatex -output-directory="docs/" "docs/manual.tex"
+pdflatex \
+	-interaction=nonstopmode -halt-on-error \
+	-output-directory="docs/" \
+	-jobname="report" \
+	"docs/main.tex"
