@@ -1,5 +1,5 @@
 pdflatex \
 	-interaction=nonstopmode -halt-on-error \
 	-output-directory="docs/" \
-	-jobname="report" \
+	-jobname="manual" \
 	"docs/main.tex"
