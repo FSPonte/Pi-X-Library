@@ -58,35 +58,46 @@ namespace utils
 	void print(type_t (&)[N_LIN][N_COL]) noexcept(true);
 
 	/**
-	 * @brief Determine if we should use UTF-8 encoding for the given output stream.
-	 * @param stream The output stream (e.g., stdout, stderr).
-	 * @return true if UTF-8 encoding should be used, false otherwise.
+	 * @brief Check if we should use UTF-8 encoding
+	 * @param stream The output stream
+	 * @return true if UTF-8 encoding should be used
 	*/
-	bool should_use_utf8(std::ostream& stream);
+	bool should_use_utf8(std::ostream&) noexcept(true);
 
 	/**
-	 * @brief Determine if ANSI color codes should be used for the given output stream.
-	 * @param stream The output stream (e.g., stdout, stderr).
-	 * @return true if ANSI color codes should be used, false otherwise.
+	 * @brief Check if ANSI color codes should be used
+	 * @param stream The output stream
+	 * @return true if ANSI color codes should be used
 	*/
-	bool should_use_color(std::ostream& stream);
+	bool should_use_color(std::ostream&) noexcept(true);
 
 	/**
-	 * @brief Get the width of the terminal for the given output stream.
-	 * @param stream The output stream (e.g., stdout, stderr), or NULL for files.
-	 * @return The width of the terminal in characters.
+	 * @brief Get the width of the terminal
+	 * @param stream The output stream
+	 * @return The width of the terminal in characters
 	*/
-	int get_terminal_width(std::ostream& stream);
+	int get_terminal_width(std::ostream&) noexcept(true);
 
 	/**
-	 * @brief Get the inverse of the timer frequency (for Windows).
-	 * @return The inverse of the timer frequency.
+	 * @brief Get the inverse of the timer frequency
+	 * @return The inverse of the timer frequency
+	 * @note For Windows OS
 	*/
-	double get_timer_freq_inv(void);
+	double get_timer_freq_inv(void) noexcept(true);
 
-	bool contains_utf8_case_insensitive(const char[]);
+	/**
+	 * @brief Check if C-string contains UTF-8 characters
+	 * @param str C-string
+	 * @return true if C-string contains UTF-8 characters
+	 * @throw Null pointer
+	*/
+	bool contains_utf8_case_insensitive(const char[]) noexcept(false);
 
-	bool terminal_supports_utf8(void);
+	/**
+	 * @brief Checks if the terminal supports UTF-8
+	 * @return true if terminal supports UTF-8
+	*/
+	bool terminal_supports_utf8(void) noexcept(true);
 }
 
 // Template file

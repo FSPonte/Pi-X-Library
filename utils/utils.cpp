@@ -2,8 +2,7 @@
 #include "utils.hpp"
 
 // Dependencies
-#include <cstdio>
-#include <cstdlib>
+#include <exceptions.hpp>
 #include <cstring>
 #include <fstream>
 
@@ -41,7 +40,7 @@ namespace utils
 
 	void clear(void) noexcept(true)
 	{
-		#if  defined(__linux__)
+		#if defined(__linux__)
 
 			std::system("clear");
 		
@@ -122,39 +121,40 @@ namespace utils
 		std::cout << std::dec << "\n\n";
 	}
 
-	bool should_use_utf8(std::ostream& stream)
+	bool should_use_utf8(std::ostream& stream) noexcept(true)
 	{
-		int fd = -1;
+		int fd = -1; // File descriptor
 
-		// 1. Identify the file descriptor
+		// Identify the file descriptor
 		if (&stream == &std::cout)
 			fd = STDOUT_FILENO;
 		else if (&stream == &std::cerr || &stream == &std::clog)
 			fd = STDERR_FILENO;
 
-		// 2. If it's not a standard stream (like a file or stringstream), 
+		// If it's not a standard stream (like a file or stringstream), 
 		// fd remains -1. isatty(-1) will return false.
 		if (fd == -1 || !isatty(fd))
 			return true; 
 
-		// 3. It is a terminal; check environment/capabilities
+		// It is a terminal; check environment/capabilities
 		return terminal_supports_utf8();
 	}
 
-	bool should_use_color(std::ostream& stream)
+	bool should_use_color(std::ostream& stream) noexcept(true)
 	{
-		// 1. Check NO_COLOR (Standard: https://no-color.org)
+		// Check NO_COLOR
 		const char* no_color = std::getenv("NO_COLOR");
+
 		if (no_color && no_color[0] != '\0')
 			return false;
 
-		// 2. Check CLICOLOR_FORCE
+		// Check CLICOLOR_FORCE
 		const char* force_color = std::getenv("CLICOLOR_FORCE");
 
 		if (force_color && std::strcmp(force_color, "0") != 0)
 			return true;
 
-		// 3. Map C++ stream to file descriptor
+		// Map C++ stream to file descriptor
 		int fd = -1;
 
 		if (&stream == &std::cout)
@@ -166,13 +166,13 @@ namespace utils
 		if (fd == -1 || !ISATTY(fd))
 			return false;
 
-		// 4. Check TERM variable for "dumb" terminals
+		// Check TERM variable for "dumb" terminals
 		const char* term = std::getenv("TERM");
 
 		if (term && std::strcmp(term, "dumb") == 0)
 			return false;
 
-		// 5. Windows Specific: Enable Virtual Terminal Processing (ANSI support)
+		// Windows Specific: Enable Virtual Terminal Processing (ANSI support)
 	#ifdef _WIN32
 		HANDLE hOut = GET_OS_HANDLE(fd);
 
@@ -198,19 +198,20 @@ namespace utils
 		return true;
 	}
 
-	int get_terminal_width(std::ostream& stream)
+	int get_terminal_width(std::ostream& stream) noexcept(true)
 	{
-		// 1. Map C++ stream to a File Descriptor
+		// Map C++ stream to a File Descriptor
 		int fd = -1;
 	
-		if (&stream == &std::cout) fd = 1;      // STDOUT_FILENO
+		if (&stream == &std::cout) fd = 1; // STDOUT_FILENO
 		else if (&stream == &std::cerr) fd = 2; // STDERR_FILENO
 		else if (&stream == &std::clog) fd = 2; // STDERR_FILENO
 
 		// If it's a file, stringstream, or null stream, return default
-		if (fd == -1) return TERMINAL_WIDTH_DEFAULT;
+		if (fd == -1)
+			return TERMINAL_WIDTH_DEFAULT;
 
-		// 2. Query the OS for terminal dimensions
+		// Query the OS for terminal dimensions
 	#ifdef _WIN32
 		HANDLE hFile = reinterpret_cast<HANDLE>(_get_osfhandle(fd));
 		CONSOLE_SCREEN_BUFFER_INFO csbi;
@@ -224,7 +225,7 @@ namespace utils
 			return w.ws_col;
 	#endif
 
-		// 3. Fallback to Environment Variable (useful for some CI/CD environments)
+		// Fallback to Environment Variable (useful for some CI/CD environments)
 		const char* env_cols = std::getenv("COLUMNS");
 
 		if (env_cols)
@@ -238,7 +239,7 @@ namespace utils
 		return TERMINAL_WIDTH_DEFAULT;
 	}
 
-	double get_timer_freq_inv(void)
+	double get_timer_freq_inv(void) noexcept(true)
 	{
 	#ifdef _WIN32
 		LARGE_INTEGER freq;
@@ -250,10 +251,10 @@ namespace utils
 	#endif // _WIN32
 	}
 
-	bool contains_utf8_case_insensitive(const char* str)
+	bool contains_utf8_case_insensitive(const char str[]) noexcept(false)
 	{
 		if (!str)
-			return false;
+			throw pix::exceptions::null_ptr;
 
 		while (*str)
 		{
@@ -275,7 +276,7 @@ namespace utils
 		return false;
 	}
 
-	bool terminal_supports_utf8(void)
+	bool terminal_supports_utf8(void) noexcept(true)
 	{
 	#ifdef _WIN32
 		return GetConsoleOutputCP() == CP_UTF8;
