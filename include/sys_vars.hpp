@@ -47,4 +47,20 @@
 // Default block allocation size
 #define D_BLOCK_ALLOC_SIZE 1000
 
+#ifndef STDIN
+#define STDIN 0
+#endif
+
+#ifndef STDOUT
+#define STDOUT 1
+#endif
+
+#ifndef STDERR
+#define STDERR 2
+#endif
+
+#ifndef STDLOG
+#define STDLOG 2
+#endif
+
 #endif // _SYS_VARS_HPP_
