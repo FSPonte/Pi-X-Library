@@ -7,5 +7,9 @@ output/
 files/
 logs/
 tests/
-docs/
 temp/
+
+# Files
+docs/*.aux
+docs/*.out
+docs/*.log
