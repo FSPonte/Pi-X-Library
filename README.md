@@ -1,12 +1,7 @@
 # Pi-X Library
-Library for embedded systems
+Library for embedded systems and OS based programs
 
-Notes:
-- No need for additional compilation (Template files instead of source files for the libraries)
-- No outside dependencies (e.g. iostream)
-- Provides a logger class for logging
-
-Includes:
+## Includes:
 - System variables
 - Asserts
 	- not_nullptr: Pointer is null
@@ -38,13 +33,17 @@ Includes:
 	- Elementary charge
 	- Newtonian constant of gravitation
 - Macros
+## Object libraries
+- Logger
+- Progress bar
+## Template libraries
 - Type info
 	- is_same: Compares two data types
   	- is_number: Checks if type is a number
   	- is_integer: Checks if type is a integer number
   	- is_float: Checks if type is a float number
   	- type_info: Class object for storing data types
-- Functions for C styled arrays
+- Functions for C-arrays
 - Memory management
   	- Memory partition
   	- Memory map
