@@ -2,50 +2,53 @@ project(Pi-X-Library)
 
 cmake_minimum_required(VERSION 3.22)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_compile_options(-Wall -Wextra -Wpedantic)
 
 include_directories(
 	"utils/"
-	"logger/"
 
 	"include/"
 
-	"t_lib/type_info/"
-	"t_lib/c_array/"
-	"t_lib/memory/"
-	"t_lib/smart_pointer/"
-	"t_lib/sort/"
-	"t_lib/random/"
-	"t_lib/adt/array/"
-	"t_lib/adt/tuple/"
-	"t_lib/adt/stack/"
-	"t_lib/adt/queue/"
-	"t_lib/adt/deque/"
-	"t_lib/adt/node/"
-	"t_lib/adt/list/"
-	"t_lib/adt/dyn_array/"
-	"t_lib/adt/string/"
-	"t_lib/math/"
-	"t_lib/math/trig/"
-	"t_lib/math/hyper/"
-	"t_lib/math/stat/"
-	"t_lib/math/complex/"
-	"t_lib/math/vector/"
-	"t_lib/math/matrix/"
-	"t_lib/math/sys_lin_equ/"
-	"t_lib/math/interpolation/"
-	"t_lib/math/root_finding/"
-	"t_lib/math/integration/"
-	"t_lib/math/signal/"
-	"t_lib/graphics/rgb/"
-	"t_lib/graphics/image/"
+	"lib/type_info/"
+	"lib/c_array/"
+	"lib/memory/"
+	"lib/smart_pointer/"
+	"lib/sort/"
+	"lib/random/"
+	"lib/adt/array/"
+	"lib/adt/tuple/"
+	"lib/adt/stack/"
+	"lib/adt/queue/"
+	"lib/adt/deque/"
+	"lib/adt/node/"
+	"lib/adt/list/"
+	"lib/adt/dyn_array/"
+	"lib/adt/string/"
+	"lib/math/"
+	"lib/math/trig/"
+	"lib/math/hyper/"
+	"lib/math/stat/"
+	"lib/math/complex/"
+	"lib/math/vector/"
+	"lib/math/matrix/"
+	"lib/math/sys_lin_equ/"
+	"lib/math/interpolation/"
+	"lib/math/root_finding/"
+	"lib/math/integration/"
+	"lib/math/signal/"
+	"lib/graphics/rgb/"
+	"lib/graphics/image/"
+
+	"lib/progress_bar/"
+	"lib/logger/"
 )
 
 add_executable(pix_tester
 	src/main.cpp
 	utils/utils.cpp
-	logger/logger.cpp
+	lib/progress_bar/progress_bar.cpp
+	lib/logger/logger.cpp
 )
