@@ -12,7 +12,7 @@ progress_bar::progress_bar(const char description[], long int start, long int to
 	this->_min_refresh_time = 0.1;
 	this->_timer_remaining_time_recent_weight = 0.3;
 
-	this->internal._timer_freq_inv = utils::get_timer_freq_inv();
+	this->_internal.timer_freq_inv = utils::get_timer_freq_inv();
 
 	this->_start = start;
 	this->_total = total;
@@ -21,15 +21,15 @@ progress_bar::progress_bar(const char description[], long int start, long int to
 	this->_is_started = false;
 	this->_is_finished = false;
 
-	this->internal.updates_count = -1;
-	this->internal.time_start = 0;
-	this->internal.timer_time_last_update = 0;
-	this->internal.timer_percentage_last_update = 0;
+	this->_internal.updates_count = -1;
+	this->_internal.time_start = 0;
+	this->_internal.timer_time_last_update = 0;
+	this->_internal.timer_percentage_last_update = 0;
 	
 	for (unsigned long i = 0; i < TIMER_DATA_POINTS; ++i)
 	{
-		this->internal.timer_time_diffs[i] = 0;
-		this->internal.timer_percentage_diffs[i] = 0;
+		this->_internal.timer_time_diffs[i] = 0;
+		this->_internal.timer_percentage_diffs[i] = 0;
 	}
 }
 
@@ -63,47 +63,46 @@ bool progress_bar::update_timer_data(void)
 {
 	if (this->_is_finished)
 	{
-		this->internal.timer_time_last_update = this->get_monotonic_time();
-		this->internal.timer_percentage_last_update = 100;
+		this->_internal.timer_time_last_update = this->get_monotonic_time();
+		this->_internal.timer_percentage_last_update = 100;
 
 		return true;
 	}
 
-	if (this->internal.updates_count < 0)
+	if (this->_internal.updates_count < 0)
 	{
 		const double current_time = this->get_monotonic_time();
 
-		this->internal.time_start = current_time;
-		this->internal.timer_time_last_update = current_time;
-		this->internal.timer_percentage_last_update = this->calculate_percentage();
-		this->internal.updates_count = 0;
+		this->_internal.time_start = current_time;
+		this->_internal.timer_time_last_update = current_time;
+		this->_internal.timer_percentage_last_update = this->calculate_percentage();
+		this->_internal.updates_count = 0;
 
 		return true;
 	}
 
 	const double current_time = this->get_monotonic_time();
-	const double diff_time = current_time - this->internal.timer_time_last_update;
+	const double diff_time = current_time - this->_internal.timer_time_last_update;
 
 	if (diff_time < this->_min_refresh_time)
 		return false;
 
 	const double current_percentage = this->calculate_percentage();
-	const double diff_percentage = current_percentage - this->internal.timer_percentage_last_update;
+	const double diff_percentage = current_percentage - this->_internal.timer_percentage_last_update;
 
-	this->internal.timer_time_diffs[this->internal.updates_count % TIMER_DATA_POINTS] = diff_time;
-	this->internal.timer_percentage_diffs[this->internal.updates_count % TIMER_DATA_POINTS] = diff_percentage;
-	this->internal.timer_time_last_update = current_time;
-	this->internal.timer_percentage_last_update = current_percentage;
-	this->internal.updates_count++;
+	this->_internal.timer_time_diffs[this->_internal.updates_count % TIMER_DATA_POINTS] = diff_time;
+	this->_internal.timer_percentage_diffs[this->_internal.updates_count % TIMER_DATA_POINTS] = diff_percentage;
+	this->_internal.timer_time_last_update = current_time;
+	this->_internal.timer_percentage_last_update = current_percentage;
+	++this->_internal.updates_count;
 
 	return true;
 }
 
 void progress_bar::print_elapsed_time(void)
 {
-	const double elapsed_time = (this->internal.timer_time_last_update - this->internal.time_start);
+	const double elapsed_time = (this->_internal.timer_time_last_update - this->_internal.time_start);
 
-	// Calculate elapsed hours, minutes and seconds
 	const int
 		hours = static_cast<int>(elapsed_time) / 3600,
 		minutes = static_cast<int>(elapsed_time) % 3600 / 60,
@@ -122,17 +121,17 @@ void progress_bar::print_remaining_time(void)
 		recent_rate = this->calculate_recent_rate(),
 		blended_rate =
 			this->_timer_remaining_time_recent_weight * recent_rate +
-			(1.0 - this->_timer_remaining_time_recent_weight) * overall_rate;
+			(1 - this->_timer_remaining_time_recent_weight) * overall_rate;
 
-	if (blended_rate <= 0.0)
+	if (blended_rate <= 0)
 	{
-		std::fputs("--:--:--", stdout);
+		std::cout << "--:--:--";
 	
 		return;
 	}
 
 	const double
-		remaining_percentage = 100.0 - this->internal.timer_percentage_last_update,
+		remaining_percentage = 100 - this->_internal.timer_percentage_last_update,
 		estimated_remaining_time = remaining_percentage / blended_rate;
 
 	// Calculate remaining hours, minutes and seconds
@@ -142,7 +141,7 @@ void progress_bar::print_remaining_time(void)
 		seconds = static_cast<int>(estimated_remaining_time) % 60;
 
 	if (hours < 0 || minutes < 0 || seconds < 0)
-		std::fputs("--:--:--", stdout);
+		std::cout << "--:--:--";
 	else
 		std::printf("%02d:%02d:%02d", hours, minutes, seconds);
 }
@@ -224,36 +223,38 @@ UTF8_codes progress_bar::get_utf8_codes(void)
 void progress_bar::print_progress_bar(void)
 {
 	const UTF8_codes utf8_codes = this->get_utf8_codes();
-	std::fputs("\r", stdout);
+	std::cout << "\r";
 
 	if (utf8_codes.is_utf8)
 	{
-		std::fputs(utf8_codes.reset, stdout);
-		std::fputs(utf8_codes.disable_cursor, stdout);
-		std::fputs(utf8_codes.erase_current_line, stdout);
+		std::cout << utf8_codes.reset;
+		std::cout << utf8_codes.disable_cursor;
+		std::cout << utf8_codes.erase_current_line;
 	}
 
-	const double percentage = this->internal.timer_percentage_last_update;
-	const double clamped = percentage < 0.0 ? 0.0 : (percentage > 100.0 ? 100.0 : percentage);
+	const double percentage = this->_internal.timer_percentage_last_update;
+	const double clamped = percentage < 0 ? 0 : (percentage > 100 ? 100 : percentage);
 
-	const int total_half_cells = PROGRESS_BAR_WIDTH_DEFAULT * 2;
-	const int filled_half_cells = static_cast<int>(clamped / 100.0 * total_half_cells);
-	const int full_cells = filled_half_cells / 2;
-	const bool has_left_half_cell = filled_half_cells % 2 > 0;
-	const int empty_cells = PROGRESS_BAR_WIDTH_DEFAULT - full_cells;
-	const bool has_right_half_cell = !has_left_half_cell && empty_cells > 0;
+	const int
+		total_half_cells = PROGRESS_BAR_WIDTH_DEFAULT * 2,
+		filled_half_cells = static_cast<int>(clamped / 100 * total_half_cells),
+		full_cells = filled_half_cells / 2,
+		empty_cells = PROGRESS_BAR_WIDTH_DEFAULT - full_cells;
+	const bool
+		has_left_half_cell = filled_half_cells % 2 > 0,
+		has_right_half_cell = !has_left_half_cell && empty_cells > 0;
 
 	const char* fill_color = this->_is_finished ? utf8_codes.color_fill_after_ended : utf8_codes.color_fill;
 
 	// Spinner
 	if (utf8_codes.spinner_animation_length > 0)
 	{
-		const int spinner_index = this->internal.updates_count % utf8_codes.spinner_animation_length;
+		const int spinner_index = this->_internal.updates_count % utf8_codes.spinner_animation_length;
 			
-		std::fputs(utf8_codes.color_spinner, stdout);
-		std::fputs(utf8_codes.spinner[spinner_index], stdout);
-		std::fputs(utf8_codes.reset, stdout);
-		std::fputs(" ", stdout);
+		std::cout << utf8_codes.color_spinner;
+		std::cout << utf8_codes.spinner[spinner_index];
+		std::cout << utf8_codes.reset;
+		std::cout << " ";
 	}
 
 	// Description
@@ -263,97 +264,97 @@ void progress_bar::print_progress_bar(void)
 		std::cout << description << " ";
 
 	// Filled cells
-	std::fputs(utf8_codes.bar_prefix, stdout);
+	std::cout << utf8_codes.bar_prefix;
 
 	if (filled_half_cells > 0)
 	{
-		std::fputs(fill_color, stdout);
+		std::cout << fill_color;
 		
 		for (int i = 0; i < full_cells; i++)
-			std::fputs(utf8_codes.bar_fill, stdout);
+			std::cout << utf8_codes.bar_fill;
 
 		if (has_left_half_cell)
-			std::fputs(utf8_codes.bar_fill_head, stdout);
+			std::cout << utf8_codes.bar_fill_head;
 
-		std::fputs(utf8_codes.reset, stdout);
+		std::cout << utf8_codes.reset;
 	}
 
 	// Unfilled cells
 	if (empty_cells > 0)
 	{
-		std::fputs(utf8_codes.color_empty, stdout);
+		std::cout << utf8_codes.color_empty;
 
 		if (has_right_half_cell)
-			std::fputs(utf8_codes.bar_empty_head, stdout);
+			std::cout << utf8_codes.bar_empty_head;
 
 		int i = (has_left_half_cell || has_right_half_cell) ? 1 : 0;
 		
-		for (; i < empty_cells; i++)
-			std::fputs(utf8_codes.bar_empty, stdout);
+		for (; i < empty_cells; ++i)
+			std::cout << utf8_codes.bar_empty;
 	}
 	
-	std::fputs(utf8_codes.reset, stdout);
-	std::fputs(utf8_codes.bar_suffix, stdout);
+	std::cout << utf8_codes.reset;
+	std::cout << utf8_codes.bar_suffix;
 
 	// Extra Info
 	std::printf(
 		" %s%3d%%%s %s ",
 		utf8_codes.color_percentage,
-		(int)clamped,
+		static_cast<int>(clamped),
 		utf8_codes.reset,
 		utf8_codes.separator
 	);
 	
-	std::fputs(utf8_codes.color_elapsed_time, stdout);
+	std::cout << utf8_codes.color_elapsed_time;
 	this->print_elapsed_time();
-	std::fputs(utf8_codes.reset, stdout);
-	std::fputs(" ", stdout);
-	std::fputs(utf8_codes.separator, stdout);
-	std::fputs(" ", stdout);
-	std::fputs(utf8_codes.color_remaining_time, stdout);
+	std::cout << utf8_codes.reset;
+	std::cout << " ";
+	std::cout << utf8_codes.separator;
+	std::cout << " ";
+	std::cout << utf8_codes.color_remaining_time;
 	this->print_remaining_time();
-	std::fputs(utf8_codes.reset, stdout);
+	std::cout << utf8_codes.reset;
 
 	// Reset cursor
 	if (this->_is_finished)
 	{
-		std::fputs(utf8_codes.enable_cursor, stdout);
-		std::fputs("\n", stdout);
+		std::cout << utf8_codes.enable_cursor;
+		std::cout << "\n";
 	}
 
-	std::fflush(stdout);
+	std::cout << std::flush;
 }
 
 double progress_bar::calculate_percentage(void)
 {
-	const int64_t
+	const long int
 		start = this->_start,
 		total = this->_total - start,
 		current = this->_current - start;
 		
 	if (total <= 0 || current <= 0)
-		return 0.0;
+		return 0;
 
 	if (current >= total)
-		return 100.0;
+		return 100;
 
 	return static_cast<double>(current) / static_cast<double>(total) * 100;
 }
 
 double progress_bar::calculate_overall_rate(void)
 {
-	const double elapsed_time = this->internal.timer_time_last_update - this->internal.time_start;
+	const double elapsed_time = this->_internal.timer_time_last_update - this->_internal.time_start;
 
 	if (elapsed_time <= 0)
 		return 0;
 
-	return static_cast<double>(this->internal.timer_percentage_last_update) / elapsed_time;
+	return static_cast<double>(this->_internal.timer_percentage_last_update) / elapsed_time;
 }
 
 double progress_bar::calculate_recent_rate(void)
 {
 	// We don't need recent rate anyways if we only have a few data points
-	if (this->internal.updates_count <= TIMER_DATA_POINTS)
+	if (this->_internal.updates_count <= TIMER_DATA_POINTS)
 		return this->calculate_overall_rate();
 
 	double
@@ -362,8 +363,8 @@ double progress_bar::calculate_recent_rate(void)
 
 	for (unsigned long i = 0; i < TIMER_DATA_POINTS; ++i)
 	{
-		sum_time += this->internal.timer_time_diffs[i];
-		sum_percent += this->internal.timer_percentage_diffs[i];
+		sum_time += this->_internal.timer_time_diffs[i];
+		sum_percent += this->_internal.timer_percentage_diffs[i];
 	}
 
 	if (sum_time <= 1E-9)
@@ -374,11 +375,11 @@ double progress_bar::calculate_recent_rate(void)
 
 double progress_bar::get_monotonic_time(void)
 {
-#ifdef _WIN32
+#if defined(_WIN32) || defined(_WIN64)
 	LARGE_INTEGER now;
 	QueryPerformanceCounter(&now);
 	
-	return static_cast<double>(now.QuadPart) * this->internal._timer_freq_inv;
+	return static_cast<double>(now.QuadPart) * this->_internal.timer_freq_inv;
 #else
 	struct timespec ts;
 
@@ -386,5 +387,5 @@ double progress_bar::get_monotonic_time(void)
 		return 0.0;
 
 	return static_cast<double>(ts.tv_sec) + static_cast<double>(ts.tv_nsec / 1E9);
-#endif // _WIN32
+#endif
 }
