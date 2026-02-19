@@ -1,4 +1,4 @@
-set terminal png size 1080, 720
+set terminal png size 1920, 1080
 set key outside right center vertical
 set grid
 
