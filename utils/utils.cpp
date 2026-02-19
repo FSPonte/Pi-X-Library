@@ -122,93 +122,118 @@ namespace utils
 		std::cout << std::dec << "\n\n";
 	}
 
-	bool should_use_utf8(FILE* stream)
+	bool should_use_utf8(std::ostream& stream)
 	{
-		if (!ISATTY(FILENO(stream)))
-			return true;
+		int fd = -1;
 
+		// 1. Identify the file descriptor
+		if (&stream == &std::cout)
+			fd = STDOUT_FILENO;
+		else if (&stream == &std::cerr || &stream == &std::clog)
+			fd = STDERR_FILENO;
+
+		// 2. If it's not a standard stream (like a file or stringstream), 
+		// fd remains -1. isatty(-1) will return false.
+		if (fd == -1 || !isatty(fd))
+			return true; 
+
+		// 3. It is a terminal; check environment/capabilities
 		return terminal_supports_utf8();
 	}
 
-	bool should_use_color(FILE* stream)
+	bool should_use_color(std::ostream& stream)
 	{
-		// NO_COLOR set
-		// Don’t output ANSI color escape codes, see no-color.org
+		// 1. Check NO_COLOR (Standard: https://no-color.org)
 		const char* no_color = std::getenv("NO_COLOR");
-		
 		if (no_color && no_color[0] != '\0')
 			return false;
 
-		// CLICOLOR_FORCE set, but NO_COLOR unset
-		// ANSI colors should be enabled no matter what
+		// 2. Check CLICOLOR_FORCE
 		const char* force_color = std::getenv("CLICOLOR_FORCE");
-		
+
 		if (force_color && std::strcmp(force_color, "0") != 0)
 			return true;
 
-		// Check if the stream is a terminal
-		int fd = FILENO(stream);
+		// 3. Map C++ stream to file descriptor
+		int fd = -1;
 
-		if (!ISATTY(fd))
+		if (&stream == &std::cout)
+			fd = 1; // STDOUT_FILENO
+		else if (&stream == &std::cerr || &stream == &std::clog)
+			fd = 2; // STDERR_FILENO
+
+		// If it's not a standard stream or not a TTY (e.g. redirected to file), no color
+		if (fd == -1 || !ISATTY(fd))
 			return false;
 
-		// Check TERM variable for "dumb" terminals
+		// 4. Check TERM variable for "dumb" terminals
 		const char* term = std::getenv("TERM");
-		
+
 		if (term && std::strcmp(term, "dumb") == 0)
 			return false;
 
-	// Windows Specific: Enable Virtual Terminal Processing (ANSI support)
+		// 5. Windows Specific: Enable Virtual Terminal Processing (ANSI support)
 	#ifdef _WIN32
-		HANDLE hOut = static_cast<HANDLE>(_get_osfhandle(fd));
+		HANDLE hOut = GET_OS_HANDLE(fd);
 
 		if (hOut == INVALID_HANDLE_VALUE)
 			return false;
 
 		DWORD dwMode = 0;
-
+		
 		if (!GetConsoleMode(hOut, &dwMode))
 			return false;
 
-	// ENABLE_VIRTUAL_TERMINAL_PROCESSING might not be defined in older SDKs
-	#ifndef ENABLE_VIRTUAL_TERMINAL_PROCESSING
-	#define ENABLE_VIRTUAL_TERMINAL_PROCESSING 0x0004
-	#endif
+		#ifndef ENABLE_VIRTUAL_TERMINAL_PROCESSING
+		#define ENABLE_VIRTUAL_TERMINAL_PROCESSING 0x0004
+		#endif
 
 		if (!(dwMode & ENABLE_VIRTUAL_TERMINAL_PROCESSING))
 		{
 			if (!SetConsoleMode(hOut, dwMode | ENABLE_VIRTUAL_TERMINAL_PROCESSING))
-				return false; // Failed to enable ANSI support on this Windows console
+				return false; 
 		}
-	#endif // _WIN32
+	#endif
 
 		return true;
 	}
 
-	int get_terminal_width(FILE* stream)
+	int get_terminal_width(std::ostream& stream)
 	{
-		if (!stream)
-			return FILE_WIDTH_DEFAULT;
+		// 1. Map C++ stream to a File Descriptor
+		int fd = -1;
+	
+		if (&stream == &std::cout) fd = 1;      // STDOUT_FILENO
+		else if (&stream == &std::cerr) fd = 2; // STDERR_FILENO
+		else if (&stream == &std::clog) fd = 2; // STDERR_FILENO
 
+		// If it's a file, stringstream, or null stream, return default
+		if (fd == -1) return TERMINAL_WIDTH_DEFAULT;
+
+		// 2. Query the OS for terminal dimensions
 	#ifdef _WIN32
-		const int fd = FILENO(stream);
-		HANDLE hFile = static_cast<HANDLE>(_get_osfhandle(fd));
+		HANDLE hFile = reinterpret_cast<HANDLE>(_get_osfhandle(fd));
 		CONSOLE_SCREEN_BUFFER_INFO csbi;
-
+		
 		if (hFile != INVALID_HANDLE_VALUE && GetConsoleScreenBufferInfo(hFile, &csbi))
 			return csbi.srWindow.Right - csbi.srWindow.Left + 1;
 	#else
 		struct winsize w;
-		const int fd = FILENO(stream);
 
-		if (ioctl(fd, TIOCGWINSZ, &w) != -1)
+		if (ioctl(fd, TIOCGWINSZ, &w) != -1 && w.ws_col > 0)
 			return w.ws_col;
-	#endif // _WIN32
-		// Check COLUMNS environment variable
+	#endif
+
+		// 3. Fallback to Environment Variable (useful for some CI/CD environments)
 		const char* env_cols = std::getenv("COLUMNS");
 
 		if (env_cols)
-			return std::atoi(env_cols);
+		{
+			int cols = std::atoi(env_cols);
+		
+			if (cols > 0)
+				return cols;
+		}
 
 		return TERMINAL_WIDTH_DEFAULT;
 	}

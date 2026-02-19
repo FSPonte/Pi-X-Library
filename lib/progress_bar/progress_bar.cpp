@@ -110,7 +110,7 @@ void progress_bar::print_elapsed_time(void)
 		seconds = static_cast<int>(elapsed_time) % 60;
 
 	if (hours < 0 || minutes < 0 || seconds < 0)
-		std::fputs("--:--:--", stdout);
+		std::cout << "--:--:--";
 	else
 		std::printf("%02d:%02d:%02d", hours, minutes, seconds);
 }
@@ -149,7 +149,7 @@ void progress_bar::print_remaining_time(void)
 
 UTF8_codes progress_bar::get_utf8_codes(void)
 {
-	if (utils::should_use_utf8(stdout) && utils::should_use_color(stdout))
+	if (utils::should_use_utf8(std::cout) && utils::should_use_color(std::cout))
 	{
 		return UTF8_codes{
 			.is_utf8 = true,
