@@ -1,6 +1,8 @@
 #ifndef _PIX_LIB_HPP_
 #define _PIX_LIB_HPP_
 
+#define __PIX_VERSION__ "1.0"
+
 #include <sys_vars.hpp>
 #include <asserts.hpp>
 #include <exceptions.hpp>
