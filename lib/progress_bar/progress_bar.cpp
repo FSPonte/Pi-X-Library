@@ -32,7 +32,7 @@ int get_terminal_width(FILE* stream);
 */
 double get_timer_freq_inv(void);
 
-progress_bar::progress_bar(const char description[], pix::types::int64_t start, pix::types::int64_t total)
+progress_bar::progress_bar(const char description[], long int start, long int total)
 {
 	std::strncpy(this->_description, description, D_BUFFER_SIZE);
 	this->_min_refresh_time = 0.1;
@@ -67,7 +67,7 @@ void progress_bar::start(void)
 		this->print_progress_bar();
 }
 
-void progress_bar::update(pix::types::int64_t current)
+void progress_bar::update(long int current)
 {
 	this->_current = current;
 

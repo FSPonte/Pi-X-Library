@@ -3,7 +3,6 @@
 
 // Dependencies
 #include <sys_vars.hpp>
-#include <types.hpp>
 
 // Terminal width when it cannot be determined
 #define TERMINAL_WIDTH_DEFAULT 80
@@ -52,7 +51,7 @@ class progress_bar
 {
 public:
 
-	progress_bar(const char[], pix::types::int64_t, pix::types::int64_t);
+	progress_bar(const char[], long int, long int);
 
 	/**
 	 * @brief Start a progress bar.
@@ -64,7 +63,7 @@ public:
 	 * @param progress_bar The progress bar to update.
 	 * @param current The current value of the progress bar.
 	*/
-	void update(pix::types::int64_t);
+	void update(long int);
 
 	/**
 	 * @brief Finish a progress bar.
@@ -74,7 +73,7 @@ public:
 
 private:
 
-	pix::types::int64_t
+	long int
 		_start,
 		_total,
 		_current;
@@ -90,7 +89,7 @@ private:
 
 	struct
 	{
-		pix::types::int64_t updates_count;
+		long int updates_count;
 		double
 			time_start,
 			timer_time_last_update,
