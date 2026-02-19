@@ -1,8 +1,10 @@
 #ifndef _PIX_LIB_HPP_
 #define _PIX_LIB_HPP_
 
+// Library version
 #define __PIX_VERSION__ "1.0"
 
+// Pure header files
 #include <sys_vars.hpp>
 #include <asserts.hpp>
 #include <exceptions.hpp>
@@ -10,9 +12,10 @@
 #include <constants.hpp>
 #include <macros.hpp>
 
-#include <logger.hpp>
-#include <progress_bar.hpp>
+// Utility libraries
+#include <utils.hpp>
 
+// Template libraries
 #include <type_info.hpp>
 #include <c_array.hpp>
 #include <memory.hpp>
@@ -43,5 +46,9 @@
 #include <signal.hpp>
 #include <rgb.hpp>
 #include <image.hpp>
+
+// Object libraries
+#include <logger.hpp>
+#include <progress_bar.hpp>
 
 #endif // _PIX_LIB_HPP_

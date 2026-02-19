@@ -33,9 +33,8 @@ Library for embedded systems and OS based programs
 	- Elementary charge
 	- Newtonian constant of gravitation
 - Macros
-## Object libraries
-- Logger
-- Progress bar
+## Utility libraries
+General purpose libraries
 ## Template libraries
 - Type info
 	- is_same: Compares two data types
@@ -100,5 +99,8 @@ Library for embedded systems and OS based programs
 - Graphics
   	- RGB values
   	- Image object
+## Object libraries
+- Logger
+- Progress bar
 
 Author: FSPonte @ 2025

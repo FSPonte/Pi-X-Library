@@ -5,12 +5,12 @@ cmake_minimum_required(VERSION 3.22)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-add_compile_options(-Wall -Wextra -Wpedantic)
+add_compile_options(-O3 -Wall -Wextra -Wpedantic)
 
 include_directories(
-	"utils/"
-
 	"include/"
+
+	"utils/"
 
 	"lib/type_info/"
 	"lib/c_array/"
@@ -42,13 +42,13 @@ include_directories(
 	"lib/graphics/rgb/"
 	"lib/graphics/image/"
 
-	"lib/progress_bar/"
 	"lib/logger/"
+	"lib/progress_bar/"
 )
 
 add_executable(pix_tester
 	src/main.cpp
 	utils/utils.cpp
-	lib/progress_bar/progress_bar.cpp
 	lib/logger/logger.cpp
+	lib/progress_bar/progress_bar.cpp
 )
