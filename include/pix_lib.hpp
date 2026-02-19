@@ -8,6 +8,9 @@
 #include <constants.hpp>
 #include <macros.hpp>
 
+#include <logger.hpp>
+#include <progress_bar.hpp>
+
 #include <type_info.hpp>
 #include <c_array.hpp>
 #include <memory.hpp>
