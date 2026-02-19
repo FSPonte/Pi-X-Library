@@ -4,12 +4,6 @@
 // Dependencies
 #include <sys_vars.hpp>
 
-// Terminal width when it cannot be determined
-#define TERMINAL_WIDTH_DEFAULT 80
-
-// Default output width when printing to file
-#define FILE_WIDTH_DEFAULT 120
-
 // Number of data points to keep for timer calculations
 #define TIMER_DATA_POINTS 5
 
