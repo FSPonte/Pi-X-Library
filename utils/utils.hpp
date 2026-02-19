@@ -4,6 +4,20 @@
 // Dependencies
 #include <ostream>
 
+// Terminal width when it cannot be determined
+#define TERMINAL_WIDTH_DEFAULT 80
+
+// Default output width when printing to file
+#define FILE_WIDTH_DEFAULT 120
+
+#if defined(_WIN32) || defined(_WIN64)
+#include <io.h>
+#define ISATTY _isatty
+#else
+#include <unistd.h>
+#define ISATTY isatty
+#endif
+
 // Utilities
 namespace utils
 {
