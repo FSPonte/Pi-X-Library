@@ -2,6 +2,7 @@
 #define _UTILS_HPP_
 
 // Dependencies
+#include <os.hpp>
 #include <ostream>
 
 // Terminal width when it cannot be determined
@@ -10,12 +11,12 @@
 // Default output width when printing to file
 #define FILE_WIDTH_DEFAULT 120
 
-#if defined(_WIN32) || defined(_WIN64)
-#include <io.h>
-#define ISATTY _isatty
-#else
+#if LINUX_DEFINED
 #include <unistd.h>
 #define ISATTY isatty
+#elif WIN_DEFINED
+#include <io.h>
+#define ISATTY _isatty
 #endif
 
 // Utilities

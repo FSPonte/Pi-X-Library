@@ -7,10 +7,10 @@
 #include <cstring>
 #include <fstream>
 
-#if defined(__linux__)
+#if LINUX_DEFINED
 #include <langinfo.h>
 #include <sys/ioctl.h>
-#elif defined(_WIN32) || defined(_WIN64)
+#elif WINDOWS_DEFINED
 #include <windows.h>
 #endif
 
@@ -30,9 +30,9 @@ namespace utils
 	{
 		int ret;
 
-	#if defined(__linux__)
+	#if LINUX_DEFINED
 		ret = std::system("clear");
-	#elif defined(_WIN32) || defined(_WIN64)
+	#elif WIN_DEFINED
 		ret = std::system("cls");
 	#else
 		throw "OS not supported";
@@ -157,7 +157,7 @@ namespace utils
 			return false;
 
 		// Windows Specific: Enable Virtual Terminal Processing (ANSI support)
-	#if defined(_WIN32) || defined(_WIN64)
+	#if WIN_DEFINED
 		HANDLE hOut = GET_OS_HANDLE(fd);
 
 		if (hOut == INVALID_HANDLE_VALUE)
@@ -197,7 +197,7 @@ namespace utils
 			return TERMINAL_WIDTH_DEFAULT;
 
 		// Query the OS for terminal dimensions
-	#if defined(_WIN32) || defined(_WIN64)
+	#if WIN_DEFINED
 		HANDLE hFile = reinterpret_cast<HANDLE>(_get_osfhandle(fd));
 		CONSOLE_SCREEN_BUFFER_INFO csbi;
 		
@@ -226,7 +226,7 @@ namespace utils
 
 	double get_timer_freq_inv(void) noexcept(true)
 	{
-	#if defined(_WIN32) || defined(_WIN64)
+	#if WIN_DEFINED
 		LARGE_INTEGER freq;
 		QueryPerformanceFrequency(&freq);
 
@@ -263,7 +263,7 @@ namespace utils
 
 	bool terminal_supports_utf8(void) noexcept(true)
 	{
-	#if defined(_WIN32) || defined(_WIN64)
+	#if WIN_DEFINED
 		return GetConsoleOutputCP() == CP_UTF8;
 	#else
 		const char* codeset = nl_langinfo(CODESET);
