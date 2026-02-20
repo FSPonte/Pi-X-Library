@@ -30,8 +30,10 @@ namespace utils
 
 	/**
 	 * @brief Clear the terminal
+	 * @throw OS not supported
+	 * @throw Shell command failed
 	*/
-	void clear(void) noexcept(true);
+	void clear(void) noexcept(false);
 
 	/**
 	 * @brief Parse program arguments

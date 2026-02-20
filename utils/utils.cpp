@@ -7,11 +7,11 @@
 #include <cstring>
 #include <fstream>
 
-#if defined(_WIN32) || defined(_WIN64)
-#include <windows.h>
-#else
+#if defined(__linux__)
 #include <langinfo.h>
 #include <sys/ioctl.h>
+#elif defined(_WIN32) || defined(_WIN64)
+#include <windows.h>
 #endif
 
 namespace utils
@@ -26,13 +26,20 @@ namespace utils
 		std::cin.get();
 	}
 
-	void clear(void) noexcept(true)
+	void clear(void) noexcept(false)
 	{
-	#if defined(_WIN32) || defined(_WIN64)
-		std::system("cls");
+		int ret;
+
+	#if defined(__linux__)
+		ret = std::system("clear");
+	#elif defined(_WIN32) || defined(_WIN64)
+		ret = std::system("cls");
 	#else
-		std::system("clear");
+		throw "OS not supported";
 	#endif
+
+		if (ret != 0)
+			throw "Shell command failed";
 	}
 
 	void parse(const int argc, char* argv[]) noexcept(true)
