@@ -15,16 +15,15 @@ int main(int argc, char* argv[])
 	// Parse arguments
 	utils::parse(argc, argv);
 
-	constexpr pix::types::int64_t N = 1E9;
+	constexpr unsigned long DIM = 1E9;
+	progress_bar pgb("Processing", 0, DIM);
 
-	progress_bar pgb("Processing", 0, N);
-
-	for (pix::types::int64_t i = 0; i <= N; i++)
+	for (unsigned long i = 0; i <= DIM; ++i)
 	{
 		if (i % 100 == 0)
 			pgb.update(i);
 	}
-	
+
 	pgb.finish();
 
 	return EXIT_SUCCESS;
