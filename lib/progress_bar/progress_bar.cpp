@@ -10,6 +10,7 @@ progress_bar::progress_bar(const char* description, long int start, long int tot
 {
 	std::strncpy(this->_description, description, sizeof(this->_description) - 1);
 	this->_description[sizeof(this->_description) - 1] = '\0';
+	
 	this->_min_refresh_time = 0.1;
 	this->_timer_remaining_time_recent_weight = 0.3;
 
