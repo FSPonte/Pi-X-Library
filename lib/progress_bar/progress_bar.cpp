@@ -6,6 +6,23 @@
 #include <iostream>
 #include <cstring>
 
+double get_monotonic_time(void)
+{
+#if LINUX_DEFINED
+	struct timespec ts;
+
+	if (clock_gettime(CLOCK_MONOTONIC, &ts) != 0)
+		return 0;
+
+	return static_cast<double>(ts.tv_sec) + static_cast<double>(ts.tv_nsec / 1E9);
+#elif WIN_DEFINED
+	LARGE_INTEGER now;
+	QueryPerformanceCounter(&now);
+	
+	return static_cast<double>(now.QuadPart) * this->_internal.timer_freq_inv;
+#endif
+}
+
 UTF8_codes get_utf8_codes(void)
 {
 	if (utils::should_use_utf8(std::cout) && utils::should_use_color(std::cout))
@@ -133,23 +150,6 @@ void progress_bar::finish(void)
 
 	if (this->update_timer_data())
 		this->print_progress_bar();
-}
-
-double progress_bar::get_monotonic_time(void)
-{
-#if LINUX_DEFINED
-	struct timespec ts;
-
-	if (clock_gettime(CLOCK_MONOTONIC, &ts) != 0)
-		return 0;
-
-	return static_cast<double>(ts.tv_sec) + static_cast<double>(ts.tv_nsec / 1E9);
-#elif WIN_DEFINED
-	LARGE_INTEGER now;
-	QueryPerformanceCounter(&now);
-	
-	return static_cast<double>(now.QuadPart) * this->_internal.timer_freq_inv;
-#endif
 }
 
 double progress_bar::calculate_percentage(void)

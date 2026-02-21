@@ -10,6 +10,8 @@
 // Progress bar default width
 #define PROGRESS_BAR_WIDTH_DEFAULT 40
 
+double get_monotonic_time(void);
+
 typedef struct
 {
 	const bool is_utf8;
@@ -72,8 +74,6 @@ public:
 	void finish(void);
 
 private:
-
-	double get_monotonic_time(void);
 
 	/**
 	 * @brief Calculate the percentage of completion.
