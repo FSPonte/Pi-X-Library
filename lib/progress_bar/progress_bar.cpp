@@ -204,7 +204,7 @@ bool progress_bar::update_timer_data(void)
 {
 	if (this->_is_finished)
 	{
-		this->_internal.timer_time_last_update = this->get_monotonic_time();
+		this->_internal.timer_time_last_update = get_monotonic_time();
 		this->_internal.timer_percentage_last_update = 100;
 
 		return true;
@@ -212,7 +212,7 @@ bool progress_bar::update_timer_data(void)
 
 	if (this->_internal.updates_count < 0)
 	{
-		const double current_time = this->get_monotonic_time();
+		const double current_time = get_monotonic_time();
 
 		this->_internal.time_start = current_time;
 		this->_internal.timer_time_last_update = current_time;
@@ -222,7 +222,7 @@ bool progress_bar::update_timer_data(void)
 		return true;
 	}
 
-	const double current_time = this->get_monotonic_time();
+	const double current_time = get_monotonic_time();
 	const double diff_time = current_time - this->_internal.timer_time_last_update;
 
 	if (diff_time < this->_min_refresh_time)
