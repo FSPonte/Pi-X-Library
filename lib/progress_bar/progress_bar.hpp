@@ -4,11 +4,8 @@
 // Dependencies
 #include <sys_vars.hpp>
 
-// Number of data points to keep for timer calculations
-#define TIMER_DATA_POINTS 5
-
-// Progress bar default width
-#define PROGRESS_BAR_WIDTH_DEFAULT 40
+#define TIMER_DATA_POINTS 5 // Number of data points to keep for timer calculations
+#define PROGRESS_BAR_WIDTH_DEFAULT 40 // Progress bar default width
 
 double get_monotonic_time(void);
 
