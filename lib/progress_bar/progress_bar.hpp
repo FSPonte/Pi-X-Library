@@ -41,13 +41,15 @@ typedef struct
 	const int spinner_animation_length;
 } UTF8_codes;
 
+UTF8_codes get_utf8_codes(void);
+
 class progress_bar
 {
 public:
 
 	/**
 	 * @brief Constructor
-	 * @param desc Description
+	 * @param desc Description C-string
 	 * @param start Starting point
 	 * @param total Total amount
 	*/
@@ -71,11 +73,7 @@ public:
 
 private:
 
-	bool update_timer_data(void);
-	void print_elapsed_time(void);
-	void print_remaining_time(void);
-	UTF8_codes get_utf8_codes(void);
-	void print_progress_bar(void);
+	double get_monotonic_time(void);
 
 	/**
 	 * @brief Calculate the percentage of completion.
@@ -95,7 +93,10 @@ private:
 	*/
 	double calculate_recent_rate(void);
 
-	double get_monotonic_time(void);
+	bool update_timer_data(void);
+	void print_elapsed_time(void);
+	void print_remaining_time(void);
+	void print_progress_bar(void);
 
 	long int
 		_start,

@@ -6,11 +6,85 @@
 #include <iostream>
 #include <cstring>
 
-progress_bar::progress_bar(const char* description, long int start, long int total)
+UTF8_codes get_utf8_codes(void)
+{
+	if (utils::should_use_utf8(std::cout) && utils::should_use_color(std::cout))
+	{
+		return UTF8_codes{
+			.is_utf8 = true,
+
+			.reset = "\033[0m",
+			.erase_current_line = "\033[2K",
+			.disable_cursor = "\033[?25l",
+			.enable_cursor = "\033[?25h",
+
+			.bar_prefix = "",
+			.bar_suffix = "",
+			.bar_fill = "\u2501",
+			.bar_empty = "\u2501",
+			.bar_fill_head = "\u2578",
+			.bar_empty_head = "\u257A",
+			.separator = "\u2022",
+
+			.color_spinner = "\033[0;32m",
+			.color_fill = "\033[38;5;197m",
+			.color_fill_after_ended = "\033[38;5;106m",
+			.color_empty = "\033[0;90m",
+			.color_percentage = "\033[0;35m",
+			.color_remaining_time = "\033[0;36m",
+			.color_elapsed_time = "\033[0;33m",
+
+			.spinner =
+				{
+					"\u280B",
+					"\u2819",
+					"\u2839",
+					"\u2838",
+					"\u283C",
+					"\u2834",
+					"\u2826",
+					"\u2827",
+					"\u2807",
+				},
+
+			.spinner_animation_length = 9
+		};
+	}
+	
+	return UTF8_codes{
+		.is_utf8 = false,
+
+		.reset = "",
+		.erase_current_line = "",
+		.disable_cursor = "",
+		.enable_cursor = "",
+
+		.bar_prefix = "[",
+		.bar_suffix = "]",
+		.bar_fill = "=",
+		.bar_empty = " ",
+		.bar_fill_head = ">",
+		.bar_empty_head = ">",
+		.separator = "*",
+
+		.color_spinner = "",
+		.color_fill = "",
+		.color_fill_after_ended = "",
+		.color_empty = "",
+		.color_percentage = "",
+		.color_remaining_time = "",
+		.color_elapsed_time = "",
+
+		.spinner = {NULL},
+		.spinner_animation_length = -1
+	};
+}
+
+progress_bar::progress_bar(const char description[], long int start, long int total)
 {
 	std::strncpy(this->_description, description, sizeof(this->_description) - 1);
 	this->_description[sizeof(this->_description) - 1] = '\0';
-	
+
 	this->_min_refresh_time = 0.1;
 	this->_timer_remaining_time_recent_weight = 0.3;
 
@@ -59,6 +133,71 @@ void progress_bar::finish(void)
 
 	if (this->update_timer_data())
 		this->print_progress_bar();
+}
+
+double progress_bar::get_monotonic_time(void)
+{
+#if LINUX_DEFINED
+	struct timespec ts;
+
+	if (clock_gettime(CLOCK_MONOTONIC, &ts) != 0)
+		return 0;
+
+	return static_cast<double>(ts.tv_sec) + static_cast<double>(ts.tv_nsec / 1E9);
+#elif WIN_DEFINED
+	LARGE_INTEGER now;
+	QueryPerformanceCounter(&now);
+	
+	return static_cast<double>(now.QuadPart) * this->_internal.timer_freq_inv;
+#endif
+}
+
+double progress_bar::calculate_percentage(void)
+{
+	const long int
+		start = this->_start,
+		total = this->_total - start,
+		current = this->_current - start;
+		
+	if (total <= 0 || current <= 0)
+		return 0;
+
+	if (current >= total)
+		return 100;
+
+	return static_cast<double>(current) / static_cast<double>(total) * 100;
+}
+
+double progress_bar::calculate_overall_rate(void)
+{
+	const double elapsed_time = this->_internal.timer_time_last_update - this->_internal.time_start;
+
+	if (elapsed_time <= 0)
+		return 0;
+
+	return static_cast<double>(this->_internal.timer_percentage_last_update) / elapsed_time;
+}
+
+double progress_bar::calculate_recent_rate(void)
+{
+	// We don't need recent rate anyways if we only have a few data points
+	if (this->_internal.updates_count <= TIMER_DATA_POINTS)
+		return this->calculate_overall_rate();
+
+	double
+		sum_time = 0,
+		sum_percent = 0;
+
+	for (unsigned long i = 0; i < TIMER_DATA_POINTS; ++i)
+	{
+		sum_time += this->_internal.timer_time_diffs[i];
+		sum_percent += this->_internal.timer_percentage_diffs[i];
+	}
+
+	if (sum_time <= 1E-9)
+		return this->calculate_overall_rate();
+
+	return sum_percent / sum_time;
 }
 
 bool progress_bar::update_timer_data(void)
@@ -148,83 +287,9 @@ void progress_bar::print_remaining_time(void)
 		std::printf("%02d:%02d:%02d", hours, minutes, seconds);
 }
 
-UTF8_codes progress_bar::get_utf8_codes(void)
-{
-	if (utils::should_use_utf8(std::cout) && utils::should_use_color(std::cout))
-	{
-		return UTF8_codes{
-			.is_utf8 = true,
-
-			.reset = "\033[0m",
-			.erase_current_line = "\033[2K",
-			.disable_cursor = "\033[?25l",
-			.enable_cursor = "\033[?25h",
-
-			.bar_prefix = "",
-			.bar_suffix = "",
-			.bar_fill = "\u2501",
-			.bar_empty = "\u2501",
-			.bar_fill_head = "\u2578",
-			.bar_empty_head = "\u257A",
-			.separator = "\u2022",
-
-			.color_spinner = "\033[0;32m",
-			.color_fill = "\033[38;5;197m",
-			.color_fill_after_ended = "\033[38;5;106m",
-			.color_empty = "\033[0;90m",
-			.color_percentage = "\033[0;35m",
-			.color_remaining_time = "\033[0;36m",
-			.color_elapsed_time = "\033[0;33m",
-
-			.spinner =
-				{
-					"\u280B",
-					"\u2819",
-					"\u2839",
-					"\u2838",
-					"\u283C",
-					"\u2834",
-					"\u2826",
-					"\u2827",
-					"\u2807",
-				},
-
-			.spinner_animation_length = 9
-		};
-	}
-	
-	return UTF8_codes{
-		.is_utf8 = false,
-
-		.reset = "",
-		.erase_current_line = "",
-		.disable_cursor = "",
-		.enable_cursor = "",
-
-		.bar_prefix = "[",
-		.bar_suffix = "]",
-		.bar_fill = "=",
-		.bar_empty = " ",
-		.bar_fill_head = ">",
-		.bar_empty_head = ">",
-		.separator = "*",
-
-		.color_spinner = "",
-		.color_fill = "",
-		.color_fill_after_ended = "",
-		.color_empty = "",
-		.color_percentage = "",
-		.color_remaining_time = "",
-		.color_elapsed_time = "",
-
-		.spinner = {NULL},
-		.spinner_animation_length = -1
-	};
-}
-
 void progress_bar::print_progress_bar(void)
 {
-	const UTF8_codes utf8_codes = this->get_utf8_codes();
+	const UTF8_codes utf8_codes = get_utf8_codes();
 	std::cout << "\r";
 
 	if (utf8_codes.is_utf8)
@@ -325,69 +390,4 @@ void progress_bar::print_progress_bar(void)
 	}
 
 	std::cout << std::flush;
-}
-
-double progress_bar::calculate_percentage(void)
-{
-	const long int
-		start = this->_start,
-		total = this->_total - start,
-		current = this->_current - start;
-		
-	if (total <= 0 || current <= 0)
-		return 0;
-
-	if (current >= total)
-		return 100;
-
-	return static_cast<double>(current) / static_cast<double>(total) * 100;
-}
-
-double progress_bar::calculate_overall_rate(void)
-{
-	const double elapsed_time = this->_internal.timer_time_last_update - this->_internal.time_start;
-
-	if (elapsed_time <= 0)
-		return 0;
-
-	return static_cast<double>(this->_internal.timer_percentage_last_update) / elapsed_time;
-}
-
-double progress_bar::calculate_recent_rate(void)
-{
-	// We don't need recent rate anyways if we only have a few data points
-	if (this->_internal.updates_count <= TIMER_DATA_POINTS)
-		return this->calculate_overall_rate();
-
-	double
-		sum_time = 0,
-		sum_percent = 0;
-
-	for (unsigned long i = 0; i < TIMER_DATA_POINTS; ++i)
-	{
-		sum_time += this->_internal.timer_time_diffs[i];
-		sum_percent += this->_internal.timer_percentage_diffs[i];
-	}
-
-	if (sum_time <= 1E-9)
-		return this->calculate_overall_rate();
-
-	return sum_percent / sum_time;
-}
-
-double progress_bar::get_monotonic_time(void)
-{
-#if defined(_WIN32) || defined(_WIN64)
-	LARGE_INTEGER now;
-	QueryPerformanceCounter(&now);
-	
-	return static_cast<double>(now.QuadPart) * this->_internal.timer_freq_inv;
-#else
-	struct timespec ts;
-
-	if (clock_gettime(CLOCK_MONOTONIC, &ts) != 0)
-		return 0.0;
-
-	return static_cast<double>(ts.tv_sec) + static_cast<double>(ts.tv_nsec / 1E9);
-#endif
 }
