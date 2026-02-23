@@ -57,24 +57,6 @@
 #define STDLOG 2
 #endif
 
-#if defined(__linux__)
-    #define LINUX_DEFINED 1 // Linux
-#else
-    #define LINUX_DEFINED 0 // Linux
-#endif
-
-#if defined(_WIN32) || defined(_WIN64)
-    #define WIN_DEFINED 1 // Windows
-#else
-    #define WIN_DEFINED 0 // Windows
-#endif
-
-#if defined(__APPLE__)
-    #define APPLE_DEFINED 1 // MacOS
-#else
-    #define APPLE_DEFINED 0 // MacOS
-#endif
-
 // Default buffer size
 #define D_BUFFER_SIZE 20
 
