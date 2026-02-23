@@ -10,8 +10,6 @@
 #include <exceptions.hpp>
 #include <types.hpp>
 #include <constants.hpp>
-#include <os.hpp>
-#include <macros.hpp>
 
 // Utility libraries
 #include <utils.hpp>

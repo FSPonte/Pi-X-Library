@@ -32,7 +32,6 @@ Library for embedded systems and OS based programs
 	- Speed of light in vacuum
 	- Elementary charge
 	- Newtonian constant of gravitation
-- Macros
 ## Utility libraries
 General purpose libraries
 ## Template libraries
