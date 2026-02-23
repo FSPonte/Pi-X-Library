@@ -51,7 +51,8 @@ namespace pix::math::sys_lin_equ
 				}
 			}
 			
-			if (pix::math::abs(A_[j][j]) == 0) throw "Singular matrix";
+			if (pix::math::abs(A_[j][j]) == 0)
+				throw "Singular matrix";
 			
 			// Elimination
 			{
@@ -86,7 +87,8 @@ namespace pix::math::sys_lin_equ
 			
 			sol[i] /= A_[i][i];
 			
-			if (sol[i] == pix::math::NaN) throw "NaN value encountered";
+			if (sol[i] == pix::math::NaN)
+				throw "NaN value encountered";
 		}
 
 		// Logger
@@ -143,7 +145,8 @@ namespace pix::math::sys_lin_equ
 				}
 			}
 
-			if (pix::math::abs(upper[k][k]) == 0) throw "Pivot encountered is equal to zero";
+			if (pix::math::abs(upper[k][k]) == 0)
+				throw "Pivot encountered is equal to zero";
 
 			// Compute L[i][k]
 			for (unsigned long i = k + 1; i < DIM; ++i)
