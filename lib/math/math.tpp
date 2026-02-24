@@ -15,49 +15,49 @@ namespace pix::math
 	}
 
 	template <typename type_t>
-	type_t f_mod(type_t arg, const type_t MOD) noexcept(false)
+	type_t f_mod(type_t arg, const type_t mod) noexcept(false)
 	{
 		assert_is_float(type_t);
 
 		if (arg < 0) throw "Argument is a negative number";
-		if (MOD <= 0) throw "Modulus is a non positive number";
+		if (mod <= 0) throw "Modulus is a non positive number";
 
-		if (arg < MOD)
+		if (arg < mod)
 			return arg;
 
-		while (arg >= MOD)
-			arg -= MOD;
+		while (arg >= mod)
+			arg -= mod;
 
 		return arg;
 	}
 
 	template <typename type_t>
-	type_t floor(const type_t ARG) noexcept(false)
+	type_t floor(const type_t arg) noexcept(false)
 	{
 		assert_is_float(type_t);
 
-		return static_cast<type_t>(static_cast<int>(ARG));
+		return static_cast<type_t>(static_cast<int>(arg));
 	}
 
 	template <typename type_t>
-	type_t ceil(const type_t ARG) noexcept(false)
+	type_t ceil(const type_t arg) noexcept(false)
 	{
 		assert_is_float(type_t);
 
-		type_t int_part = static_cast<type_t>(static_cast<long>(ARG));
+		type_t int_part = static_cast<type_t>(static_cast<long>(arg));
 		
-		if (ARG > int_part)
+		if (arg > int_part)
 			int_part += 1;
 
 		return int_part;
 	}
 
 	template <typename type_t>
-	type_t mod_diff(const type_t ARG_1, const type_t ARG_2) noexcept(true)
+	type_t mod_diff(const type_t arg_1, const type_t arg_2) noexcept(true)
 	{
 		assert_is_number(type_t);
 
-		return pix::math::abs(ARG_1 - ARG_2);
+		return pix::math::abs(arg_1 - arg_2);
 	}
 
 	unsigned long fact(unsigned long arg) noexcept(true)
@@ -122,16 +122,17 @@ namespace pix::math
 	};
 
 	template <typename type_t>
-	type_t log(const type_t ARG) noexcept(false)
+	type_t log(const type_t arg) noexcept(false)
 	{
 		assert_is_float(type_t);
 
-		if (ARG <= 0) throw "Argument is a non positive number";
+		if (arg <= 0)
+			throw "Argument is a non positive number";
 
 		unsigned long index = 1;
 		type_t
 			result = 0,
-			coef = (ARG - 1) / (ARG + 1),
+			coef = (arg - 1) / (arg + 1),
 			term = coef,
 			term_sq = coef * coef;
 
@@ -149,11 +150,11 @@ namespace pix::math
 	}
 
 	template <typename type_t>
-	type_t log(const type_t ARG, const type_t BASE) noexcept(false)
+	type_t log(const type_t arg, const type_t base) noexcept(false)
 	{
 		assert_is_float(type_t);
 
-		return pix::math::log(ARG) / pix::math::log(BASE);
+		return pix::math::log(arg) / pix::math::log(base);
 	}
 
 	template <typename type_t>
@@ -189,7 +190,8 @@ namespace pix::math
 	{
 		assert_is_float(type_t);
 
-		if (base == 0 && exponent == 0) throw "Indeterminate case of 0^0";
+		if (base == 0 && exponent == 0)
+			throw "Indeterminate case of 0^0";
 
 		if (base == 0) return 0;
 		if (exponent == 0) return 1;
@@ -224,25 +226,25 @@ namespace pix::math
 	}
 
 	template <typename type_t>
-	type_t root(const type_t ARG, const type_t INDEX) noexcept(false)
+	type_t root(const type_t arg, const type_t index) noexcept(false)
 	{
 		assert_is_float(type_t);
 		
-		if (ARG < 0) throw "Argument is a negative number";
-		if (INDEX == 0) throw "Index is equal to zero";
+		if (arg < 0) throw "Argument is a negative number";
+		if (index == 0) throw "Index is equal to zero";
 		
-		if (INDEX == 1)
-			return ARG;
+		if (index == 1)
+			return arg;
 
-		return pix::math::pow(ARG, 1 / INDEX);
+		return pix::math::pow(arg, 1 / index);
 	}
 
-	unsigned long permut(const unsigned long TOTAL_NUM, const unsigned long SELECTED_NUM) noexcept(false)
+	unsigned long permut(const unsigned long total_num, const unsigned long selected_num) noexcept(false)
 	{
-		if (SELECTED_NUM > TOTAL_NUM)
+		if (selected_num > total_num)
 			return 0;
 
-		return pix::math::fact(TOTAL_NUM) / pix::math::fact(TOTAL_NUM - SELECTED_NUM);
+		return pix::math::fact(total_num) / pix::math::fact(total_num - selected_num);
 	}
 
 	template <unsigned long TOTAL_NUM, unsigned long SELECTED_NUM>
@@ -257,12 +259,12 @@ namespace pix::math
 		static constexpr const unsigned long VALUE = 1;
 	};
 
-	unsigned long comb(const unsigned long TOTAL_NUM, const unsigned long CHOOSING_NUM) noexcept(false)
+	unsigned long comb(const unsigned long total_num, const unsigned long choosing_num) noexcept(false)
 	{
-		if (CHOOSING_NUM > TOTAL_NUM)
+		if (choosing_num > total_num)
 			return 0;
 
-		return pix::math::fact(TOTAL_NUM) / (pix::math::fact(CHOOSING_NUM) * pix::math::fact(TOTAL_NUM - CHOOSING_NUM));
+		return pix::math::fact(total_num) / (pix::math::fact(choosing_num) * pix::math::fact(total_num - choosing_num));
 	}
 
 	template <unsigned long TOTAL_NUM, unsigned long SELECTED_NUM>
@@ -271,9 +273,9 @@ namespace pix::math
 		static constexpr const unsigned long VALUE = pix::math::factorial<TOTAL_NUM>::VALUE / (pix::math::factorial<SELECTED_NUM>::VALUE * pix::math::factorial<TOTAL_NUM - SELECTED_NUM>::VALUE);
 	};
 
-	unsigned long kron_delta(const unsigned long LIN_INDEX, const unsigned long COL_INDEX) noexcept(true)
+	unsigned long kron_delta(const unsigned long lin_index, const unsigned long col_index) noexcept(true)
 	{
-		return static_cast<unsigned long>(LIN_INDEX == COL_INDEX);
+		return static_cast<unsigned long>(lin_index == col_index);
 	}
 
 	template <unsigned long LIN_INDEX, unsigned long COL_INDEX>
