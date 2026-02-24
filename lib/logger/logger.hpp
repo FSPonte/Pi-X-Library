@@ -13,12 +13,6 @@ constexpr const unsigned long MAX_SESSION_ID = 1E3; // Maximum number of session
 */
 class logger
 {
-private:
-
-	unsigned long _session_id; // Session id number
-	std::ofstream _file; // File
-	std::mutex _mutex;
-
 public:
 
 	/**
@@ -104,6 +98,12 @@ public:
 
 	// Disable assignment operator
 	logger& operator = (const logger&) = delete;
+
+private:
+
+	unsigned long _session_id; // Session id number
+	std::ofstream _file; // File
+	std::mutex _mutex;
 };
 
 // Template file
