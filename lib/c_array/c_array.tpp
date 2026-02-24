@@ -14,7 +14,8 @@ namespace pix::c_array
 	template <typename type_t>
 	void swap(type_t* ptr_1, type_t* ptr_2) noexcept(false)
 	{
-		if (ptr_1 == nullptr || ptr_2 == nullptr) throw pix::exceptions::null_ptr;
+		if (ptr_1 == nullptr || ptr_2 == nullptr)
+			throw pix::exceptions::null_ptr;
 
 		type_t* aux = ptr_1; // Auxiliar pointer
 		ptr_1 = ptr_2;
