@@ -13,7 +13,7 @@ namespace pix::memory
 		auto d = reinterpret_cast<unsigned char*>(dst);
 
 		// Copy byte-by-byte until destination is aligned
-		while ((unsigned long)d % 8 && size > 0)
+		while (reinterpret_cast<unsigned long>(d) % 8 && size > 0)
 		{
 			*d++ = *s++;
 			--size;
