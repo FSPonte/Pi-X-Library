@@ -49,41 +49,41 @@ namespace pix::c_array
 	}
 
 	template <typename type_t>
-	void copy(const type_t ARR_O[], type_t arr_d[], const unsigned long DIM) noexcept(false)
+	void copy(const type_t arr_o[], type_t arr_d[], const unsigned long DIM) noexcept(false)
 	{
-		if (ARR_O == nullptr || arr_d == nullptr) throw pix::exceptions::null_ptr;
+		if (arr_o == nullptr || arr_d == nullptr) throw pix::exceptions::null_ptr;
 		if (DIM == 0) throw pix::exceptions::null_dim;
 
 		for (unsigned long i = 0; i < DIM; ++i)
-			arr_d[i] = ARR_O[i];
+			arr_d[i] = arr_o[i];
 	}
 
 	template <typename type_t, unsigned long DIM>
-	void copy(const type_t (&ARR_O)[DIM], type_t (&arr_d)[DIM]) noexcept(true)
+	void copy(const type_t (&arr_o)[DIM], type_t (&arr_d)[DIM]) noexcept(true)
 	{
 		assert_not_nulldim(DIM);
 
-		pix::c_array::copy<type_t>(ARR_O, arr_d, DIM);
+		pix::c_array::copy<type_t>(arr_o, arr_d, DIM);
 	}
 
 	template <typename type_t>
-	void copy(const type_t* ARR_O[], type_t* arr_d[], const unsigned long DIM_1, const unsigned long DIM_2) noexcept(false)
+	void copy(const type_t* arr_o[], type_t* arr_d[], const unsigned long DIM_1, const unsigned long DIM_2) noexcept(false)
 	{
-		if (ARR_O == nullptr || arr_d == nullptr) throw pix::exceptions::null_ptr;
+		if (arr_o == nullptr || arr_d == nullptr) throw pix::exceptions::null_ptr;
 		if (DIM_1 == 0 || DIM_2 == 0) throw pix::exceptions::null_dim;
 
 		for (unsigned long i = 0; i < DIM_1; ++i)
-			pix::c_array::copy<type_t>(ARR_O[i], arr_d[i], DIM_2);
+			pix::c_array::copy<type_t>(arr_o[i], arr_d[i], DIM_2);
 	}
 
 	template <typename type_t, unsigned long DIM_1, unsigned long DIM_2>
-	void copy(const type_t (&ARR_O)[DIM_1][DIM_2], type_t (&arr_d)[DIM_1][DIM_2]) noexcept(true)
+	void copy(const type_t (&arr_o)[DIM_1][DIM_2], type_t (&arr_d)[DIM_1][DIM_2]) noexcept(true)
 	{
 		assert_not_nulldim(DIM_1);
 		assert_not_nulldim(DIM_2);
 
 		for (unsigned long i = 0; i < DIM_1; ++i)
-			pix::c_array::copy<type_t>(ARR_O[i], arr_d[i], DIM_2);
+			pix::c_array::copy<type_t>(arr_o[i], arr_d[i], DIM_2);
 	}
 
 	template <typename type_t>
@@ -188,7 +188,7 @@ namespace pix::c_array
 	}
 
 	template <typename type_t>
-	unsigned long binary_search(type_t arr[], const unsigned long DIM, const type_t TARGET) noexcept(false)
+	unsigned long binary_search(type_t arr[], const unsigned long DIM, const type_t target) noexcept(false)
 	{
 		if (arr == nullptr) throw pix::exceptions::null_ptr;
 		if (DIM == 0) throw pix::exceptions::null_dim;
@@ -202,9 +202,9 @@ namespace pix::c_array
 		{
 			mid = left + 0.5 * (right - left);
 
-			if (arr[mid] < TARGET)
+			if (arr[mid] < target)
 				left = mid + 1;
-			else if (arr[mid] > TARGET)
+			else if (arr[mid] > target)
 				right = mid - 1;
 			else
 				return mid;
@@ -214,15 +214,15 @@ namespace pix::c_array
 	}
 
 	template <typename type_t, unsigned long DIM>
-	unsigned long binary_search(type_t (&arr)[DIM], const type_t TARGET) noexcept(false)
+	unsigned long binary_search(type_t (&arr)[DIM], const type_t target) noexcept(false)
 	{
 		assert_is_number(type_t);
 
-		return pix::c_array::binary_search<type_t>(arr, DIM, TARGET);
+		return pix::c_array::binary_search<type_t>(arr, DIM, target);
 	}
 
 	template <typename type_t>
-	unsigned long binary_approx(type_t arr[], const unsigned long DIM, const type_t TARGET) noexcept(false)
+	unsigned long binary_approx(type_t arr[], const unsigned long DIM, const type_t target) noexcept(false)
 	{
 		if (arr == nullptr) throw pix::exceptions::null_ptr;
 		if (DIM == 0) throw pix::exceptions::null_dim;
@@ -232,16 +232,16 @@ namespace pix::c_array
 			right = DIM - 1,
 			mid;
 
-		if (TARGET <= arr[left]) return left;
-		if (TARGET >= arr[right]) return right;
+		if (target <= arr[left]) return left;
+		if (target >= arr[right]) return right;
 
 		while (left + 1 < right)
 		{
 			mid = left + 0.5 * (right - left);
 
-			if (arr[mid] < TARGET)
+			if (arr[mid] < target)
 				left = mid;
-			else if (arr[mid] > TARGET)
+			else if (arr[mid] > target)
 				right = mid;
 			else
 				return mid;
@@ -251,11 +251,11 @@ namespace pix::c_array
 	}
 
 	template <typename type_t, unsigned long DIM>
-	unsigned long binary_approx(type_t (&arr)[DIM], const type_t TARGET) noexcept(false)
+	unsigned long binary_approx(type_t (&arr)[DIM], const type_t target) noexcept(false)
 	{
 		assert_is_number(type_t);
 
-		return pix::c_array::binary_approx<type_t>(arr, DIM, TARGET);
+		return pix::c_array::binary_approx<type_t>(arr, DIM, target);
 	}
 }
 

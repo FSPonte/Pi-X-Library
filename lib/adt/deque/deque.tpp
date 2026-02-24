@@ -13,12 +13,12 @@ namespace pix::adt
 	}
 
 	template <typename type_t, unsigned long MAX_SIZE>
-	bool deque<type_t, MAX_SIZE>::push_back(const type_t& ELEMENT)
+	bool deque<type_t, MAX_SIZE>::push_back(const type_t& element)
 	{
 		if (this->_index == MAX_SIZE)
 			return false;
 
-		this->_data[this->_index++] = ELEMENT;
+		this->_data[this->_index++] = element;
 
 		return true;
 	}
@@ -33,7 +33,7 @@ namespace pix::adt
 	}
 
 	template <typename type_t, unsigned long MAX_SIZE>
-	bool deque<type_t, MAX_SIZE>::push_front(const type_t& ELEMENT)
+	bool deque<type_t, MAX_SIZE>::push_front(const type_t& element)
 	{
 		if (this->_index == MAX_SIZE)
 			return false;
@@ -42,7 +42,7 @@ namespace pix::adt
 			this->_data[i + 1] = this->_data[i];
 
 		++this->_index;
-		this->_data[0] = ELEMENT;
+		this->_data[0] = element;
 
 		return true;
 	}

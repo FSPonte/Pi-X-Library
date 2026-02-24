@@ -183,40 +183,40 @@ static unsigned long _partition_(type_t arr[], unsigned long start_ind, unsigned
 }
 
 template <typename type_t>
-static void _quick_sort_(type_t arr[], const unsigned long START_IND, const unsigned long END_IND) noexcept(true)
+static void _quick_sort_(type_t arr[], const unsigned long start_index, const unsigned long end_index) noexcept(true)
 {
-	if (START_IND >= END_IND)
+	if (start_index >= end_index)
 		return;
 
-	const unsigned long part_ind = _partition_(arr, START_IND, END_IND); // Partition index
+	const unsigned long part_ind = _partition_(arr, start_index, end_index); // Partition index
 
-	_quick_sort_(arr, START_IND, part_ind);
-	_quick_sort_(arr, part_ind + 1, END_IND);
+	_quick_sort_(arr, start_index, part_ind);
+	_quick_sort_(arr, part_ind + 1, end_index);
 }
 
 template <typename type_t>
-static void _merge_(type_t arr[], const unsigned long START_IND, const unsigned long MID_IND, const unsigned long END_IND) noexcept(true)
+static void _merge_(type_t arr[], const unsigned long start_index, const unsigned long mid_index, const unsigned long end_index) noexcept(true)
 {
 	const unsigned long
-		LEFT_DIM = MID_IND - START_IND + 1,
-		RIGHT_DIM = END_IND - MID_IND;
+		LEFT_DIM = mid_index - start_index + 1,
+		RIGHT_DIM = end_index - mid_index;
 
 	auto
 		left_arr = new type_t[LEFT_DIM],
 		right_arr = new type_t[RIGHT_DIM];
 
 	for (unsigned long i = 0; i < LEFT_DIM; ++i)
-		left_arr[i] = arr[START_IND + i];
+		left_arr[i] = arr[start_index + i];
 
 	for (unsigned long i = 0; i < RIGHT_DIM; ++i)
-		right_arr[i] = arr[MID_IND + i + 1];
+		right_arr[i] = arr[mid_index + i + 1];
 
 	unsigned long
 		left_ind = 0,
 		right_ind = 0,
 		arr_ind;
 
-	for (arr_ind = START_IND; left_ind < LEFT_DIM && right_ind < RIGHT_DIM; ++arr_ind)
+	for (arr_ind = start_index; left_ind < LEFT_DIM && right_ind < RIGHT_DIM; ++arr_ind)
 	{
 		if (left_arr[left_ind] <= right_arr[right_ind])
 		{
@@ -249,17 +249,17 @@ static void _merge_(type_t arr[], const unsigned long START_IND, const unsigned 
 }
 
 template <typename type_t>
-static void _merge_sort_(type_t arr[], const unsigned long START_IND, const unsigned long END_IND) noexcept(true)
+static void _merge_sort_(type_t arr[], const unsigned long start_index, const unsigned long end_index) noexcept(true)
 {
-	if (START_IND >= END_IND)
+	if (start_index >= end_index)
 		return;
 
-	const unsigned long MID_IND = START_IND + (END_IND - START_IND) / 2;
+	const unsigned long mid_index = start_index + (end_index - start_index) / 2;
 
-	_merge_sort_(arr, START_IND, MID_IND);
-	_merge_sort_(arr, MID_IND + 1, END_IND);
+	_merge_sort_(arr, start_index, mid_index);
+	_merge_sort_(arr, mid_index + 1, end_index);
 
-	_merge_(arr, START_IND, MID_IND, END_IND);
+	_merge_(arr, start_index, mid_index, end_index);
 }
 
 #endif // _SORT_TPP_

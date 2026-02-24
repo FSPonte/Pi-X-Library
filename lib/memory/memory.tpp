@@ -3,13 +3,13 @@
 
 namespace pix::memory
 {
-	void* memcpy(const void* SRC, void* dst, unsigned long size) noexcept(false)
+	void* memcpy(const void* src, void* dst, unsigned long size) noexcept(false)
 	{
-		if (SRC == nullptr) throw "Pointer to source is null";
+		if (src == nullptr) throw "Pointer to source is null";
 		if (dst == nullptr) throw "Pointer to destination is null";
 		if (size == 0) throw "Number of bytes equal to zero";
 
-		auto s = reinterpret_cast<const unsigned char*>(SRC);
+		auto s = reinterpret_cast<const unsigned char*>(src);
 		auto d = reinterpret_cast<unsigned char*>(dst);
 
 		// Copy byte-by-byte until destination is aligned

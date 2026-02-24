@@ -62,9 +62,9 @@ namespace pix::adt
 	}
 
 	template <typename type_t>
-	void node<type_t>::pop(const unsigned long INDEX) noexcept(false)
+	void node<type_t>::pop(const unsigned long index) noexcept(false)
 	{
-		if (INDEX >= this->_size) throw pix::exceptions::out_of_bounds;
+		if (index >= this->_size) throw pix::exceptions::out_of_bounds;
 
 		if (this->_size == 1)
 		{
@@ -80,7 +80,7 @@ namespace pix::adt
 
 		for (unsigned long i = 0; i < this->_size; ++i)
 		{
-			if (i == INDEX)
+			if (i == index)
 				continue;
 
 			edges_new[j] = this->_edges[i];
@@ -88,7 +88,7 @@ namespace pix::adt
 			this->_edges[i] = nullptr;
 		}
 
-		delete this->_edges[INDEX];
+		delete this->_edges[index];
 		delete[] this->_edges;
 		this->_edges = edges_new;
 		--this->_size;

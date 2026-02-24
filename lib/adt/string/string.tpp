@@ -13,15 +13,15 @@ namespace pix::adt
 	}
 
 	template <unsigned long MAX_LENGTH>
-	string<MAX_LENGTH>::string(const char C_STR[]) noexcept(false) : string<MAX_LENGTH>::string()
+	string<MAX_LENGTH>::string(const char str[]) noexcept(false) : string<MAX_LENGTH>::string()
 	{
-		*this = C_STR;
+		*this = str;
 	}
 
 	template <unsigned long MAX_LENGTH>
-	string<MAX_LENGTH>::string(const string<MAX_LENGTH>& STR) noexcept(false)
+	string<MAX_LENGTH>::string(const string<MAX_LENGTH>& str) noexcept(false)
 	{
-		*this = STR.data();
+		*this = str.data();
 	}
 
 	template <unsigned long MAX_LENGTH>
@@ -31,11 +31,11 @@ namespace pix::adt
 	}
 
 	template <unsigned long MAX_LENGTH>
-	char string<MAX_LENGTH>::operator [] (const unsigned long INDEX) noexcept(false)
+	char string<MAX_LENGTH>::operator [] (const unsigned long index) noexcept(false)
 	{
-		if (INDEX >= this->_length) throw pix::exceptions::out_of_bounds;
+		if (index >= this->_length) throw pix::exceptions::out_of_bounds;
 
-		return this->_data[INDEX];
+		return this->_data[index];
 	}
 
 	template <unsigned long MAX_LENGTH>
@@ -51,15 +51,15 @@ namespace pix::adt
 	}
 
 	template <unsigned long MAX_LENGTH>
-	void string<MAX_LENGTH>::operator = (const char C_STR[]) noexcept(false)
+	void string<MAX_LENGTH>::operator = (const char str[]) noexcept(false)
 	{
-		if (C_STR == nullptr) throw pix::exceptions::null_ptr;
+		if (str == nullptr) throw pix::exceptions::null_ptr;
 
 		for (this->_length = 0; this->_length < MAX_LENGTH; ++this->_length)
 		{
-			this->_data[this->_length] = C_STR[this->_length];
+			this->_data[this->_length] = str[this->_length];
 
-			if (C_STR[this->_length] == '\0')
+			if (str[this->_length] == '\0')
 				break;
 		}
 
@@ -67,41 +67,41 @@ namespace pix::adt
 	}
 
 	template <unsigned long MAX_LENGTH>
-	void string<MAX_LENGTH>::operator = (const string<MAX_LENGTH>& STR) noexcept(false)
+	void string<MAX_LENGTH>::operator = (const string<MAX_LENGTH>& str) noexcept(false)
 	{
-		*this = STR.data();
+		*this = str.data();
 	}
 
 	template <unsigned long MAX_LENGTH>
-	void string<MAX_LENGTH>::operator += (const char C_STR[]) noexcept(false)
+	void string<MAX_LENGTH>::operator += (const char str[]) noexcept(false)
 	{
-		if (C_STR == nullptr) throw pix::exceptions::null_ptr;
+		if (str == nullptr) throw pix::exceptions::null_ptr;
 
 		--this->_length;
 
 		for (unsigned long i = 0; this->_length < MAX_LENGTH; ++i)
 		{
-			this->_data[this->_length++] = C_STR[i];
+			this->_data[this->_length++] = str[i];
 
-			if (C_STR[i] == '\0')
+			if (str[i] == '\0')
 				break;
 		}
 	}
 
 	template <unsigned long MAX_LENGTH>
-	void string<MAX_LENGTH>::operator += (const string<MAX_LENGTH>& STR) noexcept(false)
+	void string<MAX_LENGTH>::operator += (const string<MAX_LENGTH>& str) noexcept(false)
 	{
-		*this += STR.data();
+		*this += str.data();
 	}
 
 	template <unsigned long MAX_LENGTH>
-	bool string<MAX_LENGTH>::operator == (const char C_STR[]) const noexcept(false)
+	bool string<MAX_LENGTH>::operator == (const char str[]) const noexcept(false)
 	{
-		if (C_STR == nullptr) throw pix::exceptions::null_ptr;
+		if (str == nullptr) throw pix::exceptions::null_ptr;
 
 		for (unsigned long i = 0; i < this->_length; ++i)
 		{
-			if (this->_data[i] != C_STR[i])
+			if (this->_data[i] != str[i])
 				return false;
 		}
 
@@ -109,21 +109,21 @@ namespace pix::adt
 	}
 
 	template <unsigned long MAX_LENGTH>
-	bool string<MAX_LENGTH>::operator == (const string<MAX_LENGTH>& STR) const noexcept(false)
+	bool string<MAX_LENGTH>::operator == (const string<MAX_LENGTH>& str) const noexcept(false)
 	{
-		return *this == STR.data();
+		return *this == str.data();
 	}
 
 	template <unsigned long MAX_LENGTH>
-	bool string<MAX_LENGTH>::operator != (const char C_STR[]) const noexcept(false)
+	bool string<MAX_LENGTH>::operator != (const char str[]) const noexcept(false)
 	{
-		return !(*this == C_STR);
+		return !(*this == str);
 	}
 
 	template <unsigned long MAX_LENGTH>
-	bool string<MAX_LENGTH>::operator != (const string<MAX_LENGTH>& STR) const noexcept(false)
+	bool string<MAX_LENGTH>::operator != (const string<MAX_LENGTH>& str) const noexcept(false)
 	{
-		return !(*this == STR.data());
+		return !(*this == str.data());
 	}
 
 	template <unsigned long MAX_LENGTH>

@@ -71,13 +71,13 @@ namespace pix::adt
 	}
 
 	template <typename type_t>
-	type_t& list<type_t>::operator [] (const unsigned long INDEX) noexcept(false)
+	type_t& list<type_t>::operator [] (const unsigned long index) noexcept(false)
 	{
-		if (INDEX >= this->_size) throw pix::exceptions::out_of_bounds;
+		if (index >= this->_size) throw pix::exceptions::out_of_bounds;
 
 		node<type_t>* iter_ptr = this->_head; // Iterator pointer
 
-		for (unsigned long i = 0; i < INDEX; ++i)
+		for (unsigned long i = 0; i < index; ++i)
 			iter_ptr = iter_ptr->get_edge();
 
 		return *(iter_ptr->get_value());

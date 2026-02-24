@@ -13,12 +13,12 @@ namespace pix::adt
 	}
 
 	template <typename type_t, unsigned long MAX_SIZE>
-	bool stack<type_t, MAX_SIZE>::add(const type_t& ELEMENT)
+	bool stack<type_t, MAX_SIZE>::add(const type_t& element)
 	{
 		if (this->_index == MAX_SIZE)
 			return false;
 
-		this->_data[this->_index++] = ELEMENT;
+		this->_data[this->_index++] = element;
 
 		return true;
 	}

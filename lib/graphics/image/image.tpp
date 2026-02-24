@@ -62,9 +62,9 @@ namespace pix::graphics
 	}
 
 	template <unsigned long W_DIM, unsigned long H_DIM>
-	void image<W_DIM, H_DIM>::operator = (const image<W_DIM, H_DIM>& IMG)
+	void image<W_DIM, H_DIM>::operator = (const image<W_DIM, H_DIM>& img)
 	{
-		rgb** data = IMG.data();
+		rgb** data = img.data();
 
 		if (data == nullptr)
 			return;

@@ -3,31 +3,31 @@
 
 namespace pix::graphics
 {
-	void rgb::operator = (const rgb& COLOR)
+	void rgb::operator = (const rgb& color)
 	{
-		this->_red = COLOR._red;
-		this->_green = COLOR._green;
-		this->_blue = COLOR._blue;
+		this->_red = color._red;
+		this->_green = color._green;
+		this->_blue = color._blue;
 	}
 
-	bool rgb::operator == (const rgb& COLOR) const
+	bool rgb::operator == (const rgb& color) const
 	{
 		return
-			this->_red == COLOR._red
+			this->_red == color._red
 			&&
-			this->_green == COLOR._green
+			this->_green == color._green
 			&&
-			this->_blue == COLOR._blue;
+			this->_blue == color._blue;
 	}
 
-	bool rgb::operator != (const rgb& COLOR) const
+	bool rgb::operator != (const rgb& color) const
 	{
 		return
-			this->_red != COLOR._red
+			this->_red != color._red
 			||
-			this->_green != COLOR._green
+			this->_green != color._green
 			||
-			this->_blue != COLOR._blue;
+			this->_blue != color._blue;
 	}
 }
 

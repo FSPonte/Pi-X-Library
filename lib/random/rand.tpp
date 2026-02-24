@@ -22,16 +22,16 @@ namespace pix::random
 	}
 
 	template <typename type_t>
-	type_t rand(const type_t MIN, const type_t MAX) noexcept(false)
+	type_t rand(const type_t min, const type_t max) noexcept(false)
 	{
 		assert_is_integer(type_t);
 
-		if (MIN > MAX) throw pix::exceptions::bad_range;
+		if (min > max) throw pix::exceptions::bad_range;
 		
-		if (MIN == MAX)
-			return MIN;
+		if (min == max)
+			return min;
 
-		return rand<type_t>() % (MAX - MIN) + MIN;
+		return rand<type_t>() % (max - min) + min;
 	}
 
 	template <typename type_t>
@@ -43,16 +43,16 @@ namespace pix::random
 	}
 
 	template <typename type_t>
-	type_t drand(const type_t MIN, const type_t MAX) noexcept(false)
+	type_t drand(const type_t min, const type_t max) noexcept(false)
 	{
 		assert_is_float(type_t);
 
-		if (MIN > MAX) throw pix::exceptions::bad_range;
+		if (min > max) throw pix::exceptions::bad_range;
 
-		if (MIN == MAX)
-			return MIN;
+		if (min == max)
+			return min;
 
-		return (MAX - MIN) * pix::random::drand<type_t>() + MIN;
+		return (max - min) * pix::random::drand<type_t>() + min;
 	}
 
 	char crand(void) noexcept(true)
