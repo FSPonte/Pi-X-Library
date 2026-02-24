@@ -36,7 +36,7 @@ namespace pix::sort
 	}
 
 	template <typename type_t, unsigned long DIM>
-	void bubble_sort(type_t (&arr)[DIM])
+	void bubble_sort(type_t (&arr)[DIM]) noexcept(true)
 	{
 		assert_is_number(type_t);
 
@@ -70,7 +70,7 @@ namespace pix::sort
 	}
 
 	template <typename type_t, unsigned long DIM>
-	void selection_sort(type_t (&arr)[DIM])
+	void selection_sort(type_t (&arr)[DIM]) noexcept(true)
 	{
 		assert_is_number(type_t);
 
@@ -100,7 +100,7 @@ namespace pix::sort
 	}
 
 	template <typename type_t, unsigned long DIM>
-	void insertion_sort(type_t (&arr)[DIM])
+	void insertion_sort(type_t (&arr)[DIM]) noexcept(true)
 	{
 		assert_is_number(type_t);
 
@@ -119,7 +119,7 @@ namespace pix::sort
 	}
 
 	template <typename type_t, unsigned long DIM>
-	void quick_sort(type_t (&arr)[DIM])
+	void quick_sort(type_t (&arr)[DIM]) noexcept(true)
 	{
 		assert_is_number(type_t);
 
@@ -138,7 +138,7 @@ namespace pix::sort
 	}
 
 	template <typename type_t, unsigned long DIM>
-	void merge_sort(type_t (&arr)[DIM])
+	void merge_sort(type_t (&arr)[DIM]) noexcept(true)
 	{
 		assert_is_number(type_t);
 

@@ -16,13 +16,13 @@ namespace pix
 		/**
 		 * @brief Default constructor
 		*/
-		type_info(void);
+		type_info(void) noexcept(true);
 
 		/**
 		 * @brief Parameterized constructor
 		 * @param val Value
 		*/
-		type_info(type_t);
+		type_info(type_t) noexcept(true);
 
 		/**
 		 * @brief Equality operator
@@ -31,14 +31,14 @@ namespace pix
 		 * @return True if types are equal
 		*/
 		template <typename _type_t>
-		constexpr bool operator == (const type_info<_type_t>&) const;
+		constexpr bool operator == (const type_info<_type_t>&) const noexcept(true);
 
 		/**
 		 * @brief Equality operator
 		 * @param t_inf Object
 		 * @return True if types are equal
 		*/
-		constexpr bool operator == (const type_info<type_t>&) const;
+		constexpr bool operator == (const type_info<type_t>&) const noexcept(true);
 
 		/**
 		 * @brief Inequality operator
@@ -47,14 +47,14 @@ namespace pix
 		 * @return True if types are different
 		*/
 		template <typename _type_t>
-		constexpr bool operator != (const type_info<_type_t>&) const;
+		constexpr bool operator != (const type_info<_type_t>&) const noexcept(true);
 
 		/**
 		 * @brief Inequality operator
 		 * @param t_inf Object
 		 * @return True if types are different
 		*/
-		constexpr bool operator != (const type_info<type_t>&) const;
+		constexpr bool operator != (const type_info<type_t>&) const noexcept(true);
 	};
 }
 

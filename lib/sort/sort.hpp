@@ -22,7 +22,7 @@ namespace pix::sort
 	 * @param arr Pointer to array of elements
 	*/
 	template <typename type_t, unsigned long DIM>
-	void bubble_sort(type_t (&)[DIM]);
+	void bubble_sort(type_t (&)[DIM]) noexcept(true);
 
 	/**
 	 * @brief Selection sort
@@ -42,7 +42,7 @@ namespace pix::sort
 	 * @param arr Pointer to array of elements
 	*/
 	template <typename type_t, unsigned long DIM>
-	void selection_sort(type_t (&)[DIM]);
+	void selection_sort(type_t (&)[DIM]) noexcept(true);
 
 	/**
 	 * @brief Insertion sort
@@ -62,7 +62,7 @@ namespace pix::sort
 	 * @param arr Pointer to array of elements
 	*/
 	template <typename type_t, unsigned long DIM>
-	void insertion_sort(type_t (&)[DIM]);
+	void insertion_sort(type_t (&)[DIM]) noexcept(true);
 
 	/**
 	 * @brief Quick sort
@@ -82,7 +82,7 @@ namespace pix::sort
 	 * @param arr Pointer to array of elements
 	*/
 	template <typename type_t, unsigned long DIM>
-	void quick_sort(type_t (&)[DIM]);
+	void quick_sort(type_t (&)[DIM]) noexcept(true);
 
 	/**
 	 * @brief Merge sort
@@ -102,7 +102,7 @@ namespace pix::sort
 	 * @param arr Pointer to array of elements
 	*/
 	template <typename type_t, unsigned long DIM>
-	void merge_sort(type_t (&)[DIM]);
+	void merge_sort(type_t (&)[DIM]) noexcept(true);
 }
 
 // Template file

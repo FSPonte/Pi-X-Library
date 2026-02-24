@@ -27,24 +27,24 @@ namespace pix::smart_pointer
 		/**
 		 * @brief Default constructor
 		*/
-		auto_pointer(void);
+		auto_pointer(void) noexcept(true);
 
 		/**
 		 * @brief Parameterized constructor
 		 * @param val Value
 		*/
-		auto_pointer(type_t);
+		auto_pointer(type_t) noexcept(true);
 
 		/**
 		 * @brief Destructor
 		*/
-		~auto_pointer(void);
+		~auto_pointer(void) noexcept(true);
 
 		/**
 		 * @brief Dereference operator
 		 * @return Reference to member pointer
 		*/
-		type_t& operator * (void) override;
+		type_t& operator * (void) noexcept(true) override;
 	};
 
 	template <typename type_t>
@@ -55,31 +55,31 @@ namespace pix::smart_pointer
 		/**
 		 * @brief Default constructor
 		*/
-		unique_pointer(void);
+		unique_pointer(void) noexcept(true);
 
 		/**
 		 * @brief Parameterized constructor
 		 * @param val Value
 		*/
-		unique_pointer(type_t);
+		unique_pointer(type_t) noexcept(true);
 
 		/**
 		 * @brief Destructor
 		*/
-		~unique_pointer(void);
+		~unique_pointer(void) noexcept(true);
 
 		/**
 		 * @brief Dereference operator
 		 * @return Reference to member pointer
 		*/
-		type_t& operator * (void) override;
+		type_t& operator * (void) noexcept(true) override;
 
 		/**
 		 * @brief Left shift operator
 		 * @param u_ptr Unique pointer
 		 * @note Moves pointer between objects
 		*/
-		void operator << (unique_pointer<type_t>&);
+		void operator << (unique_pointer<type_t>&) noexcept(true);
 	};
 }
 
