@@ -11,11 +11,6 @@ namespace pix::adt
 	template <typename type_t>
 	class list
 	{
-	private:
-
-		node<type_t>* _head;
-		unsigned long _size;
-
 	public:
 
 		/**
@@ -55,6 +50,11 @@ namespace pix::adt
 		 * @return Number of elements
 		*/
 		unsigned long size(void) const;
+
+	private:
+
+		node<type_t>* _head;
+		unsigned long _size;
 	};
 }
 

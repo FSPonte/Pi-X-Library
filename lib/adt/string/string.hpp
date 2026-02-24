@@ -11,11 +11,6 @@ namespace pix::adt
 	template <unsigned long MAX_LENGTH = D_BUFFER_SIZE>
 	class string
 	{
-	private:
-
-		char _data[MAX_LENGTH];
-		unsigned long _length;
-
 	public:
 
 		/**
@@ -128,6 +123,11 @@ namespace pix::adt
 		 * @return Pointer to array of characters
 		*/
 		operator const char*() const;
+
+	private:
+
+		char _data[MAX_LENGTH];
+		unsigned long _length;
 	};
 }
 

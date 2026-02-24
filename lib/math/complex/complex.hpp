@@ -11,12 +11,6 @@ namespace pix::math
 	template <typename type_t>
 	class complex
 	{
-	private:
-
-		type_t
-			_real, // Real part
-			_imag; // Imaginary part
-
 	public:
 
 		/**
@@ -120,6 +114,12 @@ namespace pix::math
 		 * @return Multiplied complex
 		*/
 		complex<type_t> operator * (const complex<type_t>&) const;
+
+	private:
+
+		type_t
+			_real, // Real part
+			_imag; // Imaginary part
 	};
 }
 

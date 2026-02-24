@@ -12,10 +12,6 @@ namespace pix::graphics
 	template <unsigned long W_DIM, unsigned long H_DIM>
 	class image
 	{
-	private:
-
-		rgb** _data;
-
 	public:
 
 		/**
@@ -73,6 +69,10 @@ namespace pix::graphics
 		 * @param img Image
 		*/
 		void operator = (const image<W_DIM, H_DIM>&);
+
+	private:
+
+		rgb** _data;
 	};
 }
 

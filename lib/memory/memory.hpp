@@ -31,11 +31,6 @@ namespace pix::memory
 	template <unsigned long MAX_SIZE>
 	class mmap
 	{
-	private:
-
-		mpart _part[MAX_SIZE]; // Memory partitions
-		unsigned long _size; // Number of partitions
-
 	public:
 
 		/**
@@ -70,6 +65,11 @@ namespace pix::memory
 		 * @return Number of partitions
 		*/
 		unsigned long size(void) const;
+
+	private:
+
+		mpart _part[MAX_SIZE]; // Memory partitions
+		unsigned long _size; // Number of partitions
 	};
 }
 

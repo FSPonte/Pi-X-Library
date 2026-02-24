@@ -11,12 +11,6 @@ namespace pix::adt
 	template <typename type_t>
 	class node
 	{
-	private:
-
-		type_t* _value;
-		node<type_t>** _edges;
-		unsigned long _size;
-
 	public:
 
 		/**
@@ -87,6 +81,12 @@ namespace pix::adt
 		 * @return Number of edges
 		*/
 		unsigned long size(void) const;
+
+	private:
+
+		type_t* _value;
+		node<type_t>** _edges;
+		unsigned long _size;
 	};
 }
 

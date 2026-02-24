@@ -12,11 +12,6 @@ namespace pix::adt
 	template <typename type_t, unsigned long MAX_SIZE = D_BUFFER_SIZE>
 	class stack
 	{
-	private:
-
-		type_t _data[MAX_SIZE];
-		unsigned long _index;
-
 	public:
 
 		/**
@@ -66,6 +61,11 @@ namespace pix::adt
 		 * @return True if stack is full
 		*/
 		bool is_full(void) const;
+
+	private:
+
+		type_t _data[MAX_SIZE];
+		unsigned long _index;
 	};
 }
 

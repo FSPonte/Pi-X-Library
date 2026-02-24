@@ -12,27 +12,6 @@ namespace pix::adt
 	template <typename type_t, unsigned long DIM = D_BUFFER_SIZE>
 	class tuple
 	{
-	private:
-		
-		type_t _data[DIM];
-		unsigned long _index;
-
-		/**
-		 * @brief Assign a single element
-		 * @tparam type_t Data type
-		 * @param ele Element
-		*/
-		void assign(type_t);
-
-		/**
-		 * @brief Assign variadic elements
-		 * @tparam args_t Variadic type
-		 * @param ele Element
-		 * @param args Variadic arguments
-		*/
-		template <typename... args_t>
-		void assign(type_t, args_t...);
-
 	public:
 		
 		/**
@@ -55,6 +34,27 @@ namespace pix::adt
 		 * @throw Index is out of bounds
 		*/
 		const type_t& operator [] (unsigned long) const noexcept(false);
+
+	private:
+		
+		type_t _data[DIM];
+		unsigned long _index;
+
+		/**
+		 * @brief Assign a single element
+		 * @tparam type_t Data type
+		 * @param ele Element
+		*/
+		void assign(type_t);
+
+		/**
+		 * @brief Assign variadic elements
+		 * @tparam args_t Variadic type
+		 * @param ele Element
+		 * @param args Variadic arguments
+		*/
+		template <typename... args_t>
+		void assign(type_t, args_t...);
 	};
 }
 

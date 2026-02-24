@@ -25,6 +25,14 @@ namespace pix::adt
 	}
 
 	template <typename type_t, unsigned long DIM>
+	const type_t& tuple<type_t, DIM>::operator [] (const unsigned long index) const noexcept(false)
+	{
+		if (index >= DIM) throw pix::exceptions::out_of_bounds;
+		
+		return this->_data[index];
+	}
+
+	template <typename type_t, unsigned long DIM>
 	void tuple<type_t, DIM>::assign(type_t element)
 	{
 		this->_data[this->_index] = element;
@@ -37,14 +45,6 @@ namespace pix::adt
 		this->_data[this->_index] = element;
 		++this->_index;
 		this->assign(args...);
-	}
-
-	template <typename type_t, unsigned long DIM>
-	const type_t& tuple<type_t, DIM>::operator [] (const unsigned long index) const noexcept(false)
-	{
-		if (index >= DIM) throw pix::exceptions::out_of_bounds;
-		
-		return this->_data[index];
 	}
 }
 

@@ -13,10 +13,6 @@ namespace pix::math
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
 	class matrix
 	{
-	private:
-
-		vector<type_t, N_COL> _data[N_LIN];
-
 	public:
 
 		/**
@@ -172,6 +168,10 @@ namespace pix::math
 		*/
 		template <unsigned long _N_COL>
 		matrix<type_t, N_LIN, _N_COL> operator * (const matrix<type_t, N_COL, _N_COL>&) const;
+
+	private:
+
+		vector<type_t, N_COL> _data[N_LIN];
 	};
 }
 

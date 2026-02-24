@@ -6,13 +6,13 @@ namespace
 	template <typename type_t>
 	class smart_pointer
 	{
-	protected:
-
-		type_t* _ptr;
-
 	public:
 
 		virtual type_t& operator * (void) = 0;
+	
+	protected:
+
+		type_t* _ptr;
 	};
 }
 

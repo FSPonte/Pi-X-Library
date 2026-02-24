@@ -11,12 +11,6 @@ namespace pix::adt
 	template <typename type_t, unsigned long BLOCK_ALLOC_SIZE = D_BLOCK_ALLOC_SIZE>
 	class dyn_array
 	{
-	private:
-
-		type_t _data[BLOCK_ALLOC_SIZE];
-		unsigned long _index;
-		dyn_array<type_t, BLOCK_ALLOC_SIZE>* _next;
-
 	public:
 
 		/**
@@ -56,6 +50,12 @@ namespace pix::adt
 		 * @return Number of elements
 		*/
 		unsigned long size(void) const;
+
+	private:
+
+		type_t _data[BLOCK_ALLOC_SIZE];
+		unsigned long _index;
+		dyn_array<type_t, BLOCK_ALLOC_SIZE>* _next;
 	};
 }
 

@@ -12,10 +12,6 @@ namespace pix::adt
 	template <typename type_t, unsigned long DIM = D_BUFFER_SIZE>
 	class array
 	{
-	private:
-
-		type_t _data[DIM];
-
 	public:
 
 		/**
@@ -137,6 +133,10 @@ namespace pix::adt
 		*/
 		template <typename _type_t, unsigned long _DIM>
 		constexpr bool operator != (const array<_type_t, _DIM>&) const;
+
+	private:
+
+		type_t _data[DIM];
 	};
 }
 

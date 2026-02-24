@@ -12,10 +12,6 @@ namespace pix::math
 	template <typename type_t, unsigned long DIM>
 	class vector
 	{
-	private:
-
-		type_t _data[DIM];
-
 	public:
 
 		/**
@@ -150,6 +146,10 @@ namespace pix::math
 		 * @return Norm
 		*/
 		operator type_t() const;
+
+	private:
+
+		type_t _data[DIM];
 	};
 }
 
