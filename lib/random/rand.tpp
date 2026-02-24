@@ -26,7 +26,8 @@ namespace pix::random
 	{
 		assert_is_integer(type_t);
 
-		if (min > max) throw pix::exceptions::bad_range;
+		if (min > max)
+			throw pix::exceptions::bad_range;
 		
 		if (min == max)
 			return min;
@@ -47,7 +48,8 @@ namespace pix::random
 	{
 		assert_is_float(type_t);
 
-		if (min > max) throw pix::exceptions::bad_range;
+		if (min > max)
+			throw pix::exceptions::bad_range;
 
 		if (min == max)
 			return min;

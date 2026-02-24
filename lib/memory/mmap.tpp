@@ -14,7 +14,8 @@ namespace pix::memory
 	template <unsigned long MAX_SIZE>
 	void mmap<MAX_SIZE>::add(mpart&& part) noexcept(false)
 	{
-		if (this->_size == MAX_SIZE) throw "Memory map is full";
+		if (this->_size == MAX_SIZE)
+			throw "Memory map is full";
 
 		this->_part[this->_size] = part;
 		++this->_size;
@@ -23,7 +24,8 @@ namespace pix::memory
 	template <unsigned long MAX_SIZE>
 	void mmap<MAX_SIZE>::rm(const unsigned long index) noexcept(false)
 	{
-		if (index >= this->_size) throw pix::exceptions::out_of_bounds;
+		if (index >= this->_size)
+			throw pix::exceptions::out_of_bounds;
 
 		pix::c_array::left_shift(this->_part[index], this->_size - index);
 		--this->_size;
@@ -32,7 +34,8 @@ namespace pix::memory
 	template <unsigned long MAX_SIZE>
 	mpart mmap<MAX_SIZE>::operator [] (const unsigned long index) noexcept(false)
 	{
-		if (index >= this->_size) throw pix::exceptions::out_of_bounds;
+		if (index >= this->_size)
+			throw pix::exceptions::out_of_bounds;
 
 		return this->_part[index];
 	}
