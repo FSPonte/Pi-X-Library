@@ -12,6 +12,7 @@ include_directories(
 
 	"utils/"
 
+	"lib/logger/"
 	"lib/type_info/"
 	"lib/c_array/"
 	"lib/memory/"
@@ -42,13 +43,11 @@ include_directories(
 	"lib/graphics/rgb/"
 	"lib/graphics/image/"
 
-	"lib/logger/"
 	"lib/progress_bar/"
 )
 
 add_executable(pix_tester
 	src/main.cpp
 	utils/utils.cpp
-	lib/logger/logger.cpp
 	lib/progress_bar/progress_bar.cpp
 )

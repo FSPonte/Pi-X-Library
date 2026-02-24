@@ -11,12 +11,9 @@
 #include <types.hpp>
 #include <constants.hpp>
 #include <os.hpp>
-#include <macros.hpp>
-
-// Utility libraries
-#include <utils.hpp>
 
 // Template libraries
+#include <logger.hpp>
 #include <type_info.hpp>
 #include <c_array.hpp>
 #include <memory.hpp>
@@ -49,7 +46,8 @@
 #include <image.hpp>
 
 // Object libraries
-#include <logger.hpp>
 #include <progress_bar.hpp>
+
+#include <macros.hpp>
 
 #endif // _PIX_LIB_HPP_

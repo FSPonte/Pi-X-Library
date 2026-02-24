@@ -1,15 +1,12 @@
 #ifndef _MACROS_HPP_
 #define _MACROS_HPP_
 
-// Logger mode
-#define LOGGER_MODE true
+#define LOGGER_MODE true // Logger mode
 
 #if LOGGER_MODE
 
-	#include <logger.hpp>
-
 	#define LOGGER_INIT(file_path) \
-		static logger _logger_(file_path); \
+		pix::logger _logger_(file_path); \
 		_logger_.open_session()
 	#define LOGGER_LOG_MSG(msg) _logger_.log_msg(msg)
 	#define LOGGER_LOG_LST(lst, dim) _logger_.log_lst(lst, dim)
