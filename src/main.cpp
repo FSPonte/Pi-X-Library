@@ -5,7 +5,6 @@
 
 // OS dependent libraries
 #include <utils.hpp>
-#include <progress_bar.hpp>
 
 // Pi-X library
 #include <pix_lib.hpp>
