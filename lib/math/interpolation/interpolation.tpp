@@ -4,18 +4,18 @@
 namespace pix::math::interpolation
 {
 	template <typename type_t, unsigned long DIM>
-	type_t linear(type_t (&input)[DIM], type_t (&output)[DIM], const type_t TARGET) noexcept(false)
+	type_t linear(type_t (&input)[DIM], type_t (&output)[DIM], const type_t target) noexcept(false)
 	{
 		assert_is_float(type_t);
 
-		if (TARGET < input[0] || input[DIM - 1] < TARGET)
+		if (target < input[0] || input[DIM - 1] < target)
 			throw pix::exceptions::out_of_bounds;
 		
 		unsigned long
-			left = pix::c_array::binary_approx(input, TARGET), // Left index
+			left = pix::c_array::binary_approx(input, target), // Left index
 			right; // Right index
 
-		if (TARGET < input[left] || left == DIM - 1)
+		if (target < input[left] || left == DIM - 1)
 			--left;
 
 		right = left + 1;
@@ -29,16 +29,16 @@ namespace pix::math::interpolation
 			slope = (output[right] - output[left]) / den,
 			offset = 0.5 * (output[left] + output[right] - slope * (input[left] + input[right]));
 
-		return slope * TARGET + offset;
+		return slope * target + offset;
 	}
 
 	template <typename type_t, unsigned long DIM>
-	type_t newton(type_t (&input)[DIM], type_t (&output)[DIM], const type_t TARGET) noexcept(false)
+	type_t newton(type_t (&input)[DIM], type_t (&output)[DIM], const type_t target) noexcept(false)
 	{
 		assert_is_float(type_t);
 		assert_not_nulldim(DIM);
 
-		if (TARGET < input[0] || input[DIM - 1] < TARGET)
+		if (target < input[0] || input[DIM - 1] < target)
 			throw pix::exceptions::out_of_bounds;
 
 		type_t
@@ -67,7 +67,7 @@ namespace pix::math::interpolation
 
 		for (unsigned long i = 1; i < DIM; ++i)
 		{
-			term *= (TARGET - input[i - 1]);
+			term *= (target - input[i - 1]);
 			ret += table[0][i] * term;
 		}
 
@@ -75,12 +75,12 @@ namespace pix::math::interpolation
 	}
 
 	template <typename type_t, unsigned long DIM>
-	type_t spline(type_t (&input)[DIM], type_t (&output)[DIM], const type_t TARGET) noexcept(false)
+	type_t spline(type_t (&input)[DIM], type_t (&output)[DIM], const type_t target) noexcept(false)
 	{
 		assert_is_float(type_t);
 		assert_not_nulldim(DIM);
 
-		if (TARGET < input[0] || input[DIM - 1] < TARGET)
+		if (target < input[0] || input[DIM - 1] < target)
 			throw pix::exceptions::out_of_bounds;
 
 		type_t h[DIM - 1], alpha[DIM - 1];
@@ -119,29 +119,28 @@ namespace pix::math::interpolation
 		unsigned long i = 0;
 		for (; i < DIM - 2; ++i)
 		{
-			if (TARGET < input[i + 1])
+			if (target < input[i + 1])
 				break;
 		}
 
-		type_t dx = TARGET - input[i];
+		type_t dx = target - input[i];
 		
 		return a[i] + b[i] * dx + c[i] * dx * dx + d[i] * dx * dx * dx;
 	}
 
 	template <typename type_t, unsigned long DIM>
-	type_t lagrange(type_t (&input)[DIM], type_t (&output)[DIM], const type_t TARGET, unsigned long order) noexcept(false)
+	type_t lagrange(type_t (&input)[DIM], type_t (&output)[DIM], const type_t target, unsigned long order) noexcept(false)
 	{
 		assert_is_float(type_t);
 		assert_not_nulldim(DIM);
 
-		if (TARGET < input[0] || TARGET > input[DIM - 1])
+		if (target < input[0] || target > input[DIM - 1])
 			throw pix::exceptions::out_of_bounds;
-
 		if (order == 0)
 			throw "Invalid order value";
 
 		unsigned long
-			index = pix::c_array::binary_approx(input, TARGET), // Aproximated index
+			index = pix::c_array::binary_approx(input, target), // Aproximated index
 			start = 0, // Start index
 			end = DIM - 1; // End index
 
@@ -171,9 +170,7 @@ namespace pix::math::interpolation
 			for (unsigned long j = start; j <= end; ++j)
 			{
 				if (j != i)
-				{
-					term *= (TARGET - input[j]) / (input[i] - input[j]);
-				}
+					term *= (target - input[j]) / (input[i] - input[j]);
 			}
 
 			sum += term * output[i];

@@ -4,7 +4,7 @@
 namespace pix::math::sys_lin_equ
 {
 	template <typename type_t, unsigned long DIM>
-	void gauss_elim(const type_t (&MTX)[DIM][DIM], const type_t (&VEC)[DIM], type_t (&sol)[DIM]) noexcept(false)
+	void gauss_elim(const type_t (&mtx)[DIM][DIM], const type_t (&vec)[DIM], type_t (&sol)[DIM]) noexcept(false)
 	{
 		assert_is_number(type_t);
 
@@ -12,8 +12,8 @@ namespace pix::math::sys_lin_equ
 			A_[DIM][DIM], // Mutable copy of matrix A
 			b_[DIM]; // Mutable copy of vector b
 
-		pix::c_array::copy(MTX, A_);
-		pix::c_array::copy(VEC, b_);
+		pix::c_array::copy(mtx, A_);
+		pix::c_array::copy(vec, b_);
 		
 		unsigned long i_max; // Partial pivot
 		type_t factor;
@@ -103,7 +103,7 @@ namespace pix::math::sys_lin_equ
 	}
 
 	template <typename type_t, unsigned long DIM>
-	void lu_decomp(const type_t (&MTX)[DIM][DIM], type_t (&lower)[DIM][DIM], type_t (&upper)[DIM][DIM])
+	void lu_decomp(const type_t (&mtx)[DIM][DIM], type_t (&lower)[DIM][DIM], type_t (&upper)[DIM][DIM])
 	{
 		assert_is_number(type_t);
 
@@ -123,7 +123,7 @@ namespace pix::math::sys_lin_equ
 		LOGGER_INIT("logs/lu_decomp.log");
 		{
 			LOGGER_LOG_MSG("Initial values:");
-			LOGGER_LOG_ARR(MTX);
+			LOGGER_LOG_ARR(mtx);
 		}
 
 		for (unsigned long k = 0; k < DIM; ++k)
@@ -136,7 +136,7 @@ namespace pix::math::sys_lin_equ
 				for (unsigned long s = 0; s < k; ++s)
 					sum += lower[k][s] * upper[s][j];
 			
-				upper[k][j] = MTX[k][j] - sum;
+				upper[k][j] = mtx[k][j] - sum;
 
 				// Logger
 				{
@@ -156,7 +156,7 @@ namespace pix::math::sys_lin_equ
 				for (unsigned long s = 0; s < k; ++s)
 					sum += lower[i][s] * upper[s][k];
 			
-				lower[i][k] = (MTX[i][k] - sum) / upper[k][k];
+				lower[i][k] = (mtx[i][k] - sum) / upper[k][k];
 
 				// Logger
 				{

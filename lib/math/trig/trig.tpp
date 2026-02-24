@@ -60,35 +60,35 @@ namespace pix::math::trig
 	}
 
 	template <typename type_t>
-	type_t tan(const type_t ARG) noexcept(true)
+	type_t tan(const type_t arg) noexcept(true)
 	{
 		assert_is_float(type_t);
 		
-		return pix::math::trig::sin(ARG) / pix::math::trig::cos(ARG);
+		return pix::math::trig::sin(arg) / pix::math::trig::cos(arg);
 	}
 
 	template <typename type_t>
-	type_t sec(const type_t ARG) noexcept(true)
+	type_t sec(const type_t arg) noexcept(true)
 	{
 		assert_is_float(type_t);
 		
-		return 1 / pix::math::trig::cos(ARG);
+		return 1 / pix::math::trig::cos(arg);
 	}
 
 	template <typename type_t>
-	type_t csc(const type_t ARG) noexcept(true)
+	type_t csc(const type_t arg) noexcept(true)
 	{
 		assert_is_float(type_t);
 		
-		return 1 / pix::math::trig::sin(ARG);
+		return 1 / pix::math::trig::sin(arg);
 	}
 
 	template <typename type_t>
-	type_t cot(const type_t ARG) noexcept(true)
+	type_t cot(const type_t arg) noexcept(true)
 	{
 		assert_is_float(type_t);
 		
-		return pix::math::trig::cos(ARG) / pix::math::trig::sin(ARG);
+		return pix::math::trig::cos(arg) / pix::math::trig::sin(arg);
 	}
 
 	template <typename type_t>
@@ -96,7 +96,8 @@ namespace pix::math::trig
 	{
 		assert_is_float(type_t);
 		
-		if (arg < -1 || arg > 1) throw "Argument is out of bounds";
+		if (arg < -1 || arg > 1)
+			throw "Argument is out of bounds";
 
 		if (arg == -1)
 			return - 0.5 * pix::constants::mathematics::PI;
@@ -129,11 +130,11 @@ namespace pix::math::trig
 	}
 	
 	template <typename type_t>
-	type_t arccos(const type_t ARG) noexcept(false)
+	type_t arccos(const type_t arg) noexcept(false)
 	{
 		assert_is_float(type_t);
 		
-		return 0.5 * pix::constants::mathematics::PI - trig::arcsin(ARG);
+		return 0.5 * pix::constants::mathematics::PI - trig::arcsin(arg);
 	}
 	
 	template <typename type_t>

@@ -18,7 +18,8 @@ namespace pix::math::root_finding
 			y_b = fn(b), // Image of b
 			y; // Image of x
 
-		if (y_a * y_b >= 0) throw "Invalid convergence condition (f(a) * f(b) >= 0)";
+		if (y_a * y_b >= 0)
+			throw "Invalid convergence condition (f(a) * f(b) >= 0)";
 
 		for (unsigned long i = 1; i <= MAX_ITER; ++i)
 		{
@@ -59,7 +60,8 @@ namespace pix::math::root_finding
 		{
 			m = (fn(x + TOL) - fn(x)) / TOL;
 
-			if (m == 0) throw "Null derivative (f'(x) == 0)";
+			if (m == 0)
+				throw "Null derivative (f'(x) == 0)";
 
 			x -= fn(x) / m;
 			y = fn(x);
@@ -88,7 +90,8 @@ namespace pix::math::root_finding
 
 		for (unsigned long i = 1; i <= MAX_ITER; ++i)
 		{
-			if (y_a == y_b) throw "Division by zero (f(a) == f(b))";
+			if (y_a == y_b)
+				throw "Division by zero (f(a) == f(b))";
 			
 			// Secant step
 			x = b - y_b * (b - a) / (y_b - y_a);

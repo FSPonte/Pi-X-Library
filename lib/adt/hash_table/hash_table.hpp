@@ -1,9 +1,6 @@
 #ifndef _HASH_TABLE_HPP_
 #define _HASH_TABLE_HPP_
 
-// Dependendies
-#include <sys_vars.hpp>
-
 // Abstract data types
 namespace pix::adt
 {

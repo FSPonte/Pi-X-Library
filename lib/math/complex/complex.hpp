@@ -14,8 +14,8 @@ namespace pix::math
 	private:
 
 		type_t
-			_re, // Real part
-			_im; // Imaginary part
+			_real, // Real part
+			_imag; // Imaginary part
 
 	public:
 
