@@ -2,30 +2,36 @@
 #include "progress_bar.hpp"
 
 // Dependencies
-#include <utils.hpp>
+#include <exceptions.hpp>
+#include <os.hpp>
 #include <iostream>
 #include <cstring>
 
-double get_monotonic_time(void)
-{
 #if LINUX_DEFINED
-	struct timespec ts;
-
-	if (clock_gettime(CLOCK_MONOTONIC, &ts) != 0)
-		return 0;
-
-	return static_cast<double>(ts.tv_sec) + static_cast<double>(ts.tv_nsec / 1E9);
+#include <langinfo.h>
+#include <sys/ioctl.h>
+#include <unistd.h>
+#define ISATTY isatty
 #elif WIN_DEFINED
-	LARGE_INTEGER now;
-	QueryPerformanceCounter(&now);
-	
-	return static_cast<double>(now.QuadPart) * this->_internal.timer_freq_inv;
+#include <windows.h>
+#include <io.h>
+#define ISATTY _isatty
 #endif
-}
+
+#define PROGRESS_BAR_WIDTH_DEFAULT 40 // Progress bar default width
+#define TERMINAL_WIDTH_DEFAULT 80 // Terminal width when it cannot be determined
+#define FILE_WIDTH_DEFAULT 120 // Default output width when printing to file
+
+static bool contains_utf8_case_insensitive(const char[]) noexcept(false);
+static bool terminal_supports_utf8(void) noexcept(true);
+static bool should_use_utf8(std::ostream&) noexcept(true);
+static bool should_use_color(std::ostream&) noexcept(true);
+static double get_timer_freq_inv(void) noexcept(true);
+static double get_monotonic_time(void);
 
 UTF8_codes get_utf8_codes(void)
 {
-	if (utils::should_use_utf8(std::cout) && utils::should_use_color(std::cout))
+	if (should_use_utf8(std::cout) && should_use_color(std::cout))
 	{
 		return UTF8_codes{
 			.is_utf8 = true,
@@ -105,7 +111,7 @@ progress_bar::progress_bar(const char description[], long int start, long int to
 	this->_min_refresh_time = 0.1;
 	this->_timer_remaining_time_recent_weight = 0.3;
 
-	this->_internal.timer_freq_inv = utils::get_timer_freq_inv();
+	this->_internal.timer_freq_inv = get_timer_freq_inv();
 
 	this->_start = start;
 	this->_total = total;
@@ -390,4 +396,158 @@ void progress_bar::print_progress_bar(void)
 	}
 
 	std::cout << std::flush;
+}
+
+static bool contains_utf8_case_insensitive(const char str[]) noexcept(false)
+{
+	if (!str)
+		throw pix::exceptions::null_ptr;
+
+	while (*str)
+	{
+		if (tolower((unsigned char)str[0]) == 'u' &&
+			tolower((unsigned char)str[1]) == 't' &&
+			tolower((unsigned char)str[2]) == 'f')
+		{
+			// Check for "utf8" or "utf-8"
+			if (str[3] == '8')
+				return true;
+
+			if (str[3] == '-' && str[4] == '8')
+				return true;
+		}
+
+		++str;
+	}
+
+	return false;
+}
+
+static bool terminal_supports_utf8(void) noexcept(true)
+{
+#if WIN_DEFINED
+	return GetConsoleOutputCP() == CP_UTF8;
+#else
+	const char* codeset = nl_langinfo(CODESET);
+	
+	if (codeset && contains_utf8_case_insensitive(codeset))
+		return true;
+
+	const char* env_vars[] = {"LC_ALL", "LC_CTYPE", "LANG"};
+	
+	for (unsigned long i = 0; i < sizeof(env_vars); ++i)
+	{
+		const char* val = std::getenv(env_vars[i]);
+		
+		if (val && val[0])
+		{
+			if (contains_utf8_case_insensitive(val))
+				return true;
+
+			if (i == 0)
+				return false;
+		}
+	}
+
+	return false;
+#endif
+}
+
+static bool should_use_utf8(std::ostream& stream) noexcept(true)
+{
+	int fd = -1; // File descriptor
+
+	if (&stream == &std::cout)
+		fd = STDOUT;
+	else if (&stream == &std::cerr || &stream == &std::clog)
+		fd = STDERR;
+
+	if (!ISATTY(fd))
+		return true; 
+
+	return terminal_supports_utf8();
+}
+
+static bool should_use_color(std::ostream& stream) noexcept(true)
+{
+	const char* no_color = std::getenv("NO_COLOR");
+
+	if (no_color && no_color[0] != '\0')
+		return false;
+
+	const char* force_color = std::getenv("CLICOLOR_FORCE");
+
+	if (force_color && std::strcmp(force_color, "0") != 0)
+		return true;
+
+	int fd = -1; // File descriptor
+
+	if (&stream == &std::cout)
+		fd = STDOUT;
+	else if (&stream == &std::cerr || &stream == &std::clog)
+		fd = STDERR;
+
+	// If it's not a standard stream or not a TTY (e.g. redirected to file), no color
+	if (!ISATTY(fd))
+		return false;
+
+	// Check TERM variable for "dumb" terminals
+	const char* term = std::getenv("TERM");
+
+	if (term && std::strcmp(term, "dumb") == 0)
+		return false;
+
+	// Windows Specific: Enable Virtual Terminal Processing (ANSI support)
+#if WIN_DEFINED
+	HANDLE hOut = GET_OS_HANDLE(fd);
+
+	if (hOut == INVALID_HANDLE_VALUE)
+		return false;
+
+	DWORD dwMode = 0;
+	
+	if (!GetConsoleMode(hOut, &dwMode))
+		return false;
+
+	#ifndef ENABLE_VIRTUAL_TERMINAL_PROCESSING
+	#define ENABLE_VIRTUAL_TERMINAL_PROCESSING 0x0004
+	#endif
+
+	if (!(dwMode & ENABLE_VIRTUAL_TERMINAL_PROCESSING))
+	{
+		if (!SetConsoleMode(hOut, dwMode | ENABLE_VIRTUAL_TERMINAL_PROCESSING))
+			return false; 
+	}
+#endif
+
+	return true;
+}
+
+static double get_timer_freq_inv(void) noexcept(true)
+{
+#if WIN_DEFINED
+	LARGE_INTEGER freq;
+	QueryPerformanceFrequency(&freq);
+
+	return 1 / static_cast<double>(freq.QuadPart);
+#else
+	return 1;
+#endif
+}
+
+static double get_monotonic_time(void)
+{
+#if LINUX_DEFINED
+	struct timespec ts;
+
+	if (clock_gettime(CLOCK_MONOTONIC, &ts) != 0)
+		return 0;
+
+	return static_cast<double>(ts.tv_sec) + static_cast<double>(ts.tv_nsec / 1E9);
+#elif WIN_DEFINED
+	LARGE_INTEGER now;
+	QueryPerformanceCounter(&now);
+	
+	return static_cast<double>(now.QuadPart) * this->_internal.timer_freq_inv;
+#endif
 }

@@ -1,24 +1,6 @@
 #ifndef _UTILS_HPP_
 #define _UTILS_HPP_
 
-// Dependencies
-#include <os.hpp>
-#include <ostream>
-
-// Terminal width when it cannot be determined
-#define TERMINAL_WIDTH_DEFAULT 80
-
-// Default output width when printing to file
-#define FILE_WIDTH_DEFAULT 120
-
-#if LINUX_DEFINED
-#include <unistd.h>
-#define ISATTY isatty
-#elif WIN_DEFINED
-#include <io.h>
-#define ISATTY _isatty
-#endif
-
 // Utilities
 namespace utils
 {
@@ -73,48 +55,6 @@ namespace utils
 	*/
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
 	void print(type_t (&)[N_LIN][N_COL]) noexcept(true);
-
-	/**
-	 * @brief Check if we should use UTF-8 encoding
-	 * @param stream The output stream
-	 * @return true if UTF-8 encoding should be used
-	*/
-	bool should_use_utf8(std::ostream&) noexcept(true);
-
-	/**
-	 * @brief Check if ANSI color codes should be used
-	 * @param stream The output stream
-	 * @return true if ANSI color codes should be used
-	*/
-	bool should_use_color(std::ostream&) noexcept(true);
-
-	/**
-	 * @brief Get the width of the terminal
-	 * @param stream The output stream
-	 * @return The width of the terminal in characters
-	*/
-	int get_terminal_width(std::ostream&) noexcept(true);
-
-	/**
-	 * @brief Get the inverse of the timer frequency
-	 * @return The inverse of the timer frequency
-	 * @note For Windows OS
-	*/
-	double get_timer_freq_inv(void) noexcept(true);
-
-	/**
-	 * @brief Check if C-string contains UTF-8 characters
-	 * @param str C-string
-	 * @return true if C-string contains UTF-8 characters
-	 * @throw Null pointer
-	*/
-	bool contains_utf8_case_insensitive(const char[]) noexcept(false);
-
-	/**
-	 * @brief Checks if the terminal supports UTF-8
-	 * @return true if terminal supports UTF-8
-	*/
-	bool terminal_supports_utf8(void) noexcept(true);
 }
 
 // Template file
