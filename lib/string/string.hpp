@@ -5,14 +5,6 @@
 namespace pix
 {
 	/**
-	 * @brief Get length
-	 * @param str Pointer to C string
-	 * @return Number of characters
-	 * @throw Null pointer
-	*/
-	unsigned long strlen(const char str[]) noexcept(false);
-
-	/**
 	 * @brief String
 	*/
 	class string

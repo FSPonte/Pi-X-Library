@@ -5,6 +5,14 @@
 namespace pix::c_array
 {
 	/**
+	 * @brief Get length
+	 * @param str Pointer to C string
+	 * @return Number of characters
+	 * @throw Null pointer
+	*/
+	unsigned long strlen(const char str[]) noexcept(false);
+	
+	/**
 	 * @brief Swap values
 	 * @tparam type_t Data type
 	 * @param ref_1 Reference to first element

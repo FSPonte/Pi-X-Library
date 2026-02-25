@@ -3,18 +3,6 @@
 
 namespace pix
 {
-	unsigned long strlen(const char str[]) noexcept(false)
-	{
-		if (str == nullptr)
-			throw pix::exceptions::null_ptr;
-
-		unsigned long length = 0;
-		
-		while (str[length++] != '\0');
-
-		return length;
-	}
-
 	string::string(void)
 	{
 		this->_data = nullptr;
@@ -63,7 +51,7 @@ namespace pix
 		if (str == nullptr)
 			throw pix::exceptions::null_ptr;
 
-		this->_length = strlen(str);
+		this->_length = pix::c_array::strlen(str);
 		pix::memory::realloc(this->_data, this->_length);
 
 		for (unsigned long i = 0; i < this->_length; ++i)
@@ -90,7 +78,7 @@ namespace pix
 			throw pix::exceptions::null_ptr;
 
 		--this->_length;
-		const unsigned long length = strlen(str);
+		const unsigned long length = pix::c_array::strlen(str);
 		pix::memory::extend(this->_data, this->_length, this->_length + length);
 		pix::memory::memcpy(str, this->_data + this->_length, length);
 	}

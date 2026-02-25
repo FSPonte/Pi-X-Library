@@ -3,6 +3,18 @@
 
 namespace pix::c_array
 {
+	unsigned long strlen(const char str[]) noexcept(false)
+	{
+		if (str == nullptr)
+			throw pix::exceptions::null_ptr;
+
+		unsigned long length = 0;
+		
+		while (str[length++] != '\0');
+
+		return length;
+	}
+
 	template <typename type_t>
 	inline void swap(type_t& ref_1, type_t& ref_2) noexcept(true)
 	{
