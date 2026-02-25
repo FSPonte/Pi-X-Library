@@ -12,14 +12,19 @@
 #include <constants.hpp>
 #include <os.hpp>
 
-// Template libraries
+// Utility libraries
+#include <utils.hpp>
 #include <logger.hpp>
+#include <progress_bar.hpp>
+
+// Template libraries
 #include <type_info.hpp>
 #include <c_array.hpp>
 #include <memory.hpp>
 #include <smart_pointer.hpp>
 #include <sort.hpp>
 #include <rand.hpp>
+#include <string.hpp>
 #include <array.hpp>
 #include <tuple.hpp>
 #include <stack.hpp>
@@ -28,7 +33,6 @@
 #include <node.hpp>
 #include <list.hpp>
 #include <dyn_array.hpp>
-#include <string.hpp>
 #include <logic.hpp>
 #include <math.hpp>
 #include <trig.hpp>
@@ -44,9 +48,6 @@
 #include <signal.hpp>
 #include <rgb.hpp>
 #include <image.hpp>
-
-// Object libraries
-#include <progress_bar.hpp>
 
 #include <macros.hpp>
 

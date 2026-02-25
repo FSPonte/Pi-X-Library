@@ -18,13 +18,6 @@ namespace pix::math::sys_lin_equ
 		unsigned long i_max; // Partial pivot
 		type_t factor;
 
-		// Logger
-		LOGGER_INIT("logs/gauss_elim.log");
-		{
-			LOGGER_LOG_MSG("Initial values:");
-			LOGGER_LOG_AUG(A_, b_);
-		}
-
 		// Gaussian elimination with partial pivot
 		for (unsigned long j = 0; j < DIM; ++j)
 		{
@@ -43,12 +36,6 @@ namespace pix::math::sys_lin_equ
 					pix::c_array::swap(A_[i_max][k], A_[j][k]); // Swap rows in matrix
 
 				pix::c_array::swap(b_[j], b_[i_max]); // Swap components in vector
-
-				// Logger
-				{
-					LOGGER_LOG_MSG("\nLine swap (" + std::to_string(j + 1) + " <-> " + std::to_string(i_max + 1) + "):");
-					LOGGER_LOG_AUG(A_, b_);
-				}
 			}
 			
 			if (pix::math::abs(A_[j][j]) == 0)
@@ -67,13 +54,6 @@ namespace pix::math::sys_lin_equ
 						A_[i][k] -= factor * A_[j][k];
 					
 					b_[i] -= factor * b_[j];
-
-					// Logger
-					{
-						LOGGER_LOG_MSG("\nLine elimination (" + std::to_string(j + 1) + " -> " + std::to_string(i + 1) + "):");
-						LOGGER_LOG_MSG("\tFactor: " + std::to_string(factor));
-						LOGGER_LOG_AUG(A_, b_);
-					}
 				}
 			}
 		}
@@ -89,14 +69,6 @@ namespace pix::math::sys_lin_equ
 			
 			if (sol[i] == pix::math::NaN)
 				throw "NaN value encountered";
-		}
-
-		// Logger
-		{
-			LOGGER_LOG_MSG("\nRegressive substitution:");
-
-			for (unsigned long i = 0; i < DIM; ++i)
-				LOGGER_LOG_MSG("\tx[" + std::to_string(i + 1) + "] = " + std::to_string(sol[i]));
 		}
 
     	return;
@@ -119,13 +91,6 @@ namespace pix::math::sys_lin_equ
 
 		type_t sum;
 
-		// Logger
-		LOGGER_INIT("logs/lu_decomp.log");
-		{
-			LOGGER_LOG_MSG("Initial values:");
-			LOGGER_LOG_ARR(mtx);
-		}
-
 		for (unsigned long k = 0; k < DIM; ++k)
 		{
 			// Compute U[k][j]
@@ -137,12 +102,6 @@ namespace pix::math::sys_lin_equ
 					sum += lower[k][s] * upper[s][j];
 			
 				upper[k][j] = mtx[k][j] - sum;
-
-				// Logger
-				{
-					LOGGER_LOG_MSG("\nU[" + std::to_string(k + 1) + "][" + std::to_string(j + 1) + "] = " + std::to_string(upper[k][j]));
-					LOGGER_LOG_ARR(upper);
-				}
 			}
 
 			if (pix::math::abs(upper[k][k]) == 0)
@@ -157,12 +116,6 @@ namespace pix::math::sys_lin_equ
 					sum += lower[i][s] * upper[s][k];
 			
 				lower[i][k] = (mtx[i][k] - sum) / upper[k][k];
-
-				// Logger
-				{
-					LOGGER_LOG_MSG("\nL[" + std::to_string(i + 1) + "][" + std::to_string(k + 1) + "] = " + std::to_string(lower[i][k]));
-					LOGGER_LOG_ARR(lower);
-				}
 			}
 		}
 	}

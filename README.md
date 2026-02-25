@@ -35,7 +35,9 @@ Library for embedded systems and OS based programs
 - OS variables
 - Macros
 ## Utility libraries
-General purpose libraries
+- General purpose libraries
+- Logger
+- Progress bar
 ## Template libraries
 - Type info
 	- is_same: Compares two data types
@@ -100,8 +102,5 @@ General purpose libraries
 - Graphics
   	- RGB values
   	- Image object
-## Object libraries
-- Logger
-- Progress bar
 
 Author: FSPonte @ 2025

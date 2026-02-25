@@ -1,10 +1,10 @@
 #ifndef _LOGGER_HPP_
 #define _LOGGER_HPP_
 
-// Dependencies
-#include <fstream>
+#ifdef _GLIBCXX_IOSTREAM
+#include <iostream>
 #include <string>
-#include <mutex>
+#endif // _GLIBCXX_IOSTREAM
 
 namespace pix
 {
@@ -22,7 +22,7 @@ namespace pix
 		 * @param file_path Path to the log file
 		 * @throw Failed to open file
 		*/
-		explicit logger(const std::string&) noexcept(false);
+		explicit logger(const char[]) noexcept(false);
 
 		// Disable copy constructor
 		logger(const logger&) = delete;
@@ -30,50 +30,45 @@ namespace pix
 		/**
 		 * @brief Destructor
 		*/
-		~logger(void);
+		~logger(void) noexcept(true);
 
 		/**
 		 * @brief Open a logging session
-		 * @throw File is not open
 		*/
-		void open_session(void) noexcept(false);
+		void open_session(void) noexcept(true);
 
 		/**
 		 * @brief Log a message
 		 * @param msg Message to log
-		 * @throw File is not open
 		*/
-		void log_msg(const std::string&) noexcept(false);
+		void log_msg(const char[]) noexcept(true);
 
 		/**
 		 * @brief Log an array as a list
 		 * @tparam type_t Data type
 		 * @param arr Array to log
 		 * @param dim Number of elements
-		 * @throw File is not open
 		*/
 		template <typename type_t>
-		void log_lst(const type_t[], unsigned long) noexcept(false);
+		void log_lst(const type_t[], unsigned long) noexcept(true);
 
 		/**
 		 * @brief Log an array as a list
 		 * @tparam type_t Data type
 		 * @tparam DIM Number of elements
 		 * @param arr Array to log
-		 * @throw File is not open
 		*/
 		template <typename type_t, unsigned long DIM>
-		void log_lst(const type_t (&)[DIM]) noexcept(false);
+		void log_lst(const type_t (&)[DIM]) noexcept(true);
 
 		/**
 		 * @brief Log an array
 		 * @tparam type_t Data type
 		 * @tparam DIM Number of elements
 		 * @param arr Array to log
-		 * @throw File is not open
 		*/
 		template <typename type_t, unsigned long DIM>
-		void log_arr(const type_t (&)[DIM]) noexcept(false);
+		void log_arr(const type_t (&)[DIM]) noexcept(true);
 
 		/**
 		 * @brief Log an array
@@ -81,10 +76,9 @@ namespace pix
 		 * @tparam N_LIN Number of lines
 		 * @tparam N_COL Number of columns
 		 * @param arr Array to log
-		 * @throw File is not open
 		*/
 		template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
-		void log_arr(const type_t (&)[N_LIN][N_COL]) noexcept(false);
+		void log_arr(const type_t (&)[N_LIN][N_COL]) noexcept(true);
 
 		/**
 		 * @brief Log two arrays
@@ -93,10 +87,9 @@ namespace pix
 		 * @tparam N_COL Number of columns
 		 * @param arr_1 Array 1 to log
 		 * @param arr_2 Array 2 to log
-		 * @throw File is not open
 		*/
 		template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
-		void log_arr(const type_t (&)[N_LIN][N_COL], const type_t (&)[N_LIN]) noexcept(false);
+		void log_arr(const type_t (&)[N_LIN][N_COL], const type_t (&)[N_LIN]) noexcept(true);
 
 		// Disable assignment operator
 		logger& operator = (const logger&) = delete;
@@ -105,7 +98,7 @@ namespace pix
 
 		unsigned long _session_id; // Session id number
 		std::ofstream _file; // File
-		std::mutex _mutex;
+		std::streambuf* _buffer; // Logging buffer
 	};
 }
 

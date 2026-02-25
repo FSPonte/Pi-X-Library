@@ -16,6 +16,27 @@ namespace pix::memory
 	void* memcpy(const void*, void*, unsigned long) noexcept(false);
 
 	/**
+	 * @brief Reallocate buffer memory
+	 * @tparam type_t Data type
+	 * @param buf Buffer
+	 * @param size Number of elements
+	 * @throw Null pointer
+	*/
+	template <typename type_t>
+	void realloc(type_t*, unsigned long) noexcept(false);
+
+	/**
+	 * @brief Extend buffer memory
+	 * @tparam type_t Data type
+	 * @param buf Buffer
+	 * @param size Number of elements
+	 * @param new_size New number of elements
+	 * @throw Null pointer
+	*/
+	template <typename type_t>
+	void extend(type_t*, unsigned long, unsigned long) noexcept(false);
+
+	/**
 	 * @brief Memory partition
 	*/
 	struct mpart

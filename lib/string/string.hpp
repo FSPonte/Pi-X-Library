@@ -2,13 +2,19 @@
 #define _STRING_HPP_
 
 // Abstract data types
-namespace pix::adt
+namespace pix
 {
 	/**
-	 * @brief String
-	 * @tparam MAX_LENGTH Maximum number of characters
+	 * @brief Get length
+	 * @param str Pointer to C string
+	 * @return Number of characters
+	 * @throw Null pointer
 	*/
-	template <unsigned long MAX_LENGTH = D_BUFFER_SIZE>
+	unsigned long strlen(const char str[]) noexcept(false);
+
+	/**
+	 * @brief String
+	*/
 	class string
 	{
 	public:
@@ -30,7 +36,7 @@ namespace pix::adt
 		 * @param str String
 		 * @throw Pointer to C styled string is null
 		*/
-		string(const string<MAX_LENGTH>&) noexcept(false);
+		string(const string&) noexcept(false);
 
 		/**
 		 * @brief Get data
@@ -53,10 +59,9 @@ namespace pix::adt
 		unsigned long length(void) const;
 
 		/**
-		 * @brief Get maximum length
-		 * @return Maximum number of characters
+		 * @brief Invert order of the characters
 		*/
-		constexpr unsigned long max_length(void) const;
+		void invert(void) noexcept(true);
 
 		/**
 		 * @brief Copy operator
@@ -70,7 +75,13 @@ namespace pix::adt
 		 * @param str String
 		 * @throw Pointer to C styled string is null
 		*/
-		void operator = (const string<MAX_LENGTH>&) noexcept(false);
+		void operator = (const string&) noexcept(false);
+
+		/**
+		 * @brief Append operator
+		 * @param ch Character
+		*/
+		void operator += (char) noexcept(true);
 
 		/**
 		 * @brief Append operator
@@ -84,7 +95,7 @@ namespace pix::adt
 		 * @param str String
 		 * @throw Pointer to C styled string is null
 		*/
-		void operator += (const string<MAX_LENGTH>&) noexcept(false);
+		void operator += (const string&) noexcept(false);
 
 		/**
 		 * @brief Comparisson operator
@@ -100,7 +111,7 @@ namespace pix::adt
 		 * @return True if characters are equal
 		 * @throw Pointer to C styled string is null
 		*/
-		bool operator == (const string<MAX_LENGTH>&) const noexcept(false);
+		bool operator == (const string&) const noexcept(false);
 
 		/**
 		 * @brief Comparisson operator
@@ -116,7 +127,7 @@ namespace pix::adt
 		 * @return True if characters are different
 		 * @throw Pointer to C styled string is null
 		*/
-		bool operator != (const string<MAX_LENGTH>&) const noexcept(false);
+		bool operator != (const string&) const noexcept(false);
 
 		/**
 		 * @brief Type casting operator
@@ -126,9 +137,16 @@ namespace pix::adt
 
 	private:
 
-		char _data[MAX_LENGTH];
+		char* _data;
 		unsigned long _length;
 	};
+
+	/**
+	 * @brief Convert to string
+	 * @param 
+	*/
+	template <typename type_t>
+	pix::string to_string(type_t) noexcept(true);
 }
 
 // Template file
