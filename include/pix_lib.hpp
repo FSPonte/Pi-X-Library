@@ -1,23 +1,21 @@
 #ifndef _PIX_LIB_HPP_
 #define _PIX_LIB_HPP_
 
-// Library version
+// Version
 #define __PIX_VERSION__ "1.0"
 
-// Pure header files
+// Includes
 #include <sys_vars.hpp>
 #include <asserts.hpp>
 #include <exceptions.hpp>
 #include <types.hpp>
 #include <constants.hpp>
 #include <os.hpp>
+#include <macros.hpp>
 
-// Utility libraries
-#include <utils.hpp>
+// Libraries
 #include <logger.hpp>
 #include <progress_bar.hpp>
-
-// Template libraries
 #include <type_info.hpp>
 #include <c_array.hpp>
 #include <memory.hpp>
@@ -48,7 +46,5 @@
 #include <signal.hpp>
 #include <rgb.hpp>
 #include <image.hpp>
-
-#include <macros.hpp>
 
 #endif // _PIX_LIB_HPP_
