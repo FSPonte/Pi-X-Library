@@ -11,8 +11,9 @@ include_directories(
 	"include/"
 
 	"utils/"
-	"logger/"
-	"progress_bar/"
+	
+	"lib/logger/"
+	"lib/progress_bar/"
 
 	"lib/type_info/"
 	"lib/c_array/"
@@ -51,5 +52,5 @@ include_directories(
 add_executable(pix_tester
 	src/main.cpp
 	utils/utils.cpp
-	progress_bar/progress_bar.cpp
+	lib/progress_bar/progress_bar.cpp
 )
