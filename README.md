@@ -34,11 +34,9 @@ Library for embedded systems and OS based programs
 	- Newtonian constant of gravitation
 - OS variables
 - Macros
-## Utility libraries
-- General purpose libraries
+## Libraries
 - Logger
 - Progress bar
-## Template libraries
 - Type info
 	- is_same: Compares two data types
   	- is_number: Checks if type is a number
