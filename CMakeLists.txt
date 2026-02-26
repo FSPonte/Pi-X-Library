@@ -52,5 +52,4 @@ include_directories(
 add_executable(pix_tester
 	src/main.cpp
 	utils/utils.cpp
-	lib/progress_bar/progress_bar.cpp
 )
