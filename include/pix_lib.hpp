@@ -14,6 +14,7 @@
 #include <macros.hpp>
 
 // Libraries
+#include <traceback.hpp>
 #include <logger.hpp>
 #include <progress_bar.hpp>
 #include <type_info.hpp>
