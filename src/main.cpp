@@ -1,9 +1,7 @@
 // C/C++ standard libraries
 #include <iostream>
-#include <iomanip>
-#include <fstream>
 
-// OS dependent libraries
+// Utilities
 #include <utils.hpp>
 
 // Pi-X library
@@ -15,7 +13,7 @@ int main(int argc, char* argv[])
 	utils::parse(argc, argv);
 
 	constexpr unsigned long DIM = 1E9;
-	progress_bar pgb("Processing", 0, DIM);
+	pix::progress_bar pgb("Processing", 0, DIM);
 
 	for (unsigned long i = 0; i <= DIM; ++i)
 	{
