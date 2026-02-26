@@ -3,9 +3,19 @@
 
 namespace pix
 {
-	logger::logger(const char file_path[]) noexcept(false)
+	logger::~logger(void) noexcept(true)
 	{
-		this->_file.open(file_path, std::ios::out | std::ios::trunc);
+		this->_file.close();
+		std::clog.rdbuf(this->_buffer);
+	}
+	
+	void logger::init(const std::string& file_path) noexcept(false)
+	{
+		if (this->_file.is_open())
+			this->_file.close();
+		
+		this->_file_path = file_path;
+		this->_file.open(this->_file_path, std::ios::out | std::ios::trunc);
 
 		if (!this->_file.is_open())
 			throw "[Logger] Failed to open file";
@@ -15,44 +25,56 @@ namespace pix
 		std::clog.rdbuf(this->_file.rdbuf());
 	}
 
-	logger::~logger(void) noexcept(true)
+	void logger::open_session(void) noexcept(false)
 	{
-		this->_file.close();
-		std::clog.rdbuf(this->_buffer);
-	}
+		if (!this->_file.is_open())
+			throw "[Logger] File not open";
 
-	void logger::open_session(void) noexcept(true)
-	{
 		if (this->_session_id != 0)
 			std::clog << '\n';
+
+		std::string line_1, line_2;
+
+		line_1 = "[LOGGER] Session ID: " + std::to_string(++this->_session_id);
+		line_2 = "file_path: " + this->_file_path;
+
+		const unsigned long
+			line_1_length = line_1.length(),
+			line_2_length = line_2.length();
+
+		const unsigned long LINE_WIDTH = (line_1_length > line_2_length) ? line_1_length : line_2_length;
 		
 		std::clog
-			<< "====================\n"
-			<< "[LOGGER] Session ID: " << ++this->_session_id << '\n'
-			<< "====================\n\n";
+			<< std::string(LINE_WIDTH, '=') << '\n'
+			<< line_1 << '\n'
+			<< line_2 << '\n'
+			<< std::string(LINE_WIDTH, '=') << "\n\n";
 	}
 
-	void logger::log_msg(const char msg[]) noexcept(true)
+	void logger::log_message(const std::string& msg) noexcept(false)
 	{
+		if (!this->_file.is_open())
+			throw "[Logger] File not open";
+		
 		std::clog << msg << std::endl;
 	}
 
-	template <typename type_t>
-	void logger::log_lst(const type_t arr[], const unsigned long DIM) noexcept(true)
+	template <typename type_t, unsigned long DIM>
+	void logger::log_list(const type_t (&arr)[DIM]) noexcept(false)
 	{
+		if (!this->_file.is_open())
+			throw "[Logger] File not open";
+
 		for (unsigned long i = 0; i < DIM; ++i)
 			std::clog << i << " : " << arr[i] << '\n';
 	}
 
 	template <typename type_t, unsigned long DIM>
-	void logger::log_lst(const type_t (&arr)[DIM]) noexcept(true)
+	void logger::log_array(const type_t (&arr)[DIM]) noexcept(false)
 	{
-		this->log_lst(arr, DIM);
-	}
-
-	template <typename type_t, unsigned long DIM>
-	void logger::log_arr(const type_t (&arr)[DIM]) noexcept(true)
-	{
+		if (!this->_file.is_open())
+			throw "[Logger] File not open";
+		
 		for (unsigned long i = 0; i < DIM; ++i)
 			std::clog << arr[i] << ' ';
 
@@ -60,27 +82,10 @@ namespace pix
 	}
 
 	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
-	void logger::log_arr(const type_t (&arr)[N_LIN][N_COL]) noexcept(true)
+	void logger::log_array(const type_t (&arr)[N_LIN][N_COL]) noexcept(false)
 	{
 		for (unsigned long i = 0; i < N_LIN; ++i)
-		{
-			for (unsigned long j = 0; j < N_COL; ++j)
-				std::clog << arr[i][j] << ' ';
-
-			std::clog << '\n';
-		}
-	}
-
-	template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
-	void logger::log_arr(const type_t (&mtx)[N_LIN][N_COL], const type_t (&vec)[N_LIN]) noexcept(true)
-	{
-		for (unsigned long i = 0; i < N_LIN; ++i)
-		{
-			for (unsigned long j = 0; j < N_COL; ++j)
-				std::clog << mtx[i][j] << ' ';
-
-			std::clog << "| " << vec[i] << '\n';
-		}
+			this->log_array(arr[i]);
 	}
 }
 

@@ -1,7 +1,7 @@
 #ifndef _LOGGER_HPP_
 #define _LOGGER_HPP_
 
-#if __has_include(<fstream>)
+#if LOGGER_ENABLED && __has_include(<fstream>)
 
 // Dependencies
 #include <fstream>
@@ -15,14 +15,10 @@ namespace pix
 	{
 	public:
 
-		/**
-		 * @brief Constructor
-		 * @param file_path Path to the log file
-		 * @throw Failed to open file
-		*/
-		explicit logger(const char[]) noexcept(false);
+		// Constructor
+		logger(void) = default;
 
-		// Disable copy constructor
+		// Copy constructor
 		logger(const logger&) = delete;
 
 		/**
@@ -31,42 +27,44 @@ namespace pix
 		~logger(void) noexcept(true);
 
 		/**
-		 * @brief Open a logging session
+		 * @brief Initialize the logger
+		 * @param path Path to file
+		 * @throw Failed to open file
 		*/
-		void open_session(void) noexcept(true);
+		void init(const std::string&) noexcept(false);
+
+		/**
+		 * @brief Open a logging session
+		 * @throw File not open
+		*/
+		void open_session(void) noexcept(false);
 
 		/**
 		 * @brief Log a message
 		 * @param msg Message to log
+		 * @throw File not open
 		*/
-		void log_msg(const char[]) noexcept(true);
+		void log_message(const std::string&) noexcept(false);
 
 		/**
 		 * @brief Log an array as a list
 		 * @tparam type_t Data type
 		 * @param arr Array to log
 		 * @param dim Number of elements
-		*/
-		template <typename type_t>
-		void log_lst(const type_t[], unsigned long) noexcept(true);
-
-		/**
-		 * @brief Log an array as a list
-		 * @tparam type_t Data type
-		 * @tparam DIM Number of elements
-		 * @param arr Array to log
+		 * @throw File not open
 		*/
 		template <typename type_t, unsigned long DIM>
-		void log_lst(const type_t (&)[DIM]) noexcept(true);
+		void log_list(const type_t (&)[DIM]) noexcept(false);
 
 		/**
 		 * @brief Log an array
 		 * @tparam type_t Data type
 		 * @tparam DIM Number of elements
 		 * @param arr Array to log
+		 * @throw File not open
 		*/
 		template <typename type_t, unsigned long DIM>
-		void log_arr(const type_t (&)[DIM]) noexcept(true);
+		void log_array(const type_t (&)[DIM]) noexcept(false);
 
 		/**
 		 * @brief Log an array
@@ -74,20 +72,10 @@ namespace pix
 		 * @tparam N_LIN Number of lines
 		 * @tparam N_COL Number of columns
 		 * @param arr Array to log
+		 * @throw File not open
 		*/
 		template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
-		void log_arr(const type_t (&)[N_LIN][N_COL]) noexcept(true);
-
-		/**
-		 * @brief Log two arrays
-		 * @tparam type_t Data type
-		 * @tparam N_LIN Number of lines
-		 * @tparam N_COL Number of columns
-		 * @param arr_1 Array 1 to log
-		 * @param arr_2 Array 2 to log
-		*/
-		template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
-		void log_arr(const type_t (&)[N_LIN][N_COL], const type_t (&)[N_LIN]) noexcept(true);
+		void log_array(const type_t (&)[N_LIN][N_COL]) noexcept(false);
 
 		// Disable assignment operator
 		logger& operator = (const logger&) = delete;
@@ -95,7 +83,7 @@ namespace pix
 	private:
 
 		unsigned long _session_id; // Session id number
-		std::string _file_path; // File path
+		std::string _file_path; // Path for the file
 		std::ofstream _file; // Logging file
 		std::streambuf* _buffer; // Logging buffer
 	};
@@ -112,26 +100,20 @@ namespace pix
 	{
 	public:
 
-		explicit logger(const char[]) noexcept(false) {}
+		logger(void) = default;
 		logger(const logger&) = delete;
 		~logger(void) noexcept(true) {}
+
+		void init(const char[]) noexcept(true);
 		void open_session(void) noexcept(true) {}
-		void log_msg(const char[]) noexcept(true) {}
 
-		template <typename type_t>
-		void log_lst(const type_t[], unsigned long) noexcept(true) {}
+		void log_message(const char[]) noexcept(true) {}
 
 		template <typename type_t, unsigned long DIM>
-		void log_lst(const type_t (&)[DIM]) noexcept(true) {}
-
-		template <typename type_t, unsigned long DIM>
-		void log_arr(const type_t (&)[DIM]) noexcept(true) {}
+		void log_array(const type_t (&)[DIM]) noexcept(true) {}
 
 		template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
-		void log_arr(const type_t (&)[N_LIN][N_COL]) noexcept(true) {}
-
-		template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
-		void log_arr(const type_t (&)[N_LIN][N_COL], const type_t (&)[N_LIN]) noexcept(true) {}
+		void log_array(const type_t (&)[N_LIN][N_COL]) noexcept(true) {}
 
 		logger& operator = (const logger&) = delete;
 	};
