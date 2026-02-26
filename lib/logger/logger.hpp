@@ -78,7 +78,7 @@ namespace pix
 		void log_array(const type_t (&)[N_LIN][N_COL]) noexcept(false);
 
 		// Disable assignment operator
-		logger& operator = (const logger&) = delete;
+		void operator = (const logger&) = delete;
 
 	private:
 
@@ -115,7 +115,7 @@ namespace pix
 		template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
 		void log_array(const type_t (&)[N_LIN][N_COL]) noexcept(true) {}
 
-		logger& operator = (const logger&) = delete;
+		void operator = (const logger&) = delete;
 	};
 }
 
