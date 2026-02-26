@@ -11,7 +11,8 @@ include_directories(
 	"include/"
 
 	"utils/"
-	
+
+	"lib/traceback"	
 	"lib/logger/"
 	"lib/progress_bar/"
 

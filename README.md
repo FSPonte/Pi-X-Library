@@ -35,6 +35,7 @@ Library for embedded systems and OS based programs
 - OS variables
 - Macros
 ## Libraries
+- Traceback
 - Logger
 - Progress bar
 - Type info
