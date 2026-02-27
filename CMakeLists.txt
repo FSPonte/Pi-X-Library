@@ -12,7 +12,8 @@ include_directories(
 
 	"utils/"
 
-	"lib/traceback"	
+	"lib/traceback/"
+	"lib/exception/"	
 	"lib/logger/"
 	"lib/progress_bar/"
 
@@ -53,4 +54,14 @@ include_directories(
 add_executable(pix_tester
 	src/main.cpp
 	utils/utils.cpp
+	lib/traceback/traceback.cpp
+	lib/exception/exception.cpp
+	lib/logger/logger.cpp
+	lib/progress_bar/progress_bar.cpp
+	lib/c_array/c_array.cpp
+	lib/memory/memory.cpp
+	lib/random/rand.cpp
+	lib/string/string.cpp
+	lib/math/math.cpp
+	lib/graphics/rgb/rgb.cpp
 )
