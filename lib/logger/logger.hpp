@@ -1,9 +1,8 @@
 #ifndef _LOGGER_HPP_
 #define _LOGGER_HPP_
 
-#if LOGGER_ENABLED && __has_include(<fstream>)
-
 // Dependencies
+#include <pix_lib.hpp>
 #include <fstream>
 
 namespace pix
@@ -11,7 +10,11 @@ namespace pix
 	/**
 	 * @brief Logger class
 	*/
-	class logger
+	template <bool ENABLED = false>
+	class logger;
+
+	template <>
+	class logger<true>
 	{
 	public:
 
@@ -78,7 +81,7 @@ namespace pix
 		void log_array(const type_t (&)[N_LIN][N_COL]) noexcept(false);
 
 		// Disable assignment operator
-		void operator = (const logger&) = delete;
+		void operator = (const logger<true>&) = delete;
 
 	private:
 
@@ -87,38 +90,34 @@ namespace pix
 		std::ofstream _file; // Logging file
 		std::streambuf* _buffer; // Logging buffer
 	};
-}
 
-// Template file
-#include "logger.tpp"
-
-#else
-
-namespace pix
-{
-	class logger
+	template <>
+	class logger<false>
 	{
 	public:
 
-		logger(void) = default;
+		logger(void) {};
 		logger(const logger&) = delete;
 		~logger(void) noexcept(true) {}
 
-		void init(const char[]) noexcept(true);
-		void open_session(void) noexcept(true) {}
-
-		void log_message(const char[]) noexcept(true) {}
+		void init(const std::string&) noexcept(false) {}
+		void open_session(void) noexcept(false) {}
+		void log_message(const std::string&) noexcept(false) {}
 
 		template <typename type_t, unsigned long DIM>
-		void log_array(const type_t (&)[DIM]) noexcept(true) {}
+		void log_list(const type_t (&)[DIM]) noexcept(false) {}
+
+		template <typename type_t, unsigned long DIM>
+		void log_array(const type_t (&)[DIM]) noexcept(false) {}
 
 		template <typename type_t, unsigned long N_LIN, unsigned long N_COL>
-		void log_array(const type_t (&)[N_LIN][N_COL]) noexcept(true) {}
+		void log_array(const type_t (&)[N_LIN][N_COL]) noexcept(false) {}
 
 		void operator = (const logger&) = delete;
 	};
 }
 
-#endif
+// Template file
+#include "logger.tpp"
 
 #endif // _LOGGER_HPP_
