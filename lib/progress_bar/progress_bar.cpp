@@ -1,12 +1,10 @@
-#ifndef _PROGRESS_BAR_TPP_
-#define _PROGRESS_BAR_TPP_
+// Header file
+#include "progress_bar.hpp"
 
-#if __has_include(<iostream>) && __has_include(<cstring>)
+// Dependencies
+#include <pix_lib.hpp>
 #include <iostream>
 #include <cstring>
-#else
-static_assert();
-#endif
 
 #if LINUX_DEFINED
 #include <langinfo.h>
@@ -139,10 +137,9 @@ namespace pix
 		};
 	}
 
-	progress_bar::progress_bar(const char description[], long int start, long int total)
+	progress_bar::progress_bar(const std::string& description, long int start, long int total)
 	{
-		std::strncpy(this->_description, description, sizeof(this->_description) - 1);
-		this->_description[sizeof(this->_description) - 1] = '\0';
+		this->_description = description;
 
 		this->_min_refresh_time = 0.1;
 		this->_timer_remaining_time_recent_weight = 0.3;
@@ -437,7 +434,7 @@ namespace pix
 	static bool contains_utf8_case_insensitive(const char str[]) noexcept(false)
 	{
 		if (!str)
-			throw pix::exceptions::null_ptr;
+			throw pix::exception::null_ptr();
 
 		while (*str)
 		{
@@ -588,5 +585,3 @@ namespace pix
 	#endif
 	}
 }
-
-#endif // _PROGRESS_BAR_TPP_

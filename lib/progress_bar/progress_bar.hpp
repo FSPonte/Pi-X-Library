@@ -1,6 +1,9 @@
 #ifndef _PROGRESS_BAR_HPP_
 #define _PROGRESS_BAR_HPP_
 
+// Dependencies
+#include <string>
+
 namespace pix
 {
 	constexpr long TIMER_DATA_POINTS = 5; // Number of data points to keep for timer calculations
@@ -18,7 +21,7 @@ namespace pix
 		 * @param start Starting point
 		 * @param total Total amount
 		*/
-		progress_bar(const char[], long int, long int);
+		progress_bar(const std::string&, long int, long int);
 
 		/**
 		 * @brief Start a progress bar
@@ -70,7 +73,7 @@ namespace pix
 			_is_started,
 			_is_finished;
 
-		char _description[D_BUFFER_SIZE];
+		std::string _description;
 		double
 			_min_refresh_time,
 			_timer_remaining_time_recent_weight;
@@ -88,8 +91,5 @@ namespace pix
 		} _internal;
 	};
 }
-
-// Template file
-#include "progress_bar.tpp"
 
 #endif // _PROGRESS_BAR_HPP_
