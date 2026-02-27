@@ -1,66 +1,78 @@
 #ifndef _TRACEBACK_HPP_
 #define _TRACEBACK_HPP_
 
-#if __has_include(<fstream>) && __has_include(<vector>)
-
 // Dependencies
 #include <fstream>
 #include <vector>
 
 namespace pix
 {
-	struct traceback_item;
-
 	/**
 	 * @brief Traceback class
 	*/
-	class traceback
+	template <bool ENABLED = false>
+	class traceback;
+
+	template <>
+	class traceback<true>
 	{
 	public:
 
-		traceback(const traceback&) = delete; // Copy constructor
-		void operator=(const traceback&) = delete; // Copy operator
+		/**
+		 * @brief Constructor
+		*/
+		traceback(void) noexcept(true) = default;
 
 		/**
-		 * @brief Add traceback
+		 * @brief Initialize
 		 * @param file_name Name of the file
 		 * @param fn_name Name of the function
 		*/
-		static void add(const std::string&, const std::string&, int = -1) noexcept(true);
+		void init(const std::string&, const std::string&) noexcept(true);
+
+		/**
+		 * @brief Trigger the traceback
+		 * @param line_number Number of the line
+		*/
+		void trigger(unsigned long) noexcept(true);
+
+		/**
+		 * @brief Get route
+		 * @return Route
+		*/
+		std::string get(void) const noexcept(true);
 
 		/**
 		 * @brief Display the traceback
 		*/
-		static void display(void) noexcept(true);
+		void display(void) const noexcept(true);
+
+		/**
+		 * @brief Copy operator
+		 * @param rt Traceback route
+		*/
+		void operator = (const traceback&) noexcept(true);
 
 	private:
 
-		traceback(void) = default; // Default constructor
-		~traceback(void) = default; // Destructor
-
-		static std::vector<traceback_item> _data; // Member variable, not static
+		std::string
+			_file_path,
+			_fn_name;
+		unsigned long _line_number;
 	};
-}
 
-// Template file
-#include "traceback.tpp"
-
-#else
-
-namespace pix
-{
-	class traceback
+	template <>
+	class traceback<false>
 	{
 	public:
 
-		traceback(const traceback&) = delete; // Copy constructor
-		void operator=(const traceback&) = delete; // Copy operator
-		static traceback& get_instance(void) noexcept(true) {}
-		void add(const std::string&, const std::string&) noexcept(true) {}
+		traceback(void) noexcept(true) {}
+		void init(const std::string&, const std::string&) noexcept(true) {}
+		void trigger(unsigned long) noexcept(true) {}
+		std::string get(void) const noexcept(true) { return ""; }
 		void display(void) const noexcept(true) {}
+		void operator = (const traceback&) noexcept(true) {}
 	};
 }
-
-#endif
 
 #endif // _TRACEBACK_HPP_
