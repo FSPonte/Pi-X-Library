@@ -1,6 +1,9 @@
 #ifndef _RAND_HPP_
 #define _RAND_HPP_
 
+// Dependencies
+#include <pix_lib.hpp>
+
 // Random number generator
 namespace pix::random
 {

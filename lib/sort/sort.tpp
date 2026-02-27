@@ -20,8 +20,8 @@ namespace pix::sort
 	{
 		assert_is_number(type_t);
 
-		if (arr == nullptr) throw pix::exceptions::null_ptr;
-		if (DIM == 0) throw pix::exceptions::null_dim;
+		if (arr == nullptr) throw pix::exception::null_ptr();
+		if (DIM == 0) throw pix::exception::null_dim();
 
 		for (unsigned long i = 0; i < DIM; ++i)
 		{
@@ -48,8 +48,8 @@ namespace pix::sort
 	{
 		assert_is_number(type_t);
 
-		if (arr == nullptr) throw pix::exceptions::null_ptr;
-		if (DIM == 0) throw pix::exceptions::null_dim;
+		if (arr == nullptr) throw pix::exception::null_ptr();
+		if (DIM == 0) throw pix::exception::null_dim();
 
 		unsigned long min_ind; // Index of minimum value
 
@@ -82,8 +82,8 @@ namespace pix::sort
 	{
 		assert_is_number(type_t);
 
-		if (arr == nullptr) throw pix::exceptions::null_ptr;
-		if (DIM == 0) throw pix::exceptions::null_dim;
+		if (arr == nullptr) throw pix::exception::null_ptr();
+		if (DIM == 0) throw pix::exception::null_dim();
 
 		unsigned long j;
 		type_t aux;
@@ -112,8 +112,8 @@ namespace pix::sort
 	{
 		assert_is_number(type_t);
 
-		if (arr == nullptr) throw pix::exceptions::null_ptr;
-		if (DIM == 0) throw pix::exceptions::null_dim;
+		if (arr == nullptr) throw pix::exception::null_ptr();
+		if (DIM == 0) throw pix::exception::null_dim();
 
 		_quick_sort_(arr, 0, DIM - 1);
 	}
@@ -131,8 +131,8 @@ namespace pix::sort
 	{
 		assert_is_number(type_t);
 
-		if (arr == nullptr) throw pix::exceptions::null_ptr;
-		if (DIM == 0) throw pix::exceptions::null_dim;
+		if (arr == nullptr) throw pix::exception::null_ptr();
+		if (DIM == 0) throw pix::exception::null_dim();
 
 		_merge_sort_(arr, 0, DIM - 1);
 	}

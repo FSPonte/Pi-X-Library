@@ -3,15 +3,7 @@
 
 // C styled arrays
 namespace pix::c_array
-{
-	/**
-	 * @brief Get length
-	 * @param str Pointer to C string
-	 * @return Number of characters
-	 * @throw Null pointer
-	*/
-	unsigned long strlen(const char str[]) noexcept(false);
-	
+{	
 	/**
 	 * @brief Swap values
 	 * @tparam type_t Data type
@@ -244,6 +236,14 @@ namespace pix::c_array
 	*/
 	template <typename type_t, unsigned long DIM>
 	unsigned long binary_approx(type_t (&)[DIM], type_t) noexcept(false);
+
+	/**
+	 * @brief Get length
+	 * @param str Pointer to C string
+	 * @return Number of characters
+	 * @throw Null pointer
+	*/
+	unsigned long strlen(const char str[]) noexcept(false);
 }
 
 // Template file

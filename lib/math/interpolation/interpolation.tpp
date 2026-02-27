@@ -9,7 +9,7 @@ namespace pix::math::interpolation
 		assert_is_float(type_t);
 
 		if (target < input[0] || input[DIM - 1] < target)
-			throw pix::exceptions::out_of_bounds;
+			throw pix::exception::out_of_bounds();
 		
 		unsigned long
 			left = pix::c_array::binary_approx(input, target), // Left index
@@ -23,7 +23,7 @@ namespace pix::math::interpolation
 		type_t den = input[right] - input[left]; // Denominator
 
 		if (den == 0)
-			throw pix::exceptions::div_zero;
+			throw pix::exception::div_zero();
 
 		type_t
 			slope = (output[right] - output[left]) / den,
@@ -39,7 +39,7 @@ namespace pix::math::interpolation
 		assert_not_nulldim(DIM);
 
 		if (target < input[0] || input[DIM - 1] < target)
-			throw pix::exceptions::out_of_bounds;
+			throw pix::exception::out_of_bounds();
 
 		type_t
 			den, // Denominator
@@ -55,7 +55,7 @@ namespace pix::math::interpolation
 				den = input[i + j] - input[j];
 
 				if (den == 0)
-					throw pix::exceptions::div_zero;
+					throw pix::exception::div_zero();
 
 				table[j][i] = (table[j + 1][i - 1] - table[j][i - 1]) / den;
 			}
@@ -81,7 +81,7 @@ namespace pix::math::interpolation
 		assert_not_nulldim(DIM);
 
 		if (target < input[0] || input[DIM - 1] < target)
-			throw pix::exceptions::out_of_bounds;
+			throw pix::exception::out_of_bounds();
 
 		type_t h[DIM - 1], alpha[DIM - 1];
 		type_t l[DIM], mu[DIM], z[DIM];
@@ -135,9 +135,9 @@ namespace pix::math::interpolation
 		assert_not_nulldim(DIM);
 
 		if (target < input[0] || target > input[DIM - 1])
-			throw pix::exceptions::out_of_bounds;
+			throw pix::exception::out_of_bounds();
 		if (order == 0)
-			throw "Invalid order value";
+			throw pix::exception::excep("Invalid order value");
 
 		unsigned long
 			index = pix::c_array::binary_approx(input, target), // Aproximated index

@@ -1,5 +1,5 @@
-#ifndef _RGB_TPP_
-#define _RGB_TPP_
+// Header file
+#include "rgb.hpp"
 
 namespace pix::graphics
 {
@@ -30,5 +30,3 @@ namespace pix::graphics
 			this->_blue != color._blue;
 	}
 }
-
-#endif // _RGB_TPP_

@@ -30,7 +30,8 @@ namespace pix::adt
 	template <typename type_t, unsigned long DIM>
 	type_t& array<type_t, DIM>::operator [] (const unsigned long index) noexcept(false)
 	{
-		if (index >= DIM) throw pix::exceptions::out_of_bounds;
+		if (index >= DIM)
+			throw pix::exception::out_of_bounds();
 
 		return this->_data[index];
 	}
@@ -44,7 +45,8 @@ namespace pix::adt
 	template <typename type_t, unsigned long DIM>
 	void array<type_t, DIM>::operator = (const type_t arr[]) noexcept(false)
 	{
-		if (arr == nullptr) throw pix::exceptions::null_ptr;
+		if (arr == nullptr)
+			throw pix::exception::null_ptr();
 
 		for (unsigned long i = 0; i < DIM; ++i)
 			this->_data[i] = arr[i];

@@ -32,7 +32,7 @@ namespace pix::math
 	type_t& vector<type_t, DIM>::operator [] (const unsigned long index) noexcept(false)
 	{
 		if (index >= DIM)
-			throw pix::exceptions::out_of_bounds;
+			throw pix::exception::out_of_bounds();
 
 		return this->_data[index];
 	}
@@ -47,7 +47,7 @@ namespace pix::math
 	void vector<type_t, DIM>::operator = (const type_t arr[]) noexcept(false)
 	{
 		if (arr == nullptr)
-			throw pix::exceptions::null_ptr;
+			throw pix::exception::null_ptr();
 
 		for (unsigned long i = 0; i < DIM; ++i)
 			this->_data[i] = arr[i];

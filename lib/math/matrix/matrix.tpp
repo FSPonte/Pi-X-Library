@@ -21,7 +21,7 @@ namespace pix::math
 	matrix<type_t, N_LIN, N_COL>::matrix(const type_t arr[]) noexcept(false) : matrix<type_t, N_LIN, N_COL>()
 	{
 		if (arr == nullptr)
-			throw pix::exceptions::null_ptr;
+			throw pix::exception::null_ptr();
 
 		for (unsigned long i = 0; i < N_LIN; ++i)
 			this->_data[i] = vector<type_t, N_COL>(arr + i * N_LIN);
@@ -31,7 +31,7 @@ namespace pix::math
 	matrix<type_t, N_LIN, N_COL>::matrix(const vector<type_t, N_COL> arr[]) noexcept(false) : matrix<type_t, N_LIN, N_COL>()
 	{
 		if (arr == nullptr)
-			throw pix::exceptions::null_ptr;
+			throw pix::exception::null_ptr();
 
 		for (unsigned long i = 0; i < N_LIN; ++i)
 		{
@@ -56,7 +56,7 @@ namespace pix::math
 	vector<type_t, N_COL>& matrix<type_t, N_LIN, N_COL>::operator [] (const unsigned long index) noexcept(false)
 	{
 		if (index >= N_LIN)
-			throw pix::exceptions::out_of_bounds;
+			throw pix::exception::out_of_bounds();
 
 		return this->_data[index % N_LIN];
 	}

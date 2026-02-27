@@ -1,20 +1,12 @@
 #ifndef _C_ARRAY_TPP_
 #define _C_ARRAY_TPP_
 
+// Dependencies
+#include <asserts.hpp>
+#include <exception.hpp>
+
 namespace pix::c_array
 {
-	unsigned long strlen(const char str[]) noexcept(false)
-	{
-		if (str == nullptr)
-			throw pix::exceptions::null_ptr;
-
-		unsigned long length = 0;
-		
-		while (str[length++] != '\0');
-
-		return length;
-	}
-
 	template <typename type_t>
 	inline void swap(type_t& ref_1, type_t& ref_2) noexcept(true)
 	{
@@ -27,7 +19,7 @@ namespace pix::c_array
 	void swap(type_t* ptr_1, type_t* ptr_2) noexcept(false)
 	{
 		if (ptr_1 == nullptr || ptr_2 == nullptr)
-			throw pix::exceptions::null_ptr;
+			throw pix::exception::null_ptr();
 
 		type_t* aux = ptr_1; // Auxiliar pointer
 		ptr_1 = ptr_2;
@@ -37,8 +29,8 @@ namespace pix::c_array
 	template <typename type_t>
 	void invert(type_t arr[], const unsigned long DIM) noexcept(false)
 	{
-		if (arr == nullptr) throw pix::exceptions::null_ptr;
-		if (DIM == 0) throw pix::exceptions::null_dim;
+		if (arr == nullptr) throw pix::exception::null_ptr();
+		if (DIM == 0) throw pix::exception::null_dim();
 
 		unsigned long
 			left_ind = 0,
@@ -64,8 +56,8 @@ namespace pix::c_array
 	template <typename type_t>
 	void copy(const type_t arr_o[], type_t arr_d[], const unsigned long DIM) noexcept(false)
 	{
-		if (arr_o == nullptr || arr_d == nullptr) throw pix::exceptions::null_ptr;
-		if (DIM == 0) throw pix::exceptions::null_dim;
+		if (arr_o == nullptr || arr_d == nullptr) throw pix::exception::null_ptr();
+		if (DIM == 0) throw pix::exception::null_dim();
 
 		for (unsigned long i = 0; i < DIM; ++i)
 			arr_d[i] = arr_o[i];
@@ -82,8 +74,8 @@ namespace pix::c_array
 	template <typename type_t>
 	void copy(const type_t* arr_o[], type_t* arr_d[], const unsigned long DIM_1, const unsigned long DIM_2) noexcept(false)
 	{
-		if (arr_o == nullptr || arr_d == nullptr) throw pix::exceptions::null_ptr;
-		if (DIM_1 == 0 || DIM_2 == 0) throw pix::exceptions::null_dim;
+		if (arr_o == nullptr || arr_d == nullptr) throw pix::exception::null_ptr();
+		if (DIM_1 == 0 || DIM_2 == 0) throw pix::exception::null_dim();
 
 		for (unsigned long i = 0; i < DIM_1; ++i)
 			pix::c_array::copy<type_t>(arr_o[i], arr_d[i], DIM_2);
@@ -102,8 +94,8 @@ namespace pix::c_array
 	template <typename type_t>
 	void move(type_t arr_o[], type_t arr_d[], const unsigned long DIM) noexcept(false)
 	{
-		if (arr_o == nullptr || arr_d == nullptr) throw pix::exceptions::null_ptr;
-		if (DIM == 0) throw pix::exceptions::null_dim;
+		if (arr_o == nullptr || arr_d == nullptr) throw pix::exception::null_ptr();
+		if (DIM == 0) throw pix::exception::null_dim();
 
 		for (unsigned long i = 0; i < DIM; ++i)
 		{
@@ -123,8 +115,8 @@ namespace pix::c_array
 	template <typename type_t>
 	void left_shift(type_t arr[], const unsigned long DIM) noexcept(false)
 	{
-		if (arr == nullptr) throw pix::exceptions::null_ptr;
-		if (DIM == 0) throw pix::exceptions::null_dim;
+		if (arr == nullptr) throw pix::exception::null_ptr();
+		if (DIM == 0) throw pix::exception::null_dim();
 
 		for (unsigned long i = 1; i < DIM; ++i)
 			arr[i - 1] = arr[i];
@@ -143,8 +135,8 @@ namespace pix::c_array
 	template <typename type_t>
 	void right_shift(type_t arr[], const unsigned long DIM) noexcept(false)
 	{
-		if (arr == nullptr) throw pix::exceptions::null_ptr;
-		if (DIM == 0) throw pix::exceptions::null_dim;
+		if (arr == nullptr) throw pix::exception::null_ptr();
+		if (DIM == 0) throw pix::exception::null_dim();
 
 		for (unsigned long i = DIM - 1; i > 0; --i)
 			arr[i] = arr[i - 1];
@@ -163,9 +155,9 @@ namespace pix::c_array
 	template <typename type_t>
 	void bit_rev(type_t arr[], const unsigned long DIM) noexcept(false)
 	{
-		if (arr == nullptr) throw pix::exceptions::null_ptr;
-		if (DIM == 0) throw pix::exceptions::null_dim;
-		if ((DIM & (DIM - 1)) != 0) throw "Dimension must be a power of 2";
+		if (arr == nullptr) throw pix::exception::null_ptr();
+		if (DIM == 0) throw pix::exception::null_dim();
+		if ((DIM & (DIM - 1)) != 0) throw pix::exception::excep("Dimension must be a power of 2");
 
 		unsigned long
 			j = 0,
@@ -203,8 +195,8 @@ namespace pix::c_array
 	template <typename type_t>
 	unsigned long binary_search(type_t arr[], const unsigned long DIM, const type_t target) noexcept(false)
 	{
-		if (arr == nullptr) throw pix::exceptions::null_ptr;
-		if (DIM == 0) throw pix::exceptions::null_dim;
+		if (arr == nullptr) throw pix::exception::null_ptr();
+		if (DIM == 0) throw pix::exception::null_dim();
 
 		unsigned long
 			left = 0,
@@ -237,8 +229,8 @@ namespace pix::c_array
 	template <typename type_t>
 	unsigned long binary_approx(type_t arr[], const unsigned long DIM, const type_t target) noexcept(false)
 	{
-		if (arr == nullptr) throw pix::exceptions::null_ptr;
-		if (DIM == 0) throw pix::exceptions::null_dim;
+		if (arr == nullptr) throw pix::exception::null_ptr();
+		if (DIM == 0) throw pix::exception::null_dim();
 
 		unsigned long
 			left = 0,

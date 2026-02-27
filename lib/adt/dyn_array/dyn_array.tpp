@@ -40,12 +40,14 @@ namespace pix::adt
 	{
 		if (index / BLOCK_ALLOC_SIZE != 0)
 		{
-			if (this->_next == nullptr) throw pix::exceptions::out_of_bounds;
+			if (this->_next == nullptr)
+				throw pix::exception::out_of_bounds();
 
 			return this->_next->pop(index - BLOCK_ALLOC_SIZE);
 		}
 
-		if (index >= this->_index) throw pix::exceptions::out_of_bounds;
+		if (index >= this->_index)
+			throw pix::exception::out_of_bounds();
 
 		const type_t RET = this->_data[index]; // Return value
 
@@ -74,7 +76,8 @@ namespace pix::adt
 		if (index < this->_index)
 			return this->_data[index];
 
-		if (this->_index != BLOCK_ALLOC_SIZE) throw pix::exceptions::out_of_bounds;
+		if (this->_index != BLOCK_ALLOC_SIZE)
+			throw pix::exception::out_of_bounds();
 		
 		return (*this->_next)[index - BLOCK_ALLOC_SIZE];
 	}

@@ -25,7 +25,4 @@ namespace pix::graphics
 	};
 }
 
-// Template file
-#include "rgb.tpp"
-
 #endif // _RGB_HPP_

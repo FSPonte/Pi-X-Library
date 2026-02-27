@@ -27,7 +27,8 @@ namespace pix::adt
 	template <typename type_t, unsigned long DIM>
 	const type_t& tuple<type_t, DIM>::operator [] (const unsigned long index) const noexcept(false)
 	{
-		if (index >= DIM) throw pix::exceptions::out_of_bounds;
+		if (index >= DIM)
+			throw pix::exception::out_of_bounds();
 		
 		return this->_data[index];
 	}
