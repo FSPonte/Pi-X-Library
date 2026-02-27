@@ -7,14 +7,13 @@
 // Includes
 #include <sys_vars.hpp>
 #include <asserts.hpp>
-#include <exceptions.hpp>
 #include <types.hpp>
 #include <constants.hpp>
 #include <os.hpp>
-#include <macros.hpp>
 
 // Libraries
 #include <traceback.hpp>
+#include <exception.hpp>
 #include <logger.hpp>
 #include <progress_bar.hpp>
 #include <type_info.hpp>
