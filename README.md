@@ -3,23 +3,32 @@ Library for embedded systems and OS based programs
 
 ## Includes:
 - System variables
+- OS variables
+- Types
+  - byte_t
+  - c_str_t
+  - size_t
+  - int8_t
+  - uint8_t
+  - int16_t
+  - uint16_t
+  - int32_t
+  - uint32_t
+  - int64_t
+  - uint64_t
+  - double_t
+  - Structs:
+    - is_same
+    - is_number
+    - is_integer
+    - is_float
 - Asserts
-	- not_nullptr: Pointer is null
-	- not_nulldim: Dimension is null
-	- is_same: Are two data types equal
-	- is_number: Is a data type a number
-	- is_integer: Is data type a integer
-	- is_float: Is data type a float
-- Exceptions:
-	- Null dimension
-	- Null pointer
-	- Bad memory allocation
-	- Numeric underflow
-	- Numeric overflow
-	- Bad numeric range
-	- Division by zero
-	- Invalid argument
-- Data types
+  - not_nullptr: Pointer is null
+  - not_nulldim: Dimension is null
+  - is_same: Are two data types equal
+  - is_number: Is a data type a number
+  - is_integer: Is data type a integer
+  - is_float: Is data type a float
 - Constants
   - Mathematics
     - Pi
@@ -32,10 +41,19 @@ Library for embedded systems and OS based programs
 	- Speed of light in vacuum
 	- Elementary charge
 	- Newtonian constant of gravitation
-- OS variables
-- Macros
 ## Libraries
 - Traceback
+- Exception
+  - Null dimension
+  - Null pointer
+  - Bad memory allocation
+  - Numeric underflow
+  - Numeric overflow
+  - Bad numeric range
+  - Division by zero
+  - Invalid argument
+  - Out of bounds
+  - OS not supported
 - Logger
 - Progress bar
 - Type info
