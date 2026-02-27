@@ -1,10 +1,11 @@
 #ifndef _SMART_POINTER_HPP_
 #define _SMART_POINTER_HPP_
 
-namespace
+// Smart pointers
+namespace pix::smart_pointer
 {
 	template <typename type_t>
-	class smart_pointer
+	class _base_smart_pointer_
 	{
 	public:
 
@@ -14,13 +15,9 @@ namespace
 
 		type_t* _ptr;
 	};
-}
 
-// Smart pointers
-namespace pix::smart_pointer
-{
 	template <typename type_t>
-	class auto_pointer : public smart_pointer<type_t>
+	class auto_pointer : public _base_smart_pointer_<type_t>
 	{
 	public:
 	
@@ -48,7 +45,7 @@ namespace pix::smart_pointer
 	};
 
 	template <typename type_t>
-	class unique_pointer : public smart_pointer<type_t>
+	class unique_pointer : public _base_smart_pointer_<type_t>
 	{
 	public:
 
