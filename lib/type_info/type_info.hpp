@@ -28,7 +28,7 @@ namespace pix
 		 * @brief Equality operator
 		 * @tparam _type_t Data type
 		 * @param t_inf Object
-		 * @return True if types are equal
+		 * @return False
 		*/
 		template <typename _type_t>
 		constexpr bool operator == (const type_info<_type_t>&) const noexcept(true);
@@ -36,7 +36,7 @@ namespace pix
 		/**
 		 * @brief Equality operator
 		 * @param t_inf Object
-		 * @return True if types are equal
+		 * @return True
 		*/
 		constexpr bool operator == (const type_info<type_t>&) const noexcept(true);
 
@@ -44,7 +44,7 @@ namespace pix
 		 * @brief Inequality operator
 		 * @tparam _type_t Data type
 		 * @param t_inf Object
-		 * @return True if types are different
+		 * @return True
 		*/
 		template <typename _type_t>
 		constexpr bool operator != (const type_info<_type_t>&) const noexcept(true);
@@ -52,7 +52,7 @@ namespace pix
 		/**
 		 * @brief Inequality operator
 		 * @param t_inf Object
-		 * @return True if types are different
+		 * @return False
 		*/
 		constexpr bool operator != (const type_info<type_t>&) const noexcept(true);
 	};
