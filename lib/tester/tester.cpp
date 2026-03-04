@@ -18,14 +18,12 @@ void tester::start(const std::string& fn_name, const std::string& file_path) noe
 
 void tester::pass(const unsigned long line_number) noexcept(true)
 {
-	auto loc = location{true, line_number};
-	this->_results.back()._loc.push_back(loc);
+	this->_results.back()._tests.push_back(single_test{true, line_number});
 }
 
 void tester::fail(const unsigned long line_number) noexcept(true)
 {
-	auto loc = location{false, line_number};
-	this->_results.back()._loc.push_back(loc);
+	this->_results.back()._tests.push_back(single_test{false, line_number});
 }
 
 void tester::print(void) const noexcept(true)
@@ -43,9 +41,9 @@ void tester::print(void) const noexcept(true)
 	{
 		unsigned long index = 0;
 
-		std::cout << '\t' << result._fn_name << '\n';
+		std::cout << "\t@ " << result._fn_name << '\n';
 
-		for (auto test : result._loc)
+		for (auto test : result._tests)
 		{
 			std::cout << "\t\t";
 		

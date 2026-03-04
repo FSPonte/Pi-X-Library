@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-struct location
+struct single_test
 {
 	bool _passed; // Result of the test
 	unsigned long _line_number; // Number of the condition triggered
@@ -16,7 +16,7 @@ struct test_results
 	std::string
 		_fn_name, // Name of the test function
 		_file_path; // Path to file
-	std::vector<location> _loc; // Location of tests
+	std::vector<single_test> _tests; // Single tests
 };
 
 class tester
