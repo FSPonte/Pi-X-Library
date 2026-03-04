@@ -68,4 +68,6 @@ add_executable(pix_tester
 	lib/string/string.cpp
 	lib/math/math.cpp
 	lib/graphics/rgb/rgb.cpp
+
+	tests/test__type_info.cpp
 )
