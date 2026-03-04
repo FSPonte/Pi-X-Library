@@ -3,7 +3,7 @@
 
 // C styled arrays
 namespace pix::c_array
-{	
+{
 	/**
 	 * @brief Swap values
 	 * @tparam type_t Data type
