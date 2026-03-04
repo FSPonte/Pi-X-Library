@@ -16,6 +16,7 @@
 #include <exception.hpp>
 #include <logger.hpp>
 #include <progress_bar.hpp>
+#include <tester.hpp>
 #include <type_info.hpp>
 #include <c_array.hpp>
 #include <memory.hpp>
