@@ -10,6 +10,7 @@
 #include <types.hpp>
 #include <constants.hpp>
 #include <os.hpp>
+#include <macros.hpp>
 
 // Libraries
 #include <traceback.hpp>
