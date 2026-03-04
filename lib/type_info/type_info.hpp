@@ -26,12 +26,19 @@ namespace pix
 
 		/**
 		 * @brief Equality operator
+		 * @param var Variable
+		 * @return True
+		*/
+		constexpr bool operator == (const type_t&) const noexcept(true);
+
+		/**
+		 * @brief Equality operator
 		 * @tparam _type_t Data type
-		 * @param t_inf Object
+		 * @param var Variable
 		 * @return False
 		*/
 		template <typename _type_t>
-		constexpr bool operator == (const type_info<_type_t>&) const noexcept(true);
+		constexpr bool operator == (const _type_t&) const noexcept(true);
 
 		/**
 		 * @brief Equality operator
@@ -41,13 +48,29 @@ namespace pix
 		constexpr bool operator == (const type_info<type_t>&) const noexcept(true);
 
 		/**
-		 * @brief Inequality operator
+		 * @brief Equality operator
 		 * @tparam _type_t Data type
 		 * @param t_inf Object
+		 * @return False
+		*/
+		template <typename _type_t>
+		constexpr bool operator == (const type_info<_type_t>&) const noexcept(true);
+
+		/**
+		 * @brief Inequality operator
+		 * @param var Variable
+		 * @return False
+		*/
+		constexpr bool operator != (const type_t&) const noexcept(true);
+
+		/**
+		 * @brief Inequality operator
+		 * @tparam _type_t Data type
+		 * @param var Variable
 		 * @return True
 		*/
 		template <typename _type_t>
-		constexpr bool operator != (const type_info<_type_t>&) const noexcept(true);
+		constexpr bool operator != (const _type_t&) const noexcept(true);
 
 		/**
 		 * @brief Inequality operator
@@ -55,6 +78,15 @@ namespace pix
 		 * @return False
 		*/
 		constexpr bool operator != (const type_info<type_t>&) const noexcept(true);
+
+		/**
+		 * @brief Inequality operator
+		 * @tparam _type_t Data type
+		 * @param t_inf Object
+		 * @return True
+		*/
+		template <typename _type_t>
+		constexpr bool operator != (const type_info<_type_t>&) const noexcept(true);
 	};
 }
 
