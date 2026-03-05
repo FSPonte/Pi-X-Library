@@ -1,5 +1,5 @@
-#ifndef _DEQUE_HPP_
-#define _DEQUE_HPP_
+#ifndef __DEQUE_HPP__
+#define __DEQUE_HPP__
 
 // Abstract data types
 namespace pix::adt
@@ -91,4 +91,4 @@ namespace pix::adt
 // Template file
 #include "deque.tpp"
 
-#endif // _DEQUE_HPP_
+#endif // __DEQUE_HPP__

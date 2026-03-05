@@ -1,5 +1,5 @@
-#ifndef _MATRIX_HPP_
-#define _MATRIX_HPP_
+#ifndef __MATRIX_HPP__
+#define __MATRIX_HPP__
 
 // Mathematics
 namespace pix::math
@@ -178,4 +178,4 @@ namespace pix::math
 // Template file
 #include "matrix.tpp"
 
-#endif // _MATRX_HPP_
+#endif // __MATRX_HPP__

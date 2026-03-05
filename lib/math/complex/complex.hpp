@@ -1,5 +1,5 @@
-#ifndef _COMPLEX_HPP_
-#define _COMPLEX_HPP_
+#ifndef __COMPLEX_HPP__
+#define __COMPLEX_HPP__
 
 // Mathematics
 namespace pix::math
@@ -126,4 +126,4 @@ namespace pix::math
 // Template file
 #include "complex.tpp"
 
-#endif // _COMPLEX_HPP_
+#endif // __COMPLEX_HPP__

@@ -1,5 +1,5 @@
-#ifndef _STRING_HPP_
-#define _STRING_HPP_
+#ifndef __STRING_HPP__
+#define __STRING_HPP__
 
 // Abstract data types
 namespace pix
@@ -144,4 +144,4 @@ namespace pix
 // Template file
 #include "string.tpp"
 
-#endif // _STRING_HPP_
+#endif // __STRING_HPP__

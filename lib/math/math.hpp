@@ -1,5 +1,5 @@
-#ifndef _MATH_HPP_
-#define _MATH_HPP_
+#ifndef __MATH_HPP__
+#define __MATH_HPP__
 
 // Mathematics
 namespace pix::math
@@ -190,4 +190,4 @@ namespace pix::math
 // Template file
 #include "math.tpp"
 
-#endif // _MATH_HPP_
+#endif // __MATH_HPP__

@@ -1,5 +1,5 @@
-#ifndef _NODE_HPP_
-#define _NODE_HPP_
+#ifndef __NODE_HPP__
+#define __NODE_HPP__
 
 // Abstract data types
 namespace pix::adt
@@ -93,4 +93,4 @@ namespace pix::adt
 // Template file
 #include "node.tpp"
 
-#endif // _NODE_HPP_
+#endif // __NODE_HPP__

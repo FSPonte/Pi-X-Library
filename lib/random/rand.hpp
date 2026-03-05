@@ -1,5 +1,5 @@
-#ifndef _RAND_HPP_
-#define _RAND_HPP_
+#ifndef __RAND_HPP__
+#define __RAND_HPP__
 
 // Dependencies
 #include <pix_lib.hpp>
@@ -56,4 +56,4 @@ namespace pix::random
 // Template file
 #include "rand.tpp"
 
-#endif // _RAND_HPP_
+#endif // __RAND_HPP__

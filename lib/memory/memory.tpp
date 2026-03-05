@@ -1,5 +1,5 @@
-#ifndef _MEMORY_TPP_
-#define _MEMORY_TPP_
+#ifndef __MEMORY_TPP__
+#define __MEMORY_TPP__
 
 // Dependencies
 #include <exception.hpp>
@@ -28,4 +28,4 @@ namespace pix::memory
 	}
 }
 
-#endif // _MEMORY_TPP_
+#endif // __MEMORY_TPP__

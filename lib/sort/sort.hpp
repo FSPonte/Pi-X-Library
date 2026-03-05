@@ -1,5 +1,5 @@
-#ifndef _SORT_HPP_
-#define _SORT_HPP_
+#ifndef __SORT_HPP__
+#define __SORT_HPP__
 
 // Sorting algorithms
 namespace pix::sort
@@ -108,4 +108,4 @@ namespace pix::sort
 // Template file
 #include "sort.tpp"
 
-#endif // _SORT_HPP_
+#endif // __SORT_HPP__

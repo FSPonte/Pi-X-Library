@@ -1,5 +1,5 @@
-#ifndef _SYS_LIN_EQU_TPP_
-#define _SYS_LIN_EQU_TPP_
+#ifndef __SYS_LIN_EQU_TPP__
+#define __SYS_LIN_EQU_TPP__
 
 namespace pix::math::sys_lin_equ
 {
@@ -121,4 +121,4 @@ namespace pix::math::sys_lin_equ
 	}
 }
 
-#endif // _SYS_LIN_EQU_TPP_
+#endif // __SYS_LIN_EQU_TPP__

@@ -1,5 +1,5 @@
-#ifndef _QUEUE_TPP_
-#define _QUEUE_TPP_
+#ifndef __QUEUE_TPP__
+#define __QUEUE_TPP__
 
 namespace pix::adt
 {
@@ -81,4 +81,4 @@ namespace pix::adt
 	}
 }
 
-#endif // _QUEUE_TPP_
+#endif // __QUEUE_TPP__

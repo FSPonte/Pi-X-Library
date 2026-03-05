@@ -1,5 +1,5 @@
-#ifndef _LIST_TPP_
-#define _LIST_TPP_
+#ifndef __LIST_TPP__
+#define __LIST_TPP__
 
 namespace pix::adt
 {
@@ -92,4 +92,4 @@ namespace pix::adt
 	}
 }
 
-#endif // _LIST_TPP_
+#endif // __LIST_TPP__

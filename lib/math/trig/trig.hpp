@@ -1,5 +1,5 @@
-#ifndef _TRIG_HPP_
-#define _TRIG_HPP_
+#ifndef __TRIG_HPP__
+#define __TRIG_HPP__
 
 // Trigonometric functions
 namespace pix::math::trig
@@ -96,4 +96,4 @@ namespace pix::math::trig
 // Template file
 #include "trig.tpp"
 
-#endif // _TRIG_HPP_
+#endif // __TRIG_HPP__

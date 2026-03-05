@@ -1,5 +1,5 @@
-#ifndef _TUPLE_HPP_
-#define _TUPLE_HPP_
+#ifndef __TUPLE_HPP__
+#define __TUPLE_HPP__
 
 // Abstract data types
 namespace pix::adt
@@ -61,4 +61,4 @@ namespace pix::adt
 // Template file
 #include "tuple.tpp"
 
-#endif // _TUPLE_HPP_
+#endif // __TUPLE_HPP__

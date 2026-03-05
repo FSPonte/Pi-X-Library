@@ -1,5 +1,5 @@
-#ifndef _LOGGER_HPP_
-#define _LOGGER_HPP_
+#ifndef __LOGGER_HPP__
+#define __LOGGER_HPP__
 
 // Dependencies
 #include <macros.hpp>
@@ -120,4 +120,4 @@ namespace pix
 // Template file
 #include "logger.tpp"
 
-#endif // _LOGGER_HPP_
+#endif // __LOGGER_HPP__

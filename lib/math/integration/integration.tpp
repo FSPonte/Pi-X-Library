@@ -1,5 +1,5 @@
-#ifndef _INTEGRATION_TPP_
-#define _INTEGRATION_TPP_
+#ifndef __INTEGRATION_TPP__
+#define __INTEGRATION_TPP__
 
 namespace pix::math::integration
 {
@@ -89,4 +89,4 @@ namespace pix::math::integration
 	}
 }
 
-#endif // _INTEGRATION_TPP_
+#endif // __INTEGRATION_TPP__

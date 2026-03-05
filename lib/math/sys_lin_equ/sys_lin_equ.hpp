@@ -1,5 +1,5 @@
-#ifndef _SYS_LIN_EQU_HPP_
-#define _SYS_LIN_EQU_HPP_
+#ifndef __SYS_LIN_EQU_HPP__
+#define __SYS_LIN_EQU_HPP__
 
 // Systems of linear equations
 namespace pix::math::sys_lin_equ
@@ -31,4 +31,4 @@ namespace pix::math::sys_lin_equ
 // Template file
 #include "sys_lin_equ.tpp"
 
-#endif // _SYS_LIN_EQU_HPP_
+#endif // __SYS_LIN_EQU_HPP__

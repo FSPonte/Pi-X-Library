@@ -1,5 +1,5 @@
-#ifndef _MATRIX_TPP_
-#define _MATRIX_TPP_
+#ifndef __MATRIX_TPP__
+#define __MATRIX_TPP__
 
 namespace pix::math
 {
@@ -254,4 +254,4 @@ namespace pix::math
 	}
 }
 
-#endif // _MATRIX_TPP_
+#endif // __MATRIX_TPP__

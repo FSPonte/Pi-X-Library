@@ -1,5 +1,5 @@
-#ifndef _ARRAY_HPP_
-#define _ARRAY_HPP_
+#ifndef __ARRAY_HPP__
+#define __ARRAY_HPP__
 
 // Abstract data types
 namespace pix::adt
@@ -143,4 +143,4 @@ namespace pix::adt
 // Template file
 #include "array.tpp"
 
-#endif // _ARRAY_HPP_
+#endif // __ARRAY_HPP__

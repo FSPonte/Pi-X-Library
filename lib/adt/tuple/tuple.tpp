@@ -1,5 +1,5 @@
-#ifndef _TUPLE_TPP_
-#define _TUPLE_TPP_
+#ifndef __TUPLE_TPP__
+#define __TUPLE_TPP__
 
 namespace pix::adt
 {
@@ -49,4 +49,4 @@ namespace pix::adt
 	}
 }
 
-#endif // _TUPLE_TPP_
+#endif // __TUPLE_TPP__

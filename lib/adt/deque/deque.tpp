@@ -1,5 +1,5 @@
-#ifndef _DEQUE_TPP_
-#define _DEQUE_TPP_
+#ifndef __DEQUE_TPP__
+#define __DEQUE_TPP__
 
 namespace pix::adt
 {
@@ -105,4 +105,4 @@ namespace pix::adt
 	}
 }
 
-#endif // _DEQUE_TPP_
+#endif // __DEQUE_TPP__

@@ -1,5 +1,5 @@
-#ifndef _VECTOR_TPP_
-#define _VECTOR_TPP_
+#ifndef __VECTOR_TPP__
+#define __VECTOR_TPP__
 
 namespace pix::math
 {
@@ -179,4 +179,4 @@ namespace pix::math
 	}
 }
 
-#endif // _VECTOR_TPP_
+#endif // __VECTOR_TPP__

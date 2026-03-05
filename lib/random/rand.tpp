@@ -1,5 +1,5 @@
-#ifndef _RAND_TPP_
-#define _RAND_TPP_
+#ifndef __RAND_TPP__
+#define __RAND_TPP__
 
 constexpr static const char SEED_BYTE = '\0';
 static const unsigned long
@@ -58,4 +58,4 @@ namespace pix::random
 	}
 }
 
-#endif // _RAND_TPP_
+#endif // __RAND_TPP__

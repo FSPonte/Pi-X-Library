@@ -1,5 +1,5 @@
-#ifndef _INTERPOLATION_HPP_
-#define _INTERPOLATION_HPP_
+#ifndef __INTERPOLATION_HPP__
+#define __INTERPOLATION_HPP__
 
 // Numeric interpolation
 namespace pix::math::interpolation
@@ -65,4 +65,4 @@ namespace pix::math::interpolation
 // Template file
 #include "interpolation.tpp"
 
-#endif // _INTERPOLATION_HPP_
+#endif // __INTERPOLATION_HPP__

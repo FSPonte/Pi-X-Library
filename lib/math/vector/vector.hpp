@@ -1,5 +1,5 @@
-#ifndef _VECTOR_HPP_
-#define _VECTOR_HPP_
+#ifndef __VECTOR_HPP__
+#define __VECTOR_HPP__
 
 // Mathematics
 namespace pix::math
@@ -156,4 +156,4 @@ namespace pix::math
 // Template file
 #include "vector.tpp"
 
-#endif // _VECTOR_HPP_
+#endif // __VECTOR_HPP__

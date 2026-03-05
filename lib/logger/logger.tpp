@@ -1,5 +1,5 @@
-#ifndef _LOGGER_TPP_
-#define _LOGGER_TPP_
+#ifndef __LOGGER_TPP__
+#define __LOGGER_TPP__
 
 // Dependencies
 #include <iostream>
@@ -36,4 +36,4 @@ namespace pix
 	}
 }
 
-#endif // _LOGGER_TPP_
+#endif // __LOGGER_TPP__

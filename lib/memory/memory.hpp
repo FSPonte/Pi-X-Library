@@ -1,5 +1,5 @@
-#ifndef _MEMORY_HPP_
-#define _MEMORY_HPP_
+#ifndef __MEMORY_HPP__
+#define __MEMORY_HPP__
 
 // Memory management
 namespace pix::memory
@@ -98,4 +98,4 @@ namespace pix::memory
 #include "memory.tpp"
 #include "mmap.tpp"
 
-#endif // _MEMORY_HPP_
+#endif // __MEMORY_HPP__

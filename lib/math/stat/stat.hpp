@@ -1,5 +1,5 @@
-#ifndef _STAT_HPP_
-#define _STAT_HPP_
+#ifndef __STAT_HPP__
+#define __STAT_HPP__
 
 // Statistics
 namespace pix::math::stat
@@ -151,4 +151,4 @@ namespace pix::math::stat
 // Template file
 #include "stat.tpp"
 
-#endif // _STAT_HPP_
+#endif // __STAT_HPP__

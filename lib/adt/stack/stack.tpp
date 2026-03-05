@@ -1,5 +1,5 @@
-#ifndef _STACK_TPP_
-#define _STACK_TPP_
+#ifndef __STACK_TPP__
+#define __STACK_TPP__
 
 namespace pix::adt
 {
@@ -66,4 +66,4 @@ namespace pix::adt
 	}
 }
 
-#endif // _STACK_TPP_
+#endif // __STACK_TPP__

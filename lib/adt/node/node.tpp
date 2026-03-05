@@ -1,5 +1,5 @@
-#ifndef _NODE_TPP_
-#define _NODE_TPP_
+#ifndef __NODE_TPP__
+#define __NODE_TPP__
 
 namespace pix::adt
 {
@@ -120,4 +120,4 @@ namespace pix::adt
 	}
 }
 
-#endif // _NODE_TPP_
+#endif // __NODE_TPP__

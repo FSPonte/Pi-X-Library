@@ -1,5 +1,5 @@
-#ifndef _MMAP_TPP_
-#define _MMAP_TPP_
+#ifndef __MMAP_TPP__
+#define __MMAP_TPP__
 
 // Dependencies
 #include <pix_lib.hpp>
@@ -50,4 +50,4 @@ namespace pix::memory
 	}
 }
 
-#endif // _MMAP_TPP_
+#endif // __MMAP_TPP__

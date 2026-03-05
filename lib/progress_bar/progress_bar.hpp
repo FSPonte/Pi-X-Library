@@ -1,5 +1,5 @@
-#ifndef _PROGRESS_BAR_HPP_
-#define _PROGRESS_BAR_HPP_
+#ifndef __PROGRESS_BAR_HPP__
+#define __PROGRESS_BAR_HPP__
 
 // Dependencies
 #include <string>
@@ -92,4 +92,4 @@ namespace pix
 	};
 }
 
-#endif // _PROGRESS_BAR_HPP_
+#endif // __PROGRESS_BAR_HPP__

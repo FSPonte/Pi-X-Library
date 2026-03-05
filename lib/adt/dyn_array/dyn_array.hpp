@@ -1,5 +1,5 @@
-#ifndef _DYN_ARRAY_HPP_
-#define _DYN_ARRAY_HPP_
+#ifndef __DYN_ARRAY_HPP__
+#define __DYN_ARRAY_HPP__
 
 // Abstract data types
 namespace pix::adt
@@ -62,4 +62,4 @@ namespace pix::adt
 // Template file
 #include "dyn_array.tpp"
 
-#endif // _DYN_ARRAY_HPP_
+#endif // __DYN_ARRAY_HPP__

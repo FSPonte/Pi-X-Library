@@ -1,5 +1,5 @@
-#ifndef _TESTS_HPP_
-#define _TESTS_HPP_
+#ifndef __TESTS_HPP__
+#define __TESTS_HPP__
 
 // Dependencies
 #include <macros.hpp>
@@ -15,4 +15,4 @@ void test__type_info(void) noexcept(false);
 void test__c_array(void) noexcept(false);
 void test__memory(void) noexcept(false);
 
-#endif // _TESTS_HPP_
+#endif // __TESTS_HPP__

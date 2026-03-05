@@ -1,5 +1,5 @@
-#ifndef _LIST_HPP_
-#define _LIST_HPP_
+#ifndef __LIST_HPP__
+#define __LIST_HPP__
 
 // Abstract data types
 namespace pix::adt
@@ -61,4 +61,4 @@ namespace pix::adt
 // Template file
 #include "list.tpp"
 
-#endif // _LIST_HPP_
+#endif // __LIST_HPP__

@@ -1,5 +1,5 @@
-#ifndef _SMART_POINTER_HPP_
-#define _SMART_POINTER_HPP_
+#ifndef __SMART_POINTER_HPP__
+#define __SMART_POINTER_HPP__
 
 // Smart pointers
 namespace pix::smart_pointer
@@ -84,4 +84,4 @@ namespace pix::smart_pointer
 #include "auto_pointer.tpp"
 #include "unique_pointer.tpp"
 
-#endif // _SMART_POINTER_HPP_
+#endif // __SMART_POINTER_HPP__

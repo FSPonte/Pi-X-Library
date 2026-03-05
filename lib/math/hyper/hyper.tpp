@@ -1,5 +1,5 @@
-#ifndef _HYPER_TPP_
-#define _HYPER_TPP_
+#ifndef __HYPER_TPP__
+#define __HYPER_TPP__
 
 namespace pix::math::hyper
 {
@@ -84,4 +84,4 @@ namespace pix::math::hyper
 	}
 }
 
-#endif // _HYPER_TPP_
+#endif // __HYPER_TPP__

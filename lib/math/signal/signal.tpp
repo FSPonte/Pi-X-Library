@@ -1,5 +1,5 @@
-#ifndef _SIGNAL_TPP_
-#define _SIGNAL_TPP_
+#ifndef __SIGNAL_TPP__
+#define __SIGNAL_TPP__
 
 namespace pix::math::signal
 {
@@ -126,4 +126,4 @@ namespace pix::math::signal
 	}
 }
 
-#endif // _SIGNAL_TPP_
+#endif // __SIGNAL_TPP__

@@ -1,5 +1,5 @@
-#ifndef _ROOT_FINDING_TPP_
-#define _ROOT_FINDING_TPP_
+#ifndef __ROOT_FINDING_TPP__
+#define __ROOT_FINDING_TPP__
 
 namespace pix::math::root_finding
 {
@@ -112,4 +112,4 @@ namespace pix::math::root_finding
 	}
 }
 
-#endif // _ROOT_FINDING_TPP_
+#endif // __ROOT_FINDING_TPP__

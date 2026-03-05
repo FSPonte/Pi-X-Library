@@ -1,5 +1,5 @@
-#ifndef _C_ARRAY_HPP_
-#define _C_ARRAY_HPP_
+#ifndef __C_ARRAY_HPP__
+#define __C_ARRAY_HPP__
 
 // C styled arrays
 namespace pix::c_array
@@ -249,4 +249,4 @@ namespace pix::c_array
 // Template file
 #include "c_array.tpp"
 
-#endif // _C_ARRAY_HPP_
+#endif // __C_ARRAY_HPP__

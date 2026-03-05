@@ -1,5 +1,5 @@
-#ifndef _STRING_TPP_
-#define _STRING_TPP_
+#ifndef __STRING_TPP__
+#define __STRING_TPP__
 
 // Dependencies
 #include <types.hpp>
@@ -44,4 +44,4 @@ namespace pix
 	}
 }
 
-#endif // _STRING_TPP_
+#endif // __STRING_TPP__

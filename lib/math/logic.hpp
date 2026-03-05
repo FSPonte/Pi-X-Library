@@ -1,5 +1,5 @@
-#ifndef _LOGIC_HPP_
-#define _LOGIC_HPP_
+#ifndef __LOGIC_HPP__
+#define __LOGIC_HPP__
 
 /**
  * @brief Negation
@@ -121,4 +121,4 @@
 */
 #define RIGHT_SHIFT(A, B) (A >> B)
 
-#endif // _LOGIC_HPP_
+#endif // __LOGIC_HPP__

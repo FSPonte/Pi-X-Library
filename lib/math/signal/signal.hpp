@@ -1,5 +1,5 @@
-#ifndef _SIGNAL_HPP_
-#define _SIGNAL_HPP_
+#ifndef __SIGNAL_HPP__
+#define __SIGNAL_HPP__
 
 // Signal processing
 namespace pix::math::signal
@@ -90,4 +90,4 @@ namespace pix::math::signal
 // Template file
 #include "signal.tpp"
 
-#endif // _SIGNAL_HPP_
+#endif // __SIGNAL_HPP__

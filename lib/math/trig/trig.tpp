@@ -1,5 +1,5 @@
-#ifndef _TRIG_TPP_
-#define _TRIG_TPP_
+#ifndef __TRIG_TPP__
+#define __TRIG_TPP__
 
 namespace pix::math::trig
 {
@@ -171,4 +171,4 @@ namespace pix::math::trig
 	}
 }
 
-#endif // _TRIG_TPP_
+#endif // __TRIG_TPP__

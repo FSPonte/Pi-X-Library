@@ -1,5 +1,5 @@
-#ifndef _INTEGRATION_HPP_
-#define _INTEGRATION_HPP_
+#ifndef __INTEGRATION_HPP__
+#define __INTEGRATION_HPP__
 
 // Numerical integration
 namespace pix::math::integration
@@ -40,4 +40,4 @@ namespace pix::math::integration
 // Template file
 #include "integration.tpp"
 
-#endif // _INTEGRATION_HPP_
+#endif // __INTEGRATION_HPP__

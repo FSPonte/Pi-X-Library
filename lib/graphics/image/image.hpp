@@ -1,5 +1,5 @@
-#ifndef _IMAGE_HPP_
-#define _IMAGE_HPP_
+#ifndef __IMAGE_HPP__
+#define __IMAGE_HPP__
 
 // Graphics
 namespace pix::graphics
@@ -79,4 +79,4 @@ namespace pix::graphics
 // Template file
 #include "image.tpp"
 
-#endif // _IMAGE_HPP_
+#endif // __IMAGE_HPP__

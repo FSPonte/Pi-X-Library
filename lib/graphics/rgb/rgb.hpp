@@ -1,5 +1,5 @@
-#ifndef _RGB_HPP_
-#define _RGB_HPP_
+#ifndef __RGB_HPP__
+#define __RGB_HPP__
 
 // Graphics
 namespace pix::graphics
@@ -25,4 +25,4 @@ namespace pix::graphics
 	};
 }
 
-#endif // _RGB_HPP_
+#endif // __RGB_HPP__

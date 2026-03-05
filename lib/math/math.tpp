@@ -1,5 +1,5 @@
-#ifndef _MATH_TPP_
-#define _MATH_TPP_
+#ifndef __MATH_TPP__
+#define __MATH_TPP__
 
 // Dependencies
 #include <types.hpp>
@@ -244,4 +244,4 @@ namespace pix::math
 	};
 }
 
-#endif // _MATH_TPP_
+#endif // __MATH_TPP__

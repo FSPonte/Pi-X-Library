@@ -1,5 +1,5 @@
-#ifndef _HYPER_HPP_
-#define _HYPER_HPP_
+#ifndef __HYPER_HPP__
+#define __HYPER_HPP__
 
 // Hyperbolic functions
 namespace pix::math::hyper
@@ -62,4 +62,4 @@ namespace pix::math::hyper
 // Template file
 #include "hyper.tpp"
 
-#endif // _HYPER_HPP_
+#endif // __HYPER_HPP__

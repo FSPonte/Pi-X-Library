@@ -1,5 +1,5 @@
-#ifndef _TYPE_INFO_HPP_
-#define _TYPE_INFO_HPP_
+#ifndef __TYPE_INFO_HPP__
+#define __TYPE_INFO_HPP__
 
 namespace pix
 {
@@ -93,4 +93,4 @@ namespace pix
 // Template file
 #include "type_info.tpp"
 
-#endif // _TYPE_INFO_HPP_
+#endif // __TYPE_INFO_HPP__

@@ -1,5 +1,5 @@
-#ifndef _C_ARRAY_TPP_
-#define _C_ARRAY_TPP_
+#ifndef __C_ARRAY_TPP__
+#define __C_ARRAY_TPP__
 
 // Dependencies
 #include <asserts.hpp>
@@ -264,4 +264,4 @@ namespace pix::c_array
 	}
 }
 
-#endif // _C_ARRAY_TPP_
+#endif // __C_ARRAY_TPP__

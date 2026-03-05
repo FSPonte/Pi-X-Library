@@ -1,5 +1,5 @@
-#ifndef _HASH_TABLE_HPP_
-#define _HASH_TABLE_HPP_
+#ifndef __HASH_TABLE_HPP__
+#define __HASH_TABLE_HPP__
 
 // Abstract data types
 namespace pix::adt
@@ -25,4 +25,4 @@ namespace pix::adt
 // Template file
 #include <hash_table.tpp>
 
-#endif // _HASH_TABLE_HPP_
+#endif // __HASH_TABLE_HPP__

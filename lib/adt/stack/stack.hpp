@@ -1,5 +1,5 @@
-#ifndef _STACK_HPP_
-#define _STACK_HPP_
+#ifndef __STACK_HPP__
+#define __STACK_HPP__
 
 // Abstract data types
 namespace pix::adt
@@ -72,4 +72,4 @@ namespace pix::adt
 // Template file
 #include "stack.tpp"
 
-#endif // _STACK_HPP_
+#endif // __STACK_HPP__

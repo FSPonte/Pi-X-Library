@@ -1,7 +1,7 @@
-#ifndef _HASH_TABLE_TPP_
-#define _HASH_TABLE_TPP_
+#ifndef __HASH_TABLE_TPP__
+#define __HASH_TABLE_TPP__
 
 namespace pix::adt
 {}
 
-#endif // _HASH_TABLE_TPP_
+#endif // __HASH_TABLE_TPP__

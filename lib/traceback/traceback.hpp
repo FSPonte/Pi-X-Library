@@ -1,5 +1,5 @@
-#ifndef _TRACEBACK_HPP_
-#define _TRACEBACK_HPP_
+#ifndef __TRACEBACK_HPP__
+#define __TRACEBACK_HPP__
 
 // Dependencies
 #include <macros.hpp>
@@ -86,4 +86,4 @@ namespace pix
 	};
 }
 
-#endif // _TRACEBACK_HPP_
+#endif // __TRACEBACK_HPP__

@@ -1,5 +1,5 @@
-#ifndef _IMAGE_TPP_
-#define _IMAGE_TPP_
+#ifndef __IMAGE_TPP__
+#define __IMAGE_TPP__
 
 namespace pix::graphics
 {
@@ -80,4 +80,4 @@ namespace pix::graphics
 	}
 }
 
-#endif // _IMAGE_TPP_
+#endif // __IMAGE_TPP__

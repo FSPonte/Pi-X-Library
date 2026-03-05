@@ -1,5 +1,5 @@
-#ifndef _ROOT_FINDING_HPP_
-#define _ROOT_FINDING_HPP_
+#ifndef __ROOT_FINDING_HPP__
+#define __ROOT_FINDING_HPP__
 
 // Numerical root finding
 namespace pix::math::root_finding
@@ -51,4 +51,4 @@ namespace pix::math::root_finding
 // Template file
 #include "root_finding.tpp"
 
-#endif // _ROOT_FINDING_HPP_
+#endif // __ROOT_FINDING_HPP__

@@ -1,5 +1,5 @@
-#ifndef _TYPE_INFO_TPP_
-#define _TYPE_INFO_TPP_
+#ifndef __TYPE_INFO_TPP__
+#define __TYPE_INFO_TPP__
 
 #include <iostream>
 
@@ -64,4 +64,4 @@ namespace pix
 	}
 }
 
-#endif // _TYPE_INFO_TPP_
+#endif // __TYPE_INFO_TPP__

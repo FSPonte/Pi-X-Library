@@ -1,5 +1,5 @@
-#ifndef _QUEUE_HPP_
-#define _QUEUE_HPP_
+#ifndef __QUEUE_HPP__
+#define __QUEUE_HPP__
 
 // Abstract data types
 namespace pix::adt
@@ -78,4 +78,4 @@ namespace pix::adt
 // Template file
 #include "queue.tpp"
 
-#endif // _QUEUE_HPP_
+#endif // __QUEUE_HPP__

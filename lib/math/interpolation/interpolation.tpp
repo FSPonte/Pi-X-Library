@@ -1,5 +1,5 @@
-#ifndef _INTERPOLATION_TPP_
-#define _INTERPOLATION_TPP_
+#ifndef __INTERPOLATION_TPP__
+#define __INTERPOLATION_TPP__
 
 namespace pix::math::interpolation
 {
@@ -180,4 +180,4 @@ namespace pix::math::interpolation
 	}
 }
 
-#endif // _INTERPOLATION_TPP_
+#endif // __INTERPOLATION_TPP__

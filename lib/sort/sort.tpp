@@ -1,5 +1,5 @@
-#ifndef _SORT_TPP_
-#define _SORT_TPP_
+#ifndef __SORT_TPP__
+#define __SORT_TPP__
 
 template <typename type_t>
 static unsigned long _partition_(type_t[], unsigned long, unsigned long) noexcept(true);
@@ -262,4 +262,4 @@ static void _merge_sort_(type_t arr[], const unsigned long start_index, const un
 	_merge_(arr, start_index, mid_index, end_index);
 }
 
-#endif // _SORT_TPP_
+#endif // __SORT_TPP__
