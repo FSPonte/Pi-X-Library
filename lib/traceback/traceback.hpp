@@ -2,15 +2,26 @@
 #define _TRACEBACK_HPP_
 
 // Dependencies
-#include <fstream>
+#include <macros.hpp>
+#include <string>
 #include <vector>
 
 namespace pix
 {
+	struct trace_point
+	{
+		std::string
+			_fn_name,
+			_file_path;
+		unsigned long _line_number;
+
+		bool operator == (const trace_point&) const noexcept(true);
+	};
+
 	/**
 	 * @brief Traceback class
 	*/
-	template <bool ENABLED = false>
+	template <bool ENABLED = TRACEBACK_ENABLED>
 	class traceback;
 
 	template <>
@@ -24,11 +35,18 @@ namespace pix
 		traceback(void) noexcept(true) = default;
 
 		/**
-		 * @brief Initialize
-		 * @param file_name Name of the file
-		 * @param fn_name Name of the function
+		 * @brief Copy constructor
+		 * @param rt Route
 		*/
-		void init(const std::string&, const std::string&) noexcept(true);
+		traceback(const traceback&) noexcept(true);
+
+		/**
+		 * @brief Initialize
+		 * @param fn_name Name of the function
+		 * @param file_name Name of the file
+		 * @param lin Line number
+		*/
+		void init(const std::string&, const std::string&, unsigned long) noexcept(true);
 
 		/**
 		 * @brief Trigger the traceback
@@ -37,15 +55,9 @@ namespace pix
 		void trigger(unsigned long) noexcept(true);
 
 		/**
-		 * @brief Get route
-		 * @return Route
+		 * @brief Print the traceback
 		*/
-		std::string get(void) const noexcept(true);
-
-		/**
-		 * @brief Display the traceback
-		*/
-		void display(void) const noexcept(true);
+		void print(void) const noexcept(true);
 
 		/**
 		 * @brief Copy operator
@@ -55,10 +67,7 @@ namespace pix
 
 	private:
 
-		std::string
-			_file_path,
-			_fn_name;
-		unsigned long _line_number;
+		std::vector<trace_point> _data;
 	};
 
 	template <>
@@ -67,10 +76,12 @@ namespace pix
 	public:
 
 		traceback(void) noexcept(true) {}
+		traceback(const std::string&, const std::string&) noexcept(true) {}
+		traceback(const traceback&) noexcept(true) {}
 		void init(const std::string&, const std::string&) noexcept(true) {}
 		void trigger(unsigned long) noexcept(true) {}
 		std::string get(void) const noexcept(true) { return ""; }
-		void display(void) const noexcept(true) {}
+		void print(void) const noexcept(true) {}
 		void operator = (const traceback&) noexcept(true) {}
 	};
 }
