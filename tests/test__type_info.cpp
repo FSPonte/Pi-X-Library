@@ -41,21 +41,42 @@ static void operator_equality(void) noexcept(false)
 {
 	debugger::__tester__.start(__FUNCTION__, __FILE__);
 
-	char var_1 = 'a';
-	pix::type_info obj(var_1);
-	int var_2 = 6;
-
-	// Positive test
 	{
-		if (obj == var_1)
+		char var;
+		pix::type_info obj(var);
+
+		if (obj == var)
 			debugger::__tester__.pass(__LINE__);
 		else
 			debugger::__tester__.fail(__LINE__);
 	}
 
-	// Negative test
 	{
+		char var_1;
+		int var_2;
+		pix::type_info obj(var_1);
+
 		if (obj == var_2)
+			debugger::__tester__.fail(__LINE__);
+		else
+			debugger::__tester__.pass(__LINE__);
+	}
+
+	{
+		char var;
+		pix::type_info<char> obj;
+
+		if (obj == var)
+			debugger::__tester__.pass(__LINE__);
+		else
+			debugger::__tester__.fail(__LINE__);
+	}
+
+	{
+		char var;
+		pix::type_info<int> obj;
+
+		if (obj == var)
 			debugger::__tester__.fail(__LINE__);
 		else
 			debugger::__tester__.pass(__LINE__);
@@ -66,21 +87,42 @@ static void operator_inequality(void) noexcept(false)
 {
 	debugger::__tester__.start(__FUNCTION__, __FILE__);
 
-	char var_1 = 'a';
-	pix::type_info obj(var_1);
-	int var_2 = 5;
-
-	// Negative test
 	{
-		if (obj != var_1)
+		char var;
+		pix::type_info obj(var);
+
+		if (obj != var)
 			debugger::__tester__.fail(__LINE__);
 		else
 			debugger::__tester__.pass(__LINE__);
 	}
 
-	// Positive test
 	{
+		char var_1;
+		int var_2;
+		pix::type_info obj(var_1);
+
 		if (obj != var_2)
+			debugger::__tester__.pass(__LINE__);
+		else
+			debugger::__tester__.fail(__LINE__);
+	}
+
+	{
+		char var;
+		pix::type_info<char> obj;
+
+		if (obj != var)
+			debugger::__tester__.fail(__LINE__);
+		else
+			debugger::__tester__.pass(__LINE__);
+	}
+
+	{
+		char var;
+		pix::type_info<int> obj;
+
+		if (obj != var)
 			debugger::__tester__.pass(__LINE__);
 		else
 			debugger::__tester__.fail(__LINE__);
