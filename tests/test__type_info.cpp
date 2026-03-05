@@ -12,7 +12,7 @@ static void operator_inequality(void) noexcept(false);
 
 void test__type_info(void) noexcept(false)
 {
-	debugger::__tester__.init(__FUNCTION__);
+	DEBUG_TESTER_INIT;
 	fn_test tests[] = {
 		&operator_equality,
 		&operator_inequality
@@ -39,16 +39,16 @@ void test__type_info(void) noexcept(false)
 
 static void operator_equality(void) noexcept(false)
 {
-	debugger::__tester__.start(__FUNCTION__, __FILE__);
+	DEBUG_TESTER_START;
 
 	{
 		char var;
 		pix::type_info obj(var);
 
 		if (obj == var)
-			debugger::__tester__.pass(__LINE__);
+			DEBUG_TESTER_PASS;
 		else
-			debugger::__tester__.fail(__LINE__);
+			DEBUG_TESTER_FAIL;
 	}
 
 	{
@@ -57,9 +57,9 @@ static void operator_equality(void) noexcept(false)
 		pix::type_info obj(var_1);
 
 		if (obj == var_2)
-			debugger::__tester__.fail(__LINE__);
+			DEBUG_TESTER_FAIL;
 		else
-			debugger::__tester__.pass(__LINE__);
+			DEBUG_TESTER_PASS;
 	}
 
 	{
@@ -67,9 +67,9 @@ static void operator_equality(void) noexcept(false)
 		pix::type_info<char> obj;
 
 		if (obj == var)
-			debugger::__tester__.pass(__LINE__);
+			DEBUG_TESTER_PASS;
 		else
-			debugger::__tester__.fail(__LINE__);
+			DEBUG_TESTER_FAIL;
 	}
 
 	{
@@ -77,24 +77,24 @@ static void operator_equality(void) noexcept(false)
 		pix::type_info<int> obj;
 
 		if (obj == var)
-			debugger::__tester__.fail(__LINE__);
+			DEBUG_TESTER_FAIL;
 		else
-			debugger::__tester__.pass(__LINE__);
+			DEBUG_TESTER_PASS;
 	}
 }
 
 static void operator_inequality(void) noexcept(false)
 {
-	debugger::__tester__.start(__FUNCTION__, __FILE__);
+	DEBUG_TESTER_START;
 
 	{
 		char var;
 		pix::type_info obj(var);
 
 		if (obj != var)
-			debugger::__tester__.fail(__LINE__);
+			DEBUG_TESTER_FAIL;
 		else
-			debugger::__tester__.pass(__LINE__);
+			DEBUG_TESTER_PASS;
 	}
 
 	{
@@ -103,9 +103,9 @@ static void operator_inequality(void) noexcept(false)
 		pix::type_info obj(var_1);
 
 		if (obj != var_2)
-			debugger::__tester__.pass(__LINE__);
+			DEBUG_TESTER_PASS;
 		else
-			debugger::__tester__.fail(__LINE__);
+			DEBUG_TESTER_FAIL;
 	}
 
 	{
@@ -113,9 +113,9 @@ static void operator_inequality(void) noexcept(false)
 		pix::type_info<char> obj;
 
 		if (obj != var)
-			debugger::__tester__.fail(__LINE__);
+			DEBUG_TESTER_FAIL;
 		else
-			debugger::__tester__.pass(__LINE__);
+			DEBUG_TESTER_PASS;
 	}
 
 	{
@@ -123,8 +123,8 @@ static void operator_inequality(void) noexcept(false)
 		pix::type_info<int> obj;
 
 		if (obj != var)
-			debugger::__tester__.pass(__LINE__);
+			DEBUG_TESTER_PASS;
 		else
-			debugger::__tester__.fail(__LINE__);
+			DEBUG_TESTER_FAIL;
 	}
 }
