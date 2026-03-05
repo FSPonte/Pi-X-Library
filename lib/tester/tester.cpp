@@ -52,8 +52,6 @@ namespace pix
 
 			for (auto unit_test : target._unit_tests)
 			{
-				unsigned long index = 0;
-
 				std::cout
 					<< '\t'
 					<< CYAN
@@ -72,9 +70,7 @@ namespace pix
 
 					std::cout
 						<< RESET
-						<< " ("
-						<< ++index
-						<< ") : "
+						<< " : "
 						<< unit_test._file_path
 						<< ':'
 						<< single_test._line_number
