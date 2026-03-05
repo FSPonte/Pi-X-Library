@@ -8,7 +8,7 @@
 namespace pix::c_array
 {
 	template <typename type_t>
-	inline void swap(type_t& ref_1, type_t& ref_2) noexcept(true)
+	void swap(type_t& ref_1, type_t& ref_2) noexcept(true)
 	{
 		const type_t aux = ref_1; // Auxiliar value
 		ref_1 = ref_2;

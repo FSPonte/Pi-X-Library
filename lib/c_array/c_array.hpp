@@ -11,7 +11,7 @@ namespace pix::c_array
 	 * @param ref_2 Reference to second element
 	*/
 	template <typename type_t>
-	inline void swap(type_t&, type_t&) noexcept(true);
+	void swap(type_t&, type_t&) noexcept(true);
 
 	/**
 	 * @brief Swap pointers
