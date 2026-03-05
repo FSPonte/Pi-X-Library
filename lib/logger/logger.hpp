@@ -2,7 +2,7 @@
 #define _LOGGER_HPP_
 
 // Dependencies
-#include <pix_lib.hpp>
+#include <macros.hpp>
 #include <fstream>
 
 namespace pix
@@ -10,7 +10,7 @@ namespace pix
 	/**
 	 * @brief Logger class
 	*/
-	template <bool ENABLED = false>
+	template <bool ENABLED = LOGGER_ENABLED>
 	class logger;
 
 	template <>
