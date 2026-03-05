@@ -8,16 +8,6 @@
 
 namespace pix
 {
-	struct trace_point
-	{
-		std::string
-			_fn_name,
-			_file_path;
-		unsigned long _line_number;
-
-		bool operator == (const trace_point&) const noexcept(true);
-	};
-
 	/**
 	 * @brief Traceback class
 	*/
@@ -41,6 +31,14 @@ namespace pix
 		traceback(const traceback&) noexcept(true);
 
 		/**
+		 * @brief Parameterized constructor
+		 * @param fn_name Name of the function
+		 * @param file_name Name of the file
+		 * @param lin Line number
+		*/
+		traceback(const std::string&, const std::string&, unsigned long) noexcept(true);
+
+		/**
 		 * @brief Initialize
 		 * @param fn_name Name of the function
 		 * @param file_name Name of the file
@@ -55,6 +53,12 @@ namespace pix
 		void trigger(unsigned long) noexcept(true);
 
 		/**
+		 * @brief Is empty state
+		 * @return True if empty
+		*/
+		bool is_empty(void) const noexcept(true);
+
+		/**
 		 * @brief Print the traceback
 		*/
 		void print(void) const noexcept(true);
@@ -67,6 +71,16 @@ namespace pix
 
 	private:
 
+		struct trace_point
+		{
+			std::string
+				_fn_name,
+				_file_path;
+			unsigned long _line_number;
+
+			bool operator == (const trace_point&) const noexcept(true);
+		};
+
 		std::vector<trace_point> _data;
 	};
 
@@ -77,10 +91,12 @@ namespace pix
 
 		traceback(void) noexcept(true) {}
 		traceback(const std::string&, const std::string&) noexcept(true) {}
+		traceback(const std::string&, const std::string&, unsigned long) noexcept(true) {}
 		traceback(const traceback&) noexcept(true) {}
 		void init(const std::string&, const std::string&) noexcept(true) {}
 		void trigger(unsigned long) noexcept(true) {}
 		std::string get(void) const noexcept(true) { return ""; }
+		bool is_empty(void) const noexcept(true) { return true; }
 		void print(void) const noexcept(true) {}
 		void operator = (const traceback&) noexcept(true) {}
 	};

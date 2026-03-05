@@ -10,7 +10,7 @@ static constexpr char
 
 namespace pix
 {
-	bool trace_point::operator == (const trace_point& point) const noexcept(true)
+	bool traceback<true>::trace_point::operator == (const trace_point& point) const noexcept(true)
 	{
 		if (
 			this->_fn_name != point._fn_name ||
@@ -26,6 +26,11 @@ namespace pix
 		this->_data = route._data;
 	}
 
+	traceback<true>::traceback(const std::string& fn_name, const std::string& file_path, const unsigned long line_number) noexcept(true)
+	{
+		this->_data.push_back(trace_point{fn_name, file_path, line_number});
+	}
+
 	void traceback<true>::init(const std::string& fn_name, const std::string& file_path, const unsigned long line_number) noexcept(true)
 	{
 		auto point = trace_point{fn_name, file_path, line_number};
@@ -35,6 +40,11 @@ namespace pix
 	void traceback<true>::trigger(const unsigned long line_number) noexcept(true)
 	{
 		this->_data.back()._line_number = line_number;
+	}
+
+	bool traceback<true>::is_empty(void) const noexcept(true)
+	{
+		return (this->_data.size() == 0) ? true : false;
 	}
 
 	void traceback<true>::print(void) const noexcept(true)
