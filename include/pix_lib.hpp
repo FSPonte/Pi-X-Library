@@ -49,4 +49,7 @@
 #include <rgb.hpp>
 #include <image.hpp>
 
+// Debugger
+#include <debugger.hpp>
+
 #endif // _PIX_LIB_HPP_
