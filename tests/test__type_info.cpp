@@ -52,7 +52,7 @@ static void operator_equality(void) noexcept(false)
 	}
 
 	{
-		char var_1;
+		char var_1 = 'a';
 		int var_2;
 		pix::type_info obj(var_1);
 
@@ -98,7 +98,7 @@ static void operator_inequality(void) noexcept(false)
 	}
 
 	{
-		char var_1;
+		char var_1 = 'a';
 		int var_2;
 		pix::type_info obj(var_1);
 
