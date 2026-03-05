@@ -5,64 +5,82 @@
 #include <iostream>
 #include <fstream>
 
-void tester::init(const std::string& name) noexcept(true)
+static constexpr char
+	RESET[] = "\033[0m",
+	RED[] = "\033[31m",
+	GREEN[] = "\033[32m",
+	BLUE[] = "\033[34m",
+	CYAN[] = "\033[0;36m";
+
+namespace pix
 {
-	this->_name = name;
-}
-
-void tester::start(const std::string& fn_name, const std::string& file_path) noexcept(true)
-{
-	auto results = test_results{fn_name, file_path, {}};
-	this->_results.push_back(results);
-}
-
-void tester::pass(const unsigned long line_number) noexcept(true)
-{
-	this->_results.back()._tests.push_back(single_test{true, line_number});
-}
-
-void tester::fail(const unsigned long line_number) noexcept(true)
-{
-	this->_results.back()._tests.push_back(single_test{false, line_number});
-}
-
-void tester::print(void) const noexcept(true)
-{
-	static constexpr char
-		TERMINAL_RESET_COLOR[] = "\033[0m",
-		TERMINAL_RED_COLOR[] = "\033[31m",
-		TERMINAL_GREEN_COLOR[] = "\033[32m",
-		TERMINAL_BLUE_COLOR[] = "\033[34m";
-
-	if (this->_name != "")
-		std::cout << "[TESTER] " << this->_name << '\n';
-
-	for (auto result : this->_results)
+	void tester::init(const std::string& target_name) noexcept(true)
 	{
-		unsigned long index = 0;
+		this->_data.push_back(target_tests{target_name, {}});
+	}
 
-		std::cout << "\t@ " << result._fn_name << '\n';
+	void tester::start(const std::string& fn_name, const std::string& file_path) noexcept(true)
+	{
+		this->_data.back()._unit_tests.push_back(unit_tests{fn_name, file_path, {}});
+	}
 
-		for (auto test : result._tests)
+	void tester::pass(const unsigned long line_number) noexcept(true)
+	{
+		this->_data.back()._unit_tests.back()._single_tests.push_back(single_test{true, line_number});
+	}
+
+	void tester::fail(const unsigned long line_number) noexcept(true)
+	{
+		this->_data.back()._unit_tests.back()._single_tests.push_back(single_test{false, line_number});
+	}
+
+	void tester::print(void) const noexcept(true)
+	{
+		for (auto target : this->_data)
 		{
-			std::cout << "\t\t";
-		
-			if (test._passed)
-				std::cout << TERMINAL_GREEN_COLOR << "PASSED";
-			else
-				std::cout << TERMINAL_RED_COLOR << "FAILED";
+			if (target._target_name != "")
+			{
+				std::cout
+					<< '['
+					<< BLUE
+					<< "Tester"
+					<< RESET
+					<< "] "
+					<< target._target_name
+					<< '\n';
+			}
 
-			std::cout
-				<< TERMINAL_RESET_COLOR
-				<< " ("
-				<< TERMINAL_BLUE_COLOR
-				<< ++index
-				<< TERMINAL_RESET_COLOR
-				<< ") : "
-				<< result._file_path
-				<< ':'
-				<< test._line_number
-				<< std::endl;
+			for (auto unit_test : target._unit_tests)
+			{
+				unsigned long index = 0;
+
+				std::cout
+					<< '\t'
+					<< CYAN
+					<< "@ " << unit_test._fn_name
+					<< RESET
+					<< '\n';
+
+				for (auto single_test : unit_test._single_tests)
+				{
+					std::cout << "\t\t";
+				
+					if (single_test._passed)
+						std::cout << GREEN << "PASSED";
+					else
+						std::cout << RED << "FAILED";
+
+					std::cout
+						<< RESET
+						<< " ("
+						<< ++index
+						<< ") : "
+						<< unit_test._file_path
+						<< ':'
+						<< single_test._line_number
+						<< std::endl;
+				}
+			}
 		}
 	}
 }

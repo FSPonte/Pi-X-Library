@@ -5,65 +5,73 @@
 #include <string>
 #include <vector>
 
-struct single_test
+namespace pix
 {
-	bool _passed; // Result of the test
-	unsigned long _line_number; // Number of the condition triggered
-};
+	class tester
+	{
+	public:
 
-struct test_results
-{
-	std::string
-		_fn_name, // Name of the test function
-		_file_path; // Path to file
-	std::vector<single_test> _tests; // Single tests
-};
+		/**
+		 * @brief Constructor
+		*/
+		tester(void) noexcept(true) = default;
 
-class tester
-{
-public:
+		/**
+		 * @brief Initializer
+		 * @param name Name of the test function
+		 * @param path Path to the file
+		*/
+		void init(const std::string&) noexcept(true);
 
-	/**
-	 * @brief Constructor
-	*/
-	tester(void) noexcept(true) = default;
+		/**
+		 * @brief Start unit tests
+		 * @param name Name of the unit test
+		 * @param path Path to the file
+		*/
 
-	/**
-	 * @brief Initializer
-	 * @param name Name of the test function
-	 * @param path Path to the file
-	*/
-	void init(const std::string&) noexcept(true);
+		void start(const std::string&, const std::string&) noexcept(true);
 
-	/**
-	 * @brief Start unit tests
-	 * @param name Name of the unit test
-	 * @param path Path to the file
-	*/
+		/**
+		 * @brief Pass a test
+		 * @param lin Line number
+		*/
+		void pass(unsigned long) noexcept(true);
 
-	void start(const std::string&, const std::string&) noexcept(true);
+		/**
+		 * @brief Fail a test
+		 * @param lin Line number
+		*/
+		void fail(unsigned long) noexcept(true);
 
-	/**
-	 * @brief Pass a test
-	 * @param lin Line number
-	*/
-	void pass(unsigned long) noexcept(true);
+		/**
+		 * @brief Display to the terminal
+		*/
+		void print(void) const noexcept(true);
 
-	/**
-	 * @brief Fail a test
-	 * @param lin Line number
-	*/
-	void fail(unsigned long) noexcept(true);
+	private:
 
-	/**
-	 * @brief Display to the terminal
-	*/
-	void print(void) const noexcept(true);
+		struct single_test
+		{
+			bool _passed; // Result of the test
+			unsigned long _line_number; // Line number of the condition triggered
+		};
 
-private:
+		struct unit_tests
+		{
+			std::string
+				_fn_name, // Name of the test function
+				_file_path; // Path to file
+			std::vector<single_test> _single_tests; // Single tests
+		};
 
-	std::string _name; // Name of the test
-	std::vector<test_results> _results;
-};
+		struct target_tests
+		{
+			std::string _target_name; // Name of the test target
+			std::vector<unit_tests> _unit_tests; // Unit tests
+		};
+
+		std::vector<target_tests> _data;
+	};
+}
 
 #endif // __TESTER_HPP__
