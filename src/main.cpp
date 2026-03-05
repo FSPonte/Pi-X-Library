@@ -1,27 +1,24 @@
-// C/C++ standard libraries
 #include <iostream>
-
-// Utilities
-#include <utils.hpp>
-
-// Pi-X library
-#include <pix_lib.hpp>
+#include <utils.hpp> // Utilities
+#include <pix_lib.hpp> // Pi-X library
+#include <tests.hpp> // Tests
 
 int main(int argc, char* argv[])
 {
 	// Parse arguments
 	utils::parse(argc, argv);
 
-	constexpr unsigned long DIM = 1E9;
-	pix::progress_bar pgb("Processing", 0, DIM);
+	fn_test tests[] = {
+		&test__type_info,
+		&test__c_array,
+		&test__memory
+	};
+	const unsigned long NUM_TESTS = array_size(tests);
 
-	for (unsigned long i = 0; i <= DIM; ++i)
-	{
-		if (i % 100 == 0)
-			pgb.update(i);
-	}
+	for (unsigned long i = 0; i < NUM_TESTS; ++i)
+		tests[i]();
 
-	pgb.finish();
+	debugger::__tester__.print();
 
 	return EXIT_SUCCESS;
 }
