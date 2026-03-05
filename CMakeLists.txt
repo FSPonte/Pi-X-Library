@@ -10,6 +10,7 @@ add_compile_options(-Wall -Wextra -Wpedantic)
 include_directories(
 	"utils/"
 	"tests/"
+	"debugger/"
 	"include/"
 
 	"lib/traceback/"
@@ -55,6 +56,7 @@ include_directories(
 add_executable(pix_tester
 	src/main.cpp
 	utils/utils.cpp
+	debugger/debugger.cpp
 
 	lib/traceback/traceback.cpp
 	lib/exception/exception.cpp
@@ -70,4 +72,6 @@ add_executable(pix_tester
 	lib/graphics/rgb/rgb.cpp
 
 	tests/test__type_info.cpp
+	tests/test__c_array.cpp
+	tests/test__memory.cpp
 )
