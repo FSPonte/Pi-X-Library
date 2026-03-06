@@ -62,6 +62,7 @@ static void swap(void) noexcept(false)
 		char
 			var_1 = 'a',
 			var_2 = 'b';
+
 		pix::c_array::swap(var_1, var_2);
 
 		if (var_1 == 'b' && var_2 == 'a')
@@ -78,6 +79,7 @@ static void swap(void) noexcept(false)
 		char
 			*ptr_1 = &var_1,
 			*ptr_2 = &var_2;
+
 		pix::c_array::swap(ptr_1, ptr_2);
 
 		if (ptr_1 == &var_2 && ptr_2 == &var_1)
@@ -118,8 +120,9 @@ static void invert(void) noexcept(false)
 			arr[] = {1, 2, 3, 4, 5},
 			target[] = {5, 4, 3, 2, 1};
 		constexpr unsigned long DIM = array_size(arr);
-		pix::c_array::invert(arr, DIM);
 		bool pass = true;
+
+		pix::c_array::invert(arr, DIM);
 
 		for (unsigned long i = 0; i < DIM; ++i)
 		{
@@ -180,10 +183,10 @@ static void copy(void) noexcept(false)
 		char
 			arr[] = {0, 0, 0, 0, 0},
 			target[] = {1, 2, 3, 4, 5};
-
-		pix::c_array::copy(target, arr);
 		constexpr unsigned long DIM = array_size(arr);
 		bool pass = true;
+
+		pix::c_array::copy(target, arr);
 
 		for (unsigned long i = 0; i < DIM; ++i)
 		{
@@ -243,10 +246,10 @@ static void move(void) noexcept(false)
 		char
 			arr[] = {1, 2, 3, 4, 5},
 			target[] = {0, 0, 0, 0, 0};
-
-		pix::c_array::move(arr, target);
 		constexpr unsigned long DIM = array_size(arr);
 		bool pass = true;
+
+		pix::c_array::move(arr, target);
 
 		for (unsigned long i = 0; i < DIM; ++i)
 		{
@@ -306,10 +309,10 @@ static void left_shift(void) noexcept(false)
 		char
 			arr[] = {1, 2, 3, 4, 5},
 			target[] = {2, 3, 4, 5, char()};
-
-		pix::c_array::left_shift(arr);
 		constexpr unsigned long DIM = array_size(arr);
 		bool pass = true;
+
+		pix::c_array::left_shift(arr);
 
 		for (unsigned long i = 0; i < DIM; ++i)
 		{
@@ -369,10 +372,10 @@ static void right_shift(void) noexcept(false)
 		char
 			arr[] = {1, 2, 3, 4, 5},
 			target[] = {char(), 1, 2, 3, 4};
-
-		pix::c_array::right_shift(arr);
 		constexpr unsigned long DIM = array_size(arr);
 		bool pass = true;
+
+		pix::c_array::right_shift(arr);
 
 		for (unsigned long i = 0; i < DIM; ++i)
 		{
@@ -432,10 +435,10 @@ static void bit_rev(void) noexcept(false)
 		char
 			arr[] = {1, 2, 3, 4, 5, 6, 7, 8},
 			target[] = {1, 5, 3, 7, 2, 6, 4, 8};
-
-		pix::c_array::bit_rev(arr);
 		constexpr unsigned long DIM = array_size(arr);
 		bool pass = true;
+
+		pix::c_array::bit_rev(arr);
 
 		for (unsigned long i = 0; i < DIM; ++i)
 		{
