@@ -4,6 +4,7 @@
 // Dependencies
 #include <asserts.hpp>
 #include <exception.hpp>
+#include <debugger.hpp>
 
 namespace pix::c_array
 {
@@ -16,10 +17,18 @@ namespace pix::c_array
 	}
 
 	template <typename type_t>
-	void swap(type_t* ptr_1, type_t* ptr_2) noexcept(false)
+	void swap(type_t*& ptr_1, type_t*& ptr_2) noexcept(false)
 	{
-		if (ptr_1 == nullptr || ptr_2 == nullptr)
-			throw pix::exception::null_ptr();
+		// Debug
+		{
+			DEBUG_TRACEBACK_INIT;
+
+			if (ptr_1 == nullptr || ptr_2 == nullptr)
+			{
+				DEBUG_TRACEBACK_TRIG;
+				throw pix::exception::null_ptr(DEBUG_TRACEBACK_RT);
+			}
+		}
 
 		type_t* aux = ptr_1; // Auxiliar pointer
 		ptr_1 = ptr_2;
@@ -29,8 +38,21 @@ namespace pix::c_array
 	template <typename type_t>
 	void invert(type_t arr[], const unsigned long DIM) noexcept(false)
 	{
-		if (arr == nullptr) throw pix::exception::null_ptr();
-		if (DIM == 0) throw pix::exception::null_dim();
+		// Debug
+		{
+			DEBUG_TRACEBACK_INIT;
+
+			if (arr == nullptr)
+			{
+				DEBUG_TRACEBACK_TRIG;
+				throw pix::exception::null_ptr(DEBUG_TRACEBACK_RT);
+			}
+			if (DIM == 0)
+			{
+				DEBUG_TRACEBACK_TRIG;
+				throw pix::exception::null_dim(DEBUG_TRACEBACK_RT);
+			}
+		}
 
 		unsigned long
 			left_ind = 0,
@@ -38,6 +60,7 @@ namespace pix::c_array
 
 		while (left_ind < right_ind)
 		{
+			DEBUG_TRACEBACK_TRIG;
 			pix::c_array::swap(arr[left_ind], arr[right_ind]);
 
 			++left_ind;
@@ -46,9 +69,12 @@ namespace pix::c_array
 	}
 
 	template <typename type_t, unsigned long DIM>
-	void invert(type_t (&arr)[DIM]) noexcept(true)
+	void invert(type_t (&arr)[DIM]) noexcept(false)
 	{
 		assert_not_nulldim(DIM);
+
+		// Debug
+		DEBUG_TRACEBACK_INIT;
 
 		pix::c_array::invert<type_t>(arr, DIM);
 	}
@@ -56,46 +82,55 @@ namespace pix::c_array
 	template <typename type_t>
 	void copy(const type_t arr_o[], type_t arr_d[], const unsigned long DIM) noexcept(false)
 	{
-		if (arr_o == nullptr || arr_d == nullptr) throw pix::exception::null_ptr();
-		if (DIM == 0) throw pix::exception::null_dim();
+		// Debug
+		{
+			DEBUG_TRACEBACK_INIT;
+
+			if (arr_o == nullptr || arr_d == nullptr)
+			{
+				DEBUG_TRACEBACK_TRIG;
+				throw pix::exception::null_ptr(DEBUG_TRACEBACK_RT);
+			}
+			if (DIM == 0)
+			{
+				DEBUG_TRACEBACK_TRIG;
+				throw pix::exception::null_dim(DEBUG_TRACEBACK_RT);
+			}
+		}
 
 		for (unsigned long i = 0; i < DIM; ++i)
 			arr_d[i] = arr_o[i];
 	}
 
 	template <typename type_t, unsigned long DIM>
-	void copy(const type_t (&arr_o)[DIM], type_t (&arr_d)[DIM]) noexcept(true)
+	void copy(const type_t (&arr_o)[DIM], type_t (&arr_d)[DIM]) noexcept(false)
 	{
 		assert_not_nulldim(DIM);
+
+		// Debug
+		DEBUG_TRACEBACK_INIT;
 
 		pix::c_array::copy<type_t>(arr_o, arr_d, DIM);
 	}
 
 	template <typename type_t>
-	void copy(const type_t* arr_o[], type_t* arr_d[], const unsigned long DIM_1, const unsigned long DIM_2) noexcept(false)
-	{
-		if (arr_o == nullptr || arr_d == nullptr) throw pix::exception::null_ptr();
-		if (DIM_1 == 0 || DIM_2 == 0) throw pix::exception::null_dim();
-
-		for (unsigned long i = 0; i < DIM_1; ++i)
-			pix::c_array::copy<type_t>(arr_o[i], arr_d[i], DIM_2);
-	}
-
-	template <typename type_t, unsigned long DIM_1, unsigned long DIM_2>
-	void copy(const type_t (&arr_o)[DIM_1][DIM_2], type_t (&arr_d)[DIM_1][DIM_2]) noexcept(true)
-	{
-		assert_not_nulldim(DIM_1);
-		assert_not_nulldim(DIM_2);
-
-		for (unsigned long i = 0; i < DIM_1; ++i)
-			pix::c_array::copy<type_t>(arr_o[i], arr_d[i], DIM_2);
-	}
-
-	template <typename type_t>
 	void move(type_t arr_o[], type_t arr_d[], const unsigned long DIM) noexcept(false)
 	{
-		if (arr_o == nullptr || arr_d == nullptr) throw pix::exception::null_ptr();
-		if (DIM == 0) throw pix::exception::null_dim();
+		// Debug
+		{
+			DEBUG_TRACEBACK_INIT;
+
+			if (arr_o == nullptr || arr_d == nullptr)
+			{
+				DEBUG_TRACEBACK_TRIG;
+				throw pix::exception::null_ptr(DEBUG_TRACEBACK_RT);
+			}
+			if (DIM == 0)
+			{
+				DEBUG_TRACEBACK_TRIG;
+				throw pix::exception::null_dim(DEBUG_TRACEBACK_RT);
+			}
+		}
 
 		for (unsigned long i = 0; i < DIM; ++i)
 		{
@@ -109,14 +144,30 @@ namespace pix::c_array
 	{
 		assert_not_nulldim(DIM);
 
+		// Debug
+		DEBUG_TRACEBACK_INIT;
+
 		pix::c_array::move<type_t>(arr_o, arr_d, DIM);
 	}
 
 	template <typename type_t>
 	void left_shift(type_t arr[], const unsigned long DIM) noexcept(false)
 	{
-		if (arr == nullptr) throw pix::exception::null_ptr();
-		if (DIM == 0) throw pix::exception::null_dim();
+		// Debug
+		{
+			DEBUG_TRACEBACK_INIT;
+
+			if (arr == nullptr)
+			{
+				DEBUG_TRACEBACK_TRIG;
+				throw pix::exception::null_ptr(DEBUG_TRACEBACK_RT);
+			}
+			if (DIM == 0)
+			{
+				DEBUG_TRACEBACK_TRIG;
+				throw pix::exception::null_dim(DEBUG_TRACEBACK_RT);
+			}
+		}
 
 		for (unsigned long i = 1; i < DIM; ++i)
 			arr[i - 1] = arr[i];
@@ -129,14 +180,30 @@ namespace pix::c_array
 	{
 		assert_not_nulldim(DIM);
 
+		// Debug
+		DEBUG_TRACEBACK_INIT;
+
 		pix::c_array::left_shift<type_t>(arr, DIM);
 	}
 
 	template <typename type_t>
 	void right_shift(type_t arr[], const unsigned long DIM) noexcept(false)
 	{
-		if (arr == nullptr) throw pix::exception::null_ptr();
-		if (DIM == 0) throw pix::exception::null_dim();
+		// Debug
+		{
+			DEBUG_TRACEBACK_INIT;
+
+			if (arr == nullptr)
+			{
+				DEBUG_TRACEBACK_TRIG;
+				throw pix::exception::null_ptr(DEBUG_TRACEBACK_RT);
+			}
+			if (DIM == 0)
+			{
+				DEBUG_TRACEBACK_TRIG;
+				throw pix::exception::null_dim(DEBUG_TRACEBACK_RT);
+			}
+		}
 
 		for (unsigned long i = DIM - 1; i > 0; --i)
 			arr[i] = arr[i - 1];
@@ -149,15 +216,35 @@ namespace pix::c_array
 	{
 		assert_not_nulldim(DIM);
 
+		// Debug
+		DEBUG_TRACEBACK_INIT;
+
 		pix::c_array::right_shift<type_t>(arr, DIM);
 	}
 
 	template <typename type_t>
 	void bit_rev(type_t arr[], const unsigned long DIM) noexcept(false)
 	{
-		if (arr == nullptr) throw pix::exception::null_ptr();
-		if (DIM == 0) throw pix::exception::null_dim();
-		if ((DIM & (DIM - 1)) != 0) throw pix::exception::excep("Dimension must be a power of 2");
+		// Debug
+		{
+			DEBUG_TRACEBACK_INIT;
+
+			if (arr == nullptr)
+			{
+				DEBUG_TRACEBACK_TRIG;
+				throw pix::exception::null_ptr(DEBUG_TRACEBACK_RT);
+			}
+			if (DIM == 0)
+			{
+				DEBUG_TRACEBACK_TRIG;
+				throw pix::exception::null_dim(DEBUG_TRACEBACK_RT);
+			}
+			if ((DIM & (DIM - 1)) != 0)
+			{
+				DEBUG_TRACEBACK_TRIG;
+				throw pix::exception::excep("Dimension must be a power of 2", DEBUG_TRACEBACK_RT);
+			}
+		}
 
 		unsigned long
 			j = 0,
@@ -166,7 +253,10 @@ namespace pix::c_array
 		for (unsigned long i = 0; i < DIM; ++i)
 		{
 			if (i < j)
+			{
+				DEBUG_TRACEBACK_TRIG;
 				pix::c_array::swap(arr[i], arr[j]);
+			}
 
 			bit = DIM >> 1;
 			
@@ -189,14 +279,30 @@ namespace pix::c_array
 			"Dimension must be a power of 2"
 		);
 
+		// Debug
+		DEBUG_TRACEBACK_INIT;
+
 		pix::c_array::bit_rev<type_t>(arr, DIM);
 	}
 
 	template <typename type_t>
 	unsigned long binary_search(type_t arr[], const unsigned long DIM, const type_t target) noexcept(false)
 	{
-		if (arr == nullptr) throw pix::exception::null_ptr();
-		if (DIM == 0) throw pix::exception::null_dim();
+		// Debug
+		{
+			DEBUG_TRACEBACK_INIT;
+
+			if (arr == nullptr)
+			{
+				DEBUG_TRACEBACK_TRIG;
+				throw pix::exception::null_ptr(DEBUG_TRACEBACK_RT);
+			}
+			if (DIM == 0)
+			{
+				DEBUG_TRACEBACK_TRIG;
+				throw pix::exception::null_dim(DEBUG_TRACEBACK_RT);
+			}
+		}
 
 		unsigned long
 			left = 0,
@@ -215,7 +321,11 @@ namespace pix::c_array
 				return mid;
 		}
 
-		throw "Element not found";
+		// Debug
+		{
+			DEBUG_TRACEBACK_TRIG;
+			throw pix::exception::excep("Element not found", DEBUG_TRACEBACK_RT);
+		}
 	}
 
 	template <typename type_t, unsigned long DIM>
@@ -223,14 +333,30 @@ namespace pix::c_array
 	{
 		assert_is_number(type_t);
 
+		// Debug
+		DEBUG_TRACEBACK_INIT;
+
 		return pix::c_array::binary_search<type_t>(arr, DIM, target);
 	}
 
 	template <typename type_t>
 	unsigned long binary_approx(type_t arr[], const unsigned long DIM, const type_t target) noexcept(false)
 	{
-		if (arr == nullptr) throw pix::exception::null_ptr();
-		if (DIM == 0) throw pix::exception::null_dim();
+		// Debug
+		{
+			DEBUG_TRACEBACK_INIT;
+
+			if (arr == nullptr)
+			{
+				DEBUG_TRACEBACK_TRIG;
+				throw pix::exception::null_ptr(DEBUG_TRACEBACK_RT);
+			}
+			if (DIM == 0)
+			{
+				DEBUG_TRACEBACK_TRIG;
+				throw pix::exception::null_dim(DEBUG_TRACEBACK_RT);
+			}
+		}
 
 		unsigned long
 			left = 0,
@@ -259,6 +385,9 @@ namespace pix::c_array
 	unsigned long binary_approx(type_t (&arr)[DIM], const type_t target) noexcept(false)
 	{
 		assert_is_number(type_t);
+
+		// Debug
+		DEBUG_TRACEBACK_INIT;
 
 		return pix::c_array::binary_approx<type_t>(arr, DIM, target);
 	}

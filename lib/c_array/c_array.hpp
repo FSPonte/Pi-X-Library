@@ -16,13 +16,13 @@ namespace pix::c_array
 	/**
 	 * @brief Swap pointers
 	 * @tparam type_t Data type
-	 * @param arr_1 Pointer to first array
-	 * @param arr_2 Pointer to second array
-	 * @throw Pointer to first array is null
-	 * @throw Pointer to second array is null
+	 * @param ref_1 Reference to first pointer
+	 * @param ref_2 Reference to second pointer
+	 * @throw First pointer is null
+	 * @throw Second pointer is null
 	*/
 	template <typename type_t>
-	void swap(type_t*, type_t*) noexcept(false);
+	void swap(type_t*&, type_t*&) noexcept(false);
 
 	/**
 	 * @brief Invert order of elements
@@ -41,10 +41,12 @@ namespace pix::c_array
 	 * @tparam type_t Data type
 	 * @tparam DIM Number of elements
 	 * @param arr Array of elements
+	 * @throw Pointer to array is null
+	 * @throw Dimension is null
 	 * @note Requires an array of a numerical data type
 	*/
 	template <typename type_t, unsigned long DIM>
-	void invert(type_t (&)[DIM]) noexcept(true);
+	void invert(type_t (&)[DIM]) noexcept(false);
 
 	/**
 	 * @brief Copy array
@@ -66,38 +68,13 @@ namespace pix::c_array
 	 * @tparam DIM Number of elements
 	 * @param arr_o Origin array of elements
 	 * @param arr_d Destination array of elements
+	 * @throw Pointer to origin array is null
+	 * @throw Pointer to destination array is null
+	 * @throw Dimension is null
 	 * @note Copies the elements from arr_o to arr_d
 	*/
 	template <typename type_t, unsigned long DIM>
-	void copy(const type_t (&)[DIM], type_t (&)[DIM]) noexcept(true);
-
-	/**
-	 * @brief Copy 2D array
-	 * @tparam type_t Data type
-	 * @param arr_o Origin array of elements
-	 * @param arr_d Destination array of elements
-	 * @param dim_1 Number of elements in dimension 1
-	 * @param dim_2 Number of elements in dimension 2
-	 * @throw Pointer to origin array is null
-	 * @throw Pointer to destination array is null
-	 * @throw Dimension 1 is null
-	 * @throw Dimension 2 is null
-	 * @note Copies the elements from arr_o to arr_d
-	*/
-	template <typename type_t>
-	void copy(const type_t*[], type_t*[], unsigned long, unsigned long) noexcept(false);
-
-	/**
-	 * @brief Copy 2D array
-	 * @tparam type_t Data type
-	 * @tparam DIM_1 Number of elements in dimension 1
-	 * @tparam DIM_2 Number of elements in dimension 2
-	 * @param arr_o Origin array of elements
-	 * @param arr_d Destination array of elements
-	 * @note Copies the elements from arr_o to arr_d
-	*/
-	template <typename type_t, unsigned long DIM_1, unsigned long DIM_2>
-	void copy(const type_t (&)[DIM_1][DIM_2], type_t (&)[DIM_1][DIM_2]) noexcept(true);
+	void copy(const type_t (&)[DIM], type_t (&)[DIM]) noexcept(false);
 
 	/**
 	 * @brief Move array
